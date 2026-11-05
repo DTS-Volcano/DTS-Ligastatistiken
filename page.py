@@ -77,9 +77,9 @@ def render(data, hist):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(TEAM)} – Statistik {esc(GROUP)}</title>
 {icon}
-<style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><main>
-<header><div class="brand">{logo}<div><h1>{esc(TEAM)}</h1>
+<style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
 <p class="sub">Liga {esc(GROUP)} · Stand {now} · Rangliste jeweils aktuell</p></div></div></header>
+<main>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
