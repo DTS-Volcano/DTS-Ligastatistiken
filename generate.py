@@ -344,7 +344,7 @@ def dot(won, title=""):
     return f'<span class="dot {"w" if won else "l"}" title="{title or ("Sieg" if won else "Niederlage")}">{"S" if won else "N"}</span>'
 
 
-def match_dialog(i, m, ranks):
+def match_dialog(i, m, ranks, total):
     pts = tuple(int(x) for x in m["points"].split(":"))
     won_match = pts[0] > pts[1]
 
@@ -367,14 +367,17 @@ def match_dialog(i, m, ranks):
                        for e in m["extras"])
         cards += f'<div class="rc"><h4>Doppel und Sudden Death</h4>{rows}</div>'
     note = f'<p class="hint">{esc(m["note"])}</p>' if m.get("note") else ""
-    link = (f'<p class="hint"><a href="{esc(m["url"])}" target="_blank" rel="noopener">Originalrapport auf vfc.ch</a></p>'
+    link = (f'<p class="hint"><a href="{esc(m["url"])}" target="_blank" rel="noopener">Originalreport auf vfc.ch</a></p>'
             if m.get("url") else "")
-    return (f'<dialog id="m{i}" aria-label="Spielrapport {esc(m["opp"])}"><div class="dlg">'
+    return (f'<dialog id="m{i}" aria-label="Spielreport {esc(m["opp"])}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<p class="sub">{fmt_date(m["date"])} · {"Heimspiel" if m["home"] else "Auswärtsspiel"}</p>'
             f'<h3 class="vs">{esc(TEAM)} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
             f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>{note}'
-            f'<div class="rounds">{cards}</div>{link}</div></dialog>')
+            f'<div class="rounds">{cards}</div>{link}'
+            f'<div class="nav"><button class="rb prev" data-go="{i - 1}"{"" if i > 0 else " disabled"}>‹ Vorherige Partie</button>'
+            f'<button class="rb next" data-go="{i + 1}"{"" if i < total - 1 else " disabled"}>Nächste Partie ›</button></div>'
+            f'</div></dialog>')
 
 
 def fmt_date(d):
@@ -541,8 +544,8 @@ def render(data, hist):
     mrows = "".join(
         f"<tr class='click' data-m='{i}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
         f"<td class='num'>{m['points']}</td><td class='num'>{m['games']}</td>"
-        f"<td><button class='rb' data-m='{i}'>Rapport</button></td></tr>" for i, m in enumerate(matches))
-    dialogs = "".join(match_dialog(i, m, data["ranks"]) for i, m in enumerate(matches))
+        f"<td><button class='rb' data-m='{i}'>Report</button></td></tr>" for i, m in enumerate(matches))
+    dialogs = "".join(match_dialog(i, m, data["ranks"], len(matches)) for i, m in enumerate(matches))
 
     prow = ""
     for p in players:
@@ -596,7 +599,7 @@ def render(data, hist):
 {section_rank_history(players, hist)}
 
 <section><h2>Partien</h2>
-<p class="hint">Auf eine Partie klicken, um den Spielrapport zu öffnen.</p>
+<p class="hint">Auf eine Partie klicken, um den Spielreport zu öffnen.</p>
 <div class="scroll"><table><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
 <tbody>{mrows}</tbody></table></div></section>
 
@@ -643,6 +646,8 @@ tr.hl td{background:var(--hl);font-weight:600}
 .up{color:var(--green);font-weight:600}.down{color:var(--red);font-weight:600}
 tr.click{cursor:pointer}tr.click:hover td{background:var(--hl)}
 .rb{font:inherit;font-size:.82rem;color:var(--green);background:none;border:1px solid var(--green);border-radius:6px;padding:2px 10px;cursor:pointer}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.rb[disabled]{opacity:.35;cursor:default}.rb[disabled]:hover{background:none;color:var(--green)}
 .rb:hover{background:var(--green);color:var(--bg)}
 dialog{border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);padding:0;width:min(780px,calc(100vw - 20px));max-height:calc(100vh - 20px)}
 dialog::backdrop{background:rgba(0,0,0,.55)}
@@ -674,7 +679,11 @@ JS = """document.querySelectorAll('table.sortable th').forEach((th,i)=>{th.tabIn
 [...b.rows].sort((x,y)=>{const a=x.cells[i].dataset.v??x.cells[i].textContent,c=y.cells[i].dataset.v??y.cells[i].textContent,
 n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;return d==='a'?r:-r}).forEach(r=>b.append(r))};
 th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
-document.addEventListener('click',e=>{const t=e.target.closest('[data-m]');
+document.addEventListener('keydown',e=>{const d=document.querySelector('dialog[open]');
+if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;const b=d.querySelector(e.key==='ArrowLeft'?'.prev':'.next');if(b&&!b.disabled)b.click()});
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');
+if(g){if(!g.disabled){const n=document.getElementById('m'+g.dataset.go);if(n){g.closest('dialog').close();n.showModal()}}return}
+const t=e.target.closest('[data-m]');
 if(t){const d=document.getElementById('m'+t.dataset.m);if(d&&d.showModal)d.showModal();return}
 const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()})"""
 
