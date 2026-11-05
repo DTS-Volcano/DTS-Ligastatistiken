@@ -135,6 +135,46 @@ def parse_schedule(soup):
     return fixtures
 
 
+def parse_league_text(text):
+    """Ersatz-Parser: liest die Tabelle aus dem reinen Text, falls die HTML-Struktur nicht passt."""
+    i = text.find("Set-")
+    j = text.find("Spielplan /", i)
+    if i < 0 or j < 0:
+        return []
+    seg = text[i + 4:j]
+    league, seen = [], set()
+    for m in re.finditer(r"(\d{1,2})\.\s+(.+?)\s+((?:\d+\s+){6}\d+)(?=\s+\d{1,2}\.\s|\s*$)", seg.strip() + " "):
+        n = [int(x) for x in m.group(3).split()]
+        if m.group(2).lower() in seen:
+            continue
+        seen.add(m.group(2).lower())
+        league.append({"rank": int(m.group(1)), "team": m.group(2), "played": n[0], "pp": n[1], "pm": n[2],
+                       "gp": n[3], "gm": n[4], "sp": n[5], "sm": n[6]})
+    return league
+
+
+def parse_schedule_text(text, league, nrs):
+    """Ersatz-Parser für den Spielplan aus dem reinen Text (Teamnamen kommen aus der Tabelle)."""
+    j = text.find("Spielplan /")
+    k = text.find(" GZ", j) if j >= 0 else -1
+    e = text.find("Einzelrangliste", k)
+    if k < 0:
+        return []
+    seg = text[k + 3:e if e > 0 else len(text)]
+    names = "|".join(re.escape(t["team"]) for t in sorted(league, key=lambda t: -len(t["team"])))
+    pat = re.compile(rf"^(\d{{2}}\.\d{{2}}\.\d{{2}})\s+({names})\s+({names})\s+(.+?)(?:\s+((?:\d+\s+){{5}}\d+))?\s*$")
+    fixtures = []
+    for chunk in re.split(r"(?=\b\d{2}\.\d{2}\.\d{2}\s)", seg):
+        m = pat.match(chunk.strip())
+        if m:
+            fixtures.append({"nr": "", "date": m.group(1), "home": m.group(2), "guest": m.group(3),
+                             "place": m.group(4), "played": bool(m.group(5))})
+    if len(fixtures) == len(nrs):
+        for f, nr in zip(fixtures, nrs):
+            f["nr"] = nr
+    return fixtures
+
+
 def load_league():
     soup = get(f"{BASE}ligarang.php?gruppe={quote(GROUP)}")
     text = clean(soup.get_text(" "))
@@ -143,7 +183,20 @@ def load_league():
     links = {}
     for a in soup.find_all("a", href=re.compile(r"sp_rapport\.php\?.*sp_nr=\d+")):
         links[re.search(r"sp_nr=(\d+)", a["href"]).group(1)] = urljoin(BASE, a["href"])
-    return ranking, links, parse_league_table(soup), parse_schedule(soup)
+    league, schedule = parse_league_table(soup), parse_schedule(soup)
+    if not league:
+        league = parse_league_text(text)
+        print(f"Tabelle über Text-Ersatzparser gelesen: {len(league)} Teams")
+        if not league:
+            k = text.find("Set-")
+            print("DEBUG Tabelle nicht erkannt, Textausschnitt:", text[max(k - 80, 0):k + 400])
+    if not schedule and league:
+        schedule = parse_schedule_text(text, league, list(links))
+        print(f"Spielplan über Text-Ersatzparser gelesen: {len(schedule)} Spiele")
+        if not schedule:
+            k = text.find("Spielplan /")
+            print("DEBUG Spielplan nicht erkannt, Textausschnitt:", text[max(k, 0):k + 500])
+    return ranking, links, league, schedule
 
 
 def rank_of(ranking, name):
@@ -507,7 +560,8 @@ def section_next(data, matches):
 
 def section_league(data):
     if not data["league"]:
-        return ""
+        return ("<section><h2>Tabelle</h2><p class='hint'>Die Tabelle konnte von vfc.ch gerade nicht gelesen werden. "
+                "Der nächste automatische Lauf versucht es erneut.</p>")
     me = TEAM.lower()
     rows = "".join(
         f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
