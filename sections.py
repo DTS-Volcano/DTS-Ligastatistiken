@@ -274,3 +274,49 @@ def section_potm(players, pidx):
             f"<p class='hint'>Wertung: beste Siegquote im Einzel (mindestens {MIN_EINZEL} Einzel im Monat), dann mehr Siege, "
             f"dann die stärkeren Gegner. Doppel und Sudden Death zählen nicht.{' Der laufende Monat ist ein Zwischenstand.' if live else ''}</p>"
             f"{hall}</section>")
+
+
+def section_homeaway(matches, players):
+    """Heim gegen Auswärts: Partien, Punkte und Einzel für das Team und pro Spieler."""
+    if not matches:
+        return ""
+    team = {h: {"m": 0, "mw": 0, "pts": 0, "w": 0, "l": 0} for h in (True, False)}
+    per = defaultdict(lambda: {True: [0, 0], False: [0, 0]})
+    for m in matches:
+        t = team[m["home"]]
+        pts = tuple(int(x) for x in m["points"].split(":"))
+        t["m"] += 1
+        t["mw"] += pts[0] > pts[1]
+        t["pts"] += pts[0]
+        for pairs in m["rounds"].values():
+            for p in pairs:
+                t["w" if p["won"] else "l"] += 1
+                per[p["mine"]][m["home"]][0 if p["won"] else 1] += 1
+
+    def q(w, l):
+        return f"{100 * w / (w + l):.0f} %" if w + l else "–"
+
+    rows = ""
+    for h, lab in ((True, "Heim"), (False, "Auswärts")):
+        t = team[h]
+        rows += (f"<tr><td>{lab}</td><td class='num'>{t['m']}</td><td class='num'>{t['mw']}:{t['m'] - t['mw']}</td>"
+                 f"<td class='num'>{t['pts']}</td><td class='num'>{t['w']}:{t['l']}</td><td class='num'>{q(t['w'], t['l'])}</td></tr>")
+    prow = ""
+    for p in players:
+        d = per.get(p["name"])
+        if not d:
+            continue
+        (hw, hl), (aw, al) = d[True], d[False]
+        diff = ""
+        if hw + hl and aw + al:
+            x = 100 * hw / (hw + hl) - 100 * aw / (aw + al)
+            diff = f"<span class='{'up' if x >= 10 else 'down' if x <= -10 else ''}'>{x:+.0f}</span>" if abs(x) >= 10 else "–"
+        prow += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{hw}:{hl}</td><td class='num'>{q(hw, hl)}</td>"
+                 f"<td class='num'>{aw}:{al}</td><td class='num'>{q(aw, al)}</td><td class='num'>{diff}</td></tr>")
+    return ("<section><h2>Heim und Auswärts</h2><p class='hint'>Einzel ohne Doppel und Sudden Death. "
+            "Differenz: Heimquote minus Auswärtsquote in Prozentpunkten, nur ab 10 Punkten Unterschied angezeigt.</p>"
+            "<div class='scroll'><table><thead><tr><th></th><th class='num'>Partien</th><th class='num'>Siege:Niederl.</th>"
+            f"<th class='num'>Punkte</th><th class='num'>Einzel</th><th class='num'>Quote</th></tr></thead><tbody>{rows}</tbody></table></div>"
+            "<h3>Pro Spieler</h3><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th><th class='num'>Heim</th>"
+            "<th class='num'>Quote</th><th class='num'>Auswärts</th><th class='num'>Quote</th><th class='num'>Differenz</th></tr></thead>"
+            f"<tbody>{prow}</tbody></table></div></section>")
