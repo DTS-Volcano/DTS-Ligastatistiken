@@ -418,6 +418,24 @@ def dot(won, title=""):
     return f'<span class="dot {"w" if won else "l"}" title="{title or ("Sieg" if won else "Niederlage")}">{"S" if won else "N"}</span>'
 
 
+def share_text(m):
+    """Kurze Zusammenfassung einer Partie zum Einfügen in den Team-Chat."""
+    pts = tuple(int(x) for x in m["points"].split(":"))
+    team = m.get("team", TEAM)
+    lines = [f"{team} – {m['opp']}", f"{m['points']} ({RESULT.get(pts, 'Resultat')}) · {fmt_date(m['date'])} · "
+             f"{'Heimspiel' if m['home'] else 'Auswärtsspiel'}", f"Spiele {m['games']} · Sätze {m.get('sets', '–')}"]
+    stat = defaultdict(lambda: [0, 0])
+    for pairs in m["rounds"].values():
+        for p in pairs:
+            stat[p["mine"]][0 if p["won"] else 1] += 1
+    if stat:
+        lines += ["", "Einzel: " + ", ".join(f"{short(n)} {w}:{l}" for n, (w, l) in
+                                              sorted(stat.items(), key=lambda kv: (-kv[1][0], kv[1][1], kv[0])))]
+    if m["extras"]:
+        lines.append(", ".join(f"{e['label']} {'Sieg' if e['won'] else 'Niederlage'} {e['sets']}" for e in m["extras"]))
+    return "\n".join(lines)
+
+
 def match_dialog(dom_id, m, ranks, total=None, i=0):
     pts = tuple(int(x) for x in m["points"].split(":"))
     won_match = pts[0] > pts[1]
@@ -448,6 +466,7 @@ def match_dialog(dom_id, m, ranks, total=None, i=0):
             f'<h3 class="vs">{esc(m.get("team", TEAM))} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
             f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>'
             f'<div class="rounds">{cards}</div>{link}'
+            f'<p><button class="rb" data-copy="{esc(share_text(m)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button></p>'
             + (f'<div class="nav"><button class="rb nb-prev" data-go="m{i - 1}"{"" if i > 0 else " disabled"}>‹ Vorherige Partie</button>'
                f'<button class="rb nb-next" data-go="m{i + 1}"{"" if i < total - 1 else " disabled"}>Nächste Partie ›</button></div>'
                if total else "") + '</div></dialog>')
@@ -793,7 +812,12 @@ n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;retu
 th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
 document.addEventListener('keydown',e=>{const d=document.querySelector('dialog[open]');
 if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;const b=d.querySelector(e.key==='ArrowLeft'?'.nb-prev':'.nb-next');if(b&&!b.disabled)b.click()});
-document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');
+document.addEventListener('click',e=>{const c=e.target.closest('[data-copy]');
+if(c){const txt=c.dataset.copy,o=c.textContent,done=()=>{c.textContent='Kopiert ✓';setTimeout(()=>{c.textContent=o},1800)};
+const fb=()=>{const a=document.createElement('textarea');a.value=txt;(c.closest('dialog')||document.body).appendChild(a);a.select();
+try{document.execCommand('copy');done()}catch(_){c.textContent='Kopieren nicht möglich'}a.remove()};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}return}
+const g=e.target.closest('[data-go]');
 if(g){if(!g.disabled){const n=document.getElementById(g.dataset.go);if(n){g.closest('dialog').close();n.showModal()}}return}
 const t=e.target.closest('[data-open]');
 if(t){const d=document.getElementById(t.dataset.open);if(d&&d.showModal){document.querySelectorAll('dialog[open]').forEach(x=>x.close());d.showModal()}return}
