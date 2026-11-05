@@ -2805,6 +2805,683 @@
    ]
   }
  ],
- "league": [],
- "schedule": []
+ "league": [
+  {
+   "rank": 1,
+   "team": "Die Humorlosen",
+   "played": 10,
+   "pp": 30,
+   "pm": 0,
+   "gp": 147,
+   "gm": 33,
+   "sp": 310,
+   "sm": 106
+  },
+  {
+   "rank": 2,
+   "team": "Irish Skulls Steel",
+   "played": 10,
+   "pp": 24,
+   "pm": 6,
+   "gp": 102,
+   "gm": 78,
+   "sp": 241,
+   "sm": 192
+  },
+  {
+   "rank": 3,
+   "team": "DARTFABRIK STEEL",
+   "played": 10,
+   "pp": 20,
+   "pm": 10,
+   "gp": 98,
+   "gm": 84,
+   "sp": 228,
+   "sm": 208
+  },
+  {
+   "rank": 4,
+   "team": "Double Trouble Steeldarters",
+   "played": 10,
+   "pp": 17,
+   "pm": 13,
+   "gp": 99,
+   "gm": 82,
+   "sp": 225,
+   "sm": 217
+  },
+  {
+   "rank": 5,
+   "team": "Dart Ost",
+   "played": 9,
+   "pp": 13,
+   "pm": 14,
+   "gp": 80,
+   "gm": 84,
+   "sp": 197,
+   "sm": 196
+  },
+  {
+   "rank": 6,
+   "team": "Irish Skulls ;) Steel",
+   "played": 9,
+   "pp": 12,
+   "pm": 15,
+   "gp": 75,
+   "gm": 87,
+   "sp": 190,
+   "sm": 208
+  },
+  {
+   "rank": 7,
+   "team": "Dynamo Tresen",
+   "played": 10,
+   "pp": 8,
+   "pm": 22,
+   "gp": 75,
+   "gm": 106,
+   "sp": 181,
+   "sm": 247
+  },
+  {
+   "rank": 8,
+   "team": "2010er Steel",
+   "played": 10,
+   "pp": 4,
+   "pm": 26,
+   "gp": 57,
+   "gm": 124,
+   "sp": 167,
+   "sm": 276
+  },
+  {
+   "rank": 9,
+   "team": "Braschtli's Darter 2",
+   "played": 8,
+   "pp": 1,
+   "pm": 23,
+   "gp": 45,
+   "gm": 100,
+   "sp": 128,
+   "sm": 217
+  }
+ ],
+ "schedule": [
+  {
+   "nr": "2621595",
+   "date": "24.08.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "Die Humorlosen",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621596",
+   "date": "24.08.26",
+   "home": "Dynamo Tresen",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Gossau",
+   "played": true
+  },
+  {
+   "nr": "2621597",
+   "date": "24.08.26",
+   "home": "2010er Steel",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Gossau SG",
+   "played": true
+  },
+  {
+   "nr": "2621598",
+   "date": "26.08.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "Irish Skulls Steel",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621599",
+   "date": "31.08.26",
+   "home": "Irish Skulls Steel",
+   "guest": "Dynamo Tresen",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621600",
+   "date": "31.08.26",
+   "home": "Die Humorlosen",
+   "guest": "2010er Steel",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621601",
+   "date": "31.08.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Dart Ost",
+   "place": "Sirnach",
+   "played": true
+  },
+  {
+   "nr": "2621602",
+   "date": "02.09.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Rorschach",
+   "played": true
+  },
+  {
+   "nr": "2621603",
+   "date": "07.09.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621604",
+   "date": "07.09.26",
+   "home": "Dynamo Tresen",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Gossau",
+   "played": true
+  },
+  {
+   "nr": "2621605",
+   "date": "09.09.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "Die Humorlosen",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621606",
+   "date": "09.09.26",
+   "home": "Dart Ost",
+   "guest": "Irish Skulls Steel",
+   "place": "Wittenbach",
+   "played": true
+  },
+  {
+   "nr": "2621607",
+   "date": "14.09.26",
+   "home": "2010er Steel",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Gossau SG",
+   "played": true
+  },
+  {
+   "nr": "2621608",
+   "date": "14.09.26",
+   "home": "Irish Skulls Steel",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621609",
+   "date": "14.09.26",
+   "home": "Die Humorlosen",
+   "guest": "Dynamo Tresen",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621610",
+   "date": "16.09.26",
+   "home": "Dart Ost",
+   "guest": "Braschtli's Darter 2",
+   "place": "Wittenbach",
+   "played": true
+  },
+  {
+   "nr": "2621611",
+   "date": "21.09.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Irish Skulls Steel",
+   "place": "Sirnach",
+   "played": true
+  },
+  {
+   "nr": "2621612",
+   "date": "21.09.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "2010er Steel",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621613",
+   "date": "23.09.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "Dynamo Tresen",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621614",
+   "date": "23.09.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "Dart Ost",
+   "place": "Rorschach",
+   "played": true
+  },
+  {
+   "nr": "2621615",
+   "date": "28.09.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Sirnach",
+   "played": true
+  },
+  {
+   "nr": "2621616",
+   "date": "28.09.26",
+   "home": "2010er Steel",
+   "guest": "Dynamo Tresen",
+   "place": "Gossau SG",
+   "played": true
+  },
+  {
+   "nr": "2621617",
+   "date": "28.09.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621618",
+   "date": "30.09.26",
+   "home": "Dart Ost",
+   "guest": "Die Humorlosen",
+   "place": "Wittenbach",
+   "played": true
+  },
+  {
+   "nr": "2621620",
+   "date": "05.10.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Sirnach",
+   "played": true
+  },
+  {
+   "nr": "2621621",
+   "date": "05.10.26",
+   "home": "2010er Steel",
+   "guest": "Dart Ost",
+   "place": "Gossau SG",
+   "played": true
+  },
+  {
+   "nr": "2621623",
+   "date": "12.10.26",
+   "home": "Irish Skulls Steel",
+   "guest": "2010er Steel",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621624",
+   "date": "12.10.26",
+   "home": "Dynamo Tresen",
+   "guest": "Braschtli's Darter 2",
+   "place": "Gossau",
+   "played": true
+  },
+  {
+   "nr": "2621625",
+   "date": "12.10.26",
+   "home": "Die Humorlosen",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621619",
+   "date": "14.10.26",
+   "home": "Die Humorlosen",
+   "guest": "Irish Skulls Steel",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621626",
+   "date": "14.10.26",
+   "home": "Dart Ost",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Wittenbach",
+   "played": true
+  },
+  {
+   "nr": "2621627",
+   "date": "19.10.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "Irish Skulls Steel",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621628",
+   "date": "19.10.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "2010er Steel",
+   "place": "Sirnach",
+   "played": true
+  },
+  {
+   "nr": "2621629",
+   "date": "21.10.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "Die Humorlosen",
+   "place": "Rorschach",
+   "played": true
+  },
+  {
+   "nr": "2621630",
+   "date": "21.10.26",
+   "home": "Dart Ost",
+   "guest": "Dynamo Tresen",
+   "place": "Wittenbach",
+   "played": true
+  },
+  {
+   "nr": "2621631",
+   "date": "26.10.26",
+   "home": "Irish Skulls Steel",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621632",
+   "date": "26.10.26",
+   "home": "Die Humorlosen",
+   "guest": "Braschtli's Darter 2",
+   "place": "Widnau",
+   "played": true
+  },
+  {
+   "nr": "2621633",
+   "date": "26.10.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Dynamo Tresen",
+   "place": "Sirnach",
+   "played": true
+  },
+  {
+   "nr": "2621634",
+   "date": "27.10.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "2010er Steel",
+   "place": "Rorschach",
+   "played": true
+  },
+  {
+   "nr": "2621635",
+   "date": "02.11.26",
+   "home": "Dynamo Tresen",
+   "guest": "Irish Skulls Steel",
+   "place": "Gossau",
+   "played": true
+  },
+  {
+   "nr": "2621636",
+   "date": "02.11.26",
+   "home": "2010er Steel",
+   "guest": "Die Humorlosen",
+   "place": "Gossau SG",
+   "played": true
+  },
+  {
+   "nr": "2621637",
+   "date": "04.11.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Arbon",
+   "played": true
+  },
+  {
+   "nr": "2621638",
+   "date": "04.11.26",
+   "home": "Dart Ost",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Wittenbach",
+   "played": true
+  },
+  {
+   "nr": "2621639",
+   "date": "09.11.26",
+   "home": "Die Humorlosen",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Widnau",
+   "played": false
+  },
+  {
+   "nr": "2621640",
+   "date": "09.11.26",
+   "home": "Irish Skulls Steel",
+   "guest": "Dart Ost",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621641",
+   "date": "09.11.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Braschtli's Darter 2",
+   "place": "Sirnach",
+   "played": false
+  },
+  {
+   "nr": "2621642",
+   "date": "11.11.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "Dynamo Tresen",
+   "place": "Rorschach",
+   "played": false
+  },
+  {
+   "nr": "2621643",
+   "date": "16.11.26",
+   "home": "Dynamo Tresen",
+   "guest": "Die Humorlosen",
+   "place": "Gossau",
+   "played": false
+  },
+  {
+   "nr": "2621644",
+   "date": "16.11.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "Dart Ost",
+   "place": "Widnau",
+   "played": false
+  },
+  {
+   "nr": "2621645",
+   "date": "18.11.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "2010er Steel",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621646",
+   "date": "18.11.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "Irish Skulls Steel",
+   "place": "Rorschach",
+   "played": false
+  },
+  {
+   "nr": "2621647",
+   "date": "23.11.26",
+   "home": "Dynamo Tresen",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Gossau",
+   "played": false
+  },
+  {
+   "nr": "2621648",
+   "date": "23.11.26",
+   "home": "Irish Skulls Steel",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621649",
+   "date": "23.11.26",
+   "home": "2010er Steel",
+   "guest": "Braschtli's Darter 2",
+   "place": "Gossau SG",
+   "played": false
+  },
+  {
+   "nr": "2621650",
+   "date": "25.11.26",
+   "home": "Dart Ost",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Wittenbach",
+   "played": false
+  },
+  {
+   "nr": "2621622",
+   "date": "30.11.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "Braschtli's Darter 2",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621651",
+   "date": "30.11.26",
+   "home": "Die Humorlosen",
+   "guest": "Dart Ost",
+   "place": "Widnau",
+   "played": false
+  },
+  {
+   "nr": "2621652",
+   "date": "30.11.26",
+   "home": "Dynamo Tresen",
+   "guest": "2010er Steel",
+   "place": "Gossau",
+   "played": false
+  },
+  {
+   "nr": "2621653",
+   "date": "02.12.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621654",
+   "date": "02.12.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "Braschtli's Darter 2",
+   "place": "Rorschach",
+   "played": false
+  },
+  {
+   "nr": "2621655",
+   "date": "07.12.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "Irish Skulls ;) Steel",
+   "place": "Widnau",
+   "played": false
+  },
+  {
+   "nr": "2621656",
+   "date": "07.12.26",
+   "home": "Irish Skulls Steel",
+   "guest": "Die Humorlosen",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621658",
+   "date": "07.12.26",
+   "home": "Dart Ost",
+   "guest": "2010er Steel",
+   "place": "Wittenbach",
+   "played": false
+  },
+  {
+   "nr": "2621657",
+   "date": "09.12.26",
+   "home": "Double Trouble Steeldarters",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Rorschach",
+   "played": false
+  },
+  {
+   "nr": "2621659",
+   "date": "14.12.26",
+   "home": "2010er Steel",
+   "guest": "Irish Skulls Steel",
+   "place": "Gossau SG",
+   "played": false
+  },
+  {
+   "nr": "2621660",
+   "date": "14.12.26",
+   "home": "Braschtli's Darter 2",
+   "guest": "Dynamo Tresen",
+   "place": "Widnau",
+   "played": false
+  },
+  {
+   "nr": "2621661",
+   "date": "14.12.26",
+   "home": "DARTFABRIK STEEL",
+   "guest": "Die Humorlosen",
+   "place": "Sirnach",
+   "played": false
+  },
+  {
+   "nr": "2621662",
+   "date": "16.12.26",
+   "home": "Irish Skulls ;) Steel",
+   "guest": "Dart Ost",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621663",
+   "date": "21.12.26",
+   "home": "Irish Skulls Steel",
+   "guest": "Braschtli's Darter 2",
+   "place": "Arbon",
+   "played": false
+  },
+  {
+   "nr": "2621664",
+   "date": "21.12.26",
+   "home": "Die Humorlosen",
+   "guest": "Double Trouble Steeldarters",
+   "place": "Widnau",
+   "played": false
+  },
+  {
+   "nr": "2621665",
+   "date": "21.12.26",
+   "home": "Dynamo Tresen",
+   "guest": "Dart Ost",
+   "place": "Gossau",
+   "played": false
+  },
+  {
+   "nr": "2621666",
+   "date": "21.12.26",
+   "home": "2010er Steel",
+   "guest": "DARTFABRIK STEEL",
+   "place": "Gossau SG",
+   "played": false
+  }
+ ]
 }
