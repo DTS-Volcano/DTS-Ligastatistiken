@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
-from sections import section_form, section_league, section_rounds, section_next, section_rank_history
+from sections import section_form, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
 
@@ -92,6 +92,7 @@ def render(data, hist):
 </dl>
 {next_html}
 {last_html}
+{section_potm(players, {pl["name"]: i for i, pl in enumerate(players)})}
 {open_html}
 </div>
 

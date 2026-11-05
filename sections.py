@@ -2,7 +2,7 @@
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-from components import dots, spark
+from components import avatar, dots, spark
 from config import FORM_N, TEAM, today
 from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
@@ -212,3 +212,65 @@ def section_rounds(matches):
     return ("<section><h2>Spielblöcke</h2><p class='hint'>Einzel pro Runde (Runde 1 bis 4, je 4 Spiele), ohne Doppel "
             f"und Sudden Death.</p><dl class='kpi rk'>{cards}</dl>{verdict}"
             f"<div class='scroll'><table><thead><tr><th>Partie</th>{head}</tr></thead><tbody>{rows}</tbody></table></div></section>")
+
+
+MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+MIN_EINZEL = 2     # so viele Einzel braucht es im Monat, um zu zählen
+
+
+def potm_ranking(players):
+    """Monat (Jahr, Monat) -> Spieler nach Quote, Siegen und Stärke der Gegner sortiert."""
+    mon = defaultdict(lambda: defaultdict(lambda: {"w": 0, "l": 0, "opp": []}))
+    for p in players:
+        for r in p["rows"]:
+            d = dkey(r["date"])
+            if d.year < 2000:
+                continue
+            e = mon[(d.year, d.month)][p["name"]]
+            e["w" if r["won"] else "l"] += 1
+            if r["opp_rank"]:
+                e["opp"].append(r["opp_rank"])
+    out = {}
+    for k, pl in mon.items():
+        rows = []
+        for name, e in pl.items():
+            n = e["w"] + e["l"]
+            if n >= MIN_EINZEL:
+                rows.append({"name": name, "w": e["w"], "l": e["l"], "q": e["w"] / n,
+                             "avg": sum(e["opp"]) / len(e["opp"]) if e["opp"] else 999})
+        rows.sort(key=lambda x: (-x["q"], -x["w"], x["avg"], x["name"]))
+        if rows:
+            out[k] = rows
+    return out
+
+
+def section_potm(players, pidx):
+    rk = potm_ranking(players)
+    if not rk:
+        return ""
+    months = sorted(rk, reverse=True)
+    cur = (today().year, today().month)
+    k = months[0]
+    live = k == cur
+    top = rk[k][0]
+    winners = [r for r in rk[k] if (r["q"], r["w"], round(r["avg"], 1)) == (top["q"], top["w"], round(top["avg"], 1))]
+    label = f"{MONTHS[k[1] - 1]} {k[0]}"
+
+    def link(name):
+        return f"<button class='tl' data-open='p{pidx[name]}'>{esc(name)}</button>" if name in pidx else esc(name)
+
+    cards = ""
+    for w in winners:
+        avg = f" · Ø Gegner-Rang {w['avg']:.0f}" if w["avg"] < 999 else ""
+        cards += (f"<div class='potm'>{avatar(w['name'], 96)}<div><p class='sub'>{'Zwischenstand ' if live else ''}{label}</p>"
+                  f"<h3 class='vs'>{link(w['name'])}</h3>"
+                  f"<p class='sub'>{w['w']}:{w['l']} Einzel · {100 * w['q']:.0f} %{avg}</p></div></div>")
+    hall = ""
+    for m in months[1:]:
+        t = rk[m][0]
+        hall += (f"<li><span>{MONTHS[m[1] - 1]} {m[0]}</span>{link(t['name'])} <b>{t['w']}:{t['l']}</b></li>")
+    hall = f"<h4>Frühere Monate</h4><ul class='hof'>{hall}</ul>" if hall else ""
+    return (f"<section><h2>Spieler des Monats</h2>{cards}"
+            f"<p class='hint'>Wertung: beste Siegquote im Einzel (mindestens {MIN_EINZEL} Einzel im Monat), dann mehr Siege, "
+            f"dann die stärkeren Gegner. Doppel und Sudden Death zählen nicht.{' Der laufende Monat ist ein Zwischenstand.' if live else ''}</p>"
+            f"{hall}</section>")

@@ -127,3 +127,10 @@ dl.kpi.rk dd.win{color:var(--win)}dl.kpi.rk dd.loss{color:var(--red)}
 .chip{border:1px solid var(--line);border-radius:999px;padding:1px 9px;background:var(--card);white-space:nowrap}
 .chip.win{border-color:var(--win);color:var(--win)}.chip.loss{border-color:var(--red);color:var(--red)}
 .pc .rk{grid-column:1}.pc .pn{grid-column:2;grid-row:1}.pc .pf{grid-column:3;grid-row:1}
+
+.potm{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:14px 16px;margin-bottom:8px}
+.potm .vs{margin:0}.potm .sub{margin:0}
+.potm .pic{width:88px;height:88px}
+.hof{list-style:none;margin:0;padding:0}
+.hof li{display:flex;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
+.hof li span{color:var(--mute);min-width:9.5em}.hof li b{margin-left:auto;font-variant-numeric:tabular-nums}

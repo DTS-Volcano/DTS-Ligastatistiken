@@ -35,13 +35,19 @@ def spark(vals, label, lo=None, hi=None, invert=False, w=96, h=26):
             f'<polyline points="{line}"/><circle cx="{pts[-1][0]:.1f}" cy="{pts[-1][1]:.1f}" r="2.4"/></svg>')
 
 
+def avatar(name, size=112):
+    """Spielerbild (aus spieler/) oder Initialen im Rahmen."""
+    photo = find_photo(name)
+    if photo:
+        return f'<img class="pic" src="spieler/{esc(photo)}" alt="{esc(name)}" width="{size}" height="{size}" loading="lazy">'
+    initials = "".join(w[0] for w in name.split()[:2]).upper()
+    return f'<span class="pic ini" aria-hidden="true">{esc(initials)}</span>'
+
+
 def player_dialog(idx, p, total, hist):
     """Spielerprofil als Fenster: Bild, Kennzahlen, Form, Rangverlauf, Runden, Lieblings-/Angstgegner, alle Einzel."""
     name = p["name"]
-    photo = find_photo(name)
-    initials = "".join(w[0] for w in name.split()[:2]).upper()
-    pic = (f'<img class="pic" src="spieler/{esc(photo)}" alt="{esc(name)}" width="112" height="112">' if photo
-           else f'<span class="pic ini" aria-hidden="true">{esc(initials)}</span>')
+    pic = avatar(name)
     rows = p["rows"]
     quote = pct(p["w"], p["l"])
     avg = f"{p['avg_opp']:.1f}" if p["avg_opp"] else "–"
