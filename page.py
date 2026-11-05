@@ -87,7 +87,6 @@ def render(data, hist):
 <div class="panel" id="p-uebersicht">
 <dl class="kpi">{kpi_html}
 <div><dt>Spielbilanz (Einzel)</dt><dd>{W}:{L}</dd></div>
-<div><dt>Ø Gegner-Rang</dt><dd>{(sum(allr) / len(allr)) if allr else 0:.1f}</dd></div>
 </dl>
 {next_html}
 {last_html}
