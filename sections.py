@@ -50,15 +50,20 @@ def section_next(data, matches):
         roster.append({"name": name, "rank": data["ranks"].get(name), "n": len(rows), "w": w, "rows": rows})
     roster.sort(key=lambda r: (r["rank"] or 999, -r["n"]))
     if roster:
-        body = ""
+        cards = ""
         for r in roster:
-            vs = ", ".join(f"{esc(short(n))} {a}:{b}" for n, (a, b) in vs_us.get(r["name"], {}).items()) or "–"
-            body += (f"<tr><td class='num'>{r['rank'] or '–'}</td><td>{esc(r['name'])}</td>"
-                     f"<td class='num'>{r['n']}</td><td class='num'>{r['w']}:{r['n'] - r['w']}</td>"
-                     f"<td class='num'>{pct(r['w'], r['n'] - r['w'])}</td><td>{dots(r['rows'])}</td><td>{vs}</td></tr>")
-        table = ("<div class='scroll'><table><thead><tr><th>Rang</th><th>Spieler</th><th>Spiele</th><th>Bilanz</th>"
-                 f"<th>Quote</th><th>Form (letzte {FORM_N})</th><th>Gegen euch (aus ihrer Sicht)</th></tr></thead>"
-                 f"<tbody>{body}</tbody></table></div>")
+            enc = vs_us.get(r["name"], {})
+            chips = "".join(
+                f"<span class='chip {'win' if b > a else 'loss' if b < a else ''}'>{esc(short(n))} <b>{b}:{a}</b></span>"
+                for n, (a, b) in enc.items())
+            meet = (f"<p class='meet'><small>Gegen euch:</small> {chips}</p>" if chips
+                    else "<p class='meet'><small>Noch nicht gegen euch gespielt</small></p>")
+            cards += (f"<li class='pc'><span class='rk'>{r['rank'] or '–'}</span>"
+                      f"<div class='pn'><b>{esc(r['name'])}</b><small>{r['w']}:{r['n'] - r['w']} · {pct(r['w'], r['n'] - r['w'])}</small></div>"
+                      f"<span class='pf'>{dots(r['rows'])}</span>{meet}</li>")
+        table = ("<h3>Kader des Gegners</h3><p class='hint'>Rang in der Einzelrangliste, Bilanz und Form (S/N). "
+                 "«Gegen euch» zeigt aus eurer Sicht, wie eure Spieler gegen ihn gespielt haben.</p>"
+                 f"<ul class='pcs'>{cards}</ul>")
     else:
         table = "<p class='hint'>Von diesem Team sind noch keine Einzel bekannt.</p>"
 
