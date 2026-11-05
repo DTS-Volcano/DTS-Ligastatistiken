@@ -1,0 +1,1548 @@
+{
+ "matches": [
+  {
+   "date": "24.08.2026",
+   "opp": "2010er Steel",
+   "home": false,
+   "points": "3:0",
+   "games": "11:7"
+  },
+  {
+   "date": "02.09.2026",
+   "opp": "Irish Skulls ;) Steel",
+   "home": true,
+   "points": "3:0",
+   "games": "12:6"
+  },
+  {
+   "date": "07.09.2026",
+   "opp": "Dynamo Tresen",
+   "home": false,
+   "points": "3:0",
+   "games": "12:6"
+  },
+  {
+   "date": "14.09.2026",
+   "opp": "Irish Skulls Steel",
+   "home": false,
+   "points": "0:3",
+   "games": "8:10"
+  },
+  {
+   "date": "23.09.2026",
+   "opp": "Dart Ost",
+   "home": true,
+   "points": "3:0",
+   "games": "12:6"
+  },
+  {
+   "date": "28.09.2026",
+   "opp": "Braschtli's Darter 2",
+   "home": false,
+   "points": "3:0",
+   "games": "12:6"
+  },
+  {
+   "date": "05.10.2026",
+   "opp": "DARTFABRIK STEEL",
+   "home": false,
+   "points": "0:3",
+   "games": "6:12"
+  },
+  {
+   "date": "21.10.2026",
+   "opp": "Die Humorlosen",
+   "home": true,
+   "points": "0:3",
+   "games": "8:10"
+  },
+  {
+   "date": "27.10.2026",
+   "opp": "2010er Steel",
+   "home": true,
+   "points": "2:1",
+   "games": "10:9"
+  },
+  {
+   "date": "04.11.2026",
+   "opp": "Irish Skulls ;) Steel",
+   "home": false,
+   "points": "0:3",
+   "games": "8:10"
+  }
+ ],
+ "players": [
+  {
+   "name": "Christoph Wildermuth",
+   "rank": 5,
+   "n": 30,
+   "w": 23,
+   "l": 7,
+   "avg_opp": 27.866666666666667,
+   "brackets": {
+    "top": [
+     5,
+     2
+    ],
+    "mid": [
+     4,
+     5
+    ],
+    "low": [
+     14,
+     0
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Tom Lanz",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "24.08.2026",
+     "opp_rank": 59
+    },
+    {
+     "opp": "Marc Brassel",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "24.08.2026",
+     "opp_rank": 27
+    },
+    {
+     "opp": "Serge Schiess",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "24.08.2026",
+     "opp_rank": 33
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "24.08.2026",
+     "opp_rank": 38
+    },
+    {
+     "opp": "Fabian Aerne",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 50
+    },
+    {
+     "opp": "Oliver Hutter",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:1",
+     "date": "07.09.2026",
+     "opp_rank": 29
+    },
+    {
+     "opp": "Patric Fricker",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:1",
+     "date": "07.09.2026",
+     "opp_rank": 46
+    },
+    {
+     "opp": "Jonas Herbinger",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 43
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "14.09.2026",
+     "opp_rank": 4
+    },
+    {
+     "opp": "Mic Andres",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "14.09.2026",
+     "opp_rank": 31
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "14.09.2026",
+     "opp_rank": 15
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "14.09.2026",
+     "opp_rank": 48
+    },
+    {
+     "opp": "Alessio Demarchi",
+     "opp_team": "Dart Ost",
+     "won": false,
+     "sets": "1:2",
+     "date": "23.09.2026",
+     "opp_rank": 23
+    },
+    {
+     "opp": "Phillipe Graf",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:1",
+     "date": "23.09.2026",
+     "opp_rank": 12
+    },
+    {
+     "opp": "Joel Ghirlanda",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:0",
+     "date": "23.09.2026",
+     "opp_rank": 35
+    },
+    {
+     "opp": "Silvan Bücheli",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:0",
+     "date": "23.09.2026",
+     "opp_rank": 9
+    },
+    {
+     "opp": "Richard Sieber",
+     "opp_team": "Braschtli's Darter 2",
+     "won": false,
+     "sets": "1:2",
+     "date": "28.09.2026",
+     "opp_rank": 18
+    },
+    {
+     "opp": "Andreas Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:0",
+     "date": "28.09.2026",
+     "opp_rank": 63
+    },
+    {
+     "opp": "Christian Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:0",
+     "date": "28.09.2026",
+     "opp_rank": 14
+    },
+    {
+     "opp": "Heiri Kuratli",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:1",
+     "date": "28.09.2026",
+     "opp_rank": 47
+    },
+    {
+     "opp": "Stefan Pfeifer",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:1",
+     "date": "21.10.2026",
+     "opp_rank": 30
+    },
+    {
+     "opp": "Valentin Matt",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "0:2",
+     "date": "21.10.2026",
+     "opp_rank": 2
+    },
+    {
+     "opp": "Michael Loser",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:0",
+     "date": "21.10.2026",
+     "opp_rank": 1
+    },
+    {
+     "opp": "Martin Seidelmann",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "0:2",
+     "date": "21.10.2026",
+     "opp_rank": 3
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "27.10.2026",
+     "opp_rank": 38
+    },
+    {
+     "opp": "Jonathan Palumbo",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "27.10.2026",
+     "opp_rank": 34
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "04.11.2026",
+     "opp_rank": 6
+    },
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "04.11.2026",
+     "opp_rank": 8
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "04.11.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Matthias Sutter",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 26
+    }
+   ]
+  },
+  {
+   "name": "Daniel Laszlo Sandor",
+   "rank": 36,
+   "n": 12,
+   "w": 8,
+   "l": 4,
+   "avg_opp": 24.0,
+   "brackets": {
+    "top": [
+     3,
+     2
+    ],
+    "mid": [
+     1,
+     2
+    ],
+    "low": [
+     4,
+     0
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "02.09.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "02.09.2026",
+     "opp_rank": 8
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 6
+    },
+    {
+     "opp": "Naser Toja",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "02.09.2026",
+     "opp_rank": 52
+    },
+    {
+     "opp": "Christian Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": false,
+     "sets": "0:2",
+     "date": "28.09.2026",
+     "opp_rank": 14
+    },
+    {
+     "opp": "Heiri Kuratli",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:1",
+     "date": "28.09.2026",
+     "opp_rank": 47
+    },
+    {
+     "opp": "Richard Sieber",
+     "opp_team": "Braschtli's Darter 2",
+     "won": false,
+     "sets": "0:2",
+     "date": "28.09.2026",
+     "opp_rank": 18
+    },
+    {
+     "opp": "Andreas Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:0",
+     "date": "28.09.2026",
+     "opp_rank": 63
+    },
+    {
+     "opp": "Martin Seidelmann",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "1:2",
+     "date": "21.10.2026",
+     "opp_rank": 3
+    },
+    {
+     "opp": "Michael Loser",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:1",
+     "date": "21.10.2026",
+     "opp_rank": 1
+    },
+    {
+     "opp": "Valentin Matt",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:1",
+     "date": "21.10.2026",
+     "opp_rank": 2
+    },
+    {
+     "opp": "Stefan Pfeifer",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:1",
+     "date": "21.10.2026",
+     "opp_rank": 30
+    }
+   ]
+  },
+  {
+   "name": "Juliano Goncalves da Costa",
+   "rank": 25,
+   "n": 23,
+   "w": 15,
+   "l": 8,
+   "avg_opp": 27.17391304347826,
+   "brackets": {
+    "top": [
+     2,
+     3
+    ],
+    "mid": [
+     5,
+     4
+    ],
+    "low": [
+     8,
+     1
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "24.08.2026",
+     "opp_rank": 38
+    },
+    {
+     "opp": "Marcel Staubli",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "24.08.2026",
+     "opp_rank": 61
+    },
+    {
+     "opp": "Marc Brassel",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "24.08.2026",
+     "opp_rank": 27
+    },
+    {
+     "opp": "Lucky Aebischer",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "24.08.2026",
+     "opp_rank": 39
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 6
+    },
+    {
+     "opp": "Oliver Hutter",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 29
+    },
+    {
+     "opp": "Cedric Hutter",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 54
+    },
+    {
+     "opp": "Jonas Herbinger",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:1",
+     "date": "07.09.2026",
+     "opp_rank": 43
+    },
+    {
+     "opp": "Patric Fricker",
+     "opp_team": "Dynamo Tresen",
+     "won": false,
+     "sets": "0:2",
+     "date": "07.09.2026",
+     "opp_rank": 46
+    },
+    {
+     "opp": "Mic Andres",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "14.09.2026",
+     "opp_rank": 31
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "14.09.2026",
+     "opp_rank": 4
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "14.09.2026",
+     "opp_rank": 48
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "14.09.2026",
+     "opp_rank": 15
+    },
+    {
+     "opp": "Joel Ghirlanda",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:0",
+     "date": "23.09.2026",
+     "opp_rank": 35
+    },
+    {
+     "opp": "Silvan Bücheli",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:1",
+     "date": "23.09.2026",
+     "opp_rank": 9
+    },
+    {
+     "opp": "Alessio Demarchi",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:0",
+     "date": "23.09.2026",
+     "opp_rank": 23
+    },
+    {
+     "opp": "Phillipe Graf",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:1",
+     "date": "23.09.2026",
+     "opp_rank": 12
+    },
+    {
+     "opp": "Adam Montgomery",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 24
+    },
+    {
+     "opp": "Markus Müller",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 21
+    },
+    {
+     "opp": "Alex Grohmann",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": true,
+     "sets": "2:0",
+     "date": "05.10.2026",
+     "opp_rank": 19
+    },
+    {
+     "opp": "Daniel Strasser",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "1:2",
+     "date": "05.10.2026",
+     "opp_rank": 7
+    },
+    {
+     "opp": "Matthias Sutter",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 26
+    },
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 8
+    }
+   ]
+  },
+  {
+   "name": "Nevio Bachmann",
+   "rank": 13,
+   "n": 29,
+   "w": 18,
+   "l": 11,
+   "avg_opp": 30.82758620689655,
+   "brackets": {
+    "top": [
+     1,
+     6
+    ],
+    "mid": [
+     5,
+     3
+    ],
+    "low": [
+     12,
+     2
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "02.09.2026",
+     "opp_rank": 6
+    },
+    {
+     "opp": "Naser Toja",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 52
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "02.09.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Demian Senn",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 57
+    },
+    {
+     "opp": "Patric Fricker",
+     "opp_team": "Dynamo Tresen",
+     "won": false,
+     "sets": "1:2",
+     "date": "07.09.2026",
+     "opp_rank": 46
+    },
+    {
+     "opp": "Jonas Herbinger",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 43
+    },
+    {
+     "opp": "Fabian Aerne",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 50
+    },
+    {
+     "opp": "Oliver Hutter",
+     "opp_team": "Dynamo Tresen",
+     "won": true,
+     "sets": "2:0",
+     "date": "07.09.2026",
+     "opp_rank": 29
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "14.09.2026",
+     "opp_rank": 4
+    },
+    {
+     "opp": "Alessio Demarchi",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:1",
+     "date": "23.09.2026",
+     "opp_rank": 23
+    },
+    {
+     "opp": "Daniel Forrer",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:0",
+     "date": "23.09.2026",
+     "opp_rank": 58
+    },
+    {
+     "opp": "Andreas Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:0",
+     "date": "28.09.2026",
+     "opp_rank": 63
+    },
+    {
+     "opp": "Richard Sieber",
+     "opp_team": "Braschtli's Darter 2",
+     "won": false,
+     "sets": "1:2",
+     "date": "28.09.2026",
+     "opp_rank": 18
+    },
+    {
+     "opp": "Heiri Kuratli",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:1",
+     "date": "28.09.2026",
+     "opp_rank": 47
+    },
+    {
+     "opp": "Christian Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:1",
+     "date": "28.09.2026",
+     "opp_rank": 14
+    },
+    {
+     "opp": "Jean-Dominique Bollhalder",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": true,
+     "sets": "2:1",
+     "date": "05.10.2026",
+     "opp_rank": 42
+    },
+    {
+     "opp": "Alex Grohmann",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": true,
+     "sets": "2:0",
+     "date": "05.10.2026",
+     "opp_rank": 19
+    },
+    {
+     "opp": "Markus Müller",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "1:2",
+     "date": "05.10.2026",
+     "opp_rank": 21
+    },
+    {
+     "opp": "Lars Gamper",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": true,
+     "sets": "2:0",
+     "date": "05.10.2026",
+     "opp_rank": 66
+    },
+    {
+     "opp": "Valentin Matt",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:0",
+     "date": "21.10.2026",
+     "opp_rank": 2
+    },
+    {
+     "opp": "Stefan Pfeifer",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:1",
+     "date": "21.10.2026",
+     "opp_rank": 30
+    },
+    {
+     "opp": "Martin Seidelmann",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "0:2",
+     "date": "21.10.2026",
+     "opp_rank": 3
+    },
+    {
+     "opp": "Michael Loser",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "1:2",
+     "date": "21.10.2026",
+     "opp_rank": 1
+    },
+    {
+     "opp": "Lucky Aebischer",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "27.10.2026",
+     "opp_rank": 39
+    },
+    {
+     "opp": "Serge Schiess",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "27.10.2026",
+     "opp_rank": 33
+    },
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 8
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 6
+    },
+    {
+     "opp": "Matthias Sutter",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 26
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "04.11.2026",
+     "opp_rank": 44
+    }
+   ]
+  },
+  {
+   "name": "Elia Tanner",
+   "rank": 41,
+   "n": 13,
+   "w": 6,
+   "l": 7,
+   "avg_opp": 31.846153846153847,
+   "brackets": {
+    "top": [
+     1,
+     1
+    ],
+    "mid": [
+     1,
+     2
+    ],
+    "low": [
+     4,
+     4
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 8
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "02.09.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Matthias Sutter",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "02.09.2026",
+     "opp_rank": 26
+    },
+    {
+     "opp": "Heiri Kuratli",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:1",
+     "date": "28.09.2026",
+     "opp_rank": 47
+    },
+    {
+     "opp": "Christian Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": false,
+     "sets": "0:2",
+     "date": "28.09.2026",
+     "opp_rank": 14
+    },
+    {
+     "opp": "Andreas Hutter",
+     "opp_team": "Braschtli's Darter 2",
+     "won": true,
+     "sets": "2:0",
+     "date": "28.09.2026",
+     "opp_rank": 63
+    },
+    {
+     "opp": "Richard Sieber",
+     "opp_team": "Braschtli's Darter 2",
+     "won": false,
+     "sets": "0:2",
+     "date": "28.09.2026",
+     "opp_rank": 18
+    },
+    {
+     "opp": "Lucky Aebischer",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "27.10.2026",
+     "opp_rank": 39
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "27.10.2026",
+     "opp_rank": 38
+    },
+    {
+     "opp": "Serge Schiess",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "27.10.2026",
+     "opp_rank": 33
+    },
+    {
+     "opp": "Jonathan Palumbo",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "27.10.2026",
+     "opp_rank": 34
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "04.11.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 6
+    }
+   ]
+  },
+  {
+   "name": "Kevin Notter",
+   "rank": 37,
+   "n": 22,
+   "w": 9,
+   "l": 13,
+   "avg_opp": 21.818181818181817,
+   "brackets": {
+    "top": [
+     0,
+     8
+    ],
+    "mid": [
+     5,
+     2
+    ],
+    "low": [
+     4,
+     3
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Matthias Sutter",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 26
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "02.09.2026",
+     "opp_rank": 6
+    },
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "02.09.2026",
+     "opp_rank": 8
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "02.09.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "14.09.2026",
+     "opp_rank": 15
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "14.09.2026",
+     "opp_rank": 48
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "14.09.2026",
+     "opp_rank": 4
+    },
+    {
+     "opp": "Mic Andres",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "14.09.2026",
+     "opp_rank": 31
+    },
+    {
+     "opp": "Markus Müller",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": true,
+     "sets": "2:1",
+     "date": "05.10.2026",
+     "opp_rank": 21
+    },
+    {
+     "opp": "Adam Montgomery",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "1:2",
+     "date": "05.10.2026",
+     "opp_rank": 24
+    },
+    {
+     "opp": "Jean-Dominique Bollhalder",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "1:2",
+     "date": "05.10.2026",
+     "opp_rank": 42
+    },
+    {
+     "opp": "Alex Grohmann",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 19
+    },
+    {
+     "opp": "Michael Loser",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "0:2",
+     "date": "21.10.2026",
+     "opp_rank": 1
+    },
+    {
+     "opp": "Martin Seidelmann",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "0:2",
+     "date": "21.10.2026",
+     "opp_rank": 3
+    },
+    {
+     "opp": "Stefan Pfeifer",
+     "opp_team": "Die Humorlosen",
+     "won": true,
+     "sets": "2:1",
+     "date": "21.10.2026",
+     "opp_rank": 30
+    },
+    {
+     "opp": "Valentin Matt",
+     "opp_team": "Die Humorlosen",
+     "won": false,
+     "sets": "0:2",
+     "date": "21.10.2026",
+     "opp_rank": 2
+    },
+    {
+     "opp": "Serge Schiess",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "27.10.2026",
+     "opp_rank": 33
+    },
+    {
+     "opp": "Lucky Aebischer",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "27.10.2026",
+     "opp_rank": 39
+    },
+    {
+     "opp": "Matthias Sutter",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "04.11.2026",
+     "opp_rank": 26
+    },
+    {
+     "opp": "Chris Malang",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "04.11.2026",
+     "opp_rank": 44
+    },
+    {
+     "opp": "Marco Müller",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 8
+    },
+    {
+     "opp": "Martin Gerber",
+     "opp_team": "Irish Skulls ;) Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "04.11.2026",
+     "opp_rank": 6
+    }
+   ]
+  },
+  {
+   "name": "Pascal Maulaz",
+   "rank": 51,
+   "n": 17,
+   "w": 4,
+   "l": 13,
+   "avg_opp": 29.647058823529413,
+   "brackets": {
+    "top": [
+     0,
+     2
+    ],
+    "mid": [
+     0,
+     7
+    ],
+    "low": [
+     4,
+     4
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Marc Brassel",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "24.08.2026",
+     "opp_rank": 27
+    },
+    {
+     "opp": "Lucky Aebischer",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "24.08.2026",
+     "opp_rank": 39
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "24.08.2026",
+     "opp_rank": 38
+    },
+    {
+     "opp": "Marcel Staubli",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "24.08.2026",
+     "opp_rank": 61
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "14.09.2026",
+     "opp_rank": 48
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "14.09.2026",
+     "opp_rank": 15
+    },
+    {
+     "opp": "Mic Andres",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "14.09.2026",
+     "opp_rank": 31
+    },
+    {
+     "opp": "Silvan Bücheli",
+     "opp_team": "Dart Ost",
+     "won": false,
+     "sets": "0:2",
+     "date": "23.09.2026",
+     "opp_rank": 9
+    },
+    {
+     "opp": "Daniel Forrer",
+     "opp_team": "Dart Ost",
+     "won": true,
+     "sets": "2:1",
+     "date": "23.09.2026",
+     "opp_rank": 58
+    },
+    {
+     "opp": "Phillipe Graf",
+     "opp_team": "Dart Ost",
+     "won": false,
+     "sets": "0:2",
+     "date": "23.09.2026",
+     "opp_rank": 12
+    },
+    {
+     "opp": "Alessio Demarchi",
+     "opp_team": "Dart Ost",
+     "won": false,
+     "sets": "0:2",
+     "date": "23.09.2026",
+     "opp_rank": 23
+    },
+    {
+     "opp": "Alex Grohmann",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 19
+    },
+    {
+     "opp": "Daniel Strasser",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 7
+    },
+    {
+     "opp": "Adam Montgomery",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 24
+    },
+    {
+     "opp": "Markus Müller",
+     "opp_team": "DARTFABRIK STEEL",
+     "won": false,
+     "sets": "0:2",
+     "date": "05.10.2026",
+     "opp_rank": 21
+    },
+    {
+     "opp": "Jonathan Palumbo",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "27.10.2026",
+     "opp_rank": 34
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "27.10.2026",
+     "opp_rank": 38
+    }
+   ]
+  },
+  {
+   "name": "Tobias Fiedler",
+   "rank": 56,
+   "n": 14,
+   "w": 2,
+   "l": 12,
+   "avg_opp": 35.285714285714285,
+   "brackets": {
+    "top": [
+     0,
+     1
+    ],
+    "mid": [
+     1,
+     2
+    ],
+    "low": [
+     1,
+     9
+    ]
+   },
+   "rows": [
+    {
+     "opp": "Serge Schiess",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "24.08.2026",
+     "opp_rank": 33
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "24.08.2026",
+     "opp_rank": 38
+    },
+    {
+     "opp": "Tom Lanz",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "24.08.2026",
+     "opp_rank": 59
+    },
+    {
+     "opp": "Marc Brassel",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "24.08.2026",
+     "opp_rank": 27
+    },
+    {
+     "opp": "Jonas Herbinger",
+     "opp_team": "Dynamo Tresen",
+     "won": false,
+     "sets": "0:2",
+     "date": "07.09.2026",
+     "opp_rank": 43
+    },
+    {
+     "opp": "Patric Fricker",
+     "opp_team": "Dynamo Tresen",
+     "won": false,
+     "sets": "1:2",
+     "date": "07.09.2026",
+     "opp_rank": 46
+    },
+    {
+     "opp": "Oliver Hutter",
+     "opp_team": "Dynamo Tresen",
+     "won": false,
+     "sets": "1:2",
+     "date": "07.09.2026",
+     "opp_rank": 29
+    },
+    {
+     "opp": "Cedric Hutter",
+     "opp_team": "Dynamo Tresen",
+     "won": false,
+     "sets": "0:2",
+     "date": "07.09.2026",
+     "opp_rank": 54
+    },
+    {
+     "opp": "Phillipe Graf",
+     "opp_team": "Dart Ost",
+     "won": false,
+     "sets": "0:2",
+     "date": "23.09.2026",
+     "opp_rank": 12
+    },
+    {
+     "opp": "Silvan Bücheli",
+     "opp_team": "Dart Ost",
+     "won": false,
+     "sets": "0:2",
+     "date": "23.09.2026",
+     "opp_rank": 9
+    },
+    {
+     "opp": "Serge Schiess",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "27.10.2026",
+     "opp_rank": 33
+    },
+    {
+     "opp": "Jonathan Palumbo",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "27.10.2026",
+     "opp_rank": 34
+    },
+    {
+     "opp": "Lucky Aebischer",
+     "opp_team": "2010er Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "27.10.2026",
+     "opp_rank": 39
+    },
+    {
+     "opp": "Luis Munoz",
+     "opp_team": "2010er Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "27.10.2026",
+     "opp_rank": 38
+    }
+   ]
+  }
+ ]
+}
