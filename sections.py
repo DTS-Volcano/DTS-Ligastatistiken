@@ -39,11 +39,11 @@ def section_next(data, matches):
     tidx = next((k for k, x in enumerate(data["league"]) if x["team"].lower() == ol), None)
 
     # Gegner-Kader
-    vs_us = defaultdict(lambda: defaultdict(lambda: [0, 0]))     # Gegner -> unser Spieler -> [Siege Gegner, Niederlagen Gegner]
+    vs_us = defaultdict(list)     # Gegner -> [(unser Spieler, Sätze aus unserer Sicht, gewonnen)]
     for p in data["players"]:
         for r in p["rows"]:
             if r["opp_team"].lower() == ol:
-                vs_us[r["opp"]][p["name"]][0 if not r["won"] else 1] += 1
+                vs_us[r["opp"]].append((p["name"], r["sets"], r["won"]))
     roster = []
     for name, rows in data["team_games"].get(ol, {}).items():
         w = sum(r["won"] for r in rows)
@@ -52,17 +52,17 @@ def section_next(data, matches):
     if roster:
         cards = ""
         for r in roster:
-            enc = vs_us.get(r["name"], {})
+            enc = vs_us.get(r["name"], [])
             chips = "".join(
-                f"<span class='chip {'win' if b > a else 'loss' if b < a else ''}'>{esc(short(n))} <b>{b}:{a}</b></span>"
-                for n, (a, b) in enc.items())
+                f"<span class='chip {'win' if won else 'loss'}'>{esc(short(n))} <b>{esc(sets)}</b></span>"
+                for n, sets, won in enc)
             meet = (f"<p class='meet'><small>Gegen euch:</small> {chips}</p>" if chips
                     else "<p class='meet'><small>Noch nicht gegen euch gespielt</small></p>")
             cards += (f"<li class='pc'><span class='rk'>{r['rank'] or '–'}</span>"
                       f"<div class='pn'><b>{esc(r['name'])}</b><small>{r['w']}:{r['n'] - r['w']} · {pct(r['w'], r['n'] - r['w'])}</small></div>"
                       f"<span class='pf'>{dots(r['rows'])}</span>{meet}</li>")
         table = ("<h3>Kader des Gegners</h3><p class='hint'>Rang in der Einzelrangliste, Bilanz und Form (S/N). "
-                 "«Gegen euch» zeigt aus eurer Sicht, wie eure Spieler gegen ihn gespielt haben.</p>"
+                 "«Gegen euch» zeigt das Satzergebnis aus eurer Sicht, grün = ihr habt gewonnen.</p>"
                  f"<ul class='pcs'>{cards}</ul>")
     else:
         table = "<p class='hint'>Von diesem Team sind noch keine Einzel bekannt.</p>"
