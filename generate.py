@@ -65,20 +65,28 @@ def get(url):
             time.sleep(3)
 
 
+_MOJI = re.compile("[ÃÂ][\u0080-\u00bf\u0152\u0153\u0160\u0161\u0178\u017d\u017e\u0192\u02c6\u02dc\u2013\u2014"
+                   "\u2018-\u201e\u2020-\u2022\u2026\u2030\u2039\u203a\u20ac\u2122]")
+
+
+def _unmoji(m):
+    for enc in ("latin-1", "cp1252"):
+        try:
+            return m.group().encode(enc).decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            pass
+    return m.group()
+
+
 def fix(s):
-    """Repariert doppelt kodierte Umlaute (z. B. 'MÃ¼ller' -> 'Müller')."""
-    s = unicodedata.normalize("NFC", s.replace("\xa0", " "))
+    """Repariert doppelt kodierte Umlaute (z. B. 'MÃ¼ller' -> 'Müller', 'Ã\x84' -> 'Ä'), auch in gemischten Texten."""
     if "Ã" in s or "Â" in s:
-        for enc in ("latin-1", "cp1252"):
-            try:
-                return s.encode(enc).decode("utf-8")
-            except (UnicodeEncodeError, UnicodeDecodeError):
-                pass
-    return s
+        s = _MOJI.sub(_unmoji, s)
+    return unicodedata.normalize("NFC", s)
 
 
 def clean(s):
-    return fix(re.sub(r"\s+", " ", s).strip())
+    return re.sub(r"\s+", " ", fix(s)).strip()
 
 
 def pname(s):
@@ -147,9 +155,8 @@ def rank_of(ranking, name):
 def parse_report(soup):
     text = clean(soup.get_text(" "))
     m = re.search(r"Region/Klasse/Gruppe\s+(\d{2}\.\d{2}\.\d{4})", text)
-    nm = re.search(r"\d{2}\.\d{2}\.\d{4} verschoben auf \d{2}\.\d{2}\.\d{4}[^|]*?(?=\s*(?:HEIM-TEAM|$))", text)
     rep = {"date": m.group(1) if m else "", "home": "", "guest": "", "games": [], "summary": None,
-           "extras": [], "note": nm.group(0).strip() if nm else ""}
+           "extras": []}
     rnd = None
     for tr in soup.find_all("tr"):
         cells = row_cells(tr)
@@ -197,6 +204,8 @@ def build_stats():
     me = TEAM.lower()
     matches, singles = [], defaultdict(list)
     team_games = defaultdict(lambda: defaultdict(list))   # Team -> Spieler -> Einzel (Liga-weit)
+    team_matches = defaultdict(list)                      # Team -> Partien (aus Sicht des Teams)
+    others = {}                                           # Partien ohne uns (Sicht des Heimteams)
     for nr, url in sorted(links.items()):
         rep = parse_report(get(url))
         teams = (rep["home"].lower(), rep["guest"].lower())
@@ -208,14 +217,25 @@ def build_stats():
                     (teams[1], g["guest"], g["home"], rep["home"], not g["home_win"], swap(g["sets"]))):
                 team_games[team][pl].append({"opp": opl, "opp_team": oteam, "won": won, "sets": sets,
                                              "date": rep["date"], "round": g["round"]})
+        s = rep["summary"] or ["0:0", "0:0", "0:0"]
+        for tl, oname, is_home in ((teams[0], rep["guest"], True), (teams[1], rep["home"], False)):
+            team_matches[tl].append({"nr": nr, "date": rep["date"], "opp": oname, "home": is_home,
+                                     "points": s[0] if is_home else swap(s[0]),
+                                     "games": s[1] if is_home else swap(s[1])})
         if me not in teams:
+            others[nr] = {"team": rep["home"], "date": rep["date"], "opp": rep["guest"], "home": True,
+                          "points": s[0], "games": s[1], "sets": s[2], "url": url, "nr": nr,
+                          "rounds": {}, "extras": [{"label": e["label"], "sets": e["sets"], "won": e["home_win"]}
+                                                   for e in rep["extras"]]}
+            for g in rep["games"]:
+                others[nr]["rounds"].setdefault(g["round"] or 0, []).append(
+                    {"mine": g["home"], "opp": g["guest"], "sets": g["sets"], "won": g["home_win"]})
             continue
         home = teams[0] == me
         opp_team = rep["guest"] if home else rep["home"]
-        s = rep["summary"] or ["0:0", "0:0", "0:0"]
         pts, gms = (s[0], s[1]) if home else (swap(s[0]), swap(s[1]))
         match = {"date": rep["date"], "opp": opp_team, "home": home, "points": pts, "games": gms,
-                 "sets": s[2] if home else swap(s[2]), "url": url, "note": rep["note"], "rounds": {},
+                 "sets": s[2] if home else swap(s[2]), "url": url, "nr": nr, "rounds": {},
                  "extras": [{"label": e["label"], "sets": e["sets"] if home else swap(e["sets"]),
                              "won": e["home_win"] == home} for e in rep["extras"]]}
         matches.append(match)
@@ -255,7 +275,8 @@ def build_stats():
             if rk:
                 ranks[name] = rk
     return {"matches": matches, "players": players, "league": league, "schedule": schedule,
-            "team_games": team_games, "ranks": ranks, "ranking": ranking}
+            "team_games": team_games, "ranks": ranks, "ranking": ranking,
+            "team_matches": team_matches, "others": others}
 
 
 # ---------- Rangverlauf (History) ----------
@@ -344,7 +365,7 @@ def dot(won, title=""):
     return f'<span class="dot {"w" if won else "l"}" title="{title or ("Sieg" if won else "Niederlage")}">{"S" if won else "N"}</span>'
 
 
-def match_dialog(i, m, ranks, total):
+def match_dialog(dom_id, m, ranks, total=None, i=0):
     pts = tuple(int(x) for x in m["points"].split(":"))
     won_match = pts[0] > pts[1]
 
@@ -366,17 +387,43 @@ def match_dialog(i, m, ranks, total):
                        f'<b class="sc {"win" if e["won"] else "loss"}">{dot(e["won"])} {e["sets"]}</b><span></span></div>'
                        for e in m["extras"])
         cards += f'<div class="rc"><h4>Doppel und Sudden Death</h4>{rows}</div>'
-    note = f'<p class="hint">{esc(m["note"])}</p>' if m.get("note") else ""
     link = (f'<p class="hint"><a href="{esc(m["url"])}" target="_blank" rel="noopener">Originalreport auf vfc.ch</a></p>'
             if m.get("url") else "")
-    return (f'<dialog id="m{i}" aria-label="Spielreport {esc(m["opp"])}"><div class="dlg">'
+    return (f'<dialog id="{dom_id}" aria-label="Spielreport {esc(m["opp"])}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<p class="sub">{fmt_date(m["date"])} · {"Heimspiel" if m["home"] else "Auswärtsspiel"}</p>'
-            f'<h3 class="vs">{esc(TEAM)} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
-            f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>{note}'
+            f'<h3 class="vs">{esc(m.get("team", TEAM))} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
+            f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>'
             f'<div class="rounds">{cards}</div>{link}'
-            f'<div class="nav"><button class="rb prev" data-go="{i - 1}"{"" if i > 0 else " disabled"}>‹ Vorherige Partie</button>'
-            f'<button class="rb next" data-go="{i + 1}"{"" if i < total - 1 else " disabled"}>Nächste Partie ›</button></div>'
+            + (f'<div class="nav"><button class="rb nb-prev" data-go="m{i - 1}"{"" if i > 0 else " disabled"}>‹ Vorherige Partie</button>'
+               f'<button class="rb nb-next" data-go="m{i + 1}"{"" if i < total - 1 else " disabled"}>Nächste Partie ›</button></div>'
+               if total else "") + '</div></dialog>')
+
+
+def team_dialog(idx, t, data, id_of):
+    tl = t["team"].lower()
+    ms = sorted(data["team_matches"].get(tl, []), key=lambda m: dkey(m["date"]))
+    mrows = "".join(
+        f"<tr class='click' data-open='{id_of[m['nr']]}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td>"
+        f"<td>{'Heim' if m['home'] else 'Auswärts'}</td><td class='num'>{m['points']}</td><td class='num'>{m['games']}</td>"
+        f"<td><button class='rb' data-open='{id_of[m['nr']]}'>Report</button></td></tr>" for m in ms if m["nr"] in id_of)
+    pls = []
+    for name, rows in data["team_games"].get(tl, {}).items():
+        w = sum(r["won"] for r in rows)
+        pls.append({"name": name, "rank": data["ranks"].get(name), "n": len(rows), "w": w, "rows": rows})
+    pls.sort(key=lambda p: (p["rank"] or 999, -p["n"]))
+    prow = "".join(
+        f"<tr><td class='num'>{p['rank'] or '–'}</td><td>{esc(p['name'])}</td><td class='num'>{p['n']}</td>"
+        f"<td class='num'>{p['w']}:{p['n'] - p['w']}</td><td class='num'>{pct(p['w'], p['n'] - p['w'])}</td>"
+        f"<td>{dots(p['rows'])}</td></tr>" for p in pls)
+    return (f'<dialog id="t{idx}" aria-label="Team {esc(t["team"])}"><div class="dlg">'
+            f'<button class="x" data-close aria-label="Schliessen">✕</button>'
+            f'<p class="sub">Platz {t["rank"]} in der Tabelle</p><h3 class="vs">{esc(t["team"])}</h3>'
+            f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p>'
+            f'<h4>Partien</h4><div class="scroll"><table><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th>'
+            f'<th>Spiele</th><th></th></tr></thead><tbody>{mrows}</tbody></table></div>'
+            f'<h4>Spieler</h4><div class="scroll"><table><thead><tr><th>Rang</th><th>Spieler</th><th>Spiele</th><th>Bilanz</th>'
+            f'<th>Quote</th><th>Form (letzte {FORM_N})</th></tr></thead><tbody>{prow}</tbody></table></div>'
             f'</div></dialog>')
 
 
@@ -414,6 +461,8 @@ def section_next(data, matches):
     else:
         lines.append("Gegen dieses Team habt ihr in dieser Saison noch nicht gespielt.")
 
+    tidx = next((k for k, x in enumerate(data["league"]) if x["team"].lower() == ol), None)
+
     # Gegner-Kader
     vs_us = defaultdict(lambda: defaultdict(lambda: [0, 0]))     # Gegner -> unser Spieler -> [Siege Gegner, Niederlagen Gegner]
     for p in data["players"]:
@@ -439,7 +488,9 @@ def section_next(data, matches):
         table = "<p class='hint'>Von diesem Team sind noch keine Einzel bekannt.</p>"
 
     nxt_html = (f"<section class='next'><h2>Nächstes Spiel: {esc(opp)}</h2>"
-                + "".join(f"<p class='sub'>{l}</p>" for l in lines) + table + "</section>")
+                + "".join(f"<p class='sub'>{l}</p>" for l in lines)
+                + (f"<p><button class='rb' data-open='t{tidx}'>Team {esc(opp)} ansehen</button></p>" if tidx is not None else "")
+                + table + "</section>")
 
     rows = ""
     for i, f in enumerate(fx):
@@ -459,10 +510,11 @@ def section_league(data):
         return ""
     me = TEAM.lower()
     rows = "".join(
-        f"<tr{' class=hl' if t['team'].lower() == me else ''}><td class='num'>{t['rank']}</td><td>{esc(t['team'])}</td>"
+        f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
+        f"<td><button class='tl' data-open='t{i}'>{esc(t['team'])}</button></td>"
         f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
-        f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td></tr>" for t in data["league"])
-    return ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
+        f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td></tr>" for i, t in enumerate(data["league"]))
+    return ("<section><h2>Tabelle</h2><p class='hint'>Auf ein Team klicken, um dessen Partien und Spieler zu sehen.</p><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
             f"<th>Punkte</th><th>Spiele</th><th>Sätze</th></tr></thead><tbody>{rows}</tbody></table></div>")
 
 
@@ -542,10 +594,14 @@ def render(data, hist):
     tb = {k: [sum(p["brackets"][k][i] for p in players) for i in (0, 1)] for k in ("top", "mid", "low")}
 
     mrows = "".join(
-        f"<tr class='click' data-m='{i}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
+        f"<tr class='click' data-open='m{i}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
         f"<td class='num'>{m['points']}</td><td class='num'>{m['games']}</td>"
-        f"<td><button class='rb' data-m='{i}'>Report</button></td></tr>" for i, m in enumerate(matches))
-    dialogs = "".join(match_dialog(i, m, data["ranks"], len(matches)) for i, m in enumerate(matches))
+        f"<td><button class='rb' data-open='m{i}'>Report</button></td></tr>" for i, m in enumerate(matches))
+    id_of = {m["nr"]: f"m{i}" for i, m in enumerate(matches)}
+    id_of.update({nr: f"o{nr}" for nr in data["others"]})
+    dialogs = "".join(match_dialog(f"m{i}", m, data["ranks"], len(matches), i) for i, m in enumerate(matches))
+    dialogs += "".join(match_dialog(f"o{nr}", m, data["ranks"]) for nr, m in data["others"].items())
+    dialogs += "".join(team_dialog(i, t, data, id_of) for i, t in enumerate(data["league"]))
 
     prow = ""
     for p in players:
@@ -646,7 +702,9 @@ tr.hl td{background:var(--hl);font-weight:600}
 .up{color:var(--green);font-weight:600}.down{color:var(--red);font-weight:600}
 tr.click{cursor:pointer}tr.click:hover td{background:var(--hl)}
 .rb{font:inherit;font-size:.82rem;color:var(--green);background:none;border:1px solid var(--green);border-radius:6px;padding:2px 10px;cursor:pointer}
-.nav{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px}
+.tl{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;text-decoration:underline dotted;text-underline-offset:3px}
+.dlg h4{margin:16px 0 6px;font-size:.95rem}
 .rb[disabled]{opacity:.35;cursor:default}.rb[disabled]:hover{background:none;color:var(--green)}
 .rb:hover{background:var(--green);color:var(--bg)}
 dialog{border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);padding:0;width:min(780px,calc(100vw - 20px));max-height:calc(100vh - 20px)}
@@ -680,11 +738,11 @@ JS = """document.querySelectorAll('table.sortable th').forEach((th,i)=>{th.tabIn
 n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;return d==='a'?r:-r}).forEach(r=>b.append(r))};
 th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
 document.addEventListener('keydown',e=>{const d=document.querySelector('dialog[open]');
-if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;const b=d.querySelector(e.key==='ArrowLeft'?'.prev':'.next');if(b&&!b.disabled)b.click()});
+if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;const b=d.querySelector(e.key==='ArrowLeft'?'.nb-prev':'.nb-next');if(b&&!b.disabled)b.click()});
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');
-if(g){if(!g.disabled){const n=document.getElementById('m'+g.dataset.go);if(n){g.closest('dialog').close();n.showModal()}}return}
-const t=e.target.closest('[data-m]');
-if(t){const d=document.getElementById('m'+t.dataset.m);if(d&&d.showModal)d.showModal();return}
+if(g){if(!g.disabled){const n=document.getElementById(g.dataset.go);if(n){g.closest('dialog').close();n.showModal()}}return}
+const t=e.target.closest('[data-open]');
+if(t){const d=document.getElementById(t.dataset.open);if(d&&d.showModal){document.querySelectorAll('dialog[open]').forEach(x=>x.close());d.showModal()}return}
 const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()})"""
 
 
