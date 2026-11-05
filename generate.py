@@ -147,7 +147,9 @@ def rank_of(ranking, name):
 def parse_report(soup):
     text = clean(soup.get_text(" "))
     m = re.search(r"Region/Klasse/Gruppe\s+(\d{2}\.\d{2}\.\d{4})", text)
-    rep = {"date": m.group(1) if m else "", "home": "", "guest": "", "games": [], "summary": None}
+    nm = re.search(r"\d{2}\.\d{2}\.\d{4} verschoben auf \d{2}\.\d{2}\.\d{4}[^|]*?(?=\s*(?:HEIM-TEAM|$))", text)
+    rep = {"date": m.group(1) if m else "", "home": "", "guest": "", "games": [], "summary": None,
+           "extras": [], "note": nm.group(0).strip() if nm else ""}
     rnd = None
     for tr in soup.find_all("tr"):
         cells = row_cells(tr)
@@ -161,6 +163,10 @@ def parse_report(soup):
             rnd = int(cells[0].split()[1])
         elif len(cells) == 3 and all(re.fullmatch(r"\d+:\d+", c) for c in cells):
             rep["summary"] = cells  # Punkte, Spiele, Sätze (Heim:Gast)
+        elif (len(cells) >= 4 and cells[0].startswith(("Doppel", "Sudden")) and re.fullmatch(r"\d+:\d+", cells[2])
+              and cells[3] in ("1:0", "0:1")):
+            rep["extras"].append({"label": "Sudden Death" if cells[0].startswith("Sudden") else cells[0],
+                                  "sets": cells[2], "home_win": cells[3] == "1:0"})
         elif (len(cells) >= 4 and cells[1] and re.fullmatch(r"\d+:\d+", cells[2])
               and cells[3] in ("1:0", "0:1") and not cells[0].startswith(("Doppel", "Sudden"))):
             rep["games"].append({"round": rnd, "home": pname(cells[0]), "guest": pname(cells[1]),
@@ -208,9 +214,15 @@ def build_stats():
         opp_team = rep["guest"] if home else rep["home"]
         s = rep["summary"] or ["0:0", "0:0", "0:0"]
         pts, gms = (s[0], s[1]) if home else (swap(s[0]), swap(s[1]))
-        matches.append({"date": rep["date"], "opp": opp_team, "home": home, "points": pts, "games": gms})
+        match = {"date": rep["date"], "opp": opp_team, "home": home, "points": pts, "games": gms,
+                 "sets": s[2] if home else swap(s[2]), "url": url, "note": rep["note"], "rounds": {},
+                 "extras": [{"label": e["label"], "sets": e["sets"] if home else swap(e["sets"]),
+                             "won": e["home_win"] == home} for e in rep["extras"]]}
+        matches.append(match)
         for g in rep["games"]:
             mine, opp = (g["home"], g["guest"]) if home else (g["guest"], g["home"])
+            match["rounds"].setdefault(g["round"] or 0, []).append(
+                {"mine": mine, "opp": opp, "sets": g["sets"] if home else swap(g["sets"]), "won": g["home_win"] == home})
             singles[mine].append({"opp": opp, "opp_team": opp_team, "won": g["home_win"] == home,
                                   "sets": g["sets"] if home else swap(g["sets"]), "date": rep["date"],
                                   "round": g["round"]})
@@ -323,6 +335,46 @@ def player_detail(p):
     return (f"<details><summary><b>{esc(p['name'])}</b><span>{p['w']}:{p['l']}</span></summary>"
             "<div class='scroll'><table><thead><tr><th>Rang</th><th>Gegner</th><th>Team</th><th>Bilanz</th>"
             f"<th>Sätze</th></tr></thead><tbody>{body}</tbody></table></div></details>")
+
+
+RESULT = {(3, 0): "Sieg", (2, 1): "Sieg im Sudden Death", (1, 2): "Niederlage im Sudden Death", (0, 3): "Niederlage"}
+
+
+def dot(won, title=""):
+    return f'<span class="dot {"w" if won else "l"}" title="{title or ("Sieg" if won else "Niederlage")}">{"S" if won else "N"}</span>'
+
+
+def match_dialog(i, m, ranks):
+    pts = tuple(int(x) for x in m["points"].split(":"))
+    won_match = pts[0] > pts[1]
+
+    def pl(name):
+        rk = ranks.get(name)
+        return f"{esc(name)}{f' <small>#{rk}</small>' if rk else ''}"
+
+    cards = ""
+    for rnd in sorted(m["rounds"]):
+        pairs = m["rounds"][rnd]
+        w = sum(p["won"] for p in pairs)
+        rows = "".join(
+            f'<div class="pair"><span class="{"won" if p["won"] else ""}">{pl(p["mine"])}</span>'
+            f'<b class="sc {"win" if p["won"] else "loss"}">{dot(p["won"])} {p["sets"]}</b>'
+            f'<span class="r {"" if p["won"] else "won"}">{pl(p["opp"])}</span></div>' for p in pairs)
+        cards += f'<div class="rc"><h4>Runde {rnd}<span>{w}:{len(pairs) - w}</span></h4>{rows}</div>'
+    if m["extras"]:
+        rows = "".join(f'<div class="pair xr"><span>{esc(e["label"])}</span>'
+                       f'<b class="sc {"win" if e["won"] else "loss"}">{dot(e["won"])} {e["sets"]}</b><span></span></div>'
+                       for e in m["extras"])
+        cards += f'<div class="rc"><h4>Doppel und Sudden Death</h4>{rows}</div>'
+    note = f'<p class="hint">{esc(m["note"])}</p>' if m.get("note") else ""
+    link = (f'<p class="hint"><a href="{esc(m["url"])}" target="_blank" rel="noopener">Originalrapport auf vfc.ch</a></p>'
+            if m.get("url") else "")
+    return (f'<dialog id="m{i}" aria-label="Spielrapport {esc(m["opp"])}"><div class="dlg">'
+            f'<button class="x" data-close aria-label="Schliessen">✕</button>'
+            f'<p class="sub">{fmt_date(m["date"])} · {"Heimspiel" if m["home"] else "Auswärtsspiel"}</p>'
+            f'<h3 class="vs">{esc(TEAM)} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
+            f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>{note}'
+            f'<div class="rounds">{cards}</div>{link}</div></dialog>')
 
 
 def fmt_date(d):
@@ -487,8 +539,10 @@ def render(data, hist):
     tb = {k: [sum(p["brackets"][k][i] for p in players) for i in (0, 1)] for k in ("top", "mid", "low")}
 
     mrows = "".join(
-        f"<tr><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
-        f"<td class='num'>{m['points']}</td><td class='num'>{m['games']}</td></tr>" for m in matches)
+        f"<tr class='click' data-m='{i}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
+        f"<td class='num'>{m['points']}</td><td class='num'>{m['games']}</td>"
+        f"<td><button class='rb' data-m='{i}'>Rapport</button></td></tr>" for i, m in enumerate(matches))
+    dialogs = "".join(match_dialog(i, m, data["ranks"]) for i, m in enumerate(matches))
 
     prow = ""
     for p in players:
@@ -542,12 +596,13 @@ def render(data, hist):
 {section_rank_history(players, hist)}
 
 <section><h2>Partien</h2>
-<div class="scroll"><table><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th></tr></thead>
+<p class="hint">Auf eine Partie klicken, um den Spielrapport zu öffnen.</p>
+<div class="scroll"><table><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
 <tbody>{mrows}</tbody></table></div></section>
 
 <section><h2>Gegner pro Spieler</h2>{''.join(player_detail(p) for p in players)}</section>
 <footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}</footer>
-</main><script>{JS}</script></body></html>"""
+</main>{dialogs}<script>{JS}</script></body></html>"""
 
 
 CSS = """
@@ -586,6 +641,23 @@ tr.hl td{background:var(--hl);font-weight:600}
 .spark polyline{fill:none;stroke:var(--green);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
 .spark circle{fill:var(--green)}
 .up{color:var(--green);font-weight:600}.down{color:var(--red);font-weight:600}
+tr.click{cursor:pointer}tr.click:hover td{background:var(--hl)}
+.rb{font:inherit;font-size:.82rem;color:var(--green);background:none;border:1px solid var(--green);border-radius:6px;padding:2px 10px;cursor:pointer}
+.rb:hover{background:var(--green);color:var(--bg)}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);padding:0;width:min(780px,calc(100vw - 20px));max-height:calc(100vh - 20px)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dlg{padding:18px 18px 12px;position:relative}
+.dlg .x{position:absolute;top:10px;right:10px;font:inherit;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;width:34px;height:34px;cursor:pointer}
+.vs{font-size:clamp(1.1rem,3.6vw,1.5rem);margin:2px 44px 4px 0;line-height:1.3}
+.vs .sc{display:inline-block;padding:0 10px;margin:0 4px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.rounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:14px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px 8px}
+.rc h4{display:flex;justify-content:space-between;margin:4px 0 6px;font-size:.9rem}
+.rc h4 span{color:var(--mute);font-variant-numeric:tabular-nums}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:5px 0;border-top:1px solid var(--line);font-size:.9rem}
+.pair .r{text-align:right}.pair small{color:var(--mute)}.pair .won{font-weight:700}
+.pair .sc{font-variant-numeric:tabular-nums;white-space:nowrap}
+a{color:var(--green)}
 .bar{display:inline-block;width:64px;height:8px;background:var(--red);border-radius:4px;margin-right:8px;vertical-align:middle;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--green)}
 .q{display:inline-block;min-width:3.6em}
@@ -601,7 +673,10 @@ details[open] summary{border-bottom:1px solid var(--line)}
 JS = """document.querySelectorAll('table.sortable th').forEach((th,i)=>{th.tabIndex=0;const go=()=>{const b=th.closest('table').tBodies[0],d=th.dataset.d=th.dataset.d==='a'?'d':'a';
 [...b.rows].sort((x,y)=>{const a=x.cells[i].dataset.v??x.cells[i].textContent,c=y.cells[i].dataset.v??y.cells[i].textContent,
 n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;return d==='a'?r:-r}).forEach(r=>b.append(r))};
-th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})})"""
+th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-m]');
+if(t){const d=document.getElementById('m'+t.dataset.m);if(d&&d.showModal)d.showModal();return}
+const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()})"""
 
 
 def main():
