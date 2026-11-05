@@ -11,6 +11,11 @@ from textutil import clean, pname
 
 
 session = requests.Session()
+session.headers["User-Agent"] = "dart-team-stats (privates Hobbyprojekt)"
+
+
+class BlockedError(RuntimeError):
+    """vfc.ch hat statt der Seite eine Prüfseite ausgeliefert (Bot-Schutz)."""
 
 
 def get(url):
@@ -23,6 +28,8 @@ def get(url):
                 txt = r.content.decode("utf-8")
             except UnicodeDecodeError:
                 txt = r.content.decode("cp1252", errors="replace")
+            if "your request is being verified" in txt or txt.lstrip()[:400].lower().find("one moment, please") >= 0:
+                raise BlockedError(f"vfc.ch zeigt eine Prüfseite statt der Daten ({url})")
             return BeautifulSoup(txt, "html.parser")
         except requests.RequestException:
             if attempt == 2:

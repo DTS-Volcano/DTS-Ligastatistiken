@@ -17,12 +17,20 @@ import shutil
 
 from config import LOGO, OUT, TEAM
 from page import render
+from scraper import BlockedError
 from stats import build_stats, update_history
 
 
 def main():
     print(f"Logo: {LOGO.name!r}" if LOGO else "Logo: keine .svg-Datei im Hauptordner gefunden")
-    data = build_stats()
+    try:
+        data = build_stats()
+    except BlockedError as e:
+        print(f"HINWEIS: {e}")
+        if (OUT / "index.html").exists():
+            print("Die Seite bleibt auf dem letzten Stand, der nächste Lauf versucht es erneut.")
+            return
+        raise SystemExit("Keine Daten erhalten und noch keine Seite vorhanden.")
     if not data["players"]:
         raise SystemExit(f"Keine gespielten Partien für '{TEAM}' gefunden – Teamname/Gruppe prüfen.")
     OUT.mkdir(exist_ok=True)
