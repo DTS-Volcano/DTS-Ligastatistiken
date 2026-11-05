@@ -14,7 +14,8 @@ JS = (Path(__file__).with_name("app.js")).read_text(encoding="utf-8")
 
 
 def render(data, hist):
-    matches, players = data["matches"], data["players"]
+    matches = data["matches"]
+    players = sorted(data["players"], key=lambda p: (p["rank"] or 9999, p["name"]))   # Standard: nach Rang
     now = datetime.now(ZoneInfo("Europe/Zurich")).strftime("%d.%m.%Y %H:%M")
     mp = [tuple(int(x) for x in m["points"].split(":")) for m in matches]   # (eigene, gegnerische) Punkte
     wins = sum(p == (3, 0) for p in mp)

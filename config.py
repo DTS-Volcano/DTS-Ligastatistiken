@@ -48,22 +48,28 @@ def slug(name):
     return "-".join("".join(ch if ch.isalnum() else " " for ch in s).split())
 
 
-def find_photo(name):
-    """Dateiname des Spielerbilds (png/jpg/jpeg/webp/svg, Gross-/Kleinschreibung egal) oder None.
-    Kommt mit Leerzeichen oder Unterstrich statt Bindestrich zurecht."""
-    if not PHOTO_DIR.is_dir():
-        return None
-    want = slug(name)
-    for f in sorted(PHOTO_DIR.iterdir()):
-        if f.suffix.lower().lstrip(".") in ("png", "jpg", "jpeg", "webp", "svg") and slug(f.stem.replace("_", " ")) == want:
-            return f"{want}{f.suffix.lower()}"
-    return None
+_EXT = ("png", "jpg", "jpeg", "webp", "svg")
 
 
 def photo_source(name):
-    """Pfad der Originaldatei im Ordner spieler/ (passend zu find_photo)."""
-    want = slug(name)
-    for f in sorted(PHOTO_DIR.iterdir()):
-        if f.suffix.lower().lstrip(".") in ("png", "jpg", "jpeg", "webp", "svg") and slug(f.stem.replace("_", " ")) == want:
+    """Originaldatei im Ordner spieler/ (Gross-/Kleinschreibung egal, Unterstrich = Bindestrich).
+    Passt auch, wenn der Dateiname nur ein Teil des Namens ist, z. B. juliano-goncalves.png
+    für 'Juliano Goncalves da Costa' (gleicher Vorname, übrige Wörter kommen im Namen vor)."""
+    if not PHOTO_DIR.is_dir():
+        return None
+    want = slug(name).split("-")
+    files = [(f, slug(f.stem.replace("_", " ")).split("-")) for f in sorted(PHOTO_DIR.iterdir())
+             if f.is_file() and f.suffix.lower().lstrip(".") in _EXT]
+    for f, t in files:
+        if t == want:
+            return f
+    for f, t in files:
+        if len(t) >= 2 and t[0] == want[0] and all(x in want for x in t):
             return f
     return None
+
+
+def find_photo(name):
+    """Dateiname im Ausgabeordner (immer klein, mit Bindestrich) oder None."""
+    f = photo_source(name)
+    return f"{slug(name)}{f.suffix.lower()}" if f else None
