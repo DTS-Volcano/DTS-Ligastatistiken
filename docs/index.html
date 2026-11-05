@@ -3,8 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Double Trouble Steeldarters – Statistik STSO S 2</title>
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<style>:root{--bg:#f5f4f3;--ink:#1b1416;--mute:#675d60;--line:#ddd8d9;--green:#b3201f;--red:#7a7274;--card:#fff;--hl:#f6e4e2;--top:#17100f;--topink:#f4eeee;--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
-@media (prefers-color-scheme:dark){:root{--bg:#141011;--ink:#eee8e8;--mute:#aa9fa2;--line:#2f2628;--green:#e8514d;--red:#8f8588;--card:#1d1618;--hl:#3a1d1e;--top:#0b0708}}
+<style>:root{--bg:#f5f4f3;--ink:#1b1416;--mute:#675d60;--line:#ddd8d9;--green:#9a1b1c;--red:#9a1b1c;--win:#1d6a3e;--card:#fff;--hl:#f6e4e2;--top:#17100f;--topink:#f4eeee;--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+@media (prefers-color-scheme:dark){:root{--bg:#141011;--ink:#eee8e8;--mute:#aa9fa2;--line:#2f2628;--green:#dd4a47;--red:#dd4a47;--win:#4fb27c;--card:#1d1618;--hl:#3a1d1e;--top:#0b0708}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif}
 main{max-width:980px;margin:0 auto;padding:0 16px 48px}
@@ -35,12 +35,12 @@ tr.hl td{background:var(--hl);font-weight:600}
 .next .sub{margin:0 0 6px}
 .dots{display:inline-flex;gap:3px;vertical-align:middle}
 .dot{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:50%;font-size:.7rem;font-weight:700;color:#fff;cursor:default}
-.dot.w{background:var(--green)}.dot.l{background:none;color:var(--red);box-shadow:inset 0 0 0 2px var(--red)}
-@media (prefers-color-scheme:dark){.dot.w{color:#140c0d}}
+.dot.w{background:var(--win)}.dot.l{background:var(--red)}
+@media (prefers-color-scheme:dark){.dot{color:#140c0d}}
 .spark{vertical-align:middle;overflow:visible}
-.spark polyline{fill:none;stroke:var(--green);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
-.spark circle{fill:var(--green)}
-.up{color:var(--green);font-weight:600}.down{color:var(--red);font-weight:600}
+.spark polyline{fill:none;stroke:var(--win);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.spark circle{fill:var(--win)}
+span.up,td.up{color:var(--win);font-weight:600}.down{color:var(--red);font-weight:600}
 tr.click{cursor:pointer}tr.click:hover td{background:var(--hl)}
 .rb{font:inherit;font-size:.82rem;color:var(--green);background:none;border:1px solid var(--green);border-radius:6px;padding:2px 10px;cursor:pointer}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px}
@@ -98,18 +98,18 @@ table.cards.up td:nth-child(4){grid-area:c;font-weight:400;font-size:.85rem;colo
 table.cards.up td:nth-child(5){grid-area:g;font-size:.85rem}
 table.cards.up td:nth-child(5)::before{content:""}
 }
-.bar{display:inline-block;width:64px;height:8px;background:var(--line);border-radius:4px;margin-right:8px;vertical-align:middle;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--green)}
+.bar{display:inline-block;width:64px;height:8px;background:var(--red);border-radius:4px;margin-right:8px;vertical-align:middle;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--win)}
 .q{display:inline-block;min-width:3.6em}
 details{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 8px}
 summary{cursor:pointer;padding:10px 12px;display:flex;justify-content:space-between;gap:12px}
 summary span{font-variant-numeric:tabular-nums;color:var(--mute)}
 details[open] summary{border-bottom:1px solid var(--line)}
-.win{color:var(--green);font-weight:700}.loss{color:var(--red);font-weight:600}
+.win{color:var(--win);font-weight:700}.loss{color:var(--red);font-weight:600}
 .win+.win,.win+.loss,.loss+.win,.loss+.loss{margin-left:6px}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
 </style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap"><img class="logo" src="logo.svg" alt="Vereinslogo" width="96" height="96"><div><h1>Double Trouble Steeldarters</h1>
-<p class="sub">Liga STSO S 2 · Stand 05.11.2026 13:18 · Rangliste jeweils aktuell</p></div></div></header>
+<p class="sub">Liga STSO S 2 · Stand 05.11.2026 13:25 · Rangliste jeweils aktuell</p></div></div></header>
 <main>
 <nav class="tabs" aria-label="Bereiche"><a href="#uebersicht">Übersicht</a><a href="#spieler">Spieler</a><a href="#liga">Liga</a><a href="#partien">Partien</a></nav>
 
