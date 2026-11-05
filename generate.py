@@ -15,7 +15,7 @@ Aufbau:
 import json
 import shutil
 
-from config import LOGO, OUT, PHOTO_DIR, TEAM
+from config import LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
 from page import render
 from scraper import BlockedError
 from stats import build_stats, update_history
@@ -47,6 +47,28 @@ def write_pwa():
     (OUT / "sw.js").write_text(SW, encoding="utf-8")
 
 
+def copy_photos(players):
+    """Kopiert die Spielerbilder nach docs/spieler/ unter dem Standardnamen (klein, mit Bindestrich),
+    verkleinert auf höchstens 800 Pixel, damit die Seite am Handy schnell lädt."""
+    if not PHOTO_DIR.is_dir():
+        return
+    (OUT / "spieler").mkdir(exist_ok=True)
+    for p in players:
+        src, name = photo_source(p["name"]), find_photo(p["name"])
+        if not (src and name):
+            continue
+        dst = OUT / "spieler" / name
+        try:
+            from PIL import Image
+            if src.suffix.lower() == ".svg":
+                raise ImportError
+            im = Image.open(src)
+            im.thumbnail((800, 800))
+            im.save(dst, optimize=True)
+        except Exception:
+            shutil.copyfile(src, dst)
+
+
 def main():
     print(f"Logo: {LOGO.name!r}" if LOGO else "Logo: keine .svg-Datei im Hauptordner gefunden")
     try:
@@ -63,11 +85,7 @@ def main():
     if LOGO:
         shutil.copyfile(LOGO, OUT / "logo.svg")
     write_pwa()
-    if PHOTO_DIR.is_dir():
-        (OUT / "spieler").mkdir(exist_ok=True)
-        for f in PHOTO_DIR.iterdir():
-            if f.is_file() and f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp", ".svg"):
-                shutil.copyfile(f, OUT / "spieler" / f.name)
+    copy_photos(data["players"])
     hist = update_history(data["ranks"])
     (OUT / "history.json").write_text(json.dumps(hist, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
     (OUT / "index.html").write_text(render(data, hist), encoding="utf-8")

@@ -49,8 +49,21 @@ def slug(name):
 
 
 def find_photo(name):
-    """Dateiname des Spielerbilds (png/jpg/jpeg/webp/svg) oder None."""
-    for ext in ("png", "jpg", "jpeg", "webp", "svg"):
-        if (PHOTO_DIR / f"{slug(name)}.{ext}").is_file():
-            return f"{slug(name)}.{ext}"
+    """Dateiname des Spielerbilds (png/jpg/jpeg/webp/svg, Gross-/Kleinschreibung egal) oder None.
+    Kommt mit Leerzeichen oder Unterstrich statt Bindestrich zurecht."""
+    if not PHOTO_DIR.is_dir():
+        return None
+    want = slug(name)
+    for f in sorted(PHOTO_DIR.iterdir()):
+        if f.suffix.lower().lstrip(".") in ("png", "jpg", "jpeg", "webp", "svg") and slug(f.stem.replace("_", " ")) == want:
+            return f"{want}{f.suffix.lower()}"
+    return None
+
+
+def photo_source(name):
+    """Pfad der Originaldatei im Ordner spieler/ (passend zu find_photo)."""
+    want = slug(name)
+    for f in sorted(PHOTO_DIR.iterdir()):
+        if f.suffix.lower().lstrip(".") in ("png", "jpg", "jpeg", "webp", "svg") and slug(f.stem.replace("_", " ")) == want:
+            return f
     return None
