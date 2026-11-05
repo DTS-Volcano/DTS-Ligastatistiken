@@ -21,7 +21,21 @@ GROUP = os.getenv("GROUP", "STSO S 2")
 TEAM = os.getenv("TEAM", "Double Trouble Steeldarters")
 TOP, MID = 10, 30          # Rang-Klassen: 1-10, 11-30, 31+
 OUT = Path(os.getenv("OUT", "docs"))
-LOGO = Path(os.getenv("LOGO", "DTS_LOGO_NEU_2026.svg"))   # Vereinslogo im Repo-Hauptordner
+
+
+def find_logo():
+    """Nimmt das Vereinslogo: LOGO-Variable, sonst die erste .svg-Datei im Hauptordner."""
+    if os.getenv("LOGO"):
+        p = Path(os.environ["LOGO"])
+        return p if p.exists() else None
+    # unsichtbare Sonderzeichen im Dateinamen (z. B. U+200E) werden ignoriert
+    found = sorted(p for p in Path(".").iterdir() if p.is_file()
+                   and "".join(c for c in p.name if unicodedata.category(c) != "Cf").lower().endswith(".svg"))
+    return found[0] if found else None
+
+
+LOGO = find_logo()
+print(f"Logo: {LOGO.name!r}" if LOGO else "Logo: keine .svg-Datei im Hauptordner gefunden")
 AUTHOR = "Kevin Notter"
 
 session = requests.Session()
@@ -202,8 +216,8 @@ def render(matches, players):
         kpis.append(("Niederlagen (Sudden Death)", sd_losses))
     kpis.append(("Punkte", pts))
     kpi_html = "".join(f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in kpis)
-    logo = '<img class="logo" src="logo.svg" alt="Vereinslogo" width="96" height="96">' if LOGO.exists() else ""
-    icon = '<link rel="icon" href="logo.svg" type="image/svg+xml">' if LOGO.exists() else ""
+    logo = '<img class="logo" src="logo.svg" alt="Vereinslogo" width="96" height="96">' if LOGO else ""
+    icon = '<link rel="icon" href="logo.svg" type="image/svg+xml">' if LOGO else ""
     W, L = sum(p["w"] for p in players), sum(p["l"] for p in players)
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
     tb = {k: [sum(p["brackets"][k][i] for p in players) for i in (0, 1)] for k in ("top", "mid", "low")}
@@ -303,7 +317,7 @@ def main():
     if not players:
         raise SystemExit(f"Keine gespielten Partien für '{TEAM}' gefunden – Teamname/Gruppe prüfen.")
     OUT.mkdir(exist_ok=True)
-    if LOGO.exists():
+    if LOGO:
         shutil.copyfile(LOGO, OUT / "logo.svg")
     (OUT / "index.html").write_text(render(matches, players), encoding="utf-8")
     (OUT / "data.json").write_text(json.dumps({"matches": matches, "players": players}, ensure_ascii=False, indent=1),
