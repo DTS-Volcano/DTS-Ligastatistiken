@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_detail, team_dialog
 from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
-from sections import section_form, section_league, section_next, section_rank_history
+from sections import section_form, section_league, section_rounds, section_next, section_rank_history
 from textutil import esc, pct
 
 
@@ -102,6 +102,8 @@ def render(data, hist):
 <td class="num">{(sum(allr) / len(allr)) if allr else 0:.1f}</td>
 <td class="num">{tb['top'][0]}:{tb['top'][1]}</td><td class="num">{tb['mid'][0]}:{tb['mid'][1]}</td><td class="num">{tb['low'][0]}:{tb['low'][1]}</td></tr></tfoot>
 </table></div></section>
+
+{section_rounds(matches)}
 
 {section_form(players)}
 

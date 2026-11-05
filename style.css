@@ -103,3 +103,4 @@ details[open] summary{border-bottom:1px solid var(--line)}
 .win{color:var(--win);font-weight:700}.loss{color:var(--red);font-weight:600}
 .win+.win,.win+.loss,.loss+.win,.loss+.loss{margin-left:6px}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.rk .bar{width:90px;display:block;margin:4px 0 2px}.rk div{padding-right:6px}.rk{font-size:.9rem}

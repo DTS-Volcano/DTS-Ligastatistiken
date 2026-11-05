@@ -147,3 +147,63 @@ def section_rank_history(players, hist):
                 "sobald ein weiterer Tag gespeichert ist.")
     return (f"<section><h2>Rangverlauf</h2><p class='hint'>{note}</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
             f"<th>Rang heute</th><th>Veränderung</th><th>Verlauf</th></tr></thead><tbody>{body}</tbody></table></div></section>")
+
+
+def section_rounds(matches):
+    """Einzel pro Spielblock (Runde 1–4): starten wir stark oder kommen wir später auf?"""
+    tot = defaultdict(lambda: [0, 0])
+    grid = []
+    for m in matches:
+        cells = {}
+        for rnd, pairs in m["rounds"].items():
+            if not rnd:
+                continue
+            w = sum(p["won"] for p in pairs)
+            cells[rnd] = (w, len(pairs) - w)
+            tot[rnd][0] += w
+            tot[rnd][1] += len(pairs) - w
+        if cells:
+            grid.append((m, cells))
+    rounds = sorted(tot)
+    if not rounds:
+        return ""
+    cards = ""
+    for r in rounds:
+        w, l = tot[r]
+        q = 100 * w / (w + l) if w + l else 0
+        cards += (f"<div><dt>Runde {r}</dt><dd>{w}:{l}</dd>"
+                  f"<span class='bar'><i style='width:{q:.0f}%'></i></span> {q:.0f} %</div>")
+    verdict = ""
+    if len(rounds) >= 4:
+        half = len(rounds) // 2
+        a = [tot[r] for r in rounds[:half]]
+        b = [tot[r] for r in rounds[half:]]
+        wa, la = sum(x[0] for x in a), sum(x[1] for x in a)
+        wb, lb = sum(x[0] for x in b), sum(x[1] for x in b)
+        if min(wa + la, wb + lb) >= 8:
+            qa, qb = 100 * wa / (wa + la), 100 * wb / (wb + lb)
+            d = qb - qa
+            lab = f"Runden {rounds[0]}–{rounds[half - 1]} ({qa:.0f} %) gegen Runden {rounds[half]}–{rounds[-1]} ({qb:.0f} %)"
+            if d <= -10:
+                verdict = f"<p><b>Tendenz: starker Start, dann Nachlassen.</b> {lab}.</p>"
+            elif d >= 10:
+                verdict = f"<p><b>Tendenz: Steigerung im Verlauf der Partie.</b> {lab}.</p>"
+            else:
+                verdict = f"<p><b>Tendenz: gleichmässig über die Partie.</b> {lab}.</p>"
+        else:
+            verdict = "<p class='hint'>Für eine Tendenz sind noch zu wenige Einzel gespielt.</p>"
+    head = "".join(f"<th class='num'>R{r}</th>" for r in rounds)
+    rows = ""
+    for m, cells in reversed(grid):
+        tds = ""
+        for r in rounds:
+            if r in cells:
+                w, l = cells[r]
+                cls = "win" if w > l else "loss" if w < l else ""
+                tds += f"<td class='num {cls}'>{w}:{l}</td>"
+            else:
+                tds += "<td class='num'>–</td>"
+        rows += f"<tr><td>{m['date'][:6]} {esc(m['opp'])}</td>{tds}</tr>"
+    return ("<section><h2>Spielblöcke</h2><p class='hint'>Einzel pro Runde (Runde 1 bis 4, je 4 Spiele), ohne Doppel "
+            f"und Sudden Death.</p><dl class='kpi rk'>{cards}</dl>{verdict}"
+            f"<div class='scroll'><table><thead><tr><th>Partie</th>{head}</tr></thead><tbody>{rows}</tbody></table></div></section>")
