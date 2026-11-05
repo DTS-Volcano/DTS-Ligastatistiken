@@ -5,70 +5,1170 @@
    "opp": "2010er Steel",
    "home": false,
    "points": "3:0",
-   "games": "11:7"
+   "games": "11:7",
+   "sets": "24:21",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621597&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Marc Brassel",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Luis Munoz",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Serge Schiess",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Tom Lanz",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "3": [
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Marcel Staubli",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Marc Brassel",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Luis Munoz",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Lucky Aebischer",
+      "sets": "2:1",
+      "won": true
+     }
+    ],
+    "2": [
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Marc Brassel",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Serge Schiess",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Luis Munoz",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Tom Lanz",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "4": [
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Marc Brassel",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Luis Munoz",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Marcel Staubli",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Lucky Aebischer",
+      "sets": "2:0",
+      "won": true
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "02.09.2026",
    "opp": "Irish Skulls ;) Steel",
    "home": true,
    "points": "3:0",
-   "games": "12:6"
+   "games": "12:6",
+   "sets": "26:17",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621602&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Matthias Sutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Marco Müller",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Chris Malang",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Martin Gerber",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "3": [
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Marco Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Martin Gerber",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Chris Malang",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Naser Toja",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "2": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Marco Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Martin Gerber",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Matthias Sutter",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Chris Malang",
+      "sets": "2:1",
+      "won": true
+     }
+    ],
+    "4": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Chris Malang",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Martin Gerber",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Naser Toja",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Demian Senn",
+      "sets": "2:0",
+      "won": true
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "07.09.2026",
    "opp": "Dynamo Tresen",
    "home": false,
    "points": "3:0",
-   "games": "12:6"
+   "games": "12:6",
+   "sets": "27:15",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621604&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Oliver Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Jonas Herbinger",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Patric Fricker",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Fabian Aerne",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "3": [
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Patric Fricker",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Oliver Hutter",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Jonas Herbinger",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Cedric Hutter",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "2": [
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Oliver Hutter",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Patric Fricker",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Jonas Herbinger",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Fabian Aerne",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "4": [
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Oliver Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Jonas Herbinger",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Patric Fricker",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Cedric Hutter",
+      "sets": "0:2",
+      "won": false
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "14.09.2026",
    "opp": "Irish Skulls Steel",
    "home": false,
    "points": "0:3",
-   "games": "8:10"
+   "games": "8:10",
+   "sets": "19:26",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621608&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Mic Andres",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Martin Vomend",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Elia Meyer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Felix Schwager",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "3": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Elia Meyer",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Mic Andres",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Martin Vomend",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Felix Schwager",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "2": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Mic Andres",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Elia Meyer",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Martin Vomend",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Felix Schwager",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "4": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Mic Andres",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Martin Vomend",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Elia Meyer",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Felix Schwager",
+      "sets": "0:2",
+      "won": false
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "23.09.2026",
    "opp": "Dart Ost",
    "home": true,
    "points": "3:0",
-   "games": "12:6"
+   "games": "12:6",
+   "sets": "25:19",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621614&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Silvan Bücheli",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Phillipe Graf",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Alessio Demarchi",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Joel Ghirlanda",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "3": [
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Phillipe Graf",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Daniel Forrer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Alessio Demarchi",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Silvan Bücheli",
+      "sets": "2:1",
+      "won": true
+     }
+    ],
+    "2": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Phillipe Graf",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Joel Ghirlanda",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Silvan Bücheli",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Alessio Demarchi",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "4": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Alessio Demarchi",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Daniel Forrer",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Silvan Bücheli",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Phillipe Graf",
+      "sets": "2:1",
+      "won": true
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "28.09.2026",
    "opp": "Braschtli's Darter 2",
    "home": false,
    "points": "3:0",
-   "games": "12:6"
+   "games": "12:6",
+   "sets": "26:18",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621617&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Andreas Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Heiri Kuratli",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Christian Hutter",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Richard Sieber",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "3": [
+     {
+      "mine": "Elia Tanner",
+      "opp": "Christian Hutter",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Andreas Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Heiri Kuratli",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Richard Sieber",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "2": [
+     {
+      "mine": "Elia Tanner",
+      "opp": "Andreas Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Christian Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Heiri Kuratli",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Richard Sieber",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "4": [
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Andreas Hutter",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Heiri Kuratli",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Christian Hutter",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Richard Sieber",
+      "sets": "0:2",
+      "won": false
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "05.10.2026",
    "opp": "DARTFABRIK STEEL",
    "home": false,
    "points": "0:3",
-   "games": "6:12"
+   "games": "6:12",
+   "sets": "17:26",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621620&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Markus Müller",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Jean-Dominique Bollhalder",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Alex Grohmann",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Adam Montgomery",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "3": [
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Alex Grohmann",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Markus Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Daniel Strasser",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Adam Montgomery",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "2": [
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Markus Müller",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Alex Grohmann",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Jean-Dominique Bollhalder",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Adam Montgomery",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "4": [
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Markus Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Daniel Strasser",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Alex Grohmann",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Lars Gamper",
+      "sets": "2:0",
+      "won": true
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "21.10.2026",
    "opp": "Die Humorlosen",
    "home": true,
    "points": "0:3",
-   "games": "8:10"
+   "games": "8:10",
+   "sets": "19:26",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621629&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Michael Loser",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Stefan Pfeifer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Valentin Matt",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Martin Seidelmann",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "3": [
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Stefan Pfeifer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Martin Seidelmann",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Valentin Matt",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Michael Loser",
+      "sets": "2:1",
+      "won": true
+     }
+    ],
+    "2": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Stefan Pfeifer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Martin Seidelmann",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Michael Loser",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Valentin Matt",
+      "sets": "2:1",
+      "won": true
+     }
+    ],
+    "4": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Valentin Matt",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Martin Seidelmann",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Michael Loser",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Stefan Pfeifer",
+      "sets": "2:1",
+      "won": true
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "27.10.2026",
    "opp": "2010er Steel",
    "home": true,
    "points": "2:1",
-   "games": "10:9"
+   "games": "10:9",
+   "sets": "25:25",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621634&gruppe=STSO S 2",
+   "note": "28.10.2026 verschoben auf 27.10.2026 gemÃ¤ss Email (26.10.2026/am)",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Elia Tanner",
+      "opp": "Lucky Aebischer",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Serge Schiess",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Jonathan Palumbo",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Luis Munoz",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "3": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Serge Schiess",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Luis Munoz",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Jonathan Palumbo",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Lucky Aebischer",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "2": [
+     {
+      "mine": "Elia Tanner",
+      "opp": "Serge Schiess",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Pascal Maulaz",
+      "opp": "Luis Munoz",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Lucky Aebischer",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Jonathan Palumbo",
+      "sets": "2:1",
+      "won": true
+     }
+    ],
+    "4": [
+     {
+      "mine": "Elia Tanner",
+      "opp": "Jonathan Palumbo",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Tobias Fiedler",
+      "opp": "Luis Munoz",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Lucky Aebischer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Serge Schiess",
+      "sets": "2:1",
+      "won": true
+     }
+    ]
+   },
+   "extras": []
   },
   {
    "date": "04.11.2026",
    "opp": "Irish Skulls ;) Steel",
    "home": false,
    "points": "0:3",
-   "games": "8:10"
+   "games": "8:10",
+   "sets": "17:24",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621637&gruppe=STSO S 2",
+   "note": "",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Marco Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Matthias Sutter",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Chris Malang",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Martin Gerber",
+      "sets": "2:0",
+      "won": true
+     }
+    ],
+    "3": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Chris Malang",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Marco Müller",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Matthias Sutter",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Martin Gerber",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "2": [
+     {
+      "mine": "Kevin Notter",
+      "opp": "Marco Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Chris Malang",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Matthias Sutter",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Martin Gerber",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "4": [
+     {
+      "mine": "Juliano Goncalves da Costa",
+      "opp": "Marco Müller",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Matthias Sutter",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Nevio Bachmann",
+      "opp": "Chris Malang",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Martin Gerber",
+      "sets": "0:2",
+      "won": false
+     }
+    ]
+   },
+   "extras": []
   }
  ],
  "players": [
