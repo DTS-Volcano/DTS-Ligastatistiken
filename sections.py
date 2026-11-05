@@ -215,7 +215,7 @@ def section_rounds(matches):
 
 
 MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
-MIN_EINZEL = 2     # so viele Einzel braucht es im Monat, um zu zählen
+MIN_EINZEL = 5     # so viele Einzel braucht es im Monat, um zu zählen
 
 
 def potm_ranking(players):
