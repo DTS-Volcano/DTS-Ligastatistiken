@@ -4,6 +4,7 @@ import html
 import json
 import os
 import re
+import shutil
 import time
 import unicodedata
 from collections import defaultdict
@@ -20,6 +21,8 @@ GROUP = os.getenv("GROUP", "STSO S 2")
 TEAM = os.getenv("TEAM", "Double Trouble Steeldarters")
 TOP, MID = 10, 30          # Rang-Klassen: 1-10, 11-30, 31+
 OUT = Path(os.getenv("OUT", "docs"))
+LOGO = Path(os.getenv("LOGO", "DTS_LOGO_NEU_2026.svg"))   # Vereinslogo im Repo-Hauptordner
+AUTHOR = "Kevin Notter"
 
 session = requests.Session()
 session.headers["User-Agent"] = "dart-team-stats (privates Hobbyprojekt)"
@@ -188,8 +191,19 @@ def player_detail(p):
 
 def render(matches, players):
     now = datetime.now(ZoneInfo("Europe/Zurich")).strftime("%d.%m.%Y %H:%M")
-    pw = sum(1 for m in matches if int(m["points"].split(":")[0]) > int(m["points"].split(":")[1]))
-    pts = sum(int(m["points"].split(":")[0]) for m in matches)
+    mp = [tuple(int(x) for x in m["points"].split(":")) for m in matches]   # (eigene, gegnerische) Punkte
+    wins = sum(p == (3, 0) for p in mp)
+    sd_wins = sum(p == (2, 1) for p in mp)      # 9:9 nach regulären Spielen, Sudden Death gewonnen
+    sd_losses = sum(p == (1, 2) for p in mp)    # Sudden Death verloren
+    losses = sum(p == (0, 3) for p in mp)
+    pts = sum(p[0] for p in mp)
+    kpis = [("Partien", len(matches)), ("Siege", wins), ("Siege (Sudden Death)", sd_wins), ("Niederlagen", losses)]
+    if sd_losses:
+        kpis.append(("Niederlagen (Sudden Death)", sd_losses))
+    kpis.append(("Punkte", pts))
+    kpi_html = "".join(f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in kpis)
+    logo = '<img class="logo" src="logo.svg" alt="Vereinslogo" width="96" height="96">' if LOGO.exists() else ""
+    icon = '<link rel="icon" href="logo.svg" type="image/svg+xml">' if LOGO.exists() else ""
     W, L = sum(p["w"] for p in players), sum(p["l"] for p in players)
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
     tb = {k: [sum(p["brackets"][k][i] for p in players) for i in (0, 1)] for k in ("top", "mid", "low")}
@@ -215,19 +229,18 @@ def render(matches, players):
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(TEAM)} – Statistik {esc(GROUP)}</title>
+{icon}
 <style>{CSS}</style></head><body><main>
-<header><h1>{esc(TEAM)}</h1>
-<p class="sub">Liga {esc(GROUP)} · Stand {now} · Rangliste jeweils aktuell</p>
-<dl class="kpi">
-<div><dt>Partien</dt><dd>{len(matches)}</dd></div>
-<div><dt>Siege / Punkte</dt><dd>{pw} / {pts}</dd></div>
-<div><dt>Einzel</dt><dd>{W}:{L}</dd></div>
+<header><div class="brand">{logo}<div><h1>{esc(TEAM)}</h1>
+<p class="sub">Liga {esc(GROUP)} · Stand {now} · Rangliste jeweils aktuell</p></div></div>
+<dl class="kpi">{kpi_html}
+<div><dt>Spielbilanz (Einzel)</dt><dd>{W}:{L}</dd></div>
 <div><dt>Ø Gegner-Rang</dt><dd>{(sum(allr) / len(allr)) if allr else 0:.1f}</dd></div>
 </dl></header>
 
 <section><h2>Spieler</h2>
 <p class="hint">Nur Einzel, ohne Doppel und Sudden Death. Spaltenköpfe anklicken zum Sortieren. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
-<div class="scroll"><table class="sortable"><thead><tr><th>Spieler</th><th>Rang</th><th>Einzel</th><th>Bilanz</th>
+<div class="scroll"><table class="sortable"><thead><tr><th>Spieler</th><th>Rang</th><th>Spiele</th><th>Bilanz</th>
 <th>Quote</th><th>Ø Gegner</th><th>Rang 1–{TOP}</th><th>{TOP + 1}–{MID}</th><th>{MID + 1}+</th></tr></thead>
 <tbody>{prow}</tbody>
 <tfoot><tr><td>Team</td><td></td><td class="num">{W + L}</td><td class="num">{W}:{L}</td><td>{pct(W, L)}</td>
@@ -240,7 +253,7 @@ def render(matches, players):
 <tbody>{mrows}</tbody></table></div></section>
 
 <section><h2>Gegner pro Spieler</h2>{''.join(player_detail(p) for p in players)}</section>
-<footer>Quelle: vfc.ch · täglich automatisch aktualisiert</footer>
+<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}</footer>
 </main><script>{JS}</script></body></html>"""
 
 
@@ -254,6 +267,9 @@ h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1;margin:0 0 4px;letter-spac
 h2{font-size:1.15rem;margin:36px 0 8px}
 .sub,.hint,footer{color:var(--mute);font-size:.9rem;margin:0 0 12px}
 footer{margin-top:40px}
+.brand{display:flex;align-items:center;gap:16px}
+.logo{width:clamp(64px,16vw,96px);height:auto;flex:none}
+@media (prefers-color-scheme:dark){.logo{background:#f2f4f1;border-radius:14px;padding:4px}}
 .kpi{display:flex;flex-wrap:wrap;gap:12px 36px;margin:20px 0 0}
 .kpi div{border-left:3px solid var(--green);padding-left:10px}
 .kpi dt{font-size:.8rem;color:var(--mute)}.kpi dd{margin:0;font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums}
@@ -287,6 +303,8 @@ def main():
     if not players:
         raise SystemExit(f"Keine gespielten Partien für '{TEAM}' gefunden – Teamname/Gruppe prüfen.")
     OUT.mkdir(exist_ok=True)
+    if LOGO.exists():
+        shutil.copyfile(LOGO, OUT / "logo.svg")
     (OUT / "index.html").write_text(render(matches, players), encoding="utf-8")
     (OUT / "data.json").write_text(json.dumps({"matches": matches, "players": players}, ensure_ascii=False, indent=1),
                                    encoding="utf-8")
