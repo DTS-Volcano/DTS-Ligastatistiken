@@ -308,18 +308,11 @@ def section_homeaway(matches, players):
         if not d:
             continue
         (hw, hl), (aw, al) = d[True], d[False]
-        diff = ""
-        if hw + hl and aw + al:
-            x = 100 * hw / (hw + hl) - 100 * aw / (aw + al)
-            diff = f"<span class='{'up' if x >= 10 else 'down' if x <= -10 else ''}'>{x:+.0f}</span>" if abs(x) >= 10 else "–"
-        prow += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{hw}:{hl}</td><td class='num'>{q(hw, hl)}</td>"
-                 f"<td class='num'>{aw}:{al}</td><td class='num'>{q(aw, al)}</td><td class='num'>{diff}</td></tr>")
+        prow += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{hw}:{hl}</td><td class='num'>{aw}:{al}</td></tr>")
     team_html = ("<section><h2>Heim und Auswärts</h2><p class='hint'>Unser Team daheim gegen auswärts. Einzel ohne Doppel und Sudden Death.</p>"
                  "<div class='scroll'><table><thead><tr><th></th><th class='num'>Partien</th><th class='num'>Siege:Niederl.</th>"
                  f"<th class='num'>Punkte</th><th class='num'>Einzel</th><th class='num'>Quote</th></tr></thead><tbody>{rows}</tbody></table></div></section>")
-    player_html = ("<section><h2>Heim und Auswärts pro Spieler</h2><p class='hint'>Differenz: Heimquote minus Auswärtsquote in "
-                   "Prozentpunkten, nur ab 10 Punkten Unterschied angezeigt.</p>"
+    player_html = ("<section><h2>Heim und Auswärts</h2><p class='hint'>Einzelbilanz pro Spieler (Siege:Niederlagen).</p>"
                    "<div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th><th class='num'>Heim</th>"
-                   "<th class='num'>Quote</th><th class='num'>Auswärts</th><th class='num'>Quote</th><th class='num'>Differenz</th></tr></thead>"
-                   f"<tbody>{prow}</tbody></table></div></section>")
+                   f"<th class='num'>Auswärts</th></tr></thead><tbody>{prow}</tbody></table></div></section>")
     return team_html, player_html
