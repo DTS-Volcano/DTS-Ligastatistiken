@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from components import RESULT, bar, match_dialog, player_detail, team_dialog
+from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
 from sections import section_form, section_league, section_rounds, section_next, section_rank_history
 from textutil import esc, pct
@@ -41,13 +41,14 @@ def render(data, hist):
     id_of.update({nr: f"o{nr}" for nr in data["others"]})
     dialogs = "".join(match_dialog(f"m{i}", m, data["ranks"], len(matches), i) for i, m in enumerate(matches))
     dialogs += "".join(match_dialog(f"o{nr}", m, data["ranks"]) for nr, m in data["others"].items())
+    dialogs += "".join(player_dialog(i, pl, len(players), hist) for i, pl in enumerate(players))
     dialogs += "".join(team_dialog(i, t, data, id_of) for i, t in enumerate(data["league"]))
 
     prow = ""
-    for p in players:
+    for pi, p in enumerate(players):
         b = p["brackets"]
         avg = f"{p['avg_opp']:.1f}" if p["avg_opp"] else "–"
-        prow += (f"<tr><td data-v='{esc(p['name'])}'>{esc(p['name'])}</td>"
+        prow += (f"<tr class='click' data-open='p{pi}'><td data-v='{esc(p['name'])}'><button class='tl' data-open='p{pi}'>{esc(p['name'])}</button></td>"
                  f"<td class='num' data-v='{p['rank'] or 9999}'>{p['rank'] or '–'}</td>"
                  f"<td class='num' data-v='{p['n']}'>{p['n']}</td>"
                  f"<td class='num' data-v='{p['w']}'>{p['w']}:{p['l']}</td>"
@@ -95,7 +96,7 @@ def render(data, hist):
 
 <div class="panel" id="p-spieler">
 <section><h2>Spieler</h2>
-<p class="hint">Nur Einzel, ohne Doppel und Sudden Death. Spaltenköpfe anklicken zum Sortieren. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
+<p class="hint">Nur Einzel, ohne Doppel und Sudden Death. Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
 <div class="scroll"><table class="sortable sticky"><thead><tr><th>Spieler</th><th>Rang</th><th>Spiele</th><th>Bilanz</th>
 <th>Quote</th><th>Ø Gegner</th><th>Rang 1–{TOP}</th><th>{TOP + 1}–{MID}</th><th>{MID + 1}+</th></tr></thead>
 <tbody>{prow}</tbody>
@@ -110,7 +111,6 @@ def render(data, hist):
 
 {section_rank_history(players, hist)}
 
-<section><h2>Gegner pro Spieler</h2>{''.join(player_detail(p) for p in players)}</section>
 </div>
 
 <div class="panel" id="p-liga">

@@ -15,7 +15,7 @@ Aufbau:
 import json
 import shutil
 
-from config import LOGO, OUT, TEAM
+from config import LOGO, OUT, PHOTO_DIR, TEAM
 from page import render
 from scraper import BlockedError
 from stats import build_stats, update_history
@@ -63,6 +63,11 @@ def main():
     if LOGO:
         shutil.copyfile(LOGO, OUT / "logo.svg")
     write_pwa()
+    if PHOTO_DIR.is_dir():
+        (OUT / "spieler").mkdir(exist_ok=True)
+        for f in PHOTO_DIR.iterdir():
+            if f.is_file() and f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp", ".svg"):
+                shutil.copyfile(f, OUT / "spieler" / f.name)
     hist = update_history(data["ranks"])
     (OUT / "history.json").write_text(json.dumps(hist, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
     (OUT / "index.html").write_text(render(data, hist), encoding="utf-8")

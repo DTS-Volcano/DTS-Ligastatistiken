@@ -104,3 +104,15 @@ details[open] summary{border-bottom:1px solid var(--line)}
 .win+.win,.win+.loss,.loss+.win,.loss+.loss{margin-left:6px}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .rk .bar{width:90px;display:block;margin:4px 0 2px}.rk div{padding-right:6px}.rk{font-size:.9rem}
+
+tr.click td .tl{text-decoration:none;font-weight:600}
+.head{display:flex;gap:14px;align-items:center;margin-right:44px}
+.head .vs{margin:0}.head .sub{margin:0}
+.pic{width:84px;height:84px;flex:none;border-radius:16px;object-fit:cover;border:3px solid var(--green);background:var(--card)}
+.ini{display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--green)}
+@media (min-width:700px){.pic{width:112px;height:112px}}
+.prow{display:flex;align-items:center;gap:12px;margin:0 0 4px}
+.ff{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff ul{margin:0;padding-left:18px}.ff li{margin:2px 0}.ff small{color:var(--mute)}
+dl.kpi.rk dd.win{color:var(--win)}dl.kpi.rk dd.loss{color:var(--red)}
+.dlg .kpi{margin-top:14px}

@@ -14,3 +14,7 @@ Danach läuft die Aktualisierung jeden Tag um 04:15 UTC automatisch.
 ## Anpassen
 In `.github/workflows/update.yml` unter `env:` stehen `GROUP` (Liga-Gruppe) und `TEAM` (exakter Teamname wie auf vfc.ch).
 Rang-Klassen (Top 10 / 11–30 / 31+) stehen oben in `generate.py` (`TOP`, `MID`).
+
+## Spielerbilder
+Bilder in den Ordner `spieler/` legen (Dateiname = `vorname-nachname.png`, siehe `spieler/LIESMICH.txt`).
+Sie erscheinen im Spielerprofil. Ohne Bild werden die Initialen angezeigt.

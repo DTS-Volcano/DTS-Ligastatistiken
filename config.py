@@ -34,3 +34,23 @@ def today():
     if os.getenv("TODAY_OVERRIDE"):
         return datetime.strptime(os.environ["TODAY_OVERRIDE"], "%Y-%m-%d").date()
     return datetime.now(ZoneInfo("Europe/Zurich")).date()
+
+
+PHOTO_DIR = Path("spieler")   # hier liegen die Spielerbilder, z. B. kevin-notter.png
+
+
+def slug(name):
+    """kevin-notter aus 'Kevin Notter' (Umlaute: ä -> ae usw.)."""
+    s = name.lower()
+    for a, b in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        s = s.replace(a, b)
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    return "-".join("".join(ch if ch.isalnum() else " " for ch in s).split())
+
+
+def find_photo(name):
+    """Dateiname des Spielerbilds (png/jpg/jpeg/webp/svg) oder None."""
+    for ext in ("png", "jpg", "jpeg", "webp", "svg"):
+        if (PHOTO_DIR / f"{slug(name)}.{ext}").is_file():
+            return f"{slug(name)}.{ext}"
+    return None

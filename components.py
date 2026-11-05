@@ -1,7 +1,10 @@
 """Wiederverwendbare HTML-Bausteine: Form-Punkte, Kurven, Report- und Team-Fenster."""
 from collections import defaultdict
 
-from config import FORM_N, TEAM
+from datetime import datetime
+
+from config import FORM_N, TEAM, find_photo
+from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
 
 
@@ -32,21 +35,76 @@ def spark(vals, label, lo=None, hi=None, invert=False, w=96, h=26):
             f'<polyline points="{line}"/><circle cx="{pts[-1][0]:.1f}" cy="{pts[-1][1]:.1f}" r="2.4"/></svg>')
 
 
-def player_detail(p):
+def player_dialog(idx, p, total, hist):
+    """Spielerprofil als Fenster: Bild, Kennzahlen, Form, Rangverlauf, Runden, Lieblings-/Angstgegner, alle Einzel."""
+    name = p["name"]
+    photo = find_photo(name)
+    initials = "".join(w[0] for w in name.split()[:2]).upper()
+    pic = (f'<img class="pic" src="spieler/{esc(photo)}" alt="{esc(name)}" width="112" height="112">' if photo
+           else f'<span class="pic ini" aria-hidden="true">{esc(initials)}</span>')
+    rows = p["rows"]
+    quote = pct(p["w"], p["l"])
+    avg = f"{p['avg_opp']:.1f}" if p["avg_opp"] else "–"
+    kp = (f"<div><dt>Rang</dt><dd>{p['rank'] or '–'}</dd></div><div><dt>Bilanz</dt><dd>{p['w']}:{p['l']}</dd></div>"
+          f"<div><dt>Quote</dt><dd>{quote}</dd></div><div><dt>Ø Gegner</dt><dd>{avg}</dd></div>")
+    # Form und Quotenverlauf
+    form = (f"<h4>Form</h4><p class='prow'>{dots(rows, 10)} {spark(quote_series(rows), 'Siegquote nach jedem Einzel', 0, 100)}</p>"
+            if rows else "")
+    # Rangverlauf
+    days = sorted(hist)
+    series = [hist[d][name] for d in days if name in hist[d]]
+    rv = ""
+    if len(series) >= 2:
+        d = series[0] - series[-1]
+        ch = f' <span class="{"up" if d > 0 else "down"}">{"▲" if d > 0 else "▼"} {abs(d)}</span>' if d else ""
+        rv = (f"<h4>Rangverlauf</h4><p class='prow'>Rang {series[-1]}{ch} {spark(series, 'Rangverlauf', invert=True)}</p>"
+              f"<p class='hint'>Seit {datetime.strptime(days[0], '%Y-%m-%d').strftime('%d.%m.%Y')}, oben ist Rang 1.</p>")
+    # Runden
+    rd = defaultdict(lambda: [0, 0])
+    for r in rows:
+        if r.get("round"):
+            rd[r["round"]][0 if r["won"] else 1] += 1
+    rcells = ""
+    if rd:
+        for k in sorted(rd):
+            w, l = rd[k]
+            cls = "win" if w > l else "loss" if w < l else ""
+            rcells += f"<div><dt>Runde {k}</dt><dd class='{cls}'>{w}:{l}</dd></div>"
+        rcells = f"<h4>Nach Spielblock</h4><dl class='kpi rk'>{rcells}</dl>"
+    # Gegner
     by_opp = defaultdict(list)
-    for r in p["rows"]:
+    for r in rows:
         by_opp[r["opp"]].append(r)
-    items = sorted(by_opp.items(), key=lambda kv: (kv[1][0]["opp_rank"] or 999, kv[0]))
-    body = ""
-    for opp, rs in items:
+    agg = []
+    for opp, rs in by_opp.items():
         w = sum(r["won"] for r in rs)
-        rk = rs[0]["opp_rank"]
+        agg.append((opp, rs[0]["opp_rank"], w, len(rs) - w))
+
+    def li(lst):
+        return "".join(f"<li>{esc(o)}{f' <small>#{rk}</small>' if rk else ''} <b>{w}:{l}</b></li>" for o, rk, w, l in lst)
+    fav = sorted((a for a in agg if a[2] > a[3]), key=lambda a: (-(a[2] - a[3]), -a[2], a[1] or 999))[:3]
+    fear = sorted((a for a in agg if a[2] < a[3]), key=lambda a: (a[2] - a[3], -a[3], a[1] or 999))[:3]
+    ff = ""
+    if fav or fear:
+        ff = ("<div class='ff'>"
+              f"<div><h4>Lieblingsgegner</h4><ul>{li(fav) or '<li>–</li>'}</ul></div>"
+              f"<div><h4>Angstgegner</h4><ul>{li(fear) or '<li>–</li>'}</ul></div></div>")
+    # alle Einzel
+    body = ""
+    for opp, rs in sorted(by_opp.items(), key=lambda kv: (kv[1][0]["opp_rank"] or 999, kv[0])):
+        w = sum(r["won"] for r in rs)
         sets = ", ".join(f'<span class="{"win" if r["won"] else "loss"}">{r["sets"]}</span>' for r in rs)
-        body += (f"<tr><td class='num'>{rk or '–'}</td><td>{esc(opp)}</td><td>{esc(rs[0]['opp_team'])}</td>"
+        body += (f"<tr><td class='num'>{rs[0]['opp_rank'] or '–'}</td><td>{esc(opp)}</td><td>{esc(rs[0]['opp_team'])}</td>"
                  f"<td class='num'>{w}:{len(rs) - w}</td><td>{sets}</td></tr>")
-    return (f"<details><summary><b>{esc(p['name'])}</b><span>{p['w']}:{p['l']}</span></summary>"
-            "<div class='scroll'><table><thead><tr><th>Rang</th><th>Gegner</th><th>Team</th><th>Bilanz</th>"
-            f"<th>Sätze</th></tr></thead><tbody>{body}</tbody></table></div></details>")
+    table = ("<h4>Alle Einzel</h4><div class='scroll'><table><thead><tr><th>Rang</th><th>Gegner</th><th>Team</th><th>Bilanz</th>"
+             f"<th>Sätze</th></tr></thead><tbody>{body}</tbody></table></div>")
+    nav = (f'<div class="nav"><button class="rb nb-prev" data-go="p{idx - 1}"{"" if idx > 0 else " disabled"}>‹ Vorheriger</button>'
+           f'<button class="rb nb-next" data-go="p{idx + 1}"{"" if idx < total - 1 else " disabled"}>Nächster ›</button></div>')
+    return (f'<dialog id="p{idx}" aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
+            f'<button class="x" data-close aria-label="Schliessen">✕</button>'
+            f'<div class="head">{pic}<div><p class="sub">Spielerprofil</p><h3 class="vs">{esc(name)}</h3>'
+            f'<p class="sub">{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
+            f'<dl class="kpi rk">{kp}</dl>{form}{rv}{rcells}{ff}{table}{nav}</div></dialog>')
 
 
 RESULT = {(3, 0): "Sieg", (2, 1): "Sieg im Sudden Death", (1, 2): "Niederlage im Sudden Death", (0, 3): "Niederlage"}

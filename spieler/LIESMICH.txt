@@ -1,0 +1,5 @@
+Hier kommen die Spielerbilder (Comic/KI-Bilder) hinein.
+Dateiname = Name in Kleinbuchstaben mit Bindestrich, Endung png, jpg, webp oder svg.
+Beispiele: kevin-notter.png, nevio-bachmann.jpg, christoph-wildermuth.webp
+Umlaute: ä=ae, ö=oe, ü=ue. Quadratische Bilder (z. B. 600x600 Pixel) sehen am besten aus.
+Ohne Bild erscheinen die Initialen.
