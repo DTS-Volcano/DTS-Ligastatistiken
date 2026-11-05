@@ -12,6 +12,7 @@ TEAM = os.getenv("TEAM", "Double Trouble Steeldarters")
 TOP, MID = 10, 30          # Rang-Klassen: 1-10, 11-30, 31+
 FORM_N = 5                 # Anzahl Einzel für die Formkurve
 OUT = Path(os.getenv("OUT", "docs"))
+CACHE = Path(os.getenv("CACHE", "daten/reports"))   # gespeicherte Spielreports
 AUTHOR = "Kevin Notter"    # erscheint im Footer
 
 

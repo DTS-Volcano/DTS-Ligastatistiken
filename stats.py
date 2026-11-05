@@ -2,8 +2,8 @@
 import json
 from collections import defaultdict
 
-from config import MID, OUT, TEAM, TOP, today
-from scraper import fetch_report, load_league, rank_of
+from config import CACHE, MID, OUT, TEAM, TOP, today
+from scraper import BlockedError, fetch_report, load_league, rank_of
 from textutil import dkey, swap
 
 
@@ -18,6 +18,35 @@ def order(rows):
     return rows
 
 
+def load_report(nr, url, state):
+    """Gespielte Reports ändern sich nicht mehr: einmal laden, dann aus daten/reports/ lesen.
+    Bei Sperre oder Netzfehler wird mit den gespeicherten Reports weitergearbeitet."""
+    f = CACHE / f"{nr}.json"
+    try:
+        rep = json.loads(f.read_text(encoding="utf-8"))
+        state["cached"] += 1
+        return rep
+    except (OSError, ValueError):
+        pass
+    if state["stop"]:
+        return None
+    try:
+        rep = fetch_report(url)
+    except BlockedError as e:
+        state["stop"] = True
+        state["error"] = e
+        print(f"HINWEIS: {e} – weitere neue Reports werden beim nächsten Lauf geholt.")
+        return None
+    except Exception as e:      # Netzfehler bei einem einzelnen Report darf nicht alles stoppen
+        print(f"HINWEIS: Report {nr} nicht ladbar ({e}), nächster Lauf versucht es erneut.")
+        return None
+    if rep["games"] and rep["summary"]:
+        CACHE.mkdir(parents=True, exist_ok=True)
+        f.write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
+        state["new"] += 1
+    return rep
+
+
 def build_stats():
     ranking, links, league, schedule = load_league()
     print(f"{len(links)} Rapporte gefunden, {len(league)} Teams in der Tabelle, {len(schedule)} Spiele im Spielplan")
@@ -26,8 +55,11 @@ def build_stats():
     team_games = defaultdict(lambda: defaultdict(list))   # Team -> Spieler -> Einzel (Liga-weit)
     team_matches = defaultdict(list)                      # Team -> Partien (aus Sicht des Teams)
     others = {}                                           # Partien ohne uns (Sicht des Heimteams)
+    state = {"cached": 0, "new": 0, "stop": False, "error": None}
     for nr, url in sorted(links.items()):
-        rep = fetch_report(url)
+        rep = load_report(nr, url, state)
+        if rep is None:
+            continue
         teams = (rep["home"].lower(), rep["guest"].lower())
         if not rep["games"]:
             continue
@@ -66,6 +98,9 @@ def build_stats():
             singles[mine].append({"opp": opp, "opp_team": opp_team, "won": g["home_win"] == home,
                                   "sets": g["sets"] if home else swap(g["sets"]), "date": rep["date"],
                                   "round": g["round"]})
+    print(f"Reports: {state['cached']} aus dem Speicher, {state['new']} neu geladen")
+    if state["error"] and not matches:
+        raise state["error"]
     matches.sort(key=lambda m: dkey(m["date"]))
     for pl in team_games.values():
         for rows in pl.values():
