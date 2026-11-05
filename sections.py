@@ -1,0 +1,149 @@
+"""Die Bereiche der Seite (nächstes Spiel, Tabelle, Form, Rangverlauf)."""
+from collections import defaultdict
+from datetime import datetime, timedelta
+
+from components import dots, spark
+from config import FORM_N, TEAM, today
+from stats import quote_series
+from textutil import dkey, esc, fmt_date, pct, short
+
+
+def section_next(data, matches):
+    me = TEAM.lower()
+    fx = sorted((f for f in data["schedule"] if not f["played"] and me in (f["home"].lower(), f["guest"].lower())),
+                key=lambda f: (dkey(f["date"]), f["nr"]))
+    if not fx:
+        return "", ""
+    league = {t["team"].lower(): t for t in data["league"]}
+    nxt = fx[0]
+    home = nxt["home"].lower() == me
+    opp = nxt["guest"] if home else nxt["home"]
+    ol = opp.lower()
+    overdue = dkey(nxt["date"]).date() < today()
+    t = league.get(ol)
+    meta = [f"{fmt_date(nxt['date'])}{' (Termin offen / nachzuholen)' if overdue else ''}",
+            "Heimspiel" if home else "Auswärtsspiel"]
+    if nxt["place"]:
+        meta.append(esc(nxt["place"]))
+    lines = [" · ".join(meta)]
+    if t:
+        lines.append(f"{esc(opp)} steht auf Platz {t['rank']} mit {t['pp']} Punkten aus {t['played']} Partien "
+                     f"(Spiele {t['gp']}:{t['gm']}).")
+    earlier = [m for m in matches if m["opp"].lower() == ol]
+    if earlier:
+        lines.append("Bisher gegen sie: " + ", ".join(
+            f"{m['points']} ({m['date'][:6]}, {'Heim' if m['home'] else 'Auswärts'}, Spiele {m['games']})" for m in earlier) + ".")
+    else:
+        lines.append("Gegen dieses Team habt ihr in dieser Saison noch nicht gespielt.")
+
+    tidx = next((k for k, x in enumerate(data["league"]) if x["team"].lower() == ol), None)
+
+    # Gegner-Kader
+    vs_us = defaultdict(lambda: defaultdict(lambda: [0, 0]))     # Gegner -> unser Spieler -> [Siege Gegner, Niederlagen Gegner]
+    for p in data["players"]:
+        for r in p["rows"]:
+            if r["opp_team"].lower() == ol:
+                vs_us[r["opp"]][p["name"]][0 if not r["won"] else 1] += 1
+    roster = []
+    for name, rows in data["team_games"].get(ol, {}).items():
+        w = sum(r["won"] for r in rows)
+        roster.append({"name": name, "rank": data["ranks"].get(name), "n": len(rows), "w": w, "rows": rows})
+    roster.sort(key=lambda r: (r["rank"] or 999, -r["n"]))
+    if roster:
+        body = ""
+        for r in roster:
+            vs = ", ".join(f"{esc(short(n))} {a}:{b}" for n, (a, b) in vs_us.get(r["name"], {}).items()) or "–"
+            body += (f"<tr><td class='num'>{r['rank'] or '–'}</td><td>{esc(r['name'])}</td>"
+                     f"<td class='num'>{r['n']}</td><td class='num'>{r['w']}:{r['n'] - r['w']}</td>"
+                     f"<td class='num'>{pct(r['w'], r['n'] - r['w'])}</td><td>{dots(r['rows'])}</td><td>{vs}</td></tr>")
+        table = ("<div class='scroll'><table><thead><tr><th>Rang</th><th>Spieler</th><th>Spiele</th><th>Bilanz</th>"
+                 f"<th>Quote</th><th>Form (letzte {FORM_N})</th><th>Gegen euch (aus ihrer Sicht)</th></tr></thead>"
+                 f"<tbody>{body}</tbody></table></div>")
+    else:
+        table = "<p class='hint'>Von diesem Team sind noch keine Einzel bekannt.</p>"
+
+    nxt_html = (f"<section class='next'><h2>Nächstes Spiel: {esc(opp)}</h2>"
+                + "".join(f"<p class='sub'>{l}</p>" for l in lines)
+                + (f"<p><button class='rb' data-open='t{tidx}'>Team {esc(opp)} ansehen</button></p>" if tidx is not None else "")
+                + table + "</section>")
+
+    rows = ""
+    for i, f in enumerate(fx):
+        h = f["home"].lower() == me
+        o = f["guest"] if h else f["home"]
+        ot = league.get(o.lower())
+        rows += (f"<tr{' class=hl' if i == 0 else ''}><td>{fmt_date(f['date'])}</td><td>{esc(o)}</td>"
+                 f"<td class='num'>{ot['rank'] if ot else '–'}</td><td>{'Heim' if h else 'Auswärts'}</td>"
+                 f"<td>{esc(f['place'])}</td></tr>")
+    open_html = ("<h2>Ausstehende Spiele</h2><div class='scroll'><table class='cards up'><thead><tr><th>Datum</th><th>Gegner</th>"
+                 f"<th>Platz</th><th>Ort</th><th>Spielort</th></tr></thead><tbody>{rows}</tbody></table></div>")
+    return nxt_html, open_html
+
+
+def section_league(data):
+    if not data["league"]:
+        return ("<section><h2>Tabelle</h2><p class='hint'>Die Tabelle konnte von vfc.ch gerade nicht gelesen werden. "
+                "Der nächste automatische Lauf versucht es erneut.</p>")
+    me = TEAM.lower()
+    rows = "".join(
+        f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
+        f"<td><button class='tl' data-open='t{i}'>{esc(t['team'])}</button></td>"
+        f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
+        f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td></tr>" for i, t in enumerate(data["league"]))
+    return ("<section><h2>Tabelle</h2><p class='hint'>Auf ein Team klicken, um dessen Partien und Spieler zu sehen.</p><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
+            f"<th>Punkte</th><th>Spiele</th><th>Sätze</th></tr></thead><tbody>{rows}</tbody></table></div>")
+
+
+def section_form(players):
+    def score(p):
+        last = p["rows"][-FORM_N:]
+        return (-(sum(r["won"] for r in last) / len(last)), -len(last))
+    body = ""
+    for p in sorted(players, key=score):
+        last = p["rows"][-FORM_N:]
+        lw = sum(r["won"] for r in last)
+        q_all = 100 * p["w"] / p["n"]
+        q_last = 100 * lw / len(last)
+        diff = q_last - q_all
+        trend = "▲" if diff >= 10 else "▼" if diff <= -10 else "–"
+        cls = "up" if trend == "▲" else "down" if trend == "▼" else ""
+        body += (f"<tr><td>{esc(p['name'])}</td><td>{dots(p['rows'])}</td>"
+                 f"<td class='num'>{lw}:{len(last) - lw}</td><td class='num'>{q_all:.0f} %</td>"
+                 f"<td class='num {cls}'>{trend}</td>"
+                 f"<td>{spark(quote_series(p['rows']), 'Verlauf der Siegquote von ' + p['name'], 0, 100)}</td></tr>")
+    return ("<section><h2>Form</h2><p class='hint'>Letzte Einzel von links (älter) nach rechts (neuer). S = Sieg, N = Niederlage. "
+            "Trend: ▲ letzte Einzel mindestens 10 Prozentpunkte besser als die Gesamtquote, ▼ mindestens 10 schlechter. "
+            "Die Kurve zeigt die Siegquote nach jedem Einzel.</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
+            f"<th>Letzte {FORM_N}</th><th>Bilanz</th><th>Quote gesamt</th><th>Trend</th><th>Verlauf</th></tr></thead>"
+            f"<tbody>{body}</tbody></table></div></section>")
+
+
+def section_rank_history(players, hist):
+    days = sorted(hist)
+    if not days:
+        return ""
+    t = today().isoformat()
+    prior = [d for d in days if d < t]
+    limit = (today() - timedelta(days=7)).isoformat()
+    older = [d for d in prior if d <= limit]
+    base = older[-1] if older else (prior[0] if prior else None)
+    first = datetime.strptime(days[0], "%Y-%m-%d").strftime("%d.%m.%Y")
+    body = ""
+    for p in sorted(players, key=lambda p: (p["rank"] or 999, p["name"])):
+        series = [hist[d][p["name"]] for d in days if p["name"] in hist[d]]
+        cur = p["rank"]
+        change = "–"
+        if base and cur and p["name"] in hist[base]:
+            d = hist[base][p["name"]] - cur
+            change = f'<span class="up">▲ {d}</span>' if d > 0 else f'<span class="down">▼ {-d}</span>' if d < 0 else "0"
+        body += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{cur or '–'}</td><td class='num'>{change}</td>"
+                 f"<td>{spark(series, 'Rangverlauf von ' + p['name'], invert=True)}</td></tr>")
+    if base:
+        since = datetime.strptime(base, "%Y-%m-%d").strftime("%d.%m.%Y")
+        note = (f"Veränderung seit {since} (▲ besser, ▼ schlechter). Die Aufzeichnung läuft seit {first}. "
+                "Die Kurve zeigt den Rang, oben ist Rang 1.")
+    else:
+        note = (f"Die Aufzeichnung hat am {first} begonnen. Veränderung und Verlauf erscheinen, "
+                "sobald ein weiterer Tag gespeichert ist.")
+    return (f"<section><h2>Rangverlauf</h2><p class='hint'>{note}</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
+            f"<th>Rang heute</th><th>Veränderung</th><th>Verlauf</th></tr></thead><tbody>{body}</tbody></table></div></section>")
