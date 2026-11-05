@@ -492,7 +492,7 @@ def team_dialog(idx, t, data, id_of):
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<p class="sub">Platz {t["rank"]} in der Tabelle</p><h3 class="vs">{esc(t["team"])}</h3>'
             f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p>'
-            f'<h4>Partien</h4><div class="scroll"><table><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th>'
+            f'<h4>Partien</h4><div class="scroll"><table class="cards"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th>'
             f'<th>Spiele</th><th></th></tr></thead><tbody>{mrows}</tbody></table></div>'
             f'<h4>Spieler</h4><div class="scroll"><table><thead><tr><th>Rang</th><th>Spieler</th><th>Spiele</th><th>Bilanz</th>'
             f'<th>Quote</th><th>Form (letzte {FORM_N})</th></tr></thead><tbody>{prow}</tbody></table></div>'
@@ -572,7 +572,7 @@ def section_next(data, matches):
         rows += (f"<tr{' class=hl' if i == 0 else ''}><td>{fmt_date(f['date'])}</td><td>{esc(o)}</td>"
                  f"<td class='num'>{ot['rank'] if ot else '–'}</td><td>{'Heim' if h else 'Auswärts'}</td>"
                  f"<td>{esc(f['place'])}</td></tr>")
-    open_html = ("<h3>Noch ausstehend</h3><div class='scroll'><table><thead><tr><th>Datum</th><th>Gegner</th>"
+    open_html = ("<h2>Ausstehende Spiele</h2><div class='scroll'><table class='cards up'><thead><tr><th>Datum</th><th>Gegner</th>"
                  f"<th>Platz</th><th>Ort</th><th>Spielort</th></tr></thead><tbody>{rows}</tbody></table></div>")
     return nxt_html, open_html
 
@@ -610,7 +610,7 @@ def section_form(players):
                  f"<td>{spark(quote_series(p['rows']), 'Verlauf der Siegquote von ' + p['name'], 0, 100)}</td></tr>")
     return ("<section><h2>Form</h2><p class='hint'>Letzte Einzel von links (älter) nach rechts (neuer). S = Sieg, N = Niederlage. "
             "Trend: ▲ letzte Einzel mindestens 10 Prozentpunkte besser als die Gesamtquote, ▼ mindestens 10 schlechter. "
-            "Die Kurve zeigt die Siegquote nach jedem Einzel.</p><div class='scroll'><table><thead><tr><th>Spieler</th>"
+            "Die Kurve zeigt die Siegquote nach jedem Einzel.</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
             f"<th>Letzte {FORM_N}</th><th>Bilanz</th><th>Quote gesamt</th><th>Trend</th><th>Verlauf</th></tr></thead>"
             f"<tbody>{body}</tbody></table></div></section>")
 
@@ -642,7 +642,7 @@ def section_rank_history(players, hist):
     else:
         note = (f"Die Aufzeichnung hat am {first} begonnen. Veränderung und Verlauf erscheinen, "
                 "sobald ein weiterer Tag gespeichert ist.")
-    return (f"<section><h2>Rangverlauf</h2><p class='hint'>{note}</p><div class='scroll'><table><thead><tr><th>Spieler</th>"
+    return (f"<section><h2>Rangverlauf</h2><p class='hint'>{note}</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
             f"<th>Rang heute</th><th>Veränderung</th><th>Verlauf</th></tr></thead><tbody>{body}</tbody></table></div></section>")
 
 
@@ -690,32 +690,45 @@ def render(data, hist):
                  + "</tr>")
 
     next_html, open_html = section_next(data, matches)
-    league_html = section_league(data)
-    if league_html:
-        league_html += open_html + "</section>"
-    elif open_html:
-        league_html = "<section><h2>Spielplan</h2>" + open_html + "</section>"
+    league_html = section_league(data) + "</section>"
+    open_html = f"<section>{open_html}</section>" if open_html else ""
+    last_html = ""
+    if matches:
+        items = ""
+        for i, m in reversed(list(enumerate(matches))[-3:]):
+            pt = tuple(int(x) for x in m["points"].split(":"))
+            items += (f"<li><button class='resrow' data-open='m{i}'><span class='rd'>{m['date'][:6]}</span>"
+                      f"<span class='ro'>{esc(m['opp'])}<small>{RESULT.get(pt, '')} · {'Heim' if m['home'] else 'Auswärts'}</small></span>"
+                      f"<b class='sc {'win' if pt[0] > pt[1] else 'loss'}'>{m['points']}</b></button></li>")
+        last_html = (f"<section><h2>Letzte Ergebnisse</h2><ul class='res'>{items}</ul>"
+                     "<p class='hint'><a href='#partien'>Alle Partien ansehen</a></p></section>")
+    tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
+                                                          ("liga", "Liga"), ("partien", "Partien")))
 
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(TEAM)} – Statistik {esc(GROUP)}</title>
 {icon}
-<style>{CSS}</style></head><body><main>
+<style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><main>
 <header><div class="brand">{logo}<div><h1>{esc(TEAM)}</h1>
-<p class="sub">Liga {esc(GROUP)} · Stand {now} · Rangliste jeweils aktuell</p></div></div>
+<p class="sub">Liga {esc(GROUP)} · Stand {now} · Rangliste jeweils aktuell</p></div></div></header>
+<nav class="tabs" aria-label="Bereiche">{tabs}</nav>
+
+<div class="panel" id="p-uebersicht">
 <dl class="kpi">{kpi_html}
 <div><dt>Spielbilanz (Einzel)</dt><dd>{W}:{L}</dd></div>
 <div><dt>Ø Gegner-Rang</dt><dd>{(sum(allr) / len(allr)) if allr else 0:.1f}</dd></div>
-</dl></header>
-
+</dl>
 {next_html}
+{last_html}
+{open_html}
+</div>
 
-{league_html}
-
+<div class="panel" id="p-spieler">
 <section><h2>Spieler</h2>
 <p class="hint">Nur Einzel, ohne Doppel und Sudden Death. Spaltenköpfe anklicken zum Sortieren. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
-<div class="scroll"><table class="sortable"><thead><tr><th>Spieler</th><th>Rang</th><th>Spiele</th><th>Bilanz</th>
+<div class="scroll"><table class="sortable sticky"><thead><tr><th>Spieler</th><th>Rang</th><th>Spiele</th><th>Bilanz</th>
 <th>Quote</th><th>Ø Gegner</th><th>Rang 1–{TOP}</th><th>{TOP + 1}–{MID}</th><th>{MID + 1}+</th></tr></thead>
 <tbody>{prow}</tbody>
 <tfoot><tr><td>Team</td><td></td><td class="num">{W + L}</td><td class="num">{W}:{L}</td><td>{pct(W, L)}</td>
@@ -727,12 +740,20 @@ def render(data, hist):
 
 {section_rank_history(players, hist)}
 
+<section><h2>Gegner pro Spieler</h2>{''.join(player_detail(p) for p in players)}</section>
+</div>
+
+<div class="panel" id="p-liga">
+{league_html}
+</div>
+
+<div class="panel" id="p-partien">
 <section><h2>Partien</h2>
 <p class="hint">Auf eine Partie klicken, um den Spielreport zu öffnen.</p>
-<div class="scroll"><table><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
+<div class="scroll"><table class="cards"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
 <tbody>{mrows}</tbody></table></div></section>
 
-<section><h2>Gegner pro Spieler</h2>{''.join(player_detail(p) for p in players)}</section>
+</div>
 <footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}</footer>
 </main>{dialogs}<script>{JS}</script></body></html>"""
 
@@ -794,6 +815,42 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 .pair .r{text-align:right}.pair small{color:var(--mute)}.pair .won{font-weight:700}
 .pair .sc{font-variant-numeric:tabular-nums;white-space:nowrap}
 a{color:var(--green)}
+.js .panel{display:none}.js .panel.on{display:block}
+.tabs{display:flex;gap:4px;position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:18px -16px 0;padding:0 12px}
+.tabs a{flex:1;text-align:center;padding:12px 8px;color:var(--mute);text-decoration:none;font-weight:600;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs a:hover{color:var(--ink)}.tabs a.on{color:var(--green);border-bottom-color:var(--green)}
+.res{list-style:none;margin:0;padding:0}
+.resrow{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;width:100%;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.resrow:hover{background:var(--hl)}.resrow:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+.resrow .rd{color:var(--mute);font-variant-numeric:tabular-nums}
+.resrow small{display:block;color:var(--mute);font-size:.8rem}
+.resrow .sc{font-size:1.2rem;font-variant-numeric:tabular-nums}
+.sticky td:first-child,.sticky th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
+.sticky tfoot td:first-child{background:var(--bg)}
+@media (max-width:700px){
+.tabs{position:fixed;top:auto;bottom:0;left:0;right:0;margin:0;padding:0 4px calc(env(safe-area-inset-bottom) + 0px);border-bottom:0;border-top:1px solid var(--line)}
+.tabs a{border-bottom:0;border-top:3px solid transparent;margin:-1px 0 0;padding:14px 4px}
+.tabs a.on{border-top-color:var(--green)}
+main{padding-bottom:84px}
+th,td{padding:7px 6px}
+table.cards,table.cards tbody{display:block}
+table.cards thead{display:none}
+table.cards tr{display:grid;grid-template-columns:auto 1fr auto auto;grid-template-areas:"d o o p" "d c g b";gap:2px 10px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line)}
+table.cards td{border:0;padding:0;white-space:normal;text-align:left}
+table.cards td:nth-child(1){grid-area:d;color:var(--mute)}
+table.cards td:nth-child(2){grid-area:o;font-weight:600}
+table.cards td:nth-child(3){grid-area:c;color:var(--mute);font-size:.85rem}
+table.cards td:nth-child(4){grid-area:p;font-weight:700;font-size:1.05rem;text-align:right}
+table.cards td:nth-child(5){grid-area:g;color:var(--mute);font-size:.85rem}
+table.cards td:nth-child(5)::before{content:"Spiele "}
+table.cards td:nth-child(6){grid-area:b;text-align:right}
+table.cards.up tr{grid-template-areas:"d o o p" "d c g g"}
+table.cards.up td:nth-child(3){grid-area:p;text-align:right;color:var(--mute);font-size:.85rem}
+table.cards.up td:nth-child(3)::before{content:"Platz "}
+table.cards.up td:nth-child(4){grid-area:c;font-weight:400;font-size:.85rem;color:var(--mute);text-align:left}
+table.cards.up td:nth-child(5){grid-area:g;font-size:.85rem}
+table.cards.up td:nth-child(5)::before{content:""}
+}
 .bar{display:inline-block;width:64px;height:8px;background:var(--red);border-radius:4px;margin-right:8px;vertical-align:middle;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--green)}
 .q{display:inline-block;min-width:3.6em}
@@ -810,6 +867,12 @@ JS = """document.querySelectorAll('table.sortable th').forEach((th,i)=>{th.tabIn
 [...b.rows].sort((x,y)=>{const a=x.cells[i].dataset.v??x.cells[i].textContent,c=y.cells[i].dataset.v??y.cells[i].textContent,
 n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;return d==='a'?r:-r}).forEach(r=>b.append(r))};
 th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
+const TABS=['uebersicht','spieler','liga','partien'];
+function showTab(){let h=(location.hash||'').slice(1);if(!TABS.includes(h))h='uebersicht';
+document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+h));
+document.querySelectorAll('.tabs a').forEach(a=>{const on=a.getAttribute('href')==='#'+h;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+window.scrollTo(0,0)}
+addEventListener('hashchange',showTab);showTab();
 document.addEventListener('keydown',e=>{const d=document.querySelector('dialog[open]');
 if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;const b=d.querySelector(e.key==='ArrowLeft'?'.nb-prev':'.nb-next');if(b&&!b.disabled)b.click()});
 document.addEventListener('click',e=>{const c=e.target.closest('[data-copy]');
