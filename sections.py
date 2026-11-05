@@ -277,9 +277,10 @@ def section_potm(players, pidx):
 
 
 def section_homeaway(matches, players):
+    """Gibt (Team-Teil, Spieler-Teil) zurück."""
     """Heim gegen Auswärts: Partien, Punkte und Einzel für das Team und pro Spieler."""
     if not matches:
-        return ""
+        return "", ""
     team = {h: {"m": 0, "mw": 0, "pts": 0, "w": 0, "l": 0} for h in (True, False)}
     per = defaultdict(lambda: {True: [0, 0], False: [0, 0]})
     for m in matches:
@@ -313,10 +314,12 @@ def section_homeaway(matches, players):
             diff = f"<span class='{'up' if x >= 10 else 'down' if x <= -10 else ''}'>{x:+.0f}</span>" if abs(x) >= 10 else "–"
         prow += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{hw}:{hl}</td><td class='num'>{q(hw, hl)}</td>"
                  f"<td class='num'>{aw}:{al}</td><td class='num'>{q(aw, al)}</td><td class='num'>{diff}</td></tr>")
-    return ("<section><h2>Heim und Auswärts</h2><p class='hint'>Einzel ohne Doppel und Sudden Death. "
-            "Differenz: Heimquote minus Auswärtsquote in Prozentpunkten, nur ab 10 Punkten Unterschied angezeigt.</p>"
-            "<div class='scroll'><table><thead><tr><th></th><th class='num'>Partien</th><th class='num'>Siege:Niederl.</th>"
-            f"<th class='num'>Punkte</th><th class='num'>Einzel</th><th class='num'>Quote</th></tr></thead><tbody>{rows}</tbody></table></div>"
-            "<h3>Pro Spieler</h3><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th><th class='num'>Heim</th>"
-            "<th class='num'>Quote</th><th class='num'>Auswärts</th><th class='num'>Quote</th><th class='num'>Differenz</th></tr></thead>"
-            f"<tbody>{prow}</tbody></table></div></section>")
+    team_html = ("<section><h2>Heim und Auswärts</h2><p class='hint'>Unser Team daheim gegen auswärts. Einzel ohne Doppel und Sudden Death.</p>"
+                 "<div class='scroll'><table><thead><tr><th></th><th class='num'>Partien</th><th class='num'>Siege:Niederl.</th>"
+                 f"<th class='num'>Punkte</th><th class='num'>Einzel</th><th class='num'>Quote</th></tr></thead><tbody>{rows}</tbody></table></div></section>")
+    player_html = ("<section><h2>Heim und Auswärts pro Spieler</h2><p class='hint'>Differenz: Heimquote minus Auswärtsquote in "
+                   "Prozentpunkten, nur ab 10 Punkten Unterschied angezeigt.</p>"
+                   "<div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th><th class='num'>Heim</th>"
+                   "<th class='num'>Quote</th><th class='num'>Auswärts</th><th class='num'>Quote</th><th class='num'>Differenz</th></tr></thead>"
+                   f"<tbody>{prow}</tbody></table></div></section>")
+    return team_html, player_html

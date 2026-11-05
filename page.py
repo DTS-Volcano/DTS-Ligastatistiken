@@ -58,6 +58,7 @@ def render(data, hist):
                  + "".join(f"<td class='num' data-v='{b[k][0] - b[k][1]}'>{b[k][0]}:{b[k][1]}</td>" for k in ("top", "mid", "low"))
                  + "</tr>")
 
+    ha_team, ha_players = section_homeaway(matches, players)
     next_html, open_html = section_next(data, matches)
     league_html = section_league(data) + "</section>"
     open_html = f"<section>{open_html}</section>" if open_html else ""
@@ -72,7 +73,7 @@ def render(data, hist):
         last_html = (f"<section><h2>Letzte Ergebnisse</h2><ul class='res'>{items}</ul>"
                      "<p class='hint'><a href='#partien'>Alle Partien ansehen</a></p></section>")
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
-                                                          ("liga", "Liga"), ("partien", "Partien")))
+                                                          ("liga", "Team &amp; Liga"), ("partien", "Partien")))
 
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
@@ -107,9 +108,7 @@ def render(data, hist):
 <td class="num">{tb['top'][0]}:{tb['top'][1]}</td><td class="num">{tb['mid'][0]}:{tb['mid'][1]}</td><td class="num">{tb['low'][0]}:{tb['low'][1]}</td></tr></tfoot>
 </table></div></section>
 
-{section_rounds(matches)}
-
-{section_homeaway(matches, players)}
+{ha_players}
 
 {section_form(players)}
 
@@ -119,6 +118,8 @@ def render(data, hist):
 
 <div class="panel" id="p-liga">
 {league_html}
+{ha_team}
+{section_rounds(matches)}
 </div>
 
 <div class="panel" id="p-partien">
