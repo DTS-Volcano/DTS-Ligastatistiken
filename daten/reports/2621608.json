@@ -1,0 +1,125 @@
+{
+ "date": "14.09.2026",
+ "home": "Irish Skulls Steel",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Mic Andres",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Vomend",
+   "guest": "Pascal Maulaz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Elia Meyer",
+   "guest": "Kevin Notter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Felix Schwager",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Elia Meyer",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Mic Andres",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Martin Vomend",
+   "guest": "Kevin Notter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Felix Schwager",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Mic Andres",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Elia Meyer",
+   "guest": "Christoph Wildermuth",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Vomend",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Felix Schwager",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Mic Andres",
+   "guest": "Kevin Notter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Vomend",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Elia Meyer",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Felix Schwager",
+   "guest": "Nevio Bachmann",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "10:8",
+  "26:19"
+ ],
+ "extras": []
+}

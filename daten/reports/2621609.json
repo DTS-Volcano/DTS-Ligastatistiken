@@ -1,0 +1,125 @@
+{
+ "date": "14.09.2026",
+ "home": "Die Humorlosen",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Martin Seidelmann",
+   "guest": "Ali Abdallah",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Stefan Pfeifer",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Luigino Gasperina",
+   "guest": "Oliver Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Michael Loser",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Luigino Gasperina",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Seidelmann",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Stefan Pfeifer",
+   "guest": "Oliver Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Michael Loser",
+   "guest": "Ali Abdallah",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Seidelmann",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Luigino Gasperina",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Stefan Pfeifer",
+   "guest": "Ali Abdallah",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Michael Loser",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Seidelmann",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Stefan Pfeifer",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Luigino Gasperina",
+   "guest": "Ali Abdallah",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Michael Loser",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "16:2",
+  "32:7"
+ ],
+ "extras": []
+}

@@ -1,0 +1,125 @@
+{
+ "date": "12.10.2026",
+ "home": "Die Humorlosen",
+ "guest": "DARTFABRIK STEEL",
+ "games": [
+  {
+   "round": 1,
+   "home": "Michael Loser",
+   "guest": "Markus Müller",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Valentin Matt",
+   "guest": "Adam Montgomery",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "David Laritz",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Seidelmann",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "David Laritz",
+   "guest": "Adam Montgomery",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Michael Loser",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Valentin Matt",
+   "guest": "Daniel Strasser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Seidelmann",
+   "guest": "Markus Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Michael Loser",
+   "guest": "Adam Montgomery",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "David Laritz",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Valentin Matt",
+   "guest": "Markus Müller",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Seidelmann",
+   "guest": "Daniel Strasser",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Michael Loser",
+   "guest": "Daniel Strasser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Valentin Matt",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "David Laritz",
+   "guest": "Markus Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Seidelmann",
+   "guest": "Adam Montgomery",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "16:2",
+  "33:10"
+ ],
+ "extras": []
+}

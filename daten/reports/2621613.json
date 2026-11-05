@@ -1,0 +1,125 @@
+{
+ "date": "23.09.2026",
+ "home": "Irish Skulls ;) Steel",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Marco Müller",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Martin Gerber",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Chris Malang",
+   "guest": "Jonas Herbinger",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Matthias Sutter",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Chris Malang",
+   "guest": "Fabian Ziegler",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marco Müller",
+   "guest": "Fabian Aerne",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Gerber",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Matthias Sutter",
+   "guest": "Oliver Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marco Müller",
+   "guest": "Fabian Ziegler",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Chris Malang",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Gerber",
+   "guest": "Oliver Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Matthias Sutter",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Marco Müller",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Gerber",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Chris Malang",
+   "guest": "Oliver Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Matthias Sutter",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "3:0",
+  "10:8",
+  "24:18"
+ ],
+ "extras": []
+}

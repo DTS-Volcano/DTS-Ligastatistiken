@@ -1,0 +1,125 @@
+{
+ "date": "24.08.2026",
+ "home": "Dynamo Tresen",
+ "guest": "DARTFABRIK STEEL",
+ "games": [
+  {
+   "round": 1,
+   "home": "Patric Fricker",
+   "guest": "Daniel Strasser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Fabian Aerne",
+   "guest": "Lars Meier",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jonas Herbinger",
+   "guest": "Alex Grohmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Marco Schnider",
+   "guest": "Franco Trombetta",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jonas Herbinger",
+   "guest": "Lars Meier",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Cedric Hutter",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Fabian Aerne",
+   "guest": "Alex Grohmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marco Schnider",
+   "guest": "Daniel Strasser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Patric Fricker",
+   "guest": "Lars Meier",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jonas Herbinger",
+   "guest": "Franco Trombetta",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Fabian Aerne",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marco Schnider",
+   "guest": "Alex Grohmann",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Cedric Hutter",
+   "guest": "Alex Grohmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Fabian Aerne",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jonas Herbinger",
+   "guest": "Daniel Strasser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Marco Schnider",
+   "guest": "Lars Meier",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "2:1",
+  "10:9",
+  "21:23"
+ ],
+ "extras": []
+}

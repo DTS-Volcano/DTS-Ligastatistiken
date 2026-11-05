@@ -1,0 +1,125 @@
+{
+ "date": "21.09.2026",
+ "home": "Braschtli's Darter 2",
+ "guest": "2010er Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Andreas Hutter",
+   "guest": "Marc Brassel",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Sabrina Hutter",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Christian Hutter",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Richard Sieber",
+   "guest": "Marcel Staubli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Christian Hutter",
+   "guest": "Luis Munoz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Andreas Hutter",
+   "guest": "Lucky Aebischer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Sabrina Hutter",
+   "guest": "Serge Schiess",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Richard Sieber",
+   "guest": "Marc Brassel",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Andreas Hutter",
+   "guest": "Luis Munoz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christian Hutter",
+   "guest": "Marcel Staubli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Sabrina Hutter",
+   "guest": "Marc Brassel",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Richard Sieber",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Andreas Hutter",
+   "guest": "Serge Schiess",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Sabrina Hutter",
+   "guest": "Lucky Aebischer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Christian Hutter",
+   "guest": "Marc Brassel",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Richard Sieber",
+   "guest": "Luis Munoz",
+   "sets": "1:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "7:11",
+  "18:26"
+ ],
+ "extras": []
+}

@@ -1,0 +1,125 @@
+{
+ "date": "07.09.2026",
+ "home": "Braschtli's Darter 2",
+ "guest": "DARTFABRIK STEEL",
+ "games": [
+  {
+   "round": 1,
+   "home": "Sabrina Hutter",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Heiri Kuratli",
+   "guest": "Alex Grohmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christian Hutter",
+   "guest": "Lars Meier",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Richard Sieber",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christian Hutter",
+   "guest": "Alex Grohmann",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Sabrina Hutter",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Heiri Kuratli",
+   "guest": "Lars Meier",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Richard Sieber",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Sabrina Hutter",
+   "guest": "Alex Grohmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christian Hutter",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Heiri Kuratli",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Richard Sieber",
+   "guest": "Lars Meier",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Sabrina Hutter",
+   "guest": "Lars Meier",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Heiri Kuratli",
+   "guest": "Daniel Strasser",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Christian Hutter",
+   "guest": "Lars Gamper",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Richard Sieber",
+   "guest": "Alex Grohmann",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "5:13",
+  "15:27"
+ ],
+ "extras": []
+}

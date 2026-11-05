@@ -1,0 +1,125 @@
+{
+ "date": "05.10.2026",
+ "home": "DARTFABRIK STEEL",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Markus Müller",
+   "guest": "Kevin Notter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Nevio Bachmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Alex Grohmann",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Adam Montgomery",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Alex Grohmann",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Markus Müller",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Daniel Strasser",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Adam Montgomery",
+   "guest": "Kevin Notter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Markus Müller",
+   "guest": "Nevio Bachmann",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alex Grohmann",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Kevin Notter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Adam Montgomery",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Markus Müller",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Daniel Strasser",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Alex Grohmann",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Lars Gamper",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "3:0",
+  "12:6",
+  "26:17"
+ ],
+ "extras": []
+}

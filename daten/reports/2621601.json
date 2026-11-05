@@ -1,0 +1,125 @@
+{
+ "date": "31.08.2026",
+ "home": "DARTFABRIK STEEL",
+ "guest": "Dart Ost",
+ "games": [
+  {
+   "round": 1,
+   "home": "Patrick Frank",
+   "guest": "Alessio Demarchi",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Adam Montgomery",
+   "guest": "Daniel Forrer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Alex Grohmann",
+   "guest": "Phillipe Graf",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Daniel Strasser",
+   "guest": "Katja Koch",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Patrick Frank",
+   "guest": "Joel Ghirlanda",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Adam Montgomery",
+   "guest": "Phillipe Graf",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Alessio Demarchi",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Patrick Frank",
+   "guest": "Daniel Forrer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alex Grohmann",
+   "guest": "Joel Ghirlanda",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Adam Montgomery",
+   "guest": "Alessio Demarchi",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Franco Trombetta",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Adam Montgomery",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Daniel Strasser",
+   "guest": "Alessio Demarchi",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Katja Koch",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "1:2",
+  "9:10",
+  "22:23"
+ ],
+ "extras": []
+}

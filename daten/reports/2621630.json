@@ -1,0 +1,125 @@
+{
+ "date": "21.10.2026",
+ "home": "Dart Ost",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Phillipe Graf",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Jan Müller",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Joel Ghirlanda",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Alessio Demarchi",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Joel Ghirlanda",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Phillipe Graf",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Jan Müller",
+   "guest": "Jonas Herbinger",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Alessio Demarchi",
+   "guest": "Oliver Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Phillipe Graf",
+   "guest": "Angelo Michielin",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Joel Ghirlanda",
+   "guest": "Fabian Ziegler",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jan Müller",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alessio Demarchi",
+   "guest": "Jonas Herbinger",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Phillipe Graf",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jan Müller",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Joel Ghirlanda",
+   "guest": "Oliver Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Alessio Demarchi",
+   "guest": "Cedric Hutter",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "11:7",
+  "24:17"
+ ],
+ "extras": []
+}

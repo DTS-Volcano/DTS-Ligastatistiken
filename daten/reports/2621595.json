@@ -1,0 +1,125 @@
+{
+ "date": "24.08.2026",
+ "home": "Braschtli's Darter 2",
+ "guest": "Die Humorlosen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Heiri Kuratli",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Andreas Hutter",
+   "guest": "Stefan Pfeifer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Richard Sieber",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christian Hutter",
+   "guest": "Valentin Matt",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Richard Sieber",
+   "guest": "Stefan Pfeifer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Heiri Kuratli",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Andreas Hutter",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christian Hutter",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Heiri Kuratli",
+   "guest": "Stefan Pfeifer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Richard Sieber",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Andreas Hutter",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christian Hutter",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Heiri Kuratli",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Andreas Hutter",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Richard Sieber",
+   "guest": "Luigino Gasperina",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Christian Hutter",
+   "guest": "Stefan Pfeifer",
+   "sets": "1:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "2:16",
+  "8:32"
+ ],
+ "extras": []
+}

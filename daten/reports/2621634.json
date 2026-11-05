@@ -1,0 +1,125 @@
+{
+ "date": "27.10.2026",
+ "home": "Double Trouble Steeldarters",
+ "guest": "2010er Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Elia Tanner",
+   "guest": "Lucky Aebischer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Tobias Fiedler",
+   "guest": "Serge Schiess",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Pascal Maulaz",
+   "guest": "Jonathan Palumbo",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christoph Wildermuth",
+   "guest": "Luis Munoz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Kevin Notter",
+   "guest": "Serge Schiess",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Elia Tanner",
+   "guest": "Luis Munoz",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Tobias Fiedler",
+   "guest": "Jonathan Palumbo",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Nevio Bachmann",
+   "guest": "Lucky Aebischer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Elia Tanner",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Pascal Maulaz",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Tobias Fiedler",
+   "guest": "Lucky Aebischer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christoph Wildermuth",
+   "guest": "Jonathan Palumbo",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Elia Tanner",
+   "guest": "Jonathan Palumbo",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Tobias Fiedler",
+   "guest": "Luis Munoz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Kevin Notter",
+   "guest": "Lucky Aebischer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Nevio Bachmann",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "2:1",
+  "10:9",
+  "25:25"
+ ],
+ "extras": []
+}

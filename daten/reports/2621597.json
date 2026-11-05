@@ -1,0 +1,125 @@
+{
+ "date": "24.08.2026",
+ "home": "2010er Steel",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Marc Brassel",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Luis Munoz",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Serge Schiess",
+   "guest": "Tobias Fiedler",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Tom Lanz",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marcel Staubli",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marc Brassel",
+   "guest": "Christoph Wildermuth",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Luis Munoz",
+   "guest": "Tobias Fiedler",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Lucky Aebischer",
+   "guest": "Pascal Maulaz",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marc Brassel",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Serge Schiess",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Luis Munoz",
+   "guest": "Pascal Maulaz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Tom Lanz",
+   "guest": "Tobias Fiedler",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Marc Brassel",
+   "guest": "Tobias Fiedler",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Luis Munoz",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marcel Staubli",
+   "guest": "Pascal Maulaz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Lucky Aebischer",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "7:11",
+  "21:24"
+ ],
+ "extras": []
+}

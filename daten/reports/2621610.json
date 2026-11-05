@@ -1,0 +1,125 @@
+{
+ "date": "16.09.2026",
+ "home": "Dart Ost",
+ "guest": "Braschtli's Darter 2",
+ "games": [
+  {
+   "round": 1,
+   "home": "Joel Ghirlanda",
+   "guest": "Christian Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Katja Koch",
+   "guest": "Richard Sieber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Silvan Bücheli",
+   "guest": "Heiri Kuratli",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Daniel Forrer",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Silvan Bücheli",
+   "guest": "Richard Sieber",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Joel Ghirlanda",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jan Müller",
+   "guest": "Heiri Kuratli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Daniel Forrer",
+   "guest": "Christian Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Joel Ghirlanda",
+   "guest": "Richard Sieber",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Silvan Bücheli",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Katja Koch",
+   "guest": "Christian Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Daniel Forrer",
+   "guest": "Heiri Kuratli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Alessio Demarchi",
+   "guest": "Heiri Kuratli",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Manuel Fischer",
+   "guest": "Andreas Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Silvan Bücheli",
+   "guest": "Christian Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Daniel Forrer",
+   "guest": "Richard Sieber",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "2:1",
+  "10:9",
+  "24:22"
+ ],
+ "extras": []
+}

@@ -1,0 +1,125 @@
+{
+ "date": "07.09.2026",
+ "home": "Dynamo Tresen",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Oliver Hutter",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jonas Herbinger",
+   "guest": "Tobias Fiedler",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Patric Fricker",
+   "guest": "Nevio Bachmann",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Fabian Aerne",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Patric Fricker",
+   "guest": "Tobias Fiedler",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Oliver Hutter",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Jonas Herbinger",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Cedric Hutter",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Oliver Hutter",
+   "guest": "Tobias Fiedler",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Patric Fricker",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jonas Herbinger",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Fabian Aerne",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Oliver Hutter",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Jonas Herbinger",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Patric Fricker",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Cedric Hutter",
+   "guest": "Tobias Fiedler",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "0:3",
+  "6:12",
+  "15:27"
+ ],
+ "extras": []
+}

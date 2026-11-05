@@ -1,0 +1,125 @@
+{
+ "date": "30.09.2026",
+ "home": "Dart Ost",
+ "guest": "Die Humorlosen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Alessio Demarchi",
+   "guest": "Michael Loser",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jan Müller",
+   "guest": "Valentin Matt",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Joel Ghirlanda",
+   "guest": "David Laritz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Daniel Forrer",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Joel Ghirlanda",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Alessio Demarchi",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Jan Müller",
+   "guest": "David Laritz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Katja Koch",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Alessio Demarchi",
+   "guest": "Valentin Matt",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Joel Ghirlanda",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jan Müller",
+   "guest": "Michael Loser",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Daniel Forrer",
+   "guest": "David Laritz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Alessio Demarchi",
+   "guest": "David Laritz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Jan Müller",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Joel Ghirlanda",
+   "guest": "Michael Loser",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Katja Koch",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "1:17",
+  "7:35"
+ ],
+ "extras": []
+}

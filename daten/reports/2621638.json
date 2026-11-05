@@ -1,0 +1,125 @@
+{
+ "date": "04.11.2026",
+ "home": "Dart Ost",
+ "guest": "DARTFABRIK STEEL",
+ "games": [
+  {
+   "round": 1,
+   "home": "Silvan Bücheli",
+   "guest": "Markus Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jan Müller",
+   "guest": "Lukas Hollenstein",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Alessio Demarchi",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Phillipe Graf",
+   "guest": "Alex Grohmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Joel Ghirlanda",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Silvan Bücheli",
+   "guest": "Alex Grohmann",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jan Müller",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Phillipe Graf",
+   "guest": "Markus Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Silvan Bücheli",
+   "guest": "Lukas Hollenstein",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alessio Demarchi",
+   "guest": "Alex Grohmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jan Müller",
+   "guest": "Markus Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Phillipe Graf",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Silvan Bücheli",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jan Müller",
+   "guest": "Alex Grohmann",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Joel Ghirlanda",
+   "guest": "Markus Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Phillipe Graf",
+   "guest": "Daniel Strasser",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "8:10",
+  "20:23"
+ ],
+ "extras": []
+}

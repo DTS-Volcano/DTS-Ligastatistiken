@@ -1,0 +1,125 @@
+{
+ "date": "09.09.2026",
+ "home": "Dart Ost",
+ "guest": "Irish Skulls Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Silvan Bücheli",
+   "guest": "Martin Vomend",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Alessio Demarchi",
+   "guest": "Felix Schwager",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Joel Ghirlanda",
+   "guest": "Mic Andres",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Daniel Forrer",
+   "guest": "Elia Meyer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Joel Ghirlanda",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Silvan Bücheli",
+   "guest": "Elia Meyer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Alessio Demarchi",
+   "guest": "Mic Andres",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Phillipe Graf",
+   "guest": "Martin Vomend",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Silvan Bücheli",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Joel Ghirlanda",
+   "guest": "Elia Meyer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alessio Demarchi",
+   "guest": "Martin Vomend",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Daniel Forrer",
+   "guest": "Mic Andres",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Silvan Bücheli",
+   "guest": "Mic Andres",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Alessio Demarchi",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Joel Ghirlanda",
+   "guest": "Martin Vomend",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Phillipe Graf",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "7:11",
+  "20:25"
+ ],
+ "extras": []
+}

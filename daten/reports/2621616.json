@@ -1,0 +1,125 @@
+{
+ "date": "28.09.2026",
+ "home": "2010er Steel",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Serge Schiess",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Lucky Aebischer",
+   "guest": "Patric Fricker",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Marcel Staubli",
+   "guest": "Oliver Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Marc Brassel",
+   "guest": "Marco Schnider",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Luis Munoz",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Serge Schiess",
+   "guest": "Marco Schnider",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Tom Lanz",
+   "guest": "Fabian Aerne",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marc Brassel",
+   "guest": "Fabian Ziegler",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Serge Schiess",
+   "guest": "Patric Fricker",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Marcel Staubli",
+   "guest": "Marco Schnider",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Lucky Aebischer",
+   "guest": "Fabian Ziegler",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marc Brassel",
+   "guest": "Oliver Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Serge Schiess",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Tom Lanz",
+   "guest": "Marco Schnider",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Luis Munoz",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marc Brassel",
+   "guest": "Jonas Herbinger",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "5:13",
+  "18:28"
+ ],
+ "extras": []
+}

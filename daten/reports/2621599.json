@@ -1,0 +1,125 @@
+{
+ "date": "31.08.2026",
+ "home": "Irish Skulls Steel",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Felix Schwager",
+   "guest": "Oliver Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Elia Meyer",
+   "guest": "Jonas Herbinger",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Martin Vomend",
+   "guest": "Marco Schnider",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Roberto Lisitsov",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Vomend",
+   "guest": "Jonas Herbinger",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Felix Schwager",
+   "guest": "Angelo Michielin",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Elia Meyer",
+   "guest": "Marco Schnider",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Roberto Lisitsov",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Felix Schwager",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Vomend",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Elia Meyer",
+   "guest": "Oliver Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Roberto Lisitsov",
+   "guest": "Marco Schnider",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Felix Schwager",
+   "guest": "Marco Schnider",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Elia Meyer",
+   "guest": "Angelo Michielin",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Vomend",
+   "guest": "Oliver Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Roberto Lisitsov",
+   "guest": "Jonas Herbinger",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "10:8",
+  "25:21"
+ ],
+ "extras": []
+}

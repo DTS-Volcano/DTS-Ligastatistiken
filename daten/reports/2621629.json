@@ -1,0 +1,125 @@
+{
+ "date": "21.10.2026",
+ "home": "Double Trouble Steeldarters",
+ "guest": "Die Humorlosen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Kevin Notter",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christoph Wildermuth",
+   "guest": "Stefan Pfeifer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Nevio Bachmann",
+   "guest": "Valentin Matt",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Martin Seidelmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Nevio Bachmann",
+   "guest": "Stefan Pfeifer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Kevin Notter",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christoph Wildermuth",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Michael Loser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Kevin Notter",
+   "guest": "Stefan Pfeifer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Nevio Bachmann",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christoph Wildermuth",
+   "guest": "Michael Loser",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Valentin Matt",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Kevin Notter",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Christoph Wildermuth",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Nevio Bachmann",
+   "guest": "Michael Loser",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Stefan Pfeifer",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "0:3",
+  "8:10",
+  "19:26"
+ ],
+ "extras": []
+}

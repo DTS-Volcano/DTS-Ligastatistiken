@@ -1,0 +1,125 @@
+{
+ "date": "09.09.2026",
+ "home": "Irish Skulls ;) Steel",
+ "guest": "Die Humorlosen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Matthias Sutter",
+   "guest": "Valentin Matt",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Chris Malang",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Gerber",
+   "guest": "David Laritz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Marco Müller",
+   "guest": "Luigino Gasperina",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Gerber",
+   "guest": "Michael Loser",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Matthias Sutter",
+   "guest": "Luigino Gasperina",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Chris Malang",
+   "guest": "David Laritz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marco Müller",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Matthias Sutter",
+   "guest": "Michael Loser",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Gerber",
+   "guest": "Luigino Gasperina",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Chris Malang",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marco Müller",
+   "guest": "David Laritz",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Matthias Sutter",
+   "guest": "David Laritz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Chris Malang",
+   "guest": "Martin Seidelmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Martin Gerber",
+   "guest": "Valentin Matt",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Marco Müller",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "5:13",
+  "16:27"
+ ],
+ "extras": []
+}

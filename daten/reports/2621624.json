@@ -1,0 +1,125 @@
+{
+ "date": "12.10.2026",
+ "home": "Dynamo Tresen",
+ "guest": "Braschtli's Darter 2",
+ "games": [
+  {
+   "round": 1,
+   "home": "Fabian Aerne",
+   "guest": "Christian Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Cedric Hutter",
+   "guest": "Richard Sieber",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Oliver Hutter",
+   "guest": "Heiri Kuratli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Fabian Ziegler",
+   "guest": "Sabrina Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Oliver Hutter",
+   "guest": "Richard Sieber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Jonas Herbinger",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Cedric Hutter",
+   "guest": "Heiri Kuratli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Fabian Ziegler",
+   "guest": "Christian Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Fabian Aerne",
+   "guest": "Richard Sieber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Oliver Hutter",
+   "guest": "Sabrina Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Cedric Hutter",
+   "guest": "Christian Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Fabian Ziegler",
+   "guest": "Heiri Kuratli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jonas Herbinger",
+   "guest": "Heiri Kuratli",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Cedric Hutter",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Oliver Hutter",
+   "guest": "Christian Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Fabian Ziegler",
+   "guest": "Richard Sieber",
+   "sets": "1:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "3:0",
+  "11:7",
+  "24:19"
+ ],
+ "extras": []
+}

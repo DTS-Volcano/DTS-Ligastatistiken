@@ -1,0 +1,125 @@
+{
+ "date": "19.10.2026",
+ "home": "DARTFABRIK STEEL",
+ "guest": "2010er Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Alex Grohmann",
+   "guest": "Jonathan Palumbo",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Lars Meier",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Markus Müller",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Lucky Aebischer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Markus Müller",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Patrick Frank",
+   "guest": "Lucky Aebischer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Lars Meier",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Jonathan Palumbo",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Alex Grohmann",
+   "guest": "Marc Brassel",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Markus Müller",
+   "guest": "Lucky Aebischer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Lars Meier",
+   "guest": "Jonathan Palumbo",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Patrick Frank",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Lars Meier",
+   "guest": "Lucky Aebischer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Markus Müller",
+   "guest": "Jonathan Palumbo",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Marc Brassel",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "3:0",
+  "10:8",
+  "23:20"
+ ],
+ "extras": []
+}

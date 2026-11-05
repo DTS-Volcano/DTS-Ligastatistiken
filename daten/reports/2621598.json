@@ -1,0 +1,125 @@
+{
+ "date": "26.08.2026",
+ "home": "Irish Skulls ;) Steel",
+ "guest": "Irish Skulls Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Martin Gerber",
+   "guest": "Felix Schwager",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Chris Malang",
+   "guest": "Elia Meyer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Marco Müller",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Naser Toja",
+   "guest": "Martin Vomend",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Marco Müller",
+   "guest": "Elia Meyer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Gerber",
+   "guest": "Stephan Badschauer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Chris Malang",
+   "guest": "Roberto Lisitsov",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Demian Senn",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Martin Gerber",
+   "guest": "Elia Meyer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Marco Müller",
+   "guest": "Martin Vomend",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Chris Malang",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Naser Toja",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Gerber",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Chris Malang",
+   "guest": "Stephan Badschauer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marco Müller",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Demian Senn",
+   "guest": "Elia Meyer",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "3:0",
+  "11:7",
+  "23:22"
+ ],
+ "extras": []
+}

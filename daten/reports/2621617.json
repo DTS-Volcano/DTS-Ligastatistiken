@@ -1,0 +1,125 @@
+{
+ "date": "28.09.2026",
+ "home": "Braschtli's Darter 2",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Andreas Hutter",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Heiri Kuratli",
+   "guest": "Elia Tanner",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christian Hutter",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Richard Sieber",
+   "guest": "Christoph Wildermuth",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Christian Hutter",
+   "guest": "Elia Tanner",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Andreas Hutter",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Heiri Kuratli",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Richard Sieber",
+   "guest": "Nevio Bachmann",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Andreas Hutter",
+   "guest": "Elia Tanner",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christian Hutter",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Heiri Kuratli",
+   "guest": "Nevio Bachmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Richard Sieber",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Andreas Hutter",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Heiri Kuratli",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Christian Hutter",
+   "guest": "Nevio Bachmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Richard Sieber",
+   "guest": "Elia Tanner",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "0:3",
+  "6:12",
+  "18:26"
+ ],
+ "extras": []
+}

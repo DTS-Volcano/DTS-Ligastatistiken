@@ -1,0 +1,125 @@
+{
+ "date": "28.09.2026",
+ "home": "DARTFABRIK STEEL",
+ "guest": "Irish Skulls ;) Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Franco Trombetta",
+   "guest": "Chris Malang",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Alex Grohmann",
+   "guest": "Martin Gerber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Daniel Strasser",
+   "guest": "Matthias Sutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Daniel Strasser",
+   "guest": "Martin Gerber",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Franco Trombetta",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Alex Grohmann",
+   "guest": "Matthias Sutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Franco Trombetta",
+   "guest": "Martin Gerber",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Daniel Strasser",
+   "guest": "Marco Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Alex Grohmann",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Matthias Sutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Franco Trombetta",
+   "guest": "Matthias Sutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Alex Grohmann",
+   "guest": "Marco Müller",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Daniel Strasser",
+   "guest": "Chris Malang",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Martin Gerber",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "3:0",
+  "11:7",
+  "27:20"
+ ],
+ "extras": []
+}

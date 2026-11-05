@@ -1,0 +1,125 @@
+{
+ "date": "05.10.2026",
+ "home": "2010er Steel",
+ "guest": "Dart Ost",
+ "games": [
+  {
+   "round": 1,
+   "home": "Marc Brassel",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Lucky Aebischer",
+   "guest": "Alessio Demarchi",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Serge Schiess",
+   "guest": "Phillipe Graf",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Marcel Staubli",
+   "guest": "Jan Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Serge Schiess",
+   "guest": "Alessio Demarchi",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marc Brassel",
+   "guest": "Jan Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Lucky Aebischer",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marcel Staubli",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marc Brassel",
+   "guest": "Alessio Demarchi",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Serge Schiess",
+   "guest": "Jan Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Lucky Aebischer",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marcel Staubli",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marc Brassel",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Lucky Aebischer",
+   "guest": "Jan Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Serge Schiess",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marcel Staubli",
+   "guest": "Alessio Demarchi",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "3:15",
+  "10:33"
+ ],
+ "extras": []
+}

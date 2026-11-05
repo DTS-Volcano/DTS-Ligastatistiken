@@ -1,0 +1,125 @@
+{
+ "date": "14.09.2026",
+ "home": "2010er Steel",
+ "guest": "Irish Skulls ;) Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Marc Brassel",
+   "guest": "Martin Gerber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Lucky Aebischer",
+   "guest": "Matthias Sutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Serge Schiess",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Luis Munoz",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Serge Schiess",
+   "guest": "Matthias Sutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Marc Brassel",
+   "guest": "Marco Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Lucky Aebischer",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Luis Munoz",
+   "guest": "Martin Gerber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marc Brassel",
+   "guest": "Matthias Sutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Serge Schiess",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Lucky Aebischer",
+   "guest": "Martin Gerber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Luis Munoz",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marc Brassel",
+   "guest": "Chris Malang",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Lucky Aebischer",
+   "guest": "Marco Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Serge Schiess",
+   "guest": "Martin Gerber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marcel Staubli",
+   "guest": "Demian Senn",
+   "sets": "1:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "5:13",
+  "18:30"
+ ],
+ "extras": []
+}

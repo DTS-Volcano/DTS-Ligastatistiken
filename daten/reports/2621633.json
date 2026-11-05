@@ -1,0 +1,125 @@
+{
+ "date": "26.10.2026",
+ "home": "DARTFABRIK STEEL",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Alex Grohmann",
+   "guest": "Fabian Aerne",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Patrick Frank",
+   "guest": "Patric Fricker",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Markus Müller",
+   "guest": "Oliver Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Adam Montgomery",
+   "guest": "Cedric Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Markus Müller",
+   "guest": "Patric Fricker",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Alex Grohmann",
+   "guest": "Fabian Ziegler",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Lukas Hollenstein",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Adam Montgomery",
+   "guest": "Fabian Aerne",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alex Grohmann",
+   "guest": "Patric Fricker",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Markus Müller",
+   "guest": "Cedric Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Patrick Frank",
+   "guest": "Fabian Aerne",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Adam Montgomery",
+   "guest": "Oliver Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Alex Grohmann",
+   "guest": "Oliver Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Lukas Hollenstein",
+   "guest": "Fabian Ziegler",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Markus Müller",
+   "guest": "Fabian Aerne",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Adam Montgomery",
+   "guest": "Patric Fricker",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "15:3",
+  "31:13"
+ ],
+ "extras": []
+}

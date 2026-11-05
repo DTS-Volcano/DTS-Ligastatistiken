@@ -1,0 +1,125 @@
+{
+ "date": "19.10.2026",
+ "home": "Braschtli's Darter 2",
+ "guest": "Irish Skulls Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Sabrina Hutter",
+   "guest": "Roberto Lisitsov",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Andreas Hutter",
+   "guest": "Elia Meyer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Richard Sieber",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christian Hutter",
+   "guest": "Martin Vomend",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Richard Sieber",
+   "guest": "Elia Meyer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Sabrina Hutter",
+   "guest": "Stephan Badschauer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Andreas Hutter",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christian Hutter",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Sabrina Hutter",
+   "guest": "Elia Meyer",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Richard Sieber",
+   "guest": "Martin Vomend",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Andreas Hutter",
+   "guest": "Roberto Lisitsov",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christian Hutter",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Sabrina Hutter",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Andreas Hutter",
+   "guest": "Stephan Badschauer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Richard Sieber",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Christian Hutter",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "0:3",
+  "7:11",
+  "19:24"
+ ],
+ "extras": []
+}

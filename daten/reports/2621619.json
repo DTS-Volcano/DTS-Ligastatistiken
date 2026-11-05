@@ -1,0 +1,125 @@
+{
+ "date": "14.10.2026",
+ "home": "Die Humorlosen",
+ "guest": "Irish Skulls Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Valentin Matt",
+   "guest": "Joel Breitenmoser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Stefan Pfeifer",
+   "guest": "Roberto Lisitsov",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Michael Loser",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Seidelmann",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Michael Loser",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Valentin Matt",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Stefan Pfeifer",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Martin Seidelmann",
+   "guest": "Joel Breitenmoser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Valentin Matt",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Michael Loser",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Stefan Pfeifer",
+   "guest": "Joel Breitenmoser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Martin Seidelmann",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Valentin Matt",
+   "guest": "Felix Schwager",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Stefan Pfeifer",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Michael Loser",
+   "guest": "Joel Breitenmoser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Martin Seidelmann",
+   "guest": "Roberto Lisitsov",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "10:8",
+  "23:16"
+ ],
+ "extras": []
+}

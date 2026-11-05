@@ -1,0 +1,125 @@
+{
+ "date": "14.10.2026",
+ "home": "Dart Ost",
+ "guest": "Irish Skulls ;) Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Silvan Bücheli",
+   "guest": "Chris Malang",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Alessio Demarchi",
+   "guest": "Marco Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Joel Ghirlanda",
+   "guest": "Matthias Sutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Phillipe Graf",
+   "guest": "Demian Senn",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jan Müller",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Silvan Bücheli",
+   "guest": "Demian Senn",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Alessio Demarchi",
+   "guest": "Matthias Sutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Phillipe Graf",
+   "guest": "Chris Malang",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Silvan Bücheli",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Joel Ghirlanda",
+   "guest": "Demian Senn",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Alessio Demarchi",
+   "guest": "Chris Malang",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Phillipe Graf",
+   "guest": "Matthias Sutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Silvan Bücheli",
+   "guest": "Matthias Sutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Alessio Demarchi",
+   "guest": "Demian Senn",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jan Müller",
+   "guest": "Chris Malang",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Phillipe Graf",
+   "guest": "Marco Müller",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "12:6",
+  "27:17"
+ ],
+ "extras": []
+}

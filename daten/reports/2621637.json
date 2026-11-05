@@ -1,0 +1,125 @@
+{
+ "date": "04.11.2026",
+ "home": "Irish Skulls ;) Steel",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Marco Müller",
+   "guest": "Nevio Bachmann",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Matthias Sutter",
+   "guest": "Kevin Notter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Chris Malang",
+   "guest": "Elia Tanner",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Gerber",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Chris Malang",
+   "guest": "Kevin Notter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marco Müller",
+   "guest": "Christoph Wildermuth",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Matthias Sutter",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Gerber",
+   "guest": "Nevio Bachmann",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Marco Müller",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Chris Malang",
+   "guest": "Christoph Wildermuth",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Matthias Sutter",
+   "guest": "Nevio Bachmann",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Gerber",
+   "guest": "Elia Tanner",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Marco Müller",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Matthias Sutter",
+   "guest": "Christoph Wildermuth",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Chris Malang",
+   "guest": "Nevio Bachmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Martin Gerber",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "10:8",
+  "24:17"
+ ],
+ "extras": []
+}

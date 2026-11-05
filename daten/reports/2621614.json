@@ -1,0 +1,125 @@
+{
+ "date": "23.09.2026",
+ "home": "Double Trouble Steeldarters",
+ "guest": "Dart Ost",
+ "games": [
+  {
+   "round": 1,
+   "home": "Pascal Maulaz",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Tobias Fiedler",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christoph Wildermuth",
+   "guest": "Alessio Demarchi",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Juliano Goncalves da Costa",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Christoph Wildermuth",
+   "guest": "Phillipe Graf",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Pascal Maulaz",
+   "guest": "Daniel Forrer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Nevio Bachmann",
+   "guest": "Alessio Demarchi",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Juliano Goncalves da Costa",
+   "guest": "Silvan Bücheli",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Pascal Maulaz",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christoph Wildermuth",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Tobias Fiedler",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Juliano Goncalves da Costa",
+   "guest": "Alessio Demarchi",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Pascal Maulaz",
+   "guest": "Alessio Demarchi",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Nevio Bachmann",
+   "guest": "Daniel Forrer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Christoph Wildermuth",
+   "guest": "Silvan Bücheli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Juliano Goncalves da Costa",
+   "guest": "Phillipe Graf",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "12:6",
+  "25:19"
+ ],
+ "extras": []
+}

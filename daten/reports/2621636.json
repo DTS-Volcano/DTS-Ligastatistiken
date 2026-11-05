@@ -1,0 +1,125 @@
+{
+ "date": "02.11.2026",
+ "home": "2010er Steel",
+ "guest": "Die Humorlosen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Luis Munoz",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Marc Brassel",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Serge Schiess",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Marcel Staubli",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Serge Schiess",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Luis Munoz",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Marc Brassel",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Lucky Aebischer",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Luis Munoz",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Serge Schiess",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marc Brassel",
+   "guest": "Luigino Gasperina",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Marcel Staubli",
+   "guest": "Valentin Matt",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Luis Munoz",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marc Brassel",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Serge Schiess",
+   "guest": "Luigino Gasperina",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Lucky Aebischer",
+   "guest": "Michael Loser",
+   "sets": "1:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "2:16",
+  "7:34"
+ ],
+ "extras": []
+}

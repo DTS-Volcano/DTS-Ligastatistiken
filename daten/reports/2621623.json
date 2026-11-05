@@ -1,0 +1,125 @@
+{
+ "date": "12.10.2026",
+ "home": "Irish Skulls Steel",
+ "guest": "2010er Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Roberto Lisitsov",
+   "guest": "Marc Brassel",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Elia Meyer",
+   "guest": "Jonathan Palumbo",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Mic Andres",
+   "guest": "Lucky Aebischer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Felix Schwager",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Mic Andres",
+   "guest": "Jonathan Palumbo",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Roberto Lisitsov",
+   "guest": "Luis Munoz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Elia Meyer",
+   "guest": "Lucky Aebischer",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Felix Schwager",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Roberto Lisitsov",
+   "guest": "Jonathan Palumbo",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Mic Andres",
+   "guest": "Luis Munoz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Elia Meyer",
+   "guest": "Marc Brassel",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Felix Schwager",
+   "guest": "Lucky Aebischer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Roberto Lisitsov",
+   "guest": "Lucky Aebischer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Elia Meyer",
+   "guest": "Luis Munoz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Mic Andres",
+   "guest": "Marc Brassel",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Felix Schwager",
+   "guest": "Jonathan Palumbo",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "12:6",
+  "27:15"
+ ],
+ "extras": []
+}

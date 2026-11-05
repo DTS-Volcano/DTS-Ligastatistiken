@@ -1,0 +1,125 @@
+{
+ "date": "31.08.2026",
+ "home": "Die Humorlosen",
+ "guest": "2010er Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Michael Loser",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Valentin Matt",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Stefan Pfeifer",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Luigino Gasperina",
+   "guest": "Lucky Aebischer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Seidelmann",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Michael Loser",
+   "guest": "Lucky Aebischer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Valentin Matt",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Luigino Gasperina",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Michael Loser",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Stefan Pfeifer",
+   "guest": "Lucky Aebischer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Valentin Matt",
+   "guest": "Luis Munoz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Luigino Gasperina",
+   "guest": "Marc Brassel",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Michael Loser",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Valentin Matt",
+   "guest": "Lucky Aebischer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Seidelmann",
+   "guest": "Luis Munoz",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Luigino Gasperina",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "17:1",
+  "34:7"
+ ],
+ "extras": []
+}
