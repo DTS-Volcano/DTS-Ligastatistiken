@@ -1,0 +1,31 @@
+name: Statistiken aktualisieren
+
+on:
+  schedule:
+    - cron: "15 4 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python generate.py
+        env:
+          GROUP: "STSO S 2"
+          TEAM: "Double Trouble Steeldarters"
+      - name: Änderungen speichern
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs
+          git diff --cached --quiet || (git commit -m "Statistiken aktualisiert" && git push)
