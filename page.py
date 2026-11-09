@@ -169,7 +169,14 @@ def render(data, hist):
                  f"<p>{w5} Siege aus {len(last5)} Partien<small>letzte {len(last5)} Partien, ältere links</small></p></div>")
     hero = f"<div class='hero'>{hero}</div>" if hero else ""
     hof_players = list(players) + [x for _, _, pls, _ in others_pl for x in pls]
-    hof_html = section_hof(hof_players, tf, pid, id_of)
+    hof_opts = "<option value='all'>Alle Vereine</option>"
+    hof_blocks = f"<div class='lb' data-g='hof' data-t='all'>{section_hof(hof_players, tf, pid, id_of)}</div>"
+    for ti, name in enumerate(order_t):
+        key = "own" if name.lower() == TEAM.lower() else f"l{ti}"
+        hof_opts += f"<option value='{key}'>{esc(name)}</option>"
+        hof_blocks += f"<div class='lb' data-g='hof' data-t='{key}' hidden>{section_hof(hof_players, tf, pid, id_of, name)}</div>"
+    hof_html = ("<section><h2>Hall of Fame</h2><form class='filter' onsubmit='return false'>"
+                f"<select class='vf' data-g='hof' aria-label='Verein'>{hof_opts}</select></form>{hof_blocks}</section>")
     jump = "".join(f"<a class='jt' href='#{k}'><b>{t}</b><span>{s}</span></a>" for k, t, s in (
         ("spieler", "Spieler", "Tabelle, Form, Profile"), ("liga", "Team &amp; Liga", "Tabelle und Spielplan"),
         ("analyse", "Analyse", "Hall of Fame, Verlauf, Spielblöcke"), ("partien", "Partien", "Alle Reports")))

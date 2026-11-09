@@ -4,10 +4,13 @@ from config import TEAM
 from textutil import dkey, esc
 
 
-def section_hof(players, team_full, pid, id_of):
+def section_hof(players, team_full, pid, id_of, team=None):
     """players: Spieler aller Vereine (Feld 'team'), team_full: Team (klein) -> Partien aus Sicht des Teams."""
     cards = []
     me = TEAM.lower()
+    if team:
+        players = [p for p in players if p["team"].lower() == team.lower()]
+        team_full = {team.lower(): team_full.get(team.lower(), [])}
 
     def plink(p):
         d = pid.get((p["team"].lower(), p["name"]))
@@ -46,7 +49,7 @@ def section_hof(players, team_full, pid, id_of):
     bm = None
     for tl, ms in team_full.items():
         for m in ms:
-            if not m["home"]:
+            if not m["home"] and not team:
                 continue
             a, b2 = (int(x) for x in m["games"].split(":"))
             if a > b2 and (bm is None or a - b2 > bm[0]):
@@ -55,7 +58,8 @@ def section_hof(players, team_full, pid, id_of):
         _, tl, m, a, b2 = bm
         home_n = next((n for n in {p["team"] for p in players} if n.lower() == tl), tl)
         dom = id_of.get(m["nr"])
-        who = f"<button class='tl' data-open='{dom}'>{esc(home_n)} gegen {esc(m['opp'])}</button>" if dom else esc(home_n)
+        lab = f"gegen {esc(m['opp'])}" if team else f"{esc(home_n)} gegen {esc(m['opp'])}"
+        who = f"<button class='tl' data-open='{dom}'>{lab}</button>" if dom else lab
         cards.append(("Höchster Sieg", f"{a}:{b2} Spiele", who, m["date"][:6], " mine" if me in (tl, m["opp"].lower()) else ""))
     # beste Teamquote im Einzel
     tq = {}
@@ -63,7 +67,7 @@ def section_hof(players, team_full, pid, id_of):
         t = tq.setdefault(p["team"], [0, 0])
         t[0] += p["w"]
         t[1] += p["l"]
-    tq = {k: v for k, v in tq.items() if sum(v) >= 2 * MIN_EINZEL}
+    tq = {k: v for k, v in tq.items() if sum(v) >= 2 * MIN_EINZEL and not team}
     if tq:
         k = max(tq, key=lambda k: (tq[k][0] / sum(tq[k]), tq[k][0]))
         w, l = tq[k]
@@ -81,8 +85,8 @@ def section_hof(players, team_full, pid, id_of):
         n = next((p["team"] for p in players if p["team"].lower() == bs[1]), bs[1])
         cards.append(("Längste Teamserie", f"{bs[0]} Partien", esc(n), "in Folge gewonnen", " mine" if bs[1] == me else ""))
     if not cards:
-        return ""
+        return "<p class='hint'>Noch keine Bestwerte vorhanden.</p>" if team else ""
     html = "".join(f"<div class='hf{c}'><p class='sub'>{esc(lab)}</p><b class='big'>{val}</b><p>{who}</p><small>{note}</small></div>"
                    for lab, val, who, note, c in cards)
-    return ("<section><h2>Hall of Fame</h2><p class='hint'>Bestwerte der ganzen Liga, nur Einzel ohne Doppel und Sudden Death. "
-            f"Rot umrandet: {esc(TEAM)}.</p><div class='hof-g'>{html}</div></section>")
+    hint = (f"Bestwerte von {esc(team)}" if team else f"Bestwerte der ganzen Liga. Rot umrandet: {esc(TEAM)}")
+    return f"<div class='hint'>{hint}, nur Einzel ohne Doppel und Sudden Death.</div><div class='hof-g'>{html}</div>"
