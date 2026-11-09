@@ -5,6 +5,7 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
+from awards import monthly_titles
 from sections import section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
@@ -40,9 +41,10 @@ def render(data, hist):
         f"<td><button class='rb' data-open='m{i}'>Report</button></td></tr>" for i, m in enumerate(matches))
     id_of = {m["nr"]: f"m{i}" for i, m in enumerate(matches)}
     id_of.update({nr: f"o{nr}" for nr in data["others"]})
+    titles = monthly_titles(players)
     dialogs = "".join(match_dialog(f"m{i}", m, data["ranks"], len(matches), i) for i, m in enumerate(matches))
     dialogs += "".join(match_dialog(f"o{nr}", m, data["ranks"]) for nr, m in data["others"].items())
-    dialogs += "".join(player_dialog(i, pl, len(players), hist) for i, pl in enumerate(players))
+    dialogs += "".join(player_dialog(i, pl, len(players), hist, titles) for i, pl in enumerate(players))
     dialogs += "".join(team_dialog(i, t, data, id_of) for i, t in enumerate(data["league"]))
 
     fixtures_html = section_fixtures(data, id_of)

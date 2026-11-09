@@ -139,3 +139,7 @@ table.fx td.fxm{white-space:normal;line-height:1.35;width:100%}
 table.fx td{vertical-align:middle}
 .tabs a{white-space:nowrap}
 @media (max-width:699px){.tabs a{font-size:.8rem;padding-inline:4px}}
+
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.badge{background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 11px;font-size:.8rem;font-weight:600;letter-spacing:.01em;cursor:help}
+.badge.pm{background:var(--green);color:#fff}

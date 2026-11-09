@@ -3,6 +3,7 @@ from collections import defaultdict
 
 from datetime import datetime
 
+from awards import player_awards
 from config import FORM_N, TEAM, find_photo
 from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
@@ -44,7 +45,7 @@ def avatar(name, size=112):
     return f'<span class="pic ini" aria-hidden="true">{esc(initials)}</span>'
 
 
-def player_dialog(idx, p, total, hist):
+def player_dialog(idx, p, total, hist, titles=None):
     """Spielerprofil als Fenster: Bild, Kennzahlen, Form, Rangverlauf, Runden, Lieblings-/Angstgegner, alle Einzel."""
     name = p["name"]
     pic = avatar(name)
@@ -104,13 +105,24 @@ def player_dialog(idx, p, total, hist):
                  f"<td class='num'>{w}:{len(rs) - w}</td><td>{sets}</td></tr>")
     table = ("<h4>Alle Einzel</h4><div class='scroll'><table><thead><tr><th>Rang</th><th>Gegner</th><th>Team</th><th>Bilanz</th>"
              f"<th>Sätze</th></tr></thead><tbody>{body}</tbody></table></div>")
+    aw = player_awards(p, titles or {})
+    badges = ("<p class='badges'>" + "".join(f"<span class='badge{' pm' if n.startswith('Spieler des Monats') else ''}' title='{esc(h)}'>{esc(n)}</span>" for n, h in aw) + "</p>") if aw else ""
+    share = [f"{name} – Rang {p['rank'] or '–'} ({TEAM})",
+             f"Einzel {p['w']}:{p['l']} ({quote}) · Form " + " ".join("S" if r["won"] else "N" for r in rows[-5:])]
+    if aw:
+        share.append("Auszeichnungen: " + ", ".join(n for n, _ in aw))
+    if fav:
+        share.append("Lieblingsgegner: " + ", ".join(f"{o} {w}:{l}" for o, _, w, l in fav[:2]))
+    if fear:
+        share.append("Angstgegner: " + ", ".join(f"{o} {w}:{l}" for o, _, w, l in fear[:2]))
+    copy = (f'<p><button class="rb" data-copy="{esc(chr(10).join(share)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button></p>')
     nav = (f'<div class="nav"><button class="rb nb-prev" data-go="p{idx - 1}"{"" if idx > 0 else " disabled"}>‹ Vorheriger</button>'
            f'<button class="rb nb-next" data-go="p{idx + 1}"{"" if idx < total - 1 else " disabled"}>Nächster ›</button></div>')
     return (f'<dialog id="p{idx}" aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<div class="head">{pic}<div><p class="sub">Spielerprofil</p><h3 class="vs">{esc(name)}</h3>'
             f'<p class="sub">{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
-            f'<dl class="kpi rk">{kp}</dl>{form}{rv}{rcells}{ff}{table}{nav}</div></dialog>')
+            f'<dl class="kpi rk">{kp}</dl>{badges}{form}{rv}{rcells}{ff}{table}{copy}{nav}</div></dialog>')
 
 
 RESULT = {(3, 0): "Sieg", (2, 1): "Sieg im Sudden Death", (1, 2): "Niederlage im Sudden Death", (0, 3): "Niederlage"}
