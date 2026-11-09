@@ -121,9 +121,9 @@ def section_form(players):
                  f"<td class='num'>{lw}:{len(last) - lw}</td><td class='num'>{q_all:.0f} %</td>"
                  f"<td class='num {cls}'>{trend}</td>"
                  f"<td>{spark(quote_series(p['rows']), 'Verlauf der Siegquote von ' + p['name'], 0, 100)}</td></tr>")
-    return ("<section><h2>Form</h2><p class='hint'>Letzte Einzel von links (älter) nach rechts (neuer). S = Sieg, N = Niederlage. "
-            "Trend: ▲ letzte Einzel mindestens 10 Prozentpunkte besser als die Gesamtquote, ▼ mindestens 10 schlechter. "
-            "Die Kurve zeigt die Siegquote nach jedem Einzel.</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
+    return ("<section><h2>Form</h2><p class='hint'>Letzte Ergebnisse von links (älter) nach rechts (neuer). S = Sieg, N = Niederlage. "
+            "Trend: ▲ letzte Ergebnisse mindestens 10 Prozentpunkte besser als die Gesamtquote, ▼ mindestens 10 schlechter. "
+            "Die Kurve zeigt die Siegquote nach jedem Spiel.</p><div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th>"
             f"<th>Letzte {FORM_N}</th><th>Bilanz</th><th>Quote gesamt</th><th>Trend</th><th>Verlauf</th></tr></thead>"
             f"<tbody>{body}</tbody></table></div></section>")
 
@@ -214,8 +214,7 @@ def section_rounds(matches):
             else:
                 tds += "<td class='num'>–</td>"
         rows += f"<tr><td>{m['date'][:6]} {esc(m['opp'])}</td>{tds}</tr>"
-    return ("<section><h2>Spielblöcke</h2><p class='hint'>Einzel pro Runde (Runde 1 bis 4, je 4 Spiele), ohne Doppel "
-            f"und Sudden Death.</p><dl class='kpi rk'>{cards}</dl>{verdict}"
+    return ("<section><h2>Spielblöcke</h2><p class='hint'>Siege:Niederlagen pro Runde (je 4 Spiele).</p><dl class='kpi rk'>{cards}</dl>{verdict}"
             f"<div class='scroll'><table><thead><tr><th>Partie</th>{head}</tr></thead><tbody>{rows}</tbody></table></div></section>")
 
 
@@ -248,7 +247,7 @@ def section_potm(players, pid, compact=False, team=None):
         avg = f" · Ø Gegner-Rang {w['avg']:.0f}" if w["avg"] < 999 else ""
         cards += (f"<div class='potm'>{avatar(w['name'], 96)}<div><p class='sub'>{'Zwischenstand ' if live else ''}{label}</p>"
                   f"<h3 class='vs'>{link(w)}</h3>"
-                  f"<p class='sub'>{w['w']}:{w['l']} Einzel · {100 * w['q']:.0f} %{avg}</p></div></div>")
+                  f"<p class='sub'>{w['w']}:{w['l']} · {100 * w['q']:.0f} %{avg}</p></div></div>")
     if compact:
         return (f"<section><h2>Spieler des Monats</h2>{cards}"
                 "<p class='hint'><a href='#analyse'>Wertung und frühere Monate</a></p></section>")
@@ -258,8 +257,8 @@ def section_potm(players, pid, compact=False, team=None):
         hall += (f"<li><span>{MONTHS[m[1] - 1]} {m[0]}</span>{link(t)} <b>{t['w']}:{t['l']}</b></li>")
     hall = f"<h4>Frühere Monate</h4><ul class='hof'>{hall}</ul>" if hall else ""
     return (f"<section><h2>Spieler des Monats</h2>{cards}"
-            f"<p class='hint'>Wertung: beste Siegquote im Einzel (mindestens {MIN_EINZEL} Einzel im Monat), dann mehr Siege, "
-            f"dann die stärkeren Gegner. Doppel und Sudden Death zählen nicht.{' Der laufende Monat ist ein Zwischenstand.' if live else ''}</p>"
+            f"<p class='hint'>Wertung: beste Siegquote (mindestens {MIN_EINZEL} Einzel im Monat), dann mehr Siege, "
+            f"dann die stärkeren Gegner.{' Der laufende Monat ist ein Zwischenstand.' if live else ''}</p>"
             f"{hall}</section>")
 
 
@@ -296,7 +295,7 @@ def section_homeaway(matches, players, own=True):
             continue
         (hw, hl), (aw, al) = d[True], d[False]
         prow += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{hw}:{hl}</td><td class='num'>{aw}:{al}</td></tr>")
-    team_html = (f"<section><h2>Heim und Auswärts</h2><p class='hint'>{'Unser Team' if own else 'Das Team'} daheim gegen auswärts. Einzel ohne Doppel und Sudden Death.</p>"
+    team_html = (f"<section><h2>Heim und Auswärts</h2><p class='hint'>{'Unser Team' if own else 'Das Team'} daheim gegen auswärts.</p>"
                  "<div class='scroll'><table><thead><tr><th></th><th class='num'>Partien</th><th class='num'>Siege:Niederl.</th>"
                  f"<th class='num'>Punkte</th><th class='num'>Einzel</th><th class='num'>Quote</th></tr></thead><tbody>{rows}</tbody></table></div></section>")
     player_html = ("<section><h2>Heim und Auswärts</h2><p class='hint'>Einzelbilanz pro Spieler (Siege:Niederlagen).</p>"

@@ -166,5 +166,5 @@ def section_verlauf(data, team=None, matches=None):
     return ("<section><h2>Saisonverlauf</h2><p class='hint'>Stand der Liga nach jedem Spieltag dieses Teams, berechnet aus allen "
             "bis dahin gespielten Partien der Gruppe.</p>"
             f"<h3>Tabellenplatz</h3>{c1}<h3>Punkte</h3>{legend([('me', team), ('ref', 'Tabellenführer')])}{c2}"
-            + (f"<h3>Einzelquote pro Spieltag</h3>{legend([('bar', 'Gewonnene Einzel pro Partie in %'), ('avg', 'Saisonschnitt')])}{c3}" if c3 else "")
+            + (f"<h3>Siegquote pro Spieltag</h3>{legend([('bar', 'Gewonnene Einzel in %'), ('avg', 'Saisonschnitt')])}{c3}" if c3 else "")
             + table + "</section>")

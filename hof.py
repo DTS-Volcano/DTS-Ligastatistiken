@@ -28,15 +28,15 @@ def section_hof(players, team_full, pid, id_of, team=None):
             if cur > best[0]:
                 best = (cur, p)
     if best[0] >= 3:
-        cards.append(("Längste Siegesserie", f"{best[0]} Einzel", plink(best[1]), "in Folge gewonnen", mark(best[1])))
+        cards.append(("Längste Siegesserie", f"{best[0]} Siege", plink(best[1]), "in Folge", mark(best[1])))
     top = max(players, key=lambda p: (p["w"], -p["l"]), default=None)
     if top and top["w"]:
-        cards.append(("Meiste Einzelsiege", f"{top['w']} Siege", plink(top), f"bei {top['n']} Einzeln", mark(top)))
+        cards.append(("Meiste Einzelsiege", f"{top['w']} Siege", plink(top), f"{top['w']}:{top['l']}", mark(top)))
     q = [p for p in players if p["n"] >= MIN_EINZEL]
     if q:
         b = max(q, key=lambda p: (p["w"] / p["n"], p["w"]))
         cards.append(("Beste Siegquote", f"{100 * b['w'] / b['n']:.0f} %", plink(b),
-                      f"{b['w']}:{b['l']} Einzel", mark(b)))
+                      f"{b['w']}:{b['l']}", mark(b)))
     gk = None
     for p in players:
         for r in p["rows"]:
@@ -71,7 +71,7 @@ def section_hof(players, team_full, pid, id_of, team=None):
     if tq:
         k = max(tq, key=lambda k: (tq[k][0] / sum(tq[k]), tq[k][0]))
         w, l = tq[k]
-        cards.append(("Beste Teamquote", f"{100 * w / (w + l):.0f} %", esc(k), f"Einzelbilanz {w}:{l}", " mine" if k.lower() == me else ""))
+        cards.append(("Beste Teamquote", f"{100 * w / (w + l):.0f} %", esc(k), f"{w}:{l}", " mine" if k.lower() == me else ""))
     # längste Siegesserie eines Teams
     bs = (0, None)
     for tl, ms in team_full.items():
@@ -83,11 +83,11 @@ def section_hof(players, team_full, pid, id_of, team=None):
                 bs = (cur, tl)
     if bs[0] >= 2:
         n = next((p["team"] for p in players if p["team"].lower() == bs[1]), bs[1])
-        cards.append(("Längste Teamserie", f"{bs[0]} Partien", esc(n), "in Folge gewonnen", " mine" if bs[1] == me else ""))
+        cards.append(("Längste Teamserie", f"{bs[0]} Partien", esc(n), "in Folge", " mine" if bs[1] == me else ""))
     if not cards:
         return "<section><h2>Hall of Fame</h2><p class='hint'>Noch keine Bestwerte vorhanden.</p></section>" if team else ""
     html = "".join(f"<div class='hf{c}'><p class='sub'>{esc(lab)}</p><b class='big'>{val}</b><p>{who}</p><small>{note}</small></div>"
                    for lab, val, who, note, c in cards)
-    hint = (f"Bestwerte von {esc(team)}" if team else f"Bestwerte der ganzen Liga. Rot umrandet: {esc(TEAM)}")
-    return (f"<section><h2>Hall of Fame</h2><p class='hint'>{hint}, nur Einzel ohne Doppel und Sudden Death.</p>"
+    hint = (f"Bestwerte von {esc(team)}" if team else f"Bestwerte der ganzen Liga, rot umrandet: {esc(TEAM)}")
+    return (f"<section><h2>Hall of Fame</h2><p class='hint'>{hint}.</p>"
             f"<div class='hof-g'>{html}</div></section>")

@@ -209,7 +209,7 @@ def render(data, hist):
 <select id="f-team" aria-label="Verein">{team_opts}</select>
 <input type="search" id="f-pq" placeholder="Spieler suchen" aria-label="Spieler suchen">
 </form>
-<p class="hint">Nur Einzel, ohne Doppel und Sudden Death. Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
+<p class="hint">Es zählen nur Einzel (ohne Doppel und Sudden Death). Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
 {team_blocks}
 </section>
 </div>
@@ -223,7 +223,7 @@ def render(data, hist):
 <div class="panel" id="p-analyse">
 <section><h2>Analyse</h2>
 <form class="filter" onsubmit="return false"><select class="vf" data-g="ana" aria-label="Verein">{liga_opts}</select></form>
-<p class="hint">Hall of Fame, Spieler des Monats, Saisonverlauf und Spielblöcke gelten für den gewählten Verein oder für alle Vereine.</p></section>
+<p class="hint">Alles auf dieser Seite gilt für den gewählten Verein.</p></section>
 {ana_blocks}
 </div>
 
