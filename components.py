@@ -4,7 +4,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from awards import player_awards
-from config import FORM_N, TEAM, find_photo
+from config import FORM_N, TEAM, find_photo, slug
 from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
 
@@ -133,12 +133,14 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
         share.append("Lieblingsgegner: " + ", ".join(f"{o} {w}:{l}" for o, _, w, l in fav[:2]))
     if fear:
         share.append("Angstgegner: " + ", ".join(f"{o} {w}:{l}" for o, _, w, l in fear[:2]))
-    copy = (f'<p><button class="rb" data-copy="{esc(chr(10).join(share)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button></p>')
+    copy = (f'<p class="acts"><button class="rb" data-copy="{esc(chr(10).join(share)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button> <button class="rb" data-link>Link kopieren</button></p>')
     nav = (f'<div class="nav"><button class="rb nb-prev" data-go="{prev_id}"{"" if prev_id else " disabled"}>‹ Vorheriger</button>'
            f'<button class="rb nb-next" data-go="{next_id}"{"" if next_id else " disabled"}>Nächster ›</button></div>')
     if back:
         nav = f'<p><button class="rb" data-open="{back[0]}">‹ Team {esc(back[1])}</button></p>' + nav
-    return (f'<dialog id="{dom_id}" aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
+    sid = "s-" + (slug(name) if team == TEAM else f"{slug(team)}-{slug(name)}")
+    return (f'<dialog id="{dom_id}" data-s="{sid}" data-k="Spieler" data-n="{esc(name)}" data-sub="{esc(team)}" '
+            f'aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<div class="head">{pic}<div><p class="sub">Spielerprofil</p><h3 class="vs">{esc(name)}</h3>'
             f'<p class="sub">{(esc(team) + " · ") if team != TEAM else ""}{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
@@ -194,13 +196,13 @@ def match_dialog(dom_id, m, ranks, total=None, i=0):
         cards += f'<div class="rc"><h4>Doppel und Sudden Death</h4>{rows}</div>'
     link = (f'<p class="hint"><a href="{esc(m["url"])}" target="_blank" rel="noopener">Originalreport auf vfc.ch</a></p>'
             if m.get("url") else "")
-    return (f'<dialog id="{dom_id}" aria-label="Spielreport {esc(m["opp"])}"><div class="dlg">'
+    return (f'<dialog id="{dom_id}" data-s="r{m["nr"]}" aria-label="Spielreport {esc(m["opp"])}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<p class="sub">{fmt_date(m["date"])} · {"Heimspiel" if m["home"] else "Auswärtsspiel"}</p>'
             f'<h3 class="vs">{esc(m.get("team", TEAM))} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
             f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>'
             f'<div class="rounds">{cards}</div>{link}'
-            f'<p><button class="rb" data-copy="{esc(share_text(m)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button></p>'
+            f'<p class="acts"><button class="rb" data-copy="{esc(share_text(m)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button> <button class="rb" data-link>Link kopieren</button></p>'
             + (f'<div class="nav"><button class="rb nb-prev" data-go="m{i - 1}"{"" if i > 0 else " disabled"}>‹ Vorherige Partie</button>'
                f'<button class="rb nb-next" data-go="m{i + 1}"{"" if i < total - 1 else " disabled"}>Nächste Partie ›</button></div>'
                if total else "") + '</div></dialog>')
@@ -226,12 +228,14 @@ def team_dialog(idx, t, data, id_of, pid=None):
         f"<tr><td class='num'>{p['rank'] or '–'}</td><td>{plink(p['name'])}</td><td class='num'>{p['n']}</td>"
         f"<td class='num'>{p['w']}:{p['n'] - p['w']}</td><td class='num'>{pct(p['w'], p['n'] - p['w'])}</td>"
         f"<td>{dots(p['rows'])}</td></tr>" for p in pls)
-    return (f'<dialog id="t{idx}" aria-label="Team {esc(t["team"])}"><div class="dlg">'
+    return (f'<dialog id="t{idx}" data-s="v-{slug(t["team"])}" data-k="Verein" data-n="{esc(t["team"])}" data-sub="Platz {t["rank"]}" '
+            f'aria-label="Team {esc(t["team"])}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<p class="sub">Platz {t["rank"]} in der Tabelle</p><h3 class="vs">{esc(t["team"])}</h3>'
             f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p>'
             f'<h4>Partien</h4><div class="scroll"><table class="cards"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th>'
             f'<th>Spiele</th><th></th></tr></thead><tbody>{mrows}</tbody></table></div>'
+            f'<p class="acts"><button class="rb" data-link>Link kopieren</button></p>'
             f'<h4>Spieler</h4><div class="scroll"><table><thead><tr><th>Rang</th><th>Spieler</th><th>Spiele</th><th>Bilanz</th>'
             f'<th>Quote</th><th>Form (letzte {FORM_N})</th></tr></thead><tbody>{prow}</tbody></table></div>'
             f'</div></dialog>')

@@ -3,25 +3,62 @@ document.querySelectorAll('table.sortable th').forEach(th=>{const i=th.cellIndex
 n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;return d==='a'?r:-r}).forEach(r=>b.append(r))};
 th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
 const TABS=['uebersicht','spieler','liga','partien'];
-function showTab(){let h=(location.hash||'').slice(1);if(!TABS.includes(h))h='uebersicht';
-document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+h));
-document.querySelectorAll('.tabs a').forEach(a=>{const on=a.getAttribute('href')==='#'+h;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
-window.scrollTo(0,0)}
-addEventListener('hashchange',showTab);showTab();
-document.addEventListener('keydown',e=>{const d=document.querySelector('dialog[open]');
-if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;const b=d.querySelector(e.key==='ArrowLeft'?'.nb-prev':'.nb-next');if(b&&!b.disabled)b.click()});
-document.addEventListener('click',e=>{const c=e.target.closest('[data-copy]');
-if(c){const txt=c.dataset.copy,o=c.textContent,done=()=>{c.textContent='Kopiert ✓';setTimeout(()=>{c.textContent=o},1800)};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let lastTab=null,pushed=false;
+function parse(){const h=(location.hash||'').slice(1),i=h.indexOf('~'),t=i<0?h:h.slice(0,i);return{tab:TABS.includes(t)?t:'uebersicht',slug:i<0?'':h.slice(i+1)}}
+function setHash(tab,slug,push){const u=location.pathname+location.search+'#'+tab+(slug?'~'+slug:'');
+if(push){history.pushState(null,'',u);pushed=true}else history.replaceState(null,'',u)}
+function showTab(h){$$('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+h));
+$$('.tabs a').forEach(a=>{const on=a.getAttribute('href')==='#'+h;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+if(lastTab!==null&&lastTab!==h)scrollTo(0,0);lastTab=h}
+function closeAll(){$$('dialog[open]').forEach(x=>{x._int=true;x.close()})}
+function openDlg(d){if(!d||!d.showModal)return;const was=$$('dialog[open][data-s]').length>0;closeAll();d.showModal();
+const dlg=d.querySelector('.dlg');if(dlg)dlg.scrollTop=0;d.scrollTop=0;
+if(d.dataset.s)setHash(parse().tab,d.dataset.s,!was)}
+function sync(){const p=parse();showTab(p.tab);
+if(p.slug){const d=$('dialog[data-s="'+p.slug.replace(/"/g,'')+'"]');if(d&&!d.open){closeAll();d.showModal()}}
+else{pushed=false;closeAll()}}
+addEventListener('hashchange',sync);sync();
+document.addEventListener('close',e=>{const d=e.target;if(d.tagName!=='DIALOG')return;if(d._int){d._int=false;return}
+if(!d.dataset.s)return;if(pushed){pushed=false;history.back()}else setHash(parse().tab,'',false)},true);
+document.addEventListener('keydown',e=>{const d=$('dialog[open]');
+if(e.key==='/'&&!d&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();openSearch();return}
+if(!d||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;if(/INPUT|SELECT/.test(document.activeElement.tagName))return;
+const b=d.querySelector(e.key==='ArrowLeft'?'.nb-prev':'.nb-next');if(b&&!b.disabled)b.click()});
+function copyText(c,txt){const o=c.textContent,done=()=>{c.textContent='Kopiert ✓';setTimeout(()=>{c.textContent=o},1800)};
 const fb=()=>{const a=document.createElement('textarea');a.value=txt;(c.closest('dialog')||document.body).appendChild(a);a.select();
 try{document.execCommand('copy');done()}catch(_){c.textContent='Kopieren nicht möglich'}a.remove()};
-if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}return}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}}
+document.addEventListener('click',e=>{
+const l=e.target.closest('[data-link]');
+if(l){const d=l.closest('dialog');copyText(l,location.origin+location.pathname+location.search+'#~'+d.dataset.s);return}
+const c=e.target.closest('[data-copy]');
+if(c){copyText(c,c.dataset.copy);return}
 const g=e.target.closest('[data-go]');
-if(g){if(!g.disabled){const n=document.getElementById(g.dataset.go);if(n){g.closest('dialog').close();n.showModal()}}return}
+if(g){if(!g.disabled)openDlg(document.getElementById(g.dataset.go));return}
 const t=e.target.closest('[data-open]');
-if(t){const d=document.getElementById(t.dataset.open);if(d&&d.showModal){document.querySelectorAll('dialog[open]').forEach(x=>x.close());d.showModal()}return}
-const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()})
-
-if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
+if(t){openDlg(document.getElementById(t.dataset.open));return}
+if(e.target.closest('#sbtn')){openSearch();return}
+const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()});
+/* Wischen: links/rechts blättern, nach unten wegziehen (Handy) */
+let ts=null;
+document.addEventListener('touchstart',e=>{const d=e.target.closest('dialog');if(!d||e.touches.length!==1){ts=null;return}
+const t=e.touches[0],r=d.getBoundingClientRect();ts={x:t.clientX,y:t.clientY,d,top:t.clientY-r.top<130,sc:!!e.target.closest('.scroll'),st:d.scrollTop}},{passive:true});
+document.addEventListener('touchend',e=>{if(!ts)return;const t=e.changedTouches[0],dx=t.clientX-ts.x,dy=t.clientY-ts.y,s=ts;ts=null;
+if(!s.sc&&Math.abs(dx)>70&&Math.abs(dy)<50){const b=s.d.querySelector(dx<0?'.nb-next':'.nb-prev');if(b&&!b.disabled)b.click();return}
+if(s.top&&dy>90&&Math.abs(dx)<50&&s.st<=0)s.d.close()},{passive:true});
+/* Suche */
+function openSearch(){const d=document.getElementById('search');if(!d)return;closeAll();d.showModal();const i=document.getElementById('s-in');i.value='';render('');i.focus()}
+function render(q){const out=document.getElementById('s-res');q=q.trim().toLowerCase();
+const items=$$('dialog[data-k]').filter(d=>!q||(d.dataset.n+' '+d.dataset.sub).toLowerCase().includes(q)).slice(0,40);
+out.innerHTML=items.length?items.map(d=>'<li><button class="tl" data-open="'+d.id+'">'+d.dataset.n.replace(/</g,'&lt;')+'</button><small>'+d.dataset.k+' · '+d.dataset.sub.replace(/</g,'&lt;')+'</small></li>').join(''):'<li><small>Nichts gefunden</small></li>'}
+(()=>{const i=document.getElementById('s-in');if(!i)return;i.addEventListener('input',()=>render(i.value));
+i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=document.querySelector('#s-res button');if(b)b.click()}})})();
+/* Hinweis bei veralteten Daten, Countdown */
+(()=>{const s=document.getElementById('stand'),b=document.getElementById('stale');
+if(s&&b){const t=new Date(s.getAttribute('datetime')),h=(Date.now()-t)/36e5;if(h>36){b.hidden=false;b.textContent='Hinweis: Die Daten sind vom '+t.toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit'})+' – vfc.ch war zuletzt nicht erreichbar, der nächste Lauf versucht es erneut.'}}
+$$('.cd[data-d]').forEach(e=>{const d=new Date(e.dataset.d+'T00:00:00'),n=new Date();n.setHours(0,0,0,0);const k=Math.round((d-n)/864e5);
+e.textContent=k===0?'heute':k===1?'morgen':k>1?'in '+k+' Tagen':k===-1?'gestern':'vor '+(-k)+' Tagen'})})();
 
 (()=>{const t=document.getElementById('mtable');if(!t)return;const ids=['f-q','f-mon','f-home','f-win'],el=ids.map(i=>document.getElementById(i)),cnt=document.getElementById('f-count');
 function run(){const [q,mon,home,win]=el.map(e=>e.value.trim().toLowerCase());let n=0;const rows=[...t.tBodies[0].rows];
@@ -44,3 +81,11 @@ function run(){const t=sel.value,s=q.value.trim().toLowerCase();
 document.querySelectorAll('.tp').forEach(b=>{b.hidden=b.dataset.t!==t;
 if(!b.hidden)b.querySelectorAll('table.sortable tbody tr').forEach(r=>{r.hidden=!!s&&!r.dataset.q.includes(s)})})}
 sel.addEventListener('change',run);q.addEventListener('input',run)})();
+
+/* Zustand merken */
+(()=>{const get=k=>{try{return localStorage.getItem(k)}catch(_){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};
+const ft=document.getElementById('f-team');if(ft){const v=get('dts.team');if(v&&[...ft.options].some(o=>o.value===v)){ft.value=v;ft.dispatchEvent(new Event('change'))}ft.addEventListener('change',()=>set('dts.team',ft.value))}
+const ids=['f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts.pf')||'{}')}catch(_){}
+ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;if(st[i]&&[...e.options].some(o=>o.value===st[i])){e.value=st[i]}
+e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})});
+const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();

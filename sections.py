@@ -225,7 +225,9 @@ from awards import MIN_EINZEL, MONTHS, potm_ranking
 def section_potm(players, pidx):
     rk = potm_ranking(players)
     if not rk:
-        return ""
+        t = today()
+        return (f"<section><h2>Spieler des Monats</h2><p class='hint'>Noch niemand mit mindestens {MIN_EINZEL} Einzeln im "
+                f"{MONTHS[t.month - 1]} {t.year}. Sobald jemand die Mindestzahl erreicht, erscheint hier der Zwischenstand.</p></section>")
     months = sorted(rk, reverse=True)
     cur = (today().year, today().month)
     k = months[0]

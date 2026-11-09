@@ -4,7 +4,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
-from config import OUT, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
+from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
 from awards import MONTHS, monthly_titles
 from textutil import dkey
 from stats import bracket, order
@@ -19,7 +19,8 @@ JS = (Path(__file__).with_name("app.js")).read_text(encoding="utf-8")
 def render(data, hist):
     matches = data["matches"]
     players = sorted(data["players"], key=lambda p: (p["rank"] or 9999, p["name"]))   # Standard: nach Rang
-    now = datetime.now(ZoneInfo("Europe/Zurich")).strftime("%d.%m.%Y %H:%M")
+    _n = datetime.now(ZoneInfo("Europe/Zurich"))
+    now, now_iso = _n.strftime("%d.%m.%Y %H:%M"), _n.isoformat(timespec="minutes")
     mp = [tuple(int(x) for x in m["points"].split(":")) for m in matches]   # (eigene, gegnerische) Punkte
     wins = sum(p == (3, 0) for p in mp)
     sd_wins = sum(p == (2, 1) for p in mp)      # 9:9 nach regulären Spielen, Sudden Death gewonnen
@@ -118,6 +119,38 @@ def render(data, hist):
     all_pl.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
     team_opts += "<option value='all'>Alle Vereine</option>"
     team_blocks += f"<div class='tp' data-t='all' hidden>{player_table(all_pl, pid, True)}</div>"
+    search_dlg = ('<dialog id="search" aria-label="Suche"><div class="dlg"><button class="x" data-close aria-label="Schliessen">✕</button>'
+                  '<h3 class="vs">Suche</h3><input type="search" id="s-in" placeholder="Spieler oder Verein" aria-label="Suche" autocomplete="off">'
+                  '<ul id="s-res" class="sres"></ul></div></dialog>')
+    # Kopfkarten: nächstes Spiel mit Countdown, letztes Resultat, Teamform
+    me_l = TEAM.lower()
+    nxt = sorted((f for f in data["schedule"] if not f["played"] and me_l in (f["home"].lower(), f["guest"].lower())),
+                 key=lambda f: dkey(f["date"]))
+    hero = ""
+    if nxt:
+        f = nxt[0]
+        home = f["home"].lower() == me_l
+        opp = f["guest"] if home else f["home"]
+        d = dkey(f["date"])
+        days = (d.date() - today()).days
+        stat = "heute" if days == 0 else "morgen" if days == 1 else f"in {days} Tagen" if days > 1 else f"seit {-days} Tagen offen"
+        hero += (f"<div class='hc'><p class='sub'>Nächstes Spiel</p><b class='big cd' data-d='{d.strftime('%Y-%m-%d')}'>{stat}</b>"
+                 f"<p>{esc(opp)}<small>{d.strftime('%d.%m.%Y')} · {'Heimspiel' if home else 'Auswärts'}"
+                 f"{(' · ' + esc(f['place'])) if f.get('place') else ''}</small></p></div>")
+    if matches:
+        li = len(matches) - 1
+        m = matches[li]
+        pt = tuple(int(x) for x in m["points"].split(":"))
+        hero += (f"<button class='hc hcb' data-open='m{li}'><span class='sub'>Letztes Resultat</span>"
+                 f"<b class='big {'win' if pt[0] > pt[1] else 'loss'}'>{m['points']}</b>"
+                 f"<span>{esc(m['opp'])}<small>{m['date'][:6]} · {RESULT.get(pt, '')}</small></span></button>")
+        last5 = matches[-5:]
+        dots_ = "".join(f"<span class='dot {'w' if int(x['points'].split(':')[0]) > int(x['points'].split(':')[1]) else 'l'}'>"
+                        f"{'S' if int(x['points'].split(':')[0]) > int(x['points'].split(':')[1]) else 'N'}</span>" for x in last5)
+        w5 = sum(int(x["points"].split(":")[0]) > int(x["points"].split(":")[1]) for x in last5)
+        hero += (f"<div class='hc'><p class='sub'>Teamform</p><span class='dots'>{dots_}</span>"
+                 f"<p>{w5} Siege aus {len(last5)} Partien<small>letzte {len(last5)} Partien, ältere links</small></p></div>")
+    hero = f"<div class='hero'>{hero}</div>" if hero else ""
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
                                                           ("liga", "Team &amp; Liga"), ("partien", "Partien")))
 
@@ -129,11 +162,13 @@ def render(data, hist):
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DTS Statistik">
 <style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
-<p class="sub">Liga {esc(GROUP)} · Stand {now} · Rangliste jeweils aktuell</p></div></div></header>
+<p class="sub">Liga {esc(GROUP)} · Stand <time id="stand" datetime="{now_iso}">{now}</time> · Rangliste jeweils aktuell</p></div><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
+<div id="stale" class="stale" role="status" hidden></div>
 <main>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
+{hero}
 <dl class="kpi">{kpi_html}
 <div><dt>Spielbilanz (Einzel)</dt><dd>{W}:{L}</dd></div>
 </dl>
@@ -176,4 +211,4 @@ def render(data, hist):
 
 </div>
 <footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}{archiv_link}</footer>
-</main>{dialogs}<script>{JS}</script></body></html>"""
+</main>{dialogs}{search_dlg}<script>{JS}</script></body></html>"""

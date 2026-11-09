@@ -51,7 +51,7 @@ esc = html.escape
 
 
 def pct(w, l):
-    return f"{100 * w / (w + l):.1f} %" if w + l else "–"
+    return f"{100 * w / (w + l):.0f} %" if w + l else "–"
 
 
 def short(name):
