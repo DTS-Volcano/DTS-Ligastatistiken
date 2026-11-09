@@ -16,13 +16,13 @@ AUTHOR = "Kevin Notter"    # erscheint im Footer
 
 
 def find_logo():
-    """Nimmt das Vereinslogo: LOGO-Variable, sonst die erste .svg-Datei im Hauptordner."""
+    """Vereinslogo: LOGO-Variable, sonst die erste Bilddatei (.png/.svg/.webp) im Hauptordner, die nicht mit vfc beginnt."""
     if os.getenv("LOGO"):
         p = Path(os.environ["LOGO"])
         return p if p.exists() else None
     # unsichtbare Sonderzeichen im Dateinamen (z. B. U+200E) werden ignoriert
     found = sorted(p for p in Path(".").iterdir() if p.is_file()
-                   and "".join(c for c in p.name if unicodedata.category(c) != "Cf").lower().endswith(".svg")
+                   and "".join(c for c in p.name if unicodedata.category(c) != "Cf").lower().endswith((".png", ".svg", ".webp"))
                    and not p.name.lower().startswith("vfc"))
     return found[0] if found else None
 

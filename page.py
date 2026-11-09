@@ -35,10 +35,10 @@ def render(data, hist):
         kpis.append(("Niederlagen (Sudden Death)", sd_losses))
     kpis.append(("Punkte", pts))
     kpi_html = "".join(f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in kpis)
-    logo = '<img class="logo" src="logo.svg" alt="Vereinslogo" width="96" height="96">' if LOGO else ""
+    logo = f'<img class="logo" src="logo{LOGO.suffix.lower()}" alt="Vereinslogo" width="96" height="96">' if LOGO else ""
     vfc = (f'<a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo{VFC_LOGO.suffix.lower()}" '
            'alt="VFC Dartverband" height="40"></a>') if VFC_LOGO else ""
-    icon = '<link rel="icon" href="logo.svg" type="image/svg+xml">' if LOGO else ""
+    icon = f'<link rel="icon" href="logo{LOGO.suffix.lower()}">' if LOGO else ""
     W, L = sum(p["w"] for p in players), sum(p["l"] for p in players)
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
     tb = {k: [sum(p["brackets"][k][i] for p in players) for i in (0, 1)] for k in ("top", "mid", "low")}

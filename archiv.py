@@ -28,7 +28,8 @@ def main():
 
     page = src.read_text(encoding="utf-8")
     # Pfade anpassen, weil die Seite zwei Ordner tiefer liegt
-    for a, b in (('src="logo.svg"', 'src="../../logo.svg"'), ('href="logo.svg"', 'href="../../logo.svg"'),
+    for a, b in (('src="logo.png"', 'src="../../logo.png"'), ('href="logo.png"', 'href="../../logo.png"'),
+              ('src="logo.svg"', 'src="../../logo.svg"'), ('href="logo.svg"', 'href="../../logo.svg"'),
                  ('src="spieler/', 'src="../../spieler/'), ('href="icon-180.png"', 'href="../../icon-180.png"')):
         page = page.replace(a, b)
     page = page.replace('<link rel="manifest" href="manifest.webmanifest">', "")

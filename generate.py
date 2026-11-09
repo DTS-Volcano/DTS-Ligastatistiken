@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Einstiegspunkt: liest vfc.ch und schreibt docs/index.html (plus logo.svg, history.json, data.json).
+"""Einstiegspunkt: liest vfc.ch und schreibt docs/index.html (plus Logo, history.json, data.json).
 
 Aufbau:
   config.py      Einstellungen (Team, Gruppe, Rang-Klassen, Logo)
@@ -70,7 +70,7 @@ def copy_photos(players):
 
 
 def main():
-    print(f"Logo: {LOGO.name!r}" if LOGO else "Logo: keine .svg-Datei im Hauptordner gefunden")
+    print(f"Logo: {LOGO.name!r}" if LOGO else "Logo: keine Bilddatei im Hauptordner gefunden")
     try:
         data = build_stats()
     except BlockedError as e:
@@ -82,8 +82,10 @@ def main():
     if not data["players"]:
         raise SystemExit(f"Keine gespielten Partien für '{TEAM}' gefunden – Teamname/Gruppe prüfen.")
     OUT.mkdir(exist_ok=True)
+    for old in OUT.glob("logo.*"):
+        old.unlink()
     if LOGO:
-        shutil.copyfile(LOGO, OUT / "logo.svg")
+        shutil.copyfile(LOGO, OUT / ("logo" + LOGO.suffix.lower()))
     if VFC_LOGO:
         shutil.copyfile(VFC_LOGO, OUT / ("vfc-logo" + VFC_LOGO.suffix.lower()))
     write_pwa()
