@@ -27,6 +27,8 @@ jobs:
         env:
           GROUP: "STSO S 2"
           TEAM: "Double Trouble Steeldarters"
+      - name: Seite prüfen
+        run: python pruefung.py
       - name: Änderungen speichern
         run: |
           git config user.name "github-actions"

@@ -183,3 +183,18 @@ dialog{touch-action:pan-y;overscroll-behavior:contain}
 @keyframes inR{from{transform:translateX(48px);opacity:0}to{transform:none;opacity:1}}
 @keyframes inL{from{transform:translateX(-48px);opacity:0}to{transform:none;opacity:1}}
 dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s ease-out}
+
+/* Diagramme */
+.chart{width:100%;height:auto;display:block;margin:4px 0 14px;overflow:visible}
+.ch-grid{stroke:var(--line);stroke-width:1}.ch-half{stroke:var(--mute);stroke-width:1;stroke-dasharray:4 4}
+.ch-t{fill:var(--mute);font-size:13px;font-family:inherit}
+.ch-me{stroke:var(--green);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.ch-ref{stroke:var(--mute);stroke-width:1.5;stroke-dasharray:5 3}
+.ch-dot{fill:var(--green);stroke:var(--bg);stroke-width:2}
+.ch-bar{fill:var(--mute);opacity:.55}.ch-bar:hover{opacity:.85}
+.ch-v{fill:var(--ink);font-size:12px;font-family:inherit}
+.ch-l{fill:var(--mute);font-size:13px;font-family:inherit}.ch-l.me{fill:var(--ink);font-weight:600}
+
+.hof-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.hf{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--green);border-radius:10px;padding:10px 12px}
+.hf p{margin:2px 0}.hf small{display:block;color:var(--mute);font-size:.85rem}.hf .big{font-family:var(--serif);font-size:1.5rem;display:block;line-height:1.2}

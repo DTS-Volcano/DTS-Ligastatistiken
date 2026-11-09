@@ -5,6 +5,8 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
+from hof import section_hof
+from verlauf import section_verlauf
 from awards import MONTHS, monthly_titles
 from textutil import dkey
 from stats import bracket, order
@@ -91,6 +93,7 @@ def render(data, hist):
 
     archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
     fixtures_html = section_fixtures(data, id_of)
+    verlauf_html = section_verlauf(data)
     ha_team, ha_players = section_homeaway(matches, players)
     next_html, open_html = section_next(data, matches, pid)
     league_html = section_league(data) + "</section>"
@@ -175,6 +178,7 @@ def render(data, hist):
 {next_html}
 {last_html}
 {section_potm(players, {pl["name"]: i for i, pl in enumerate(players)})}
+{section_hof(players, matches, pid)}
 {open_html}
 </div>
 
@@ -192,6 +196,7 @@ def render(data, hist):
 <div class="panel" id="p-liga">
 {league_html}
 {fixtures_html}
+{verlauf_html}
 {ha_team}
 {section_rounds(matches)}
 </div>
