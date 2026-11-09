@@ -1201,6 +1201,7 @@
      "sets": "2:0",
      "date": "24.08.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 59
     },
     {
@@ -1210,6 +1211,7 @@
      "sets": "2:1",
      "date": "24.08.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 33
     },
     {
@@ -1219,6 +1221,7 @@
      "sets": "0:2",
      "date": "24.08.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 27
     },
     {
@@ -1228,6 +1231,7 @@
      "sets": "2:1",
      "date": "24.08.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 38
     },
     {
@@ -1237,6 +1241,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 50
     },
     {
@@ -1246,6 +1251,7 @@
      "sets": "2:1",
      "date": "07.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 46
     },
     {
@@ -1255,6 +1261,7 @@
      "sets": "2:1",
      "date": "07.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 29
     },
     {
@@ -1264,6 +1271,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 43
     },
     {
@@ -1273,6 +1281,7 @@
      "sets": "2:0",
      "date": "14.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 4
     },
     {
@@ -1282,6 +1291,7 @@
      "sets": "0:2",
      "date": "14.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 15
     },
     {
@@ -1291,6 +1301,7 @@
      "sets": "2:1",
      "date": "14.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 31
     },
     {
@@ -1300,6 +1311,7 @@
      "sets": "2:1",
      "date": "14.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 48
     },
     {
@@ -1309,6 +1321,7 @@
      "sets": "1:2",
      "date": "23.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 23
     },
     {
@@ -1318,6 +1331,7 @@
      "sets": "2:0",
      "date": "23.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 35
     },
     {
@@ -1327,6 +1341,7 @@
      "sets": "2:1",
      "date": "23.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 12
     },
     {
@@ -1336,6 +1351,7 @@
      "sets": "2:0",
      "date": "23.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 9
     },
     {
@@ -1345,6 +1361,7 @@
      "sets": "1:2",
      "date": "28.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 18
     },
     {
@@ -1354,6 +1371,7 @@
      "sets": "2:0",
      "date": "28.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 14
     },
     {
@@ -1363,6 +1381,7 @@
      "sets": "2:0",
      "date": "28.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 63
     },
     {
@@ -1372,6 +1391,7 @@
      "sets": "2:1",
      "date": "28.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 47
     },
     {
@@ -1381,6 +1401,7 @@
      "sets": "2:1",
      "date": "21.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 30
     },
     {
@@ -1390,6 +1411,7 @@
      "sets": "2:0",
      "date": "21.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 1
     },
     {
@@ -1399,6 +1421,7 @@
      "sets": "0:2",
      "date": "21.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 2
     },
     {
@@ -1408,6 +1431,7 @@
      "sets": "0:2",
      "date": "21.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 3
     },
     {
@@ -1417,6 +1441,7 @@
      "sets": "2:0",
      "date": "27.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 38
     },
     {
@@ -1426,6 +1451,7 @@
      "sets": "2:1",
      "date": "27.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 34
     },
     {
@@ -1435,6 +1461,7 @@
      "sets": "2:0",
      "date": "04.11.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 6
     },
     {
@@ -1444,6 +1471,7 @@
      "sets": "2:0",
      "date": "04.11.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 44
     },
     {
@@ -1453,6 +1481,7 @@
      "sets": "2:1",
      "date": "04.11.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 8
     },
     {
@@ -1462,6 +1491,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 26
     }
    ],
@@ -1496,6 +1526,7 @@
      "sets": "2:1",
      "date": "02.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 44
     },
     {
@@ -1505,6 +1536,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 6
     },
     {
@@ -1514,6 +1546,7 @@
      "sets": "0:2",
      "date": "02.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 8
     },
     {
@@ -1523,6 +1556,7 @@
      "sets": "2:1",
      "date": "02.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 52
     },
     {
@@ -1532,6 +1566,7 @@
      "sets": "0:2",
      "date": "28.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 14
     },
     {
@@ -1541,6 +1576,7 @@
      "sets": "0:2",
      "date": "28.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 18
     },
     {
@@ -1550,6 +1586,7 @@
      "sets": "2:1",
      "date": "28.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 47
     },
     {
@@ -1559,6 +1596,7 @@
      "sets": "2:0",
      "date": "28.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 63
     },
     {
@@ -1568,6 +1606,7 @@
      "sets": "1:2",
      "date": "21.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 3
     },
     {
@@ -1577,6 +1616,7 @@
      "sets": "2:1",
      "date": "21.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 2
     },
     {
@@ -1586,6 +1626,7 @@
      "sets": "2:1",
      "date": "21.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 1
     },
     {
@@ -1595,6 +1636,7 @@
      "sets": "2:1",
      "date": "21.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 30
     }
    ],
@@ -1629,6 +1671,7 @@
      "sets": "2:0",
      "date": "24.08.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 38
     },
     {
@@ -1638,6 +1681,7 @@
      "sets": "2:1",
      "date": "24.08.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 27
     },
     {
@@ -1647,6 +1691,7 @@
      "sets": "2:1",
      "date": "24.08.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 61
     },
     {
@@ -1656,6 +1701,7 @@
      "sets": "2:0",
      "date": "24.08.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 39
     },
     {
@@ -1665,6 +1711,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 6
     },
     {
@@ -1674,6 +1721,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 29
     },
     {
@@ -1683,6 +1731,7 @@
      "sets": "2:1",
      "date": "07.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 43
     },
     {
@@ -1692,6 +1741,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 54
     },
     {
@@ -1701,6 +1751,7 @@
      "sets": "0:2",
      "date": "07.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 46
     },
     {
@@ -1710,6 +1761,7 @@
      "sets": "2:1",
      "date": "14.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 31
     },
     {
@@ -1719,6 +1771,7 @@
      "sets": "2:1",
      "date": "14.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 48
     },
     {
@@ -1728,6 +1781,7 @@
      "sets": "1:2",
      "date": "14.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 4
     },
     {
@@ -1737,6 +1791,7 @@
      "sets": "0:2",
      "date": "14.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 15
     },
     {
@@ -1746,6 +1801,7 @@
      "sets": "2:0",
      "date": "23.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 35
     },
     {
@@ -1755,6 +1811,7 @@
      "sets": "2:0",
      "date": "23.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 23
     },
     {
@@ -1764,6 +1821,7 @@
      "sets": "2:1",
      "date": "23.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 9
     },
     {
@@ -1773,6 +1831,7 @@
      "sets": "2:1",
      "date": "23.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 12
     },
     {
@@ -1782,6 +1841,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 24
     },
     {
@@ -1791,6 +1851,7 @@
      "sets": "2:0",
      "date": "05.10.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 19
     },
     {
@@ -1800,6 +1861,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 21
     },
     {
@@ -1809,6 +1871,7 @@
      "sets": "1:2",
      "date": "05.10.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 7
     },
     {
@@ -1818,6 +1881,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 26
     },
     {
@@ -1827,6 +1891,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 8
     }
    ],
@@ -1861,6 +1926,7 @@
      "sets": "0:2",
      "date": "02.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 6
     },
     {
@@ -1870,6 +1936,7 @@
      "sets": "2:1",
      "date": "02.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 44
     },
     {
@@ -1879,6 +1946,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 52
     },
     {
@@ -1888,6 +1956,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 57
     },
     {
@@ -1897,6 +1966,7 @@
      "sets": "1:2",
      "date": "07.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 46
     },
     {
@@ -1906,6 +1976,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 50
     },
     {
@@ -1915,6 +1986,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 43
     },
     {
@@ -1924,6 +1996,7 @@
      "sets": "2:0",
      "date": "07.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 29
     },
     {
@@ -1933,6 +2006,7 @@
      "sets": "0:2",
      "date": "14.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 4
     },
     {
@@ -1942,6 +2016,7 @@
      "sets": "2:1",
      "date": "23.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 23
     },
     {
@@ -1951,6 +2026,7 @@
      "sets": "2:0",
      "date": "23.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 58
     },
     {
@@ -1960,6 +2036,7 @@
      "sets": "2:0",
      "date": "28.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 63
     },
     {
@@ -1969,6 +2046,7 @@
      "sets": "2:1",
      "date": "28.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 47
     },
     {
@@ -1978,6 +2056,7 @@
      "sets": "1:2",
      "date": "28.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 18
     },
     {
@@ -1987,6 +2066,7 @@
      "sets": "2:1",
      "date": "28.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 14
     },
     {
@@ -1996,6 +2076,7 @@
      "sets": "2:1",
      "date": "05.10.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 42
     },
     {
@@ -2005,6 +2086,7 @@
      "sets": "1:2",
      "date": "05.10.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 21
     },
     {
@@ -2014,6 +2096,7 @@
      "sets": "2:0",
      "date": "05.10.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 19
     },
     {
@@ -2023,6 +2106,7 @@
      "sets": "2:0",
      "date": "05.10.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 66
     },
     {
@@ -2032,6 +2116,7 @@
      "sets": "2:0",
      "date": "21.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 2
     },
     {
@@ -2041,6 +2126,7 @@
      "sets": "0:2",
      "date": "21.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 3
     },
     {
@@ -2050,6 +2136,7 @@
      "sets": "2:1",
      "date": "21.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 30
     },
     {
@@ -2059,6 +2146,7 @@
      "sets": "1:2",
      "date": "21.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 1
     },
     {
@@ -2068,6 +2156,7 @@
      "sets": "1:2",
      "date": "27.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 39
     },
     {
@@ -2077,6 +2166,7 @@
      "sets": "2:1",
      "date": "27.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 33
     },
     {
@@ -2086,6 +2176,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 8
     },
     {
@@ -2095,6 +2186,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 26
     },
     {
@@ -2104,6 +2196,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 6
     },
     {
@@ -2113,6 +2206,7 @@
      "sets": "2:0",
      "date": "04.11.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 44
     }
    ],
@@ -2147,6 +2241,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 8
     },
     {
@@ -2156,6 +2251,7 @@
      "sets": "2:1",
      "date": "02.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 26
     },
     {
@@ -2165,6 +2261,7 @@
      "sets": "1:2",
      "date": "02.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 44
     },
     {
@@ -2174,6 +2271,7 @@
      "sets": "2:1",
      "date": "28.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 47
     },
     {
@@ -2183,6 +2281,7 @@
      "sets": "2:0",
      "date": "28.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 63
     },
     {
@@ -2192,6 +2291,7 @@
      "sets": "0:2",
      "date": "28.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 14
     },
     {
@@ -2201,6 +2301,7 @@
      "sets": "0:2",
      "date": "28.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 18
     },
     {
@@ -2210,6 +2311,7 @@
      "sets": "0:2",
      "date": "27.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 39
     },
     {
@@ -2219,6 +2321,7 @@
      "sets": "2:1",
      "date": "27.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 33
     },
     {
@@ -2228,6 +2331,7 @@
      "sets": "1:2",
      "date": "27.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 38
     },
     {
@@ -2237,6 +2341,7 @@
      "sets": "0:2",
      "date": "27.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 34
     },
     {
@@ -2246,6 +2351,7 @@
      "sets": "2:1",
      "date": "04.11.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 44
     },
     {
@@ -2255,6 +2361,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 6
     }
    ],
@@ -2289,6 +2396,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 26
     },
     {
@@ -2298,6 +2406,7 @@
      "sets": "0:2",
      "date": "02.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 8
     },
     {
@@ -2307,6 +2416,7 @@
      "sets": "1:2",
      "date": "02.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 6
     },
     {
@@ -2316,6 +2426,7 @@
      "sets": "2:0",
      "date": "02.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 44
     },
     {
@@ -2325,6 +2436,7 @@
      "sets": "2:1",
      "date": "14.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 15
     },
     {
@@ -2334,6 +2446,7 @@
      "sets": "0:2",
      "date": "14.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 4
     },
     {
@@ -2343,6 +2456,7 @@
      "sets": "2:0",
      "date": "14.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 48
     },
     {
@@ -2352,6 +2466,7 @@
      "sets": "1:2",
      "date": "14.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 31
     },
     {
@@ -2361,6 +2476,7 @@
      "sets": "2:1",
      "date": "05.10.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 21
     },
     {
@@ -2370,6 +2486,7 @@
      "sets": "1:2",
      "date": "05.10.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 42
     },
     {
@@ -2379,6 +2496,7 @@
      "sets": "1:2",
      "date": "05.10.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 24
     },
     {
@@ -2388,6 +2506,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 19
     },
     {
@@ -2397,6 +2516,7 @@
      "sets": "0:2",
      "date": "21.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 1
     },
     {
@@ -2406,6 +2526,7 @@
      "sets": "2:1",
      "date": "21.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 30
     },
     {
@@ -2415,6 +2536,7 @@
      "sets": "0:2",
      "date": "21.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 3
     },
     {
@@ -2424,6 +2546,7 @@
      "sets": "0:2",
      "date": "21.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 2
     },
     {
@@ -2433,6 +2556,7 @@
      "sets": "1:2",
      "date": "27.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 33
     },
     {
@@ -2442,6 +2566,7 @@
      "sets": "2:1",
      "date": "27.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 39
     },
     {
@@ -2451,6 +2576,7 @@
      "sets": "2:1",
      "date": "04.11.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 26
     },
     {
@@ -2460,6 +2586,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 8
     },
     {
@@ -2469,6 +2596,7 @@
      "sets": "2:1",
      "date": "04.11.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 44
     },
     {
@@ -2478,6 +2606,7 @@
      "sets": "0:2",
      "date": "04.11.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 6
     }
    ],
@@ -2512,6 +2641,7 @@
      "sets": "0:2",
      "date": "24.08.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 27
     },
     {
@@ -2521,6 +2651,7 @@
      "sets": "0:2",
      "date": "24.08.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 38
     },
     {
@@ -2530,6 +2661,7 @@
      "sets": "2:1",
      "date": "24.08.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 39
     },
     {
@@ -2539,6 +2671,7 @@
      "sets": "2:0",
      "date": "24.08.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 61
     },
     {
@@ -2548,6 +2681,7 @@
      "sets": "1:2",
      "date": "14.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 48
     },
     {
@@ -2557,6 +2691,7 @@
      "sets": "0:2",
      "date": "14.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 31
     },
     {
@@ -2566,6 +2701,7 @@
      "sets": "0:2",
      "date": "14.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 15
     },
     {
@@ -2575,6 +2711,7 @@
      "sets": "0:2",
      "date": "23.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 9
     },
     {
@@ -2584,6 +2721,7 @@
      "sets": "0:2",
      "date": "23.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 12
     },
     {
@@ -2593,6 +2731,7 @@
      "sets": "2:1",
      "date": "23.09.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 58
     },
     {
@@ -2602,6 +2741,7 @@
      "sets": "0:2",
      "date": "23.09.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 23
     },
     {
@@ -2611,6 +2751,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 19
     },
     {
@@ -2620,6 +2761,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 24
     },
     {
@@ -2629,6 +2771,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 7
     },
     {
@@ -2638,6 +2781,7 @@
      "sets": "0:2",
      "date": "05.10.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 21
     },
     {
@@ -2647,6 +2791,7 @@
      "sets": "1:2",
      "date": "27.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 34
     },
     {
@@ -2656,6 +2801,7 @@
      "sets": "2:1",
      "date": "27.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 38
     }
    ],
@@ -2690,6 +2836,7 @@
      "sets": "0:2",
      "date": "24.08.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 33
     },
     {
@@ -2699,6 +2846,7 @@
      "sets": "1:2",
      "date": "24.08.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 59
     },
     {
@@ -2708,6 +2856,7 @@
      "sets": "0:2",
      "date": "24.08.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 38
     },
     {
@@ -2717,6 +2866,7 @@
      "sets": "2:1",
      "date": "24.08.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 27
     },
     {
@@ -2726,6 +2876,7 @@
      "sets": "0:2",
      "date": "07.09.2026",
      "round": 1,
+     "home": false,
      "opp_rank": 43
     },
     {
@@ -2735,6 +2886,7 @@
      "sets": "1:2",
      "date": "07.09.2026",
      "round": 2,
+     "home": false,
      "opp_rank": 29
     },
     {
@@ -2744,6 +2896,7 @@
      "sets": "1:2",
      "date": "07.09.2026",
      "round": 3,
+     "home": false,
      "opp_rank": 46
     },
     {
@@ -2753,6 +2906,7 @@
      "sets": "0:2",
      "date": "07.09.2026",
      "round": 4,
+     "home": false,
      "opp_rank": 54
     },
     {
@@ -2762,6 +2916,7 @@
      "sets": "0:2",
      "date": "23.09.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 12
     },
     {
@@ -2771,6 +2926,7 @@
      "sets": "0:2",
      "date": "23.09.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 9
     },
     {
@@ -2780,6 +2936,7 @@
      "sets": "0:2",
      "date": "27.10.2026",
      "round": 1,
+     "home": true,
      "opp_rank": 33
     },
     {
@@ -2789,6 +2946,7 @@
      "sets": "1:2",
      "date": "27.10.2026",
      "round": 2,
+     "home": true,
      "opp_rank": 39
     },
     {
@@ -2798,6 +2956,7 @@
      "sets": "0:2",
      "date": "27.10.2026",
      "round": 3,
+     "home": true,
      "opp_rank": 34
     },
     {
@@ -2807,6 +2966,7 @@
      "sets": "2:0",
      "date": "27.10.2026",
      "round": 4,
+     "home": true,
      "opp_rank": 38
     }
    ],
