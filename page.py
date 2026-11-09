@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
-from uebersicht import all_block, team_block
+from uebersicht import home_block, team_head
 from verlauf import section_verlauf
 from awards import MONTHS, monthly_titles
 from textutil import dkey
@@ -107,7 +107,8 @@ def render(data, hist):
         key = "own" if own_t else f"l{ti}"
         hid = "" if own_t else " hidden"
         liga_opts += f"<option value='{key}'>{esc(name)}</option>"
-        liga_blocks += (f"<div class='lb' data-g='liga' data-t='{key}'{hid}>{section_league(data, name)}</section>"
+        liga_blocks += (f"<div class='lb' data-g='liga' data-t='{key}'{hid}>{team_head(data, name, tm, [x for x in hof_players if x['team'].lower() == name.lower()], pid, id_of)}"
+                        f"{section_league(data, name)}</section>"
                         f"{section_fixtures(data, id_of, name)}</div>")
         ana_blocks += (f"<div class='lb' data-g='ana' data-t='{key}'{hid}>{section_hof(hof_players, tf, pid, id_of, name)}"
                        f"{section_potm(hof_players, pid, False, name)}{section_verlauf(data, name, tm)}"
@@ -135,17 +136,7 @@ def render(data, hist):
     search_dlg = ('<dialog id="search" aria-label="Suche"><div class="dlg"><button class="x" data-close aria-label="Schliessen">✕</button>'
                   '<h3 class="vs">Suche</h3><input type="search" id="s-in" placeholder="Spieler oder Verein" aria-label="Suche" autocomplete="off">'
                   '<ul id="s-res" class="sres"></ul></div></dialog>')
-    ov_opts, ov_blocks = "", ""
-    for ti, name in enumerate(order_t):
-        own_t = name.lower() == TEAM.lower()
-        key = "own" if own_t else f"l{ti}"
-        tm = matches if own_t else tf.get(name.lower(), [])
-        tpl = [x for x in hof_players if x["team"].lower() == name.lower()]
-        ov_opts += f"<option value='{key}'>{esc(name)}</option>"
-        ov_blocks += (f"<div class='lb' data-g='ov' data-t='{key}'{'' if own_t else ' hidden'}>"
-                      f"{team_block(data, name, tm, tpl, pid, id_of, hof_players, own_t)}</div>")
-    ov_opts += "<option value='all'>Alle Vereine</option>"
-    ov_blocks += f"<div class='lb' data-g='ov' data-t='all' hidden>{all_block(data, id_of, pid, hof_players)}</div>"
+    home_html = home_block(data, id_of, pid, hof_players, tf, lambda: section_hof(hof_players, tf, pid, id_of, None, 4))
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
                                                           ("liga", "Team &amp; Liga"), ("analyse", "Analyse"), ("partien", "Partien")))
 
@@ -163,8 +154,7 @@ def render(data, hist):
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
-<form class="filter ovf" onsubmit="return false"><select class="vf" data-g="ov" aria-label="Verein">{ov_opts}</select></form>
-{ov_blocks}
+{home_html}
 </div>
 
 <div class="panel" id="p-spieler">

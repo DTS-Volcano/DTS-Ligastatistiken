@@ -1,6 +1,6 @@
 """Übersicht: Kopfkarten, Kennzahlen, nächstes Spiel, letzte Ergebnisse – für jeden Verein und für die ganze Liga."""
 from components import RESULT
-from config import today
+from config import TEAM, today
 from sections import section_next, section_potm
 from textutil import dkey, esc, fmt_date
 
@@ -22,15 +22,16 @@ def _results(items, id_of, title, with_team=False):
     if not items:
         return ""
     rows = ""
-    for d, t, sub, sc, win, dom in items:
+    for d, t, sub, sc, win, dom, mn in items:
         cls = "" if win is None else (" win" if win else " loss")
         attr = f" data-open='{dom}'" if dom else ""
-        rows += (f"<li><button class='resrow'{attr}><span class='rd'>{d}</span><span class='ro'>{t}<small>{sub}</small></span>"
-                 f"<b class='sc{cls}'>{sc}</b></button></li>")
+        tag = "button" if dom else "div"
+        rows += (f"<li{' class=mn' if mn else ''}><{tag} class='resrow'{attr}><span class='rd'>{d}</span><span class='ro'>{t}<small>{sub}</small></span>"
+                 f"<b class='sc{cls}'>{sc}</b></{tag}></li>")
     return f"<section><h2>{title}</h2><ul class='res'>{rows}</ul></section>"
 
 
-def team_block(data, name, tm, players, pid, id_of, hof_players, own):
+def team_head(data, name, tm, players, pid, id_of):
     me = name.lower()
     # Kopfkarten
     nxt = sorted((f for f in data["schedule"] if not f["played"] and me in (f["home"].lower(), f["guest"].lower())),
@@ -75,30 +76,29 @@ def team_block(data, name, tm, players, pid, id_of, hof_players, own):
     kpi = ("<dl class='kpi'>" + "".join(f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in kp)
            + f"<div><dt>Spielbilanz (Einzel)</dt><dd>{W}:{L}</dd></div></dl>")
     nxt_html, _ = section_next(data, tm, pid, name)
-    last = [(m["date"][:6], esc(m["opp"]), f"{RESULT.get(_pts(m), '')} · {'Heim' if m['home'] else 'Auswärts'}",
-             m["points"], _pts(m)[0] > _pts(m)[1], id_of.get(m["nr"])) for m in reversed(tm[-3:])]
-    last_html = _results(last, id_of, "Letzte Ergebnisse")
-    if last_html:
-        last_html = last_html.replace("</section>", "<p class='hint'><a href='#partien'>Alle Partien ansehen</a></p></section>") if own else last_html
-    return f"{hero}{kpi}{nxt_html}{last_html}{section_potm(hof_players, pid, True, name)}{jump_nav()}"
+    return f"{hero}{kpi}{nxt_html}"
 
 
-def all_block(data, id_of, pid, hof_players):
-    played = sorted((f for f in data["schedule"] if f["played"] and id_of.get(f["nr"])), key=lambda f: dkey(f["date"]), reverse=True)
-    score = {}
-    for nr, m in data["others"].items():
-        score[nr] = m["points"]
+def home_block(data, id_of, pid, hof_players, tf, hof_fn):
+    me = TEAM.lower()
+    score = {nr: m["points"] for nr, m in data["others"].items()}
     for m in data["matches"]:
         score[m["nr"]] = m["points"] if m["home"] else ":".join(reversed(m["points"].split(":")))
-    res = [(f["date"][:6], f"{esc(f['home'])}<br>{esc(f['guest'])}", "", score.get(f["nr"], "–"), None, id_of.get(f["nr"]))
-           for f in played[:6]]
-    todo = sorted((f for f in data["schedule"] if not f["played"]), key=lambda f: dkey(f["date"]))[:6]
-    nxt = [(f["date"][:6], f"{esc(f['home'])}<br>{esc(f['guest'])}", "", "–", None, None) for f in todo]
-    top = data["league"][:5]
-    rows = "".join(f"<tr><td class='num'>{x['rank']}</td><td>{esc(x['team'])}</td><td class='num'>{x['played']}</td>"
-                   f"<td class='num'>{x['pp']}:{x['pm']}</td></tr>" for x in top)
-    table = ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
-             f"<th>Punkte</th></tr></thead><tbody>{rows}</tbody></table></div>"
-             "<p class='hint'><a href='#liga'>Ganze Tabelle ansehen</a></p></section>") if top else ""
-    return (f"{table}{_results(res, id_of, 'Letzte Ergebnisse der Liga')}{_results(nxt, id_of, 'Nächste Spiele der Liga')}"
-            f"{section_potm(hof_players, pid, True)}{jump_nav()}")
+
+    def mine(f):
+        return me in (f["home"].lower(), f["guest"].lower())
+
+    played = sorted((f for f in data["schedule"] if f["played"]), key=lambda f: dkey(f["date"]), reverse=True)[:5]
+    res = [(f["date"][:6], f"{esc(f['home'])}<br>{esc(f['guest'])}", "", score.get(f["nr"], "–"), None,
+            id_of.get(f["nr"]), mine(f)) for f in played]
+    todo = sorted((f for f in data["schedule"] if not f["played"]), key=lambda f: dkey(f["date"]))[:5]
+    nxt = [(f["date"][:6], f"{esc(f['home'])}<br>{esc(f['guest'])}", "", "", None, None, mine(f)) for f in todo]
+    rows = ""
+    for i, x in enumerate(data["league"]):
+        rows += (f"<tr class='click{' hl' if x['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{x['rank']}</td>"
+                 f"<td>{esc(x['team'])}</td><td class='num'>{x['pp']}:{x['pm']}</td></tr>")
+    table = ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th class='num'>Platz</th><th>Team</th>"
+             f"<th class='num'>Punkte</th></tr></thead><tbody>{rows}</tbody></table></div>"
+             "<p class='hint'><a href='#liga'>Team &amp; Liga: Details und Spielplan</a></p></section>") if rows else ""
+    both = (f"<div class='two'>{_results(res, id_of, 'Letzte Ergebnisse')}{_results(nxt, id_of, 'Nächste Spiele')}</div>")
+    return (f"{table}{both}{section_potm(hof_players, pid, True)}{hof_fn()}{jump_nav()}")
