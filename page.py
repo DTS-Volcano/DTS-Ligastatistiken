@@ -5,7 +5,8 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
-from awards import monthly_titles
+from awards import MONTHS, monthly_titles
+from textutil import dkey
 from sections import section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
@@ -35,8 +36,15 @@ def render(data, hist):
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
     tb = {k: [sum(p["brackets"][k][i] for p in players) for i in (0, 1)] for k in ("top", "mid", "low")}
 
+    def mon_key(d):
+        x = dkey(d)
+        return f"{x.year}-{x.month:02d}"
+
+    months = sorted({mon_key(m["date"]) for m in matches}, reverse=True)
+    mopts = "".join(f"<option value='{k}'>{MONTHS[int(k[5:]) - 1]} {k[:4]}</option>" for k in months)
     mrows = "".join(
-        f"<tr class='click' data-open='m{i}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
+        f"<tr class='click' data-open='m{i}' data-q='{esc(m['opp'].lower())}' data-mon='{mon_key(m['date'])}' "
+        f"data-home='{int(m['home'])}' data-win='{int(m['points'].split(':')[0] > m['points'].split(':')[1])}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
         f"<td class='num'>{m['points']}</td><td class='num'>{m['games']}</td>"
         f"<td><button class='rb' data-open='m{i}'>Report</button></td></tr>" for i, m in enumerate(matches))
     id_of = {m["nr"]: f"m{i}" for i, m in enumerate(matches)}
@@ -129,7 +137,14 @@ def render(data, hist):
 <div class="panel" id="p-partien">
 <section><h2>Partien</h2>
 <p class="hint">Auf eine Partie klicken, um den Spielreport zu öffnen.</p>
-<div class="scroll"><table class="cards"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
+<form class="filter" role="search" onsubmit="return false">
+<input type="search" id="f-q" placeholder="Gegner suchen" aria-label="Gegner suchen">
+<select id="f-mon" aria-label="Monat"><option value="">Alle Monate</option>{mopts}</select>
+<select id="f-home" aria-label="Ort"><option value="">Heim und Auswärts</option><option value="1">Heim</option><option value="0">Auswärts</option></select>
+<select id="f-win" aria-label="Ergebnis"><option value="">Alle Ergebnisse</option><option value="1">Siege</option><option value="0">Niederlagen</option></select>
+</form>
+<p class="hint" id="f-count" aria-live="polite"></p>
+<div class="scroll"><table class="cards" id="mtable"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
 <tbody>{mrows}</tbody></table></div></section>
 
 </div>
