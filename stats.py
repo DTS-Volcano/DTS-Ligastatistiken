@@ -64,11 +64,11 @@ def build_stats():
         if not rep["games"]:
             continue
         for g in rep["games"]:
-            for team, pl, opl, oteam, won, sets in (
-                    (teams[0], g["home"], g["guest"], rep["guest"], g["home_win"], g["sets"]),
-                    (teams[1], g["guest"], g["home"], rep["home"], not g["home_win"], swap(g["sets"]))):
+            for team, pl, opl, oteam, won, sets, is_home in (
+                    (teams[0], g["home"], g["guest"], rep["guest"], g["home_win"], g["sets"], True),
+                    (teams[1], g["guest"], g["home"], rep["home"], not g["home_win"], swap(g["sets"]), False)):
                 team_games[team][pl].append({"opp": opl, "opp_team": oteam, "won": won, "sets": sets,
-                                             "date": rep["date"], "round": g["round"]})
+                                             "date": rep["date"], "round": g["round"], "home": is_home})
         s = rep["summary"] or ["0:0", "0:0", "0:0"]
         for tl, oname, is_home in ((teams[0], rep["guest"], True), (teams[1], rep["home"], False)):
             team_matches[tl].append({"nr": nr, "date": rep["date"], "opp": oname, "home": is_home,
@@ -97,7 +97,7 @@ def build_stats():
                 {"mine": mine, "opp": opp, "sets": g["sets"] if home else swap(g["sets"]), "won": g["home_win"] == home})
             singles[mine].append({"opp": opp, "opp_team": opp_team, "won": g["home_win"] == home,
                                   "sets": g["sets"] if home else swap(g["sets"]), "date": rep["date"],
-                                  "round": g["round"]})
+                                  "round": g["round"], "home": home})
     print(f"Reports: {state['cached']} aus dem Speicher, {state['new']} neu geladen")
     if state["error"] and not matches:
         raise state["error"]

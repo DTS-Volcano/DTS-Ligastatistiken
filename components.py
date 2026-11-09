@@ -83,6 +83,15 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
             cls = "win" if w > l else "loss" if w < l else ""
             rcells += f"<div><dt>Runde {k}</dt><dd class='{cls}'>{w}:{l}</dd></div>"
         rcells = f"<h4>Nach Spielblock</h4><dl class='kpi rk'>{rcells}</dl>"
+    # Heim und Auswärts
+    ha = {True: [0, 0], False: [0, 0]}
+    for r in rows:
+        if "home" in r:
+            ha[r["home"]][0 if r["won"] else 1] += 1
+    if any(sum(v) for v in ha.values()):
+        cells = "".join(f"<div><dt>{lab}</dt><dd class='{'win' if v[0] > v[1] else 'loss' if v[0] < v[1] else ''}'>{v[0]}:{v[1]}</dd></div>"
+                        for lab, v in (("Heim", ha[True]), ("Auswärts", ha[False])))
+        rcells += f"<h4>Heim und Auswärts</h4><dl class='kpi rk'>{cells}</dl>"
     # Gegner
     by_opp = defaultdict(list)
     for r in rows:

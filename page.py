@@ -8,7 +8,7 @@ from config import OUT, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
 from awards import MONTHS, monthly_titles
 from textutil import dkey
 from stats import bracket, order
-from sections import player_table, section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
+from sections import player_table, section_fixtures, section_form, section_homeaway, section_homeaway_players, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
 
@@ -104,7 +104,7 @@ def render(data, hist):
                       f"<b class='sc {'win' if pt[0] > pt[1] else 'loss'}'>{m['points']}</b></button></li>")
         last_html = (f"<section><h2>Letzte Ergebnisse</h2><ul class='res'>{items}</ul>"
                      "<p class='hint'><a href='#partien'>Alle Partien ansehen</a></p></section>")
-    own_extra = f"{ha_players}{section_form(players)}{section_rank_history(players, hist)}"
+    own_extra = f"{section_homeaway_players(players)}{section_form(players)}{section_rank_history(players, hist)}"
     team_blocks = f"<div class='tp' data-t='own'>{player_table(players, pid)}{own_extra}</div>"
     team_opts = f"<option value='own'>{esc(TEAM)}</option>"
     all_pl = list(players)
@@ -114,7 +114,7 @@ def render(data, hist):
         all_pl += pls
         team_opts += f"<option value='t{ti}'>{esc(t['team'])}</option>"
         team_blocks += (f"<div class='tp' data-t='t{ti}' hidden>{player_table(pls, pid)}"
-                        f"{section_form(pls)}{section_rank_history(pls, hist)}</div>")
+                        f"{section_homeaway_players(pls)}{section_form(pls)}{section_rank_history(pls, hist)}</div>")
     all_pl.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
     team_opts += "<option value='all'>Alle Vereine</option>"
     team_blocks += f"<div class='tp' data-t='all' hidden>{player_table(all_pl, pid, True)}</div>"

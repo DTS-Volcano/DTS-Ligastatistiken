@@ -373,3 +373,22 @@ def player_table(pls, pid, all_view=False):
     return (f"<div class='scroll'><table class='sortable sticky'><thead><tr><th>Spieler</th>{vcol}<th>Rang</th><th>Spiele</th><th>Bilanz</th>"
             f"<th>Quote</th><th>Ø Gegner</th><th>Rang 1–{TOP}</th><th>{TOP + 1}–{MID}</th><th>{MID + 1}+</th></tr></thead>"
             f"<tbody>{body}</tbody>{foot}</table></div>")
+
+
+def section_homeaway_players(pls):
+    """Heim und Auswärts pro Spieler (Einzelbilanz), für beliebige Spielerlisten mit Feld 'home' in den Einzeln."""
+    body = ""
+    for p in pls:
+        h = [0, 0]
+        a = [0, 0]
+        for r in p["rows"]:
+            if "home" not in r:
+                continue
+            (h if r["home"] else a)[0 if r["won"] else 1] += 1
+        if h[0] + h[1] + a[0] + a[1]:
+            body += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{h[0]}:{h[1]}</td><td class='num'>{a[0]}:{a[1]}</td></tr>")
+    if not body:
+        return ""
+    return ("<section><h2>Heim und Auswärts</h2><p class='hint'>Einzelbilanz pro Spieler (Siege:Niederlagen).</p>"
+            "<div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th><th class='num'>Heim</th>"
+            f"<th class='num'>Auswärts</th></tr></thead><tbody>{body}</tbody></table></div></section>")
