@@ -12,7 +12,6 @@ TEAM = os.getenv("TEAM", "Double Trouble Steeldarters")
 TOP, MID = 10, 30          # Rang-Klassen: 1-10, 11-30, 31+
 FORM_N = 5                 # Anzahl Einzel für die Formkurve
 OUT = Path(os.getenv("OUT", "docs"))
-CACHE = Path(os.getenv("CACHE", "daten/reports"))   # gespeicherte Spielreports
 AUTHOR = "Kevin Notter"    # erscheint im Footer
 
 
@@ -74,3 +73,7 @@ def find_photo(name):
     """Dateiname im Ausgabeordner (immer klein, mit Bindestrich) oder None."""
     f = photo_source(name)
     return f"{slug(name)}{f.suffix.lower()}" if f else None
+
+
+# gespeicherte Spielreports, pro Gruppe getrennt (neue Saison = neue Gruppe = frischer Speicher)
+CACHE = Path(os.getenv("CACHE") or Path("daten/reports") / slug(GROUP))

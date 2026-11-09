@@ -1,0 +1,35 @@
+name: Saison archivieren
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name der Saison, z. B. Saison 2026"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  archiv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python archiv.py "${{ github.event.inputs.name }}"
+        env:
+          GROUP: "STSO S 2"
+          TEAM: "Double Trouble Steeldarters"
+      - name: Änderungen speichern
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A docs daten
+          git diff --cached --quiet || (git commit -m "Saison archiviert: ${{ github.event.inputs.name }}" && git pull --rebase -X theirs && git push)

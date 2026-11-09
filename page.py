@@ -4,7 +4,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
-from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
+from config import OUT, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
 from awards import MONTHS, monthly_titles
 from textutil import dkey
 from sections import section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
@@ -55,6 +55,7 @@ def render(data, hist):
     dialogs += "".join(player_dialog(i, pl, len(players), hist, titles) for i, pl in enumerate(players))
     dialogs += "".join(team_dialog(i, t, data, id_of) for i, t in enumerate(data["league"]))
 
+    archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
     fixtures_html = section_fixtures(data, id_of)
     prow = ""
     for pi, p in enumerate(players):
@@ -148,5 +149,5 @@ def render(data, hist):
 <tbody>{mrows}</tbody></table></div></section>
 
 </div>
-<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}</footer>
+<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}{archiv_link}</footer>
 </main>{dialogs}<script>{JS}</script></body></html>"""
