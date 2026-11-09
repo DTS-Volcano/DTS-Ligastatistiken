@@ -230,7 +230,7 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .imgprev{margin:12px 0;text-align:center}.imgprev img{max-width:min(100%,340px);height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 auto 10px}
 .imgprev a.rb{text-decoration:none;display:inline-block}
 </style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap"><img class="logo" src="logo.png" alt="Vereinslogo" width="96" height="96"><div><h1>Double Trouble Steeldarters</h1>
-<p class="sub">Liga STSO S 2 · Stand <time id="stand" datetime="2026-11-09T17:18+01:00">09.11.2026 17:18</time> · Rangliste jeweils aktuell</p></div><a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo.png" alt="VFC Dartverband" height="40"></a><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
+<p class="sub">Liga STSO S 2 · Stand <time id="stand" datetime="2026-11-09T17:27+01:00">09.11.2026 17:27</time> · Rangliste jeweils aktuell</p></div><a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo.png" alt="VFC Dartverband" height="40"></a><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main>
 <nav class="tabs" aria-label="Bereiche"><a href="#uebersicht">Übersicht</a><a href="#spieler">Spieler</a><a href="#liga">Team &amp; Liga</a><a href="#analyse">Analyse</a><a href="#partien">Partien</a></nav>
@@ -329,11 +329,12 @@ if(b){const h=96,w=h*b.width/b.height;x.drawImage(b,W-60-w,70,w,h)}
 x.textAlign='center';x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText('Liga STSO S 2 · '+d.date,W/2,300);
 x.fillStyle='#fff';
 let y=420;[d.home,d.guest].forEach((t,i)=>{const s=fitText(x,t,900,76,'700 $px '+SERIF,34);x.font='700 '+s+'px '+SERIF;x.fillText(t,W/2,y);y+=i?0:70;if(!i){x.fillStyle='#c9bcbe';x.font='32px '+SANS;x.fillText('gegen',W/2,y+10);x.fillStyle='#fff';y+=90}});
-x.fillStyle='#fff';x.font='700 250px '+SERIF;x.fillText(d.pts,W/2,y+250);y+=300;
-x.fillStyle='#c9bcbe';x.font='36px '+SANS;x.fillText('Spiele '+d.games+(d.sets?'  ·  Sätze '+d.sets:''),W/2,y+30);y+=100;
+y+=100;x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText('Spiele',W/2,y);
+x.fillStyle='#fff';x.font='700 190px '+SERIF;x.fillText(d.games,W/2,y+190);y+=190;
+if(d.sets){x.fillStyle='#c9bcbe';x.font='36px '+SANS;x.fillText('Sätze '+d.sets,W/2,y+70);y+=70}
+y+=90;
 if(d.mvp&&d.mvp.length){x.fillStyle=red;x.fillRect(W/2-300,y,600,4);y+=64;x.fillStyle='#c9bcbe';x.font='30px '+SANS;x.fillText(d.mvp.length>1?'Spieler des Spiels':'Spieler des Spiels',W/2,y);y+=56;
 x.fillStyle='#fff';d.mvp.forEach(p=>{x.font='700 44px '+SERIF;x.fillText(p[0]+'  '+p[1],W/2,y);y+=44;x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(p[2],W/2,y);x.fillStyle='#fff';y+=54})}
-x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(location.host?location.host+location.pathname.replace(/index\.html$/,''):'Double Trouble Steeldarters',W/2,H-60);
 const blob=await new Promise(r=>c.toBlob(r,'image/png'));
 const name='ergebnis-'+(d.home+'-'+d.guest).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.png';
 const f=new File([blob],name,{type:'image/png'});
