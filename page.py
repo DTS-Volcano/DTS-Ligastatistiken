@@ -146,7 +146,7 @@ def render(data, hist):
 <title>{esc(TEAM)} – Statistik {esc(GROUP)}</title>
 {icon}
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
-<meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DTS Statistik">
+<meta name="dts-logos" content="{('logo' + LOGO.suffix.lower()) if LOGO else ''},{('vfc-logo' + VFC_LOGO.suffix.lower()) if VFC_LOGO else ''}"><meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DTS Statistik">
 <style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
 <p class="sub">Liga {esc(GROUP)} · Stand <time id="stand" datetime="{now_iso}">{now}</time> · Rangliste jeweils aktuell</p></div>{vfc}<button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>

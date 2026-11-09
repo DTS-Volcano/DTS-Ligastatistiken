@@ -29,11 +29,46 @@ function copyText(c,txt){const o=c.textContent,done=()=>{c.textContent='Kopiert 
 const fb=()=>{const a=document.createElement('textarea');a.value=txt;(c.closest('dialog')||document.body).appendChild(a);a.select();
 try{document.execCommand('copy');done()}catch(_){c.textContent='Kopieren nicht möglich'}a.remove()};
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}}
+/* Ergebnis-Bild (Canvas, 1080x1350) zum Teilen oder Speichern */
+function loadImg(src){return new Promise(r=>{if(!src)return r(null);const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src})}
+function fitText(x,t,w,start,font,min){let s=start;do{x.font=font.replace('$',s);if(x.measureText(t).width<=w)break;s-=2}while(s>min);return s}
+async function shareImg(btn,d){
+const old=btn.textContent;btn.textContent='Bild wird erstellt …';
+try{
+const m=document.querySelector('meta[name="dts-logos"]'),[l1,l2]=(m?m.content:',').split(',');
+const [a,b]=await Promise.all([loadImg(l1),loadImg(l2)]);
+if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+const cs=getComputedStyle(document.documentElement),red=(cs.getPropertyValue('--green')||'#9a1b1c').trim()||'#9a1b1c';
+x.fillStyle='#17100f';x.fillRect(0,0,W,H);
+x.fillStyle=red;x.fillRect(0,0,W,14);x.fillRect(0,H-14,W,14);
+const g=x.createRadialGradient(W/2,H*.42,40,W/2,H*.42,720);g.addColorStop(0,'#3a1a1b');g.addColorStop(1,'#17100f');x.fillStyle=g;x.fillRect(0,14,W,H-28);
+const SERIF='Georgia,"Times New Roman",serif',SANS='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+if(a)x.drawImage(a,60,60,170,170*a.height/a.width);
+if(b){const h=96,w=h*b.width/b.height;x.drawImage(b,W-60-w,70,w,h)}
+x.textAlign='center';x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText('Liga STSO S 2 · '+d.date,W/2,300);
+x.fillStyle='#fff';
+let y=420;[d.home,d.guest].forEach((t,i)=>{const s=fitText(x,t,900,76,'700 $px '+SERIF,34);x.font='700 '+s+'px '+SERIF;x.fillText(t,W/2,y);y+=i?0:70;if(!i){x.fillStyle='#c9bcbe';x.font='32px '+SANS;x.fillText('gegen',W/2,y+10);x.fillStyle='#fff';y+=90}});
+x.fillStyle='#fff';x.font='700 250px '+SERIF;x.fillText(d.pts,W/2,y+250);y+=300;
+x.fillStyle='#c9bcbe';x.font='36px '+SANS;x.fillText('Spiele '+d.games+(d.sets?'  ·  Sätze '+d.sets:''),W/2,y+30);y+=100;
+if(d.mvp&&d.mvp.length){x.fillStyle=red;x.fillRect(W/2-300,y,600,4);y+=64;x.fillStyle='#c9bcbe';x.font='30px '+SANS;x.fillText(d.mvp.length>1?'Spieler des Spiels':'Spieler des Spiels',W/2,y);y+=56;
+x.fillStyle='#fff';d.mvp.forEach(p=>{x.font='700 44px '+SERIF;x.fillText(p[0]+'  '+p[1],W/2,y);y+=44;x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(p[2],W/2,y);x.fillStyle='#fff';y+=54})}
+x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(location.host?location.host+location.pathname.replace(/index\.html$/,''):'Double Trouble Steeldarters',W/2,H-60);
+const blob=await new Promise(r=>c.toBlob(r,'image/png'));
+const name='ergebnis-'+(d.home+'-'+d.guest).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.png';
+const f=new File([blob],name,{type:'image/png'});
+if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:d.home+' '+d.pts+' '+d.guest});btn.textContent=old;return}catch(e){if(e&&e.name==='AbortError'){btn.textContent=old;return}}}
+const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);
+btn.textContent='Bild gespeichert'
+}catch(e){btn.textContent='Bild nicht möglich'}
+setTimeout(()=>{btn.textContent=old},2200)}
 document.addEventListener('click',e=>{
 const l=e.target.closest('[data-link]');
 if(l){const d=l.closest('dialog');copyText(l,location.origin+location.pathname+location.search+'#~'+d.dataset.s);return}
 const c=e.target.closest('[data-copy]');
 if(c){copyText(c,c.dataset.copy);return}
+const im=e.target.closest('[data-img]');
+if(im){shareImg(im,JSON.parse(im.dataset.img));return}
 const g=e.target.closest('[data-go]');
 if(g){if(!g.disabled)openDlg(document.getElementById(g.dataset.go));return}
 const t=e.target.closest('[data-open]');

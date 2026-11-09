@@ -1,4 +1,5 @@
 """Wiederverwendbare HTML-Bausteine: Form-Punkte, Kurven, Report- und Team-Fenster."""
+import json
 from collections import defaultdict
 
 from datetime import datetime
@@ -193,6 +194,18 @@ def match_dialog(dom_id, m, ranks, total=None, i=0):
                        f'<b class="sc {"win" if e["won"] else "loss"}">{dot(e["won"])} {e["sets"]}</b><span></span></div>'
                        for e in m["extras"])
         cards += f'<div class="rc"><h4>Doppel und Sudden Death</h4>{rows}</div>'
+    st = {}
+    for pairs in m["rounds"].values():
+        for p in pairs:
+            for nm, tm_, w in ((p["mine"], m.get("team", TEAM), p["won"]), (p["opp"], m["opp"], not p["won"])):
+                e = st.setdefault(nm, [0, 0, tm_])
+                e[0 if w else 1] += 1
+    best = sorted(st.items(), key=lambda kv: (-kv[1][0], kv[1][1]))
+    mvp = [(n, f"{v[0]}:{v[1]}", v[2]) for n, v in best if best and (v[0], v[1]) == (best[0][1][0], best[0][1][1])][:2]
+    img = json.dumps({"home": m.get("team", TEAM), "guest": m["opp"], "pts": m["points"], "games": m["games"],
+                      "sets": m.get("sets", ""), "date": fmt_date(m["date"]), "mvp": mvp,
+                      "mine": m.get("team", TEAM).lower() == TEAM.lower() or m["opp"].lower() == TEAM.lower()},
+                     ensure_ascii=False)
     link = (f'<p class="hint"><a href="{esc(m["url"])}" target="_blank" rel="noopener">Originalreport auf vfc.ch</a></p>'
             if m.get("url") else "")
     return (f'<dialog id="{dom_id}" data-s="r{m["nr"]}" aria-label="Spielreport {esc(m["opp"])}"><div class="dlg">'
@@ -201,7 +214,7 @@ def match_dialog(dom_id, m, ranks, total=None, i=0):
             f'<h3 class="vs">{esc(m.get("team", TEAM))} <span class="sc {"win" if won_match else "loss"}">{m["points"]}</span> {esc(m["opp"])}</h3>'
             f'<p class="sub">{RESULT.get(pts, "")} · Spiele {m["games"]} · Sätze {m.get("sets", "–")}</p>'
             f'<div class="rounds">{cards}</div>{link}'
-            f'<p class="acts"><button class="rb" data-copy="{esc(share_text(m)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button> <button class="rb" data-link>Link kopieren</button></p>'
+            f'<p class="acts"><button class="rb" data-copy="{esc(share_text(m)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button> <button class="rb" data-link>Link kopieren</button> <button class="rb" data-img="{esc(img)}">Ergebnis als Bild</button></p>'
             + (f'<div class="nav"><button class="rb nb-prev" data-go="m{i - 1}"{"" if i > 0 else " disabled"}>‹ Vorherige Partie</button>'
                f'<button class="rb nb-next" data-go="m{i + 1}"{"" if i < total - 1 else " disabled"}>Nächste Partie ›</button></div>'
                if total else "") + '</div></dialog>')
