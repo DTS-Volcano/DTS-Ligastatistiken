@@ -28,3 +28,13 @@ function run(){const [q,mon,home,win]=el.map(e=>e.value.trim().toLowerCase());le
 rows.forEach(r=>{const ok=(!q||r.dataset.q.includes(q))&&(!mon||r.dataset.mon===mon)&&(home===''||r.dataset.home===home)&&(win===''||r.dataset.win===win);r.hidden=!ok;if(ok)n++});
 const f=q||mon||home!==''||win!=='';cnt.textContent=f?(n?n+' von '+rows.length+' Partien':'Keine Partie gefunden'):''}
 el.forEach(e=>e.addEventListener('input',run))})();
+
+(()=>{let tip=null,cur=null;
+function hide(){if(tip)tip.hidden=true;cur=null}
+function show(b){const d=b.closest('dialog')||document.body;if(!tip||tip.parentNode!==d){tip&&tip.remove();tip=document.createElement('div');tip.id='tip';tip.setAttribute('role','tooltip');d.appendChild(tip)}
+tip.textContent=b.dataset.tip;tip.hidden=false;cur=b;const r=b.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+let x=Math.min(Math.max(8,r.left+r.width/2-w/2),innerWidth-w-8),y=r.top-h-8;if(y<8)y=r.bottom+8;tip.style.left=x+'px';tip.style.top=y+'px'}
+document.addEventListener('mouseover',e=>{const b=e.target.closest('.badge');if(b)show(b);else if(cur)hide()});
+document.addEventListener('focusin',e=>{const b=e.target.closest('.badge');if(b)show(b);else hide()});
+document.addEventListener('click',e=>{const b=e.target.closest('.badge');if(b){cur===b&&tip&&!tip.hidden&&e.detail===0?hide():show(b)}else hide()});
+document.addEventListener('focusout',hide);document.addEventListener('scroll',hide,true)})();

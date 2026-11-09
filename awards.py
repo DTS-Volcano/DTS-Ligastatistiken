@@ -55,7 +55,7 @@ def player_awards(p, titles):
     rows = p["rows"]
     out = []
     for t in titles.get(p["name"], []):
-        out.append((f"Spieler des Monats {t}", "Beste Siegquote im Monat (siehe Übersicht)"))
+        out.append((f"Spieler des Monats {t}", "Beste Siegquote im Einzel in diesem Monat (mindestens 5 Einzel)"))
     # Serien
     best = cur = 0
     for r in rows:
@@ -69,15 +69,15 @@ def player_awards(p, titles):
     if now >= 3:
         out.append((f"Siegesserie {now}", f"Die letzten {now} Einzel in Folge gewonnen"))
     if best >= 4 and best > now:
-        out.append((f"Beste Serie {best}", f"{best} Einzel in Folge gewonnen"))
+        out.append((f"Beste Serie {best}", f"Längste Siegesserie der Saison: {best} Einzel in Folge gewonnen"))
     # Giganten
     gk = sum(1 for r in rows if r["won"] and r["opp_rank"] and r["opp_rank"] <= TOP)
     if gk:
-        out.append((f"Giant Killer ×{gk}" if gk > 1 else "Giant Killer", f"Einzel gegen Spieler der Top {TOP} gewonnen"))
+        out.append((f"Favoritenschreck ×{gk}" if gk > 1 else "Favoritenschreck", f"Einzel gegen einen Spieler der Top {TOP} gewonnen"))
     # Start
     r1 = [r for r in rows if r.get("round") == 1]
     if len(r1) >= 4 and sum(r["won"] for r in r1) / len(r1) >= 0.7:
-        out.append(("Starker Starter", f"Runde 1: {sum(r['won'] for r in r1)}:{len(r1) - sum(r['won'] for r in r1)}"))
+        out.append(("Starker Starter", f"Mindestens 70 % der Einzel in Runde 1 gewonnen (aktuell {sum(r['won'] for r in r1)}:{len(r1) - sum(r['won'] for r in r1)})"))
     # perfekte Abende
     day = defaultdict(list)
     for r in rows:
@@ -85,5 +85,5 @@ def player_awards(p, titles):
     perfect = [d for d, w in day.items() if len(w) >= 3 and all(w)]
     if perfect:
         out.append((f"Weisse Weste ×{len(perfect)}" if len(perfect) > 1 else "Weisse Weste",
-                    "Alle Einzel an einem Spieltag gewonnen (mindestens 3)"))
+                    "Alle Einzel eines Spieltags gewonnen (mindestens 3 Einzel gespielt)"))
     return out

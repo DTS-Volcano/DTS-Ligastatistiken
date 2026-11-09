@@ -106,7 +106,7 @@ def player_dialog(idx, p, total, hist, titles=None):
     table = ("<h4>Alle Einzel</h4><div class='scroll'><table><thead><tr><th>Rang</th><th>Gegner</th><th>Team</th><th>Bilanz</th>"
              f"<th>Sätze</th></tr></thead><tbody>{body}</tbody></table></div>")
     aw = player_awards(p, titles or {})
-    badges = ("<p class='badges'>" + "".join(f"<span class='badge{' pm' if n.startswith('Spieler des Monats') else ''}' title='{esc(h)}'>{esc(n)}</span>" for n, h in aw) + "</p>") if aw else ""
+    badges = ("<p class='badges'>" + "".join(f"<button type='button' class='badge{' pm' if n.startswith('Spieler des Monats') else ''}' data-tip='{esc(h)}'>{esc(n)}</button>" for n, h in aw) + "</p>") if aw else ""
     share = [f"{name} – Rang {p['rank'] or '–'} ({TEAM})",
              f"Einzel {p['w']}:{p['l']} ({quote}) · Form " + " ".join("S" if r["won"] else "N" for r in rows[-5:])]
     if aw:

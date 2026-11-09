@@ -141,7 +141,10 @@ table.fx td{vertical-align:middle}
 @media (max-width:699px){.tabs a{font-size:.8rem;padding-inline:4px}}
 
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
-.badge{background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 11px;font-size:.8rem;font-weight:600;letter-spacing:.01em;cursor:help}
+.badge{border:0;font-family:inherit;background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 11px;font-size:.8rem;font-weight:600;letter-spacing:.01em;cursor:help}
+.badge:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+#tip{position:fixed;z-index:10;max-width:240px;background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 11px;font-size:.85rem;line-height:1.35;box-shadow:0 4px 16px #0005;pointer-events:none}
+#tip[hidden]{display:none}
 .badge.pm{background:var(--green);color:#fff}
 
 .filter{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
