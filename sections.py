@@ -316,3 +316,50 @@ def section_homeaway(matches, players):
                    "<div class='scroll'><table class='sticky'><thead><tr><th>Spieler</th><th class='num'>Heim</th>"
                    f"<th class='num'>Auswärts</th></tr></thead><tbody>{prow}</tbody></table></div></section>")
     return team_html, player_html
+
+
+def section_fixtures(data, id_of):
+    """Alle Spiele der Liga: Ergebnisse (anklickbar, falls der Report vorliegt) und kommende Spiele."""
+    sched = data["schedule"]
+    if not sched:
+        return ""
+    me = TEAM.lower()
+    score = {}
+    for m in data["matches"]:
+        h, g = (TEAM, m["opp"]) if m["home"] else (m["opp"], TEAM)
+        score[m["nr"]] = m["points"] if m["home"] else ":".join(reversed(m["points"].split(":")))
+    for nr, m in data["others"].items():
+        score[nr] = m["points"]
+
+    def rows(items):
+        out = ""
+        for f in items:
+            mine = me in (f["home"].lower(), f["guest"].lower())
+            sc = score.get(f["nr"], "")
+            dom = id_of.get(f["nr"])
+            attr = f" data-open='{dom}'" if dom and sc else ""
+            out += (f"<tr class='{'click ' if attr else ''}{'hl' if mine else ''}'{attr}><td>{f['date'][:6]}</td>"
+                    f"<td class='fxm'>{esc(f['home'])}<br>{esc(f['guest'])}</td>"
+                    f"<td class='num'>{sc or '–'}</td></tr>")
+        return out
+
+    def table(items, head):
+        return (f"<div class='scroll'><table class='fx'><thead><tr><th>Datum</th><th>Begegnung</th><th class='num'>{head}</th></tr></thead>"
+                f"<tbody>{rows(items)}</tbody></table></div>")
+
+    played = sorted((f for f in sched if f["played"]), key=lambda f: dkey(f["date"]), reverse=True)
+    todo = sorted((f for f in sched if not f["played"]), key=lambda f: dkey(f["date"]))
+    N = 10
+
+    def block(items, head):
+        if not items:
+            return "<p class='hint'>Keine.</p>"
+        html = table(items[:N], head)
+        if len(items) > N:
+            html += f"<details><summary>Weitere {len(items) - N} anzeigen</summary>{table(items[N:], head)}</details>"
+        return html
+
+    return ("<section><h2>Ergebnisse der Liga</h2><p class='hint'>Alle Partien der Gruppe, neueste zuerst. "
+            "Auf eine Zeile klicken für den Report, unsere Spiele sind hervorgehoben.</p>"
+            f"{block(played, 'Punkte')}</section>"
+            f"<section><h2>Kommende Spiele der Liga</h2>{block(todo, '')}</section>")

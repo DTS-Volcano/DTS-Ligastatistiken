@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import AUTHOR, GROUP, LOGO, MID, TEAM, TOP
-from sections import section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
+from sections import section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
 
@@ -45,6 +45,7 @@ def render(data, hist):
     dialogs += "".join(player_dialog(i, pl, len(players), hist) for i, pl in enumerate(players))
     dialogs += "".join(team_dialog(i, t, data, id_of) for i, t in enumerate(data["league"]))
 
+    fixtures_html = section_fixtures(data, id_of)
     prow = ""
     for pi, p in enumerate(players):
         b = p["brackets"]
@@ -118,6 +119,7 @@ def render(data, hist):
 
 <div class="panel" id="p-liga">
 {league_html}
+{fixtures_html}
 {ha_team}
 {section_rounds(matches)}
 </div>

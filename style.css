@@ -134,3 +134,8 @@ dl.kpi.rk dd.win{color:var(--win)}dl.kpi.rk dd.loss{color:var(--red)}
 .hof{list-style:none;margin:0;padding:0}
 .hof li{display:flex;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
 .hof li span{color:var(--mute);min-width:9.5em}.hof li b{margin-left:auto;font-variant-numeric:tabular-nums}
+
+table.fx td.fxm{white-space:normal;line-height:1.35;width:100%}
+table.fx td{vertical-align:middle}
+.tabs a{white-space:nowrap}
+@media (max-width:699px){.tabs a{font-size:.8rem;padding-inline:4px}}
