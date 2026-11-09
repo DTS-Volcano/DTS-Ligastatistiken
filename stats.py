@@ -55,6 +55,7 @@ def build_stats():
     team_games = defaultdict(lambda: defaultdict(list))   # Team -> Spieler -> Einzel (Liga-weit)
     team_matches = defaultdict(list)                      # Team -> Partien (aus Sicht des Teams)
     others = {}                                           # Partien ohne uns (Sicht des Heimteams)
+    team_full = defaultdict(list)                         # Team -> Partien mit Runden (Sicht des Teams, wie matches)
     state = {"cached": 0, "new": 0, "stop": False, "error": None}
     for nr, url in sorted(links.items()):
         rep = load_report(nr, url, state)
@@ -74,6 +75,16 @@ def build_stats():
             team_matches[tl].append({"nr": nr, "date": rep["date"], "opp": oname, "home": is_home,
                                      "points": s[0] if is_home else swap(s[0]),
                                      "games": s[1] if is_home else swap(s[1])})
+        for tl, is_home in ((teams[0], True), (teams[1], False)):
+            f = {"date": rep["date"], "opp": rep["guest"] if is_home else rep["home"], "home": is_home,
+                 "points": s[0] if is_home else swap(s[0]), "games": s[1] if is_home else swap(s[1]),
+                 "sets": s[2] if is_home else swap(s[2]), "nr": nr, "rounds": {}, "extras": []}
+            for g in rep["games"]:
+                mine, opp = (g["home"], g["guest"]) if is_home else (g["guest"], g["home"])
+                f["rounds"].setdefault(g["round"] or 0, []).append(
+                    {"mine": mine, "opp": opp, "sets": g["sets"] if is_home else swap(g["sets"]),
+                     "won": g["home_win"] == is_home})
+            team_full[tl].append(f)
         if me not in teams:
             others[nr] = {"team": rep["home"], "date": rep["date"], "opp": rep["guest"], "home": True,
                           "points": s[0], "games": s[1], "sets": s[2], "url": url, "nr": nr,
@@ -131,7 +142,8 @@ def build_stats():
                 ranks[name] = rk
     return {"matches": matches, "players": players, "league": league, "schedule": schedule,
             "team_games": team_games, "ranks": ranks, "ranking": ranking,
-            "team_matches": team_matches, "others": others}
+            "team_matches": team_matches, "others": others,
+            "team_full": {k: sorted(v, key=lambda m: dkey(m["date"])) for k, v in team_full.items()}}
 
 
 def update_history(ranks):

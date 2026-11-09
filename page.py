@@ -92,9 +92,23 @@ def render(data, hist):
     dialogs += "".join(team_dialog(i, t, data, id_of, pid) for i, t in enumerate(data["league"]))
 
     archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
-    fixtures_html = section_fixtures(data, id_of)
-    verlauf_html = section_verlauf(data)
     ha_team, ha_players = section_homeaway(matches, players)
+    liga_opts, liga_blocks = "", ""
+    tf = data.get("team_full", {})
+    order_t = [data["league"][i]["team"] for i in range(len(data["league"]))]
+    order_t = order_t or [TEAM]
+    order_t.sort(key=lambda n: (n.lower() != TEAM.lower(), n.lower()))
+    for ti, name in enumerate(order_t):
+        own_t = name.lower() == TEAM.lower()
+        tm = matches if own_t else tf.get(name.lower(), [])
+        key = "own" if own_t else f"l{ti}"
+        liga_opts += f"<option value='{key}'>{esc(name)}</option>"
+        liga_blocks += (f"<div class='lb' data-t='{key}'{'' if own_t else ' hidden'}>{section_league(data, name)}</section>"
+                        f"{section_fixtures(data, id_of, name)}{section_verlauf(data, name, tm)}"
+                        f"{section_homeaway(tm, [], own_t)[0]}{section_rounds(tm)}</div>")
+    liga_opts += "<option value='all'>Alle Vereine</option>"
+    liga_blocks += (f"<div class='lb' data-t='all' hidden>{section_league(data)}</section>"
+                    f"{section_fixtures(data, id_of)}</div>")
     next_html, open_html = section_next(data, matches, pid)
     league_html = section_league(data) + "</section>"
     open_html = f"<section>{open_html}</section>" if open_html else ""
@@ -194,11 +208,9 @@ def render(data, hist):
 </div>
 
 <div class="panel" id="p-liga">
-{league_html}
-{fixtures_html}
-{verlauf_html}
-{ha_team}
-{section_rounds(matches)}
+<section><h2>Team und Liga</h2>
+<form class="filter" onsubmit="return false"><select id="f-liga" aria-label="Verein">{liga_opts}</select></form></section>
+{liga_blocks}
 </div>
 
 <div class="panel" id="p-partien">

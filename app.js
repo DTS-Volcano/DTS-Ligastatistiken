@@ -99,6 +99,12 @@ document.querySelectorAll('.tp').forEach(b=>{b.hidden=b.dataset.t!==t;
 if(!b.hidden)b.querySelectorAll('table.sortable tbody tr').forEach(r=>{r.hidden=!!s&&!r.dataset.q.includes(s)})})}
 sel.addEventListener('change',run);q.addEventListener('input',run)})();
 
+(()=>{const s=document.getElementById('f-liga');if(!s)return;
+const run=()=>document.querySelectorAll('.lb').forEach(b=>{b.hidden=b.dataset.t!==s.value});
+s.addEventListener('change',run);
+try{const v=localStorage.getItem('dts.liga');if(v&&[...s.options].some(o=>o.value===v)){s.value=v;run()}}catch(_){}
+s.addEventListener('change',()=>{try{localStorage.setItem('dts.liga',s.value)}catch(_){}})})();
+
 /* Zustand merken */
 (()=>{const get=k=>{try{return localStorage.getItem(k)}catch(_){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};
 const ft=document.getElementById('f-team');if(ft){const v=get('dts.team');if(v&&[...ft.options].some(o=>o.value===v)){ft.value=v;ft.dispatchEvent(new Event('change'))}ft.addEventListener('change',()=>set('dts.team',ft.value))}

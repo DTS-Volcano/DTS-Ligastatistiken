@@ -90,11 +90,11 @@ def section_next(data, matches, pid=None):
     return nxt_html, open_html
 
 
-def section_league(data):
+def section_league(data, hl=None):
     if not data["league"]:
         return ("<section><h2>Tabelle</h2><p class='hint'>Die Tabelle konnte von vfc.ch gerade nicht gelesen werden. "
                 "Der nächste automatische Lauf versucht es erneut.</p>")
-    me = TEAM.lower()
+    me = (hl or TEAM).lower()
     rows = "".join(
         f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
         f"<td><button class='tl' data-open='t{i}'>{esc(t['team'])}</button></td>"
@@ -256,7 +256,7 @@ def section_potm(players, pidx):
             f"{hall}</section>")
 
 
-def section_homeaway(matches, players):
+def section_homeaway(matches, players, own=True):
     """Gibt (Team-Teil, Spieler-Teil) zurück."""
     """Heim gegen Auswärts: Partien, Punkte und Einzel für das Team und pro Spieler."""
     if not matches:
@@ -289,7 +289,7 @@ def section_homeaway(matches, players):
             continue
         (hw, hl), (aw, al) = d[True], d[False]
         prow += (f"<tr><td>{esc(p['name'])}</td><td class='num'>{hw}:{hl}</td><td class='num'>{aw}:{al}</td></tr>")
-    team_html = ("<section><h2>Heim und Auswärts</h2><p class='hint'>Unser Team daheim gegen auswärts. Einzel ohne Doppel und Sudden Death.</p>"
+    team_html = (f"<section><h2>Heim und Auswärts</h2><p class='hint'>{'Unser Team' if own else 'Das Team'} daheim gegen auswärts. Einzel ohne Doppel und Sudden Death.</p>"
                  "<div class='scroll'><table><thead><tr><th></th><th class='num'>Partien</th><th class='num'>Siege:Niederl.</th>"
                  f"<th class='num'>Punkte</th><th class='num'>Einzel</th><th class='num'>Quote</th></tr></thead><tbody>{rows}</tbody></table></div></section>")
     player_html = ("<section><h2>Heim und Auswärts</h2><p class='hint'>Einzelbilanz pro Spieler (Siege:Niederlagen).</p>"
@@ -298,12 +298,14 @@ def section_homeaway(matches, players):
     return team_html, player_html
 
 
-def section_fixtures(data, id_of):
+def section_fixtures(data, id_of, team=None):
     """Alle Spiele der Liga: Ergebnisse (anklickbar, falls der Report vorliegt) und kommende Spiele."""
     sched = data["schedule"]
     if not sched:
         return ""
-    me = TEAM.lower()
+    me = (team or TEAM).lower()
+    if team:
+        sched = [f for f in sched if me in (f["home"].lower(), f["guest"].lower())]
     score = {}
     for m in data["matches"]:
         h, g = (TEAM, m["opp"]) if m["home"] else (m["opp"], TEAM)
@@ -314,7 +316,7 @@ def section_fixtures(data, id_of):
     def rows(items):
         out = ""
         for f in items:
-            mine = me in (f["home"].lower(), f["guest"].lower())
+            mine = not team and me in (f["home"].lower(), f["guest"].lower())
             sc = score.get(f["nr"], "")
             dom = id_of.get(f["nr"])
             attr = f" data-open='{dom}'" if dom and sc else ""
@@ -339,6 +341,9 @@ def section_fixtures(data, id_of):
             html += f"<details><summary>Weitere {len(items) - N} anzeigen</summary>{table(items[N:], head)}</details>"
         return html
 
+    if team:
+        return (f"<section><h2>Ergebnisse</h2><p class='hint'>Alle Partien von {esc(team)}, neueste zuerst. Auf eine Zeile klicken für den Report.</p>"
+                f"{block(played, 'Punkte')}</section><section><h2>Kommende Spiele</h2>{block(todo, '')}</section>")
     return ("<section><h2>Ergebnisse der Liga</h2><p class='hint'>Alle Partien der Gruppe, neueste zuerst. "
             "Auf eine Zeile klicken für den Report, unsere Spiele sind hervorgehoben.</p>"
             f"{block(played, 'Punkte')}</section>"

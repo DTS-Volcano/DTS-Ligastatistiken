@@ -9,9 +9,10 @@ WIDE = {"W": 640, "H": 240, "PL": 34, "PR": 46, "PT": 18, "PB": 32, "stride": 1,
 NARROW = {"W": 360, "H": 230, "PL": 28, "PR": 34, "PT": 16, "PB": 30, "stride": 2, "cls": "chart-n"}
 
 
-def standings_history(data):
+def standings_history(data, team=None, matches=None):
     """Je eigenem Spieltag: Tabelle aus allen bis dahin gespielten Partien der Liga (Punkte, dann Spiele- und Satzdifferenz)."""
-    me = TEAM.lower()
+    me = (team or TEAM).lower()
+    matches = data["matches"] if matches is None else matches
     res = []     # (Datum, Heim, Gast, Punkte Heim, Punkte Gast, Spiele-Diff Heim, Sätze-Diff Heim)
     mine = {m["nr"]: m for m in data["matches"]}
     for f in data["schedule"]:
@@ -33,7 +34,7 @@ def standings_history(data):
         s = [int(x) for x in sets.split(":")] if ":" in sets else [0, 0]
         res.append((dkey(f["date"]), f["home"], f["guest"], a[0], a[1], g[0] - g[1], s[0] - s[1]))
     res.sort(key=lambda r: r[0])
-    days = sorted({dkey(m["date"]) for m in data["matches"]})
+    days = sorted({dkey(m["date"]) for m in matches})
     out = []
     for day in days:
         tab = defaultdict(lambda: [0, 0, 0, 0])      # Punkte, Spiele-Diff, Sätze-Diff, Partien
@@ -125,8 +126,10 @@ def legend(items):
     return "<p class='lg'>" + "".join(f"<span><i class='k {c}'></i>{esc(t)}</span>" for c, t in items) + "</p>"
 
 
-def section_verlauf(data):
-    hist = standings_history(data)
+def section_verlauf(data, team=None, matches=None):
+    team = team or TEAM
+    matches = data["matches"] if matches is None else matches
+    hist = standings_history(data, team, matches)
     if len(hist) < 2:
         return ""
     labels = [h["date"].strftime("%d.%m.") for h in hist]
@@ -137,11 +140,11 @@ def section_verlauf(data):
     step = 3 if pmax <= 18 else 6 if pmax <= 36 else 9
     top = -(-pmax // step) * step
     c2 = both(line_chart, labels, [{"name": "Tabellenführer", "vals": [h["lead"] for h in hist], "me": False},
-                                   {"name": "Wir", "vals": [h["pts"] for h in hist], "me": True}],
+                                   {"name": "Team", "vals": [h["pts"] for h in hist], "me": True}],
               list(range(0, top + 1, step)), 0, top, "Punkte nach jedem Spieltag, wir und der Tabellenführer")
     # Einzelquote pro Spieltag
     vals, tips, tot_w, tot_l, avg = [], [], 0, 0, []
-    for m in sorted(data["matches"], key=lambda m: dkey(m["date"])):
+    for m in sorted(matches, key=lambda m: dkey(m["date"])):
         w = l = 0
         for pairs in m["rounds"].values():
             for p in pairs:
@@ -152,7 +155,7 @@ def section_verlauf(data):
             tips.append(f"{m['date'][:6]} gegen {m['opp']}: {w}:{l} Einzel")
             tot_w, tot_l = tot_w + w, tot_l + l
             avg.append(100 * tot_w / (tot_w + tot_l))
-    ml = [dkey(m["date"]).strftime("%d.%m.") for m in sorted(data["matches"], key=lambda m: dkey(m["date"]))
+    ml = [dkey(m["date"]).strftime("%d.%m.") for m in sorted(matches, key=lambda m: dkey(m["date"]))
           if any(m["rounds"].values())]
     c3 = both(bar_chart, ml, vals, tips, avg[-1], "Einzelquote pro Spieltag mit Gesamtschnitt") if len(vals) >= 2 else ""
     rows = "".join(f"<tr><td>{labels[i]}</td><td class='num'>{h['rank']}</td><td class='num'>{h['pts']}</td>"
@@ -160,8 +163,8 @@ def section_verlauf(data):
     table = ("<details><summary>Werte als Tabelle<span></span></summary><div class='scroll'><table><thead><tr><th>Spieltag</th>"
              "<th class='num'>Platz</th><th class='num'>Punkte</th><th class='num'>Tabellenführer</th></tr></thead>"
              f"<tbody>{rows}</tbody></table></div></details>")
-    return ("<section><h2>Saisonverlauf</h2><p class='hint'>Stand der Liga nach jedem unserer Spieltage, berechnet aus allen "
+    return ("<section><h2>Saisonverlauf</h2><p class='hint'>Stand der Liga nach jedem Spieltag dieses Teams, berechnet aus allen "
             "bis dahin gespielten Partien der Gruppe.</p>"
-            f"<h3>Tabellenplatz</h3>{c1}<h3>Punkte</h3>{legend([('me', 'Wir'), ('ref', 'Tabellenführer')])}{c2}"
+            f"<h3>Tabellenplatz</h3>{c1}<h3>Punkte</h3>{legend([('me', team), ('ref', 'Tabellenführer')])}{c2}"
             + (f"<h3>Einzelquote pro Spieltag</h3>{legend([('bar', 'Gewonnene Einzel pro Partie in %'), ('avg', 'Saisonschnitt')])}{c3}" if c3 else "")
             + table + "</section>")
