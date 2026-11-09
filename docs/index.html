@@ -226,8 +226,11 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .two{display:grid;grid-template-columns:1fr;gap:0 28px}
 @media (min-width:760px){.two{grid-template-columns:1fr 1fr}}
 .res li.mn .ro,.res li.mn .rd{font-weight:700}.res li.mn{border-left:3px solid var(--green);padding-left:6px}
+
+.imgprev{margin:12px 0;text-align:center}.imgprev img{max-width:min(100%,340px);height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 auto 10px}
+.imgprev a.rb{text-decoration:none;display:inline-block}
 </style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap"><img class="logo" src="logo.png" alt="Vereinslogo" width="96" height="96"><div><h1>Double Trouble Steeldarters</h1>
-<p class="sub">Liga STSO S 2 · Stand <time id="stand" datetime="2026-11-09T16:51+01:00">09.11.2026 16:51</time> · Rangliste jeweils aktuell</p></div><a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo.png" alt="VFC Dartverband" height="40"></a><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
+<p class="sub">Liga STSO S 2 · Stand <time id="stand" datetime="2026-11-09T17:18+01:00">09.11.2026 17:18</time> · Rangliste jeweils aktuell</p></div><a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo.png" alt="VFC Dartverband" height="40"></a><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main>
 <nav class="tabs" aria-label="Bereiche"><a href="#uebersicht">Übersicht</a><a href="#spieler">Spieler</a><a href="#liga">Team &amp; Liga</a><a href="#analyse">Analyse</a><a href="#partien">Partien</a></nav>
@@ -334,9 +337,14 @@ x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(location.host?location.host
 const blob=await new Promise(r=>c.toBlob(r,'image/png'));
 const name='ergebnis-'+(d.home+'-'+d.guest).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.png';
 const f=new File([blob],name,{type:'image/png'});
-if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:d.home+' '+d.pts+' '+d.guest});btn.textContent=old;return}catch(e){if(e&&e.name==='AbortError'){btn.textContent=old;return}}}
-const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);
-btn.textContent='Bild gespeichert'
+const dlg=btn.closest('dialog');let box=dlg.querySelector('.imgprev');if(box){URL.revokeObjectURL(box.dataset.u);box.remove()}
+const u=URL.createObjectURL(blob);box=document.createElement('div');box.className='imgprev';box.dataset.u=u;
+const can=navigator.canShare&&navigator.canShare({files:[f]});
+box.innerHTML='<img alt="Ergebnisbild" src="'+u+'"><p class="acts"><a class="rb" download="'+name+'" href="'+u+'">Bild speichern</a>'+(can?' <button type="button" class="rb" data-sh>Teilen …</button>':'')+' <button type="button" class="rb" data-x>Schliessen</button></p>';
+box.addEventListener('click',async e=>{if(e.target.closest('[data-x]')){URL.revokeObjectURL(u);box.remove()}
+if(e.target.closest('[data-sh]')){try{await navigator.share({files:[f],title:d.home+' '+d.pts+' '+d.guest})}catch(_){}}});
+btn.closest('.acts').after(box);box.scrollIntoView({block:'center',behavior:'smooth'});
+btn.textContent=old;return
 }catch(e){btn.textContent='Bild nicht möglich'}
 setTimeout(()=>{btn.textContent=old},2200)}
 document.addEventListener('click',e=>{
