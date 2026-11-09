@@ -12,7 +12,7 @@ footer{margin-top:40px}
 .top .sub{color:#c9bcbe;margin:0}
 .wrap{max-width:980px;margin:0 auto;padding:18px 16px}
 .brand{display:flex;align-items:center;gap:16px}
-.brand .logo{background:#fff;border-radius:50%;padding:3px;box-shadow:0 0 0 2px var(--green)}
+.brand .logo{filter:drop-shadow(0 0 1.5px #fffd) drop-shadow(0 0 7px #ffffff99)}
 .logo{width:clamp(64px,16vw,96px);height:auto;flex:none}
 .kpi{display:flex;flex-wrap:wrap;gap:12px 36px;margin:20px 0 0}
 .kpi div{border-top:3px solid var(--green);padding-top:6px;min-width:84px}
@@ -212,6 +212,6 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .jt:hover{border-color:var(--green)}.jt b{display:block;font-family:var(--serif);font-size:1.05rem}.jt span{color:var(--mute);font-size:.85rem}
 @media (min-width:700px){.jump{grid-template-columns:repeat(4,1fr)}}
 
-.vfc{margin-left:auto;align-self:flex-start;background:#fff;border-radius:8px;padding:4px 8px;display:flex}
-.vfc img{height:32px;width:auto;display:block}.vfc+.sbtn{margin-left:10px}
+.vfc{margin-left:auto;align-self:flex-start;display:flex}
+.vfc img{height:36px;width:auto;display:block;filter:drop-shadow(0 0 1.5px #fffd) drop-shadow(0 0 7px #ffffff99)}.vfc+.sbtn{margin-left:10px}
 .ovf{margin:14px 0 4px}
