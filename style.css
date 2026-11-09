@@ -211,3 +211,7 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .jt{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--ink)}
 .jt:hover{border-color:var(--green)}.jt b{display:block;font-family:var(--serif);font-size:1.05rem}.jt span{color:var(--mute);font-size:.85rem}
 @media (min-width:700px){.jump{grid-template-columns:repeat(4,1fr)}}
+
+.vfc{margin-left:auto;align-self:flex-start;background:#fff;border-radius:8px;padding:4px 8px;display:flex}
+.vfc img{height:32px;width:auto;display:block}.vfc+.sbtn{margin-left:10px}
+.ovf{margin:14px 0 4px}

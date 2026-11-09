@@ -8,8 +8,10 @@ from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
 
 
-def section_next(data, matches, pid=None):
-    me = TEAM.lower()
+def section_next(data, matches, pid=None, team=None):
+    team = team or TEAM
+    me = team.lower()
+    own = me == TEAM.lower()
     fx = sorted((f for f in data["schedule"] if not f["played"] and me in (f["home"].lower(), f["guest"].lower())),
                 key=lambda f: (dkey(f["date"]), f["nr"]))
     if not fx:
@@ -31,19 +33,20 @@ def section_next(data, matches, pid=None):
                      f"(Spiele {t['gp']}:{t['gm']}).")
     earlier = [m for m in matches if m["opp"].lower() == ol]
     if earlier:
-        lines.append("Bisher gegen sie: " + ", ".join(
+        lines.append(("Bisher gegen sie: " if own else "Bisher gegeneinander: ") + ", ".join(
             f"{m['points']} ({m['date'][:6]}, {'Heim' if m['home'] else 'Auswärts'}, Spiele {m['games']})" for m in earlier) + ".")
     else:
-        lines.append("Gegen dieses Team habt ihr in dieser Saison noch nicht gespielt.")
+        lines.append("Gegen dieses Team habt ihr in dieser Saison noch nicht gespielt." if own else f"{esc(team)} hat in dieser Saison noch nicht gegen dieses Team gespielt.")
 
     tidx = next((k for k, x in enumerate(data["league"]) if x["team"].lower() == ol), None)
 
     # Gegner-Kader
     vs_us = defaultdict(list)     # Gegner -> [(unser Spieler, Sätze aus unserer Sicht, gewonnen)]
-    for p in data["players"]:
-        for r in p["rows"]:
+    for pname, prow in data["team_games"].get(me, {}).items():
+        for r in prow:
             if r["opp_team"].lower() == ol:
-                vs_us[r["opp"]].append((p["name"], r["sets"], r["won"]))
+                vs_us[r["opp"]].append((pname, r["sets"], r["won"]))
+    wir = "euch" if own else short(team)
     roster = []
     for name, rows in data["team_games"].get(ol, {}).items():
         w = sum(r["won"] for r in rows)
@@ -61,13 +64,13 @@ def section_next(data, matches, pid=None):
             chips = "".join(
                 f"<span class='chip {'win' if won else 'loss'}'>{esc(short(n))} <b>{esc(sets)}</b></span>"
                 for n, sets, won in enc)
-            meet = (f"<p class='meet'><small>Gegen euch:</small> {chips}</p>" if chips
-                    else "<p class='meet'><small>Noch nicht gegen euch gespielt</small></p>")
+            meet = (f"<p class='meet'><small>Gegen {wir}:</small> {chips}</p>" if chips
+                    else f"<p class='meet'><small>Noch nicht gegen {wir} gespielt</small></p>")
             cards += (f"<li class='pc'><span class='rk'>{r['rank'] or '–'}</span>"
                       f"<div class='pn'><b>{plink(r['name'])}</b><small>{r['w']}:{r['n'] - r['w']} · {pct(r['w'], r['n'] - r['w'])}</small></div>"
                       f"<span class='pf'>{dots(r['rows'])}</span>{meet}</li>")
         table = ("<details class='roster'><summary>Kader des Gegners anzeigen<span></span></summary><p class='hint'>Rang in der Einzelrangliste, Bilanz und Form (S/N). "
-                 "«Gegen euch» zeigt das Satzergebnis aus eurer Sicht, grün = ihr habt gewonnen.</p>"
+                 f"«Gegen {wir}» zeigt das Satzergebnis aus Sicht von {wir}, grün = gewonnen.</p>"
                  f"<ul class='pcs'>{cards}</ul></details>")
     else:
         table = "<p class='hint'>Von diesem Team sind noch keine Einzel bekannt.</p>"

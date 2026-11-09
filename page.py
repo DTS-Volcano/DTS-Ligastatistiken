@@ -4,8 +4,9 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
-from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
+from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
+from uebersicht import all_block, team_block
 from verlauf import section_verlauf
 from awards import MONTHS, monthly_titles
 from textutil import dkey
@@ -35,6 +36,8 @@ def render(data, hist):
     kpis.append(("Punkte", pts))
     kpi_html = "".join(f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in kpis)
     logo = '<img class="logo" src="logo.svg" alt="Vereinslogo" width="96" height="96">' if LOGO else ""
+    vfc = (f'<a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo{VFC_LOGO.suffix.lower()}" '
+           'alt="VFC Dartverband" height="40"></a>') if VFC_LOGO else ""
     icon = '<link rel="icon" href="logo.svg" type="image/svg+xml">' if LOGO else ""
     W, L = sum(p["w"] for p in players), sum(p["l"] for p in players)
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
@@ -115,18 +118,6 @@ def render(data, hist):
     ana_blocks += (f"<div class='lb' data-g='ana' data-t='all' hidden>{section_hof(hof_players, tf, pid, id_of)}"
                    f"{section_potm(hof_players, pid)}"
                    "<section><h2>Team-Analyse</h2><p class='hint'>Für Saisonverlauf, Heim und Auswärts und Spielblöcke oben einen Verein wählen.</p></section></div>")
-    next_html, open_html = section_next(data, matches, pid)
-    open_html = f"<section>{open_html}</section>" if open_html else ""
-    last_html = ""
-    if matches:
-        items = ""
-        for i, m in reversed(list(enumerate(matches))[-3:]):
-            pt = tuple(int(x) for x in m["points"].split(":"))
-            items += (f"<li><button class='resrow' data-open='m{i}'><span class='rd'>{m['date'][:6]}</span>"
-                      f"<span class='ro'>{esc(m['opp'])}<small>{RESULT.get(pt, '')} · {'Heim' if m['home'] else 'Auswärts'}</small></span>"
-                      f"<b class='sc {'win' if pt[0] > pt[1] else 'loss'}'>{m['points']}</b></button></li>")
-        last_html = (f"<section><h2>Letzte Ergebnisse</h2><ul class='res'>{items}</ul>"
-                     "<p class='hint'><a href='#partien'>Alle Partien ansehen</a></p></section>")
     own_extra = f"{section_homeaway_players(players)}{section_form(players)}{section_rank_history(players, hist)}"
     team_blocks = f"<div class='tp' data-t='own'>{player_table(players, pid)}{own_extra}</div>"
     team_opts = f"<option value='own'>{esc(TEAM)}</option>"
@@ -144,38 +135,17 @@ def render(data, hist):
     search_dlg = ('<dialog id="search" aria-label="Suche"><div class="dlg"><button class="x" data-close aria-label="Schliessen">✕</button>'
                   '<h3 class="vs">Suche</h3><input type="search" id="s-in" placeholder="Spieler oder Verein" aria-label="Suche" autocomplete="off">'
                   '<ul id="s-res" class="sres"></ul></div></dialog>')
-    # Kopfkarten: nächstes Spiel mit Countdown, letztes Resultat, Teamform
-    me_l = TEAM.lower()
-    nxt = sorted((f for f in data["schedule"] if not f["played"] and me_l in (f["home"].lower(), f["guest"].lower())),
-                 key=lambda f: dkey(f["date"]))
-    hero = ""
-    if nxt:
-        f = nxt[0]
-        home = f["home"].lower() == me_l
-        opp = f["guest"] if home else f["home"]
-        d = dkey(f["date"])
-        days = (d.date() - today()).days
-        stat = "heute" if days == 0 else "morgen" if days == 1 else f"in {days} Tagen" if days > 1 else f"seit {-days} Tagen offen"
-        hero += (f"<div class='hc'><p class='sub'>Nächstes Spiel</p><b class='big cd' data-d='{d.strftime('%Y-%m-%d')}'>{stat}</b>"
-                 f"<p>{esc(opp)}<small>{d.strftime('%d.%m.%Y')} · {'Heimspiel' if home else 'Auswärts'}"
-                 f"{(' · ' + esc(f['place'])) if f.get('place') else ''}</small></p></div>")
-    if matches:
-        li = len(matches) - 1
-        m = matches[li]
-        pt = tuple(int(x) for x in m["points"].split(":"))
-        hero += (f"<button class='hc hcb' data-open='m{li}'><span class='sub'>Letztes Resultat</span>"
-                 f"<b class='big {'win' if pt[0] > pt[1] else 'loss'}'>{m['points']}</b>"
-                 f"<span>{esc(m['opp'])}<small>{m['date'][:6]} · {RESULT.get(pt, '')}</small></span></button>")
-        last5 = matches[-5:]
-        dots_ = "".join(f"<span class='dot {'w' if int(x['points'].split(':')[0]) > int(x['points'].split(':')[1]) else 'l'}'>"
-                        f"{'S' if int(x['points'].split(':')[0]) > int(x['points'].split(':')[1]) else 'N'}</span>" for x in last5)
-        w5 = sum(int(x["points"].split(":")[0]) > int(x["points"].split(":")[1]) for x in last5)
-        hero += (f"<div class='hc'><p class='sub'>Teamform</p><span class='dots'>{dots_}</span>"
-                 f"<p>{w5} Siege aus {len(last5)} Partien<small>letzte {len(last5)} Partien, ältere links</small></p></div>")
-    hero = f"<div class='hero'>{hero}</div>" if hero else ""
-    jump = "".join(f"<a class='jt' href='#{k}'><b>{t}</b><span>{s}</span></a>" for k, t, s in (
-        ("spieler", "Spieler", "Tabelle, Form, Profile"), ("liga", "Team &amp; Liga", "Tabelle und Spielplan"),
-        ("analyse", "Analyse", "Hall of Fame, Verlauf, Spielblöcke"), ("partien", "Partien", "Alle Reports")))
+    ov_opts, ov_blocks = "", ""
+    for ti, name in enumerate(order_t):
+        own_t = name.lower() == TEAM.lower()
+        key = "own" if own_t else f"l{ti}"
+        tm = matches if own_t else tf.get(name.lower(), [])
+        tpl = [x for x in hof_players if x["team"].lower() == name.lower()]
+        ov_opts += f"<option value='{key}'>{esc(name)}</option>"
+        ov_blocks += (f"<div class='lb' data-g='ov' data-t='{key}'{'' if own_t else ' hidden'}>"
+                      f"{team_block(data, name, tm, tpl, pid, id_of, hof_players, own_t)}</div>")
+    ov_opts += "<option value='all'>Alle Vereine</option>"
+    ov_blocks += f"<div class='lb' data-g='ov' data-t='all' hidden>{all_block(data, id_of, pid, hof_players)}</div>"
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
                                                           ("liga", "Team &amp; Liga"), ("analyse", "Analyse"), ("partien", "Partien")))
 
@@ -187,20 +157,14 @@ def render(data, hist):
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DTS Statistik">
 <style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
-<p class="sub">Liga {esc(GROUP)} · Stand <time id="stand" datetime="{now_iso}">{now}</time> · Rangliste jeweils aktuell</p></div><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
+<p class="sub">Liga {esc(GROUP)} · Stand <time id="stand" datetime="{now_iso}">{now}</time> · Rangliste jeweils aktuell</p></div>{vfc}<button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
-{hero}
-<dl class="kpi">{kpi_html}
-<div><dt>Spielbilanz (Einzel)</dt><dd>{W}:{L}</dd></div>
-</dl>
-{next_html}
-{last_html}
-{section_potm(players, pid, True)}
-<nav class="jump" aria-label="Weitere Bereiche">{jump}</nav>
+<form class="filter ovf" onsubmit="return false"><select class="vf" data-g="ov" aria-label="Verein">{ov_opts}</select></form>
+{ov_blocks}
 </div>
 
 <div class="panel" id="p-spieler">

@@ -15,7 +15,7 @@ Aufbau:
 import json
 import shutil
 
-from config import LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
+from config import LOGO, VFC_LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
 from page import render
 from scraper import BlockedError
 from stats import build_stats, update_history
@@ -84,6 +84,8 @@ def main():
     OUT.mkdir(exist_ok=True)
     if LOGO:
         shutil.copyfile(LOGO, OUT / "logo.svg")
+    if VFC_LOGO:
+        shutil.copyfile(VFC_LOGO, OUT / ("vfc-logo" + VFC_LOGO.suffix.lower()))
     write_pwa()
     copy_photos(data["players"])
     hist = update_history(data["ranks"])

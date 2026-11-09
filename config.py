@@ -22,11 +22,22 @@ def find_logo():
         return p if p.exists() else None
     # unsichtbare Sonderzeichen im Dateinamen (z. B. U+200E) werden ignoriert
     found = sorted(p for p in Path(".").iterdir() if p.is_file()
-                   and "".join(c for c in p.name if unicodedata.category(c) != "Cf").lower().endswith(".svg"))
+                   and "".join(c for c in p.name if unicodedata.category(c) != "Cf").lower().endswith(".svg")
+                   and not p.name.lower().startswith("vfc"))
     return found[0] if found else None
 
 
 LOGO = find_logo()
+
+
+def find_vfc_logo():
+    """Optionales Logo des Verbands: Datei vfc*.svg/png/jpg/webp im Hauptordner (z. B. vfc-logo.png)."""
+    found = sorted(p for p in Path(".").iterdir() if p.is_file() and p.name.lower().startswith("vfc")
+                   and p.suffix.lower() in (".svg", ".png", ".jpg", ".jpeg", ".webp"))
+    return found[0] if found else None
+
+
+VFC_LOGO = find_vfc_logo()
 
 
 def today():

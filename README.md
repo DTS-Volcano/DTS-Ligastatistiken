@@ -23,3 +23,7 @@ Sie erscheinen im Spielerprofil. Ohne Bild werden die Initialen angezeigt.
 1. Auf GitHub unter **Actions → Saison archivieren → Run workflow** den Namen eingeben, z. B. `Saison 2026`.
 2. Die Seite wird unter `docs/archiv/saison-2026/` eingefroren und ist über den Link «Archiv früherer Saisons» im Fuss der Startseite erreichbar. Der Rangverlauf beginnt wieder bei null.
 3. Wenn die neue Gruppe auf vfc.ch steht: in `.github/workflows/update.yml` (und `archiv.yml`) bei `GROUP` die neue Gruppe eintragen. Die gespeicherten Reports liegen pro Gruppe in `daten/reports/<gruppe>/`, die alte Saison wird dadurch nicht vermischt.
+
+## VFC-Logo im Seitenkopf (optional)
+
+Eine Bilddatei, deren Name mit `vfc` beginnt (z. B. `vfc-logo.png`, auch .svg/.jpg/.webp), in den Hauptordner legen. Sie erscheint oben rechts im Seitenkopf und verlinkt auf vfc.ch.
