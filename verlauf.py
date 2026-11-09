@@ -4,8 +4,9 @@ from collections import defaultdict
 from config import TEAM
 from textutil import dkey, esc
 
-W, H = 520, 210
-PAD_L, PAD_R, PAD_T, PAD_B = 28, 76, 16, 30
+# Zwei Geometrien: breit (Computer) und schmal (Handy). Beide werden ausgegeben, per CSS wird eine gezeigt.
+WIDE = {"W": 640, "H": 240, "PL": 34, "PR": 46, "PT": 18, "PB": 32, "stride": 1, "cls": "chart-w"}
+NARROW = {"W": 360, "H": 230, "PL": 28, "PR": 34, "PT": 16, "PB": 30, "stride": 2, "cls": "chart-n"}
 
 
 def standings_history(data):
@@ -54,66 +55,74 @@ def standings_history(data):
     return out
 
 
-def _x(i, n):
-    return PAD_L + (W - PAD_L - PAD_R) * (i / (n - 1) if n > 1 else 0.5)
+def _x(G, i, n):
+    return G["PL"] + (G["W"] - G["PL"] - G["PR"]) / n * (i + 0.5)
 
 
-def _frame(labels, yt, ymap, fmt=str):
+def _ymap(G, v, lo, hi, invert=False):
+    f = (v - lo) / (hi - lo) if hi != lo else 0.5
+    f = f if invert else 1 - f
+    return G["PT"] + (G["H"] - G["PT"] - G["PB"]) * f
+
+
+def _frame(G, labels, yt, lo, hi, invert=False):
     s = ""
-    for v in yt:
-        y = ymap(v)
-        s += (f"<line class='ch-grid' x1='{PAD_L}' x2='{W - PAD_R}' y1='{y:.1f}' y2='{y:.1f}'/>"
-              f"<text class='ch-t' x='{PAD_L - 6}' y='{y + 4:.1f}' text-anchor='end'>{fmt(v)}</text>")
     n = len(labels)
+    for v in yt:
+        y = _ymap(G, v, lo, hi, invert)
+        s += (f"<line class='ch-grid' x1='{G['PL']}' x2='{G['W'] - G['PR']}' y1='{y:.1f}' y2='{y:.1f}'/>"
+              f"<text class='ch-t' x='{G['PL'] - 6}' y='{y + 4:.1f}' text-anchor='end'>{v}</text>")
     for i, lab in enumerate(labels):
-        s += f"<text class='ch-t' x='{_x(i, n):.1f}' y='{H - 8}' text-anchor='middle'>{esc(lab)}</text>"
+        if (n - 1 - i) % G["stride"] == 0:
+            s += f"<text class='ch-t' x='{_x(G, i, n):.1f}' y='{G['H'] - 9}' text-anchor='middle'>{esc(lab)}</text>"
     return s
 
 
-def line_chart(labels, series, yt, ymin, ymax, title, invert=False, fmt=str):
-    """series: [{'name', 'vals', 'me': bool}] – eigene Reihe kräftig, Vergleichsreihe grau und dünn."""
+def _wrap(G, body, title):
+    return f"<svg class='chart {G['cls']}' viewBox='0 0 {G['W']} {G['H']}' role='img' aria-label='{esc(title)}'>{body}</svg>"
+
+
+def line_chart(G, labels, series, yt, lo, hi, title, invert=False):
+    """series: [{'name', 'vals', 'me': bool}] – eigene Reihe kräftig mit Punkten, Vergleichsreihe grau gestrichelt."""
     n = len(labels)
-
-    def ymap(v):
-        f = (v - ymin) / (ymax - ymin) if ymax != ymin else 0.5
-        f = f if invert else 1 - f
-        return PAD_T + (H - PAD_T - PAD_B) * f
-
-    s = _frame(labels, yt, ymap, fmt)
+    s = _frame(G, labels, yt, lo, hi, invert)
     for ser in sorted(series, key=lambda x: x["me"]):
-        cls = "ch-me" if ser["me"] else "ch-ref"
-        pts = " ".join(f"{_x(i, n):.1f},{ymap(v):.1f}" for i, v in enumerate(ser["vals"]))
-        s += f"<polyline class='{cls}' points='{pts}' fill='none'/>"
+        pts = " ".join(f"{_x(G, i, n):.1f},{_ymap(G, v, lo, hi, invert):.1f}" for i, v in enumerate(ser["vals"]))
+        s += f"<polyline class='{'ch-me' if ser['me'] else 'ch-ref'}' points='{pts}' fill='none'/>"
         if ser["me"]:
             for i, v in enumerate(ser["vals"]):
-                s += (f"<circle class='ch-dot' cx='{_x(i, n):.1f}' cy='{ymap(v):.1f}' r='4.5'>"
-                      f"<title>{esc(labels[i])}: {esc(ser['name'])} {fmt(v)}</title></circle>")
-        i, v = n - 1, ser["vals"][-1]
-        s += (f"<text class='ch-l{' me' if ser['me'] else ''}' x='{_x(i, n) + 9:.1f}' y='{ymap(v) + 4:.1f}'>"
-              f"{esc(ser['name'])} {fmt(v)}</text>")
-    return f"<svg class='chart' viewBox='0 0 {W} {H}' role='img' aria-label='{esc(title)}'>{s}</svg>"
+                s += (f"<circle class='ch-dot' cx='{_x(G, i, n):.1f}' cy='{_ymap(G, v, lo, hi, invert):.1f}' r='4'>"
+                      f"<title>{esc(labels[i])}: {esc(ser['name'])} {v}</title></circle>")
+        v = ser["vals"][-1]
+        s += (f"<text class='ch-l{' me' if ser['me'] else ''}' x='{_x(G, n - 1, n) + 9:.1f}' "
+              f"y='{_ymap(G, v, lo, hi, invert) + 4:.1f}'>{v}</text>")
+    return _wrap(G, s, title)
 
 
-def bar_chart(labels, vals, tips, avg, title):
-    """Balken 0–100 % pro Spieltag, gestrichelte 50-%-Linie, gleitender Gesamtschnitt als Linie."""
+def bar_chart(G, labels, vals, tips, avg, title):
+    """Balken 0–100 % pro Spieltag mit gestricheltem Gesamtschnitt."""
     n = len(labels)
-
-    def ymap(v):
-        return PAD_T + (H - PAD_T - PAD_B) * (1 - v / 100)
-
-    s = _frame(labels, (0, 25, 50, 75, 100), ymap, lambda v: f"{v}")
-    s += f"<line class='ch-half' x1='{PAD_L}' x2='{W - PAD_R}' y1='{ymap(50):.1f}' y2='{ymap(50):.1f}'/>"
-    bw = min(34, (W - PAD_L - PAD_R) / max(n, 1) * 0.55)
+    s = _frame(G, labels, (0, 25, 50, 75, 100), 0, 100)
+    ya = _ymap(G, avg, 0, 100)
+    bw = min(30, (G["W"] - G["PL"] - G["PR"]) / n * 0.6)
+    y0 = _ymap(G, 0, 0, 100)
     for i, v in enumerate(vals):
-        x, y = _x(i, n), ymap(v)
-        h = max(2, ymap(0) - y)
-        s += (f"<rect class='ch-bar' x='{x - bw / 2:.1f}' y='{ymap(0) - h:.1f}' width='{bw:.1f}' height='{h:.1f}' rx='3'>"
+        x, y = _x(G, i, n), _ymap(G, v, 0, 100)
+        h = max(2, y0 - y)
+        s += (f"<rect class='ch-bar' x='{x - bw / 2:.1f}' y='{y0 - h:.1f}' width='{bw:.1f}' height='{h:.1f}' rx='3'>"
               f"<title>{esc(tips[i])}</title></rect>"
-              f"<text class='ch-v' x='{x:.1f}' y='{ymap(0) - h - 5:.1f}' text-anchor='middle'>{v:.0f}</text>")
-    pts = " ".join(f"{_x(i, n):.1f},{ymap(v):.1f}" for i, v in enumerate(avg))
-    s += f"<polyline class='ch-me' points='{pts}' fill='none'/>"
-    s += f"<text class='ch-l me' x='{_x(n - 1, n) + bw / 2 + 6:.1f}' y='{ymap(avg[-1]) + 4:.1f}'>Ø {avg[-1]:.0f} %</text>"
-    return f"<svg class='chart' viewBox='0 0 {W} {H}' role='img' aria-label='{esc(title)}'>{s}</svg>"
+              f"<text class='ch-v' x='{x:.1f}' y='{y0 - h - 5:.1f}' text-anchor='middle'>{v:.0f}</text>")
+    s += f"<line class='ch-avg' x1='{G['PL']}' x2='{G['W'] - G['PR']}' y1='{ya:.1f}' y2='{ya:.1f}'/>"
+    s += f"<text class='ch-l me' x='{G['W'] - G['PR'] + 6}' y='{ya + 4:.1f}'>Ø {avg:.0f}</text>"
+    return _wrap(G, s, title)
+
+
+def both(fn, *a, **k):
+    return fn(WIDE, *a, **k) + fn(NARROW, *a, **k)
+
+
+def legend(items):
+    return "<p class='lg'>" + "".join(f"<span><i class='k {c}'></i>{esc(t)}</span>" for c, t in items) + "</p>"
 
 
 def section_verlauf(data):
@@ -122,14 +131,14 @@ def section_verlauf(data):
         return ""
     labels = [h["date"].strftime("%d.%m.") for h in hist]
     n_teams = max(h["teams"] for h in hist)
-    c1 = line_chart(labels, [{"name": "Platz", "vals": [h["rank"] for h in hist], "me": True}],
-                    list(range(1, n_teams + 1)), 1, n_teams, "Tabellenplatz nach jedem Spieltag", invert=True)
+    c1 = both(line_chart, labels, [{"name": "Platz", "vals": [h["rank"] for h in hist], "me": True}],
+              list(range(1, n_teams + 1)), 1, n_teams, "Tabellenplatz nach jedem Spieltag", invert=True)
     pmax = max(max(h["lead"] for h in hist), 3)
     step = 3 if pmax <= 18 else 6 if pmax <= 36 else 9
-    c2 = line_chart(labels, [{"name": "Führer", "vals": [h["lead"] for h in hist], "me": False},
-                             {"name": "Wir", "vals": [h["pts"] for h in hist], "me": True}],
-                    list(range(0, pmax + step, step)), 0, pmax + (step - pmax % step) % step or pmax,
-                    "Punkte nach jedem Spieltag, wir und der Tabellenführer")
+    top = -(-pmax // step) * step
+    c2 = both(line_chart, labels, [{"name": "Tabellenführer", "vals": [h["lead"] for h in hist], "me": False},
+                                   {"name": "Wir", "vals": [h["pts"] for h in hist], "me": True}],
+              list(range(0, top + 1, step)), 0, top, "Punkte nach jedem Spieltag, wir und der Tabellenführer")
     # Einzelquote pro Spieltag
     vals, tips, tot_w, tot_l, avg = [], [], 0, 0, []
     for m in sorted(data["matches"], key=lambda m: dkey(m["date"])):
@@ -145,7 +154,7 @@ def section_verlauf(data):
             avg.append(100 * tot_w / (tot_w + tot_l))
     ml = [dkey(m["date"]).strftime("%d.%m.") for m in sorted(data["matches"], key=lambda m: dkey(m["date"]))
           if any(m["rounds"].values())]
-    c3 = bar_chart(ml, vals, tips, avg, "Einzelquote pro Spieltag mit Gesamtschnitt") if len(vals) >= 2 else ""
+    c3 = both(bar_chart, ml, vals, tips, avg[-1], "Einzelquote pro Spieltag mit Gesamtschnitt") if len(vals) >= 2 else ""
     rows = "".join(f"<tr><td>{labels[i]}</td><td class='num'>{h['rank']}</td><td class='num'>{h['pts']}</td>"
                    f"<td class='num'>{h['lead']}</td></tr>" for i, h in enumerate(hist))
     table = ("<details><summary>Werte als Tabelle<span></span></summary><div class='scroll'><table><thead><tr><th>Spieltag</th>"
@@ -153,7 +162,6 @@ def section_verlauf(data):
              f"<tbody>{rows}</tbody></table></div></details>")
     return ("<section><h2>Saisonverlauf</h2><p class='hint'>Stand der Liga nach jedem unserer Spieltage, berechnet aus allen "
             "bis dahin gespielten Partien der Gruppe.</p>"
-            f"<h3>Tabellenplatz</h3>{c1}<h3>Punkte</h3>{c2}"
-            + (f"<h3>Einzelquote pro Spieltag</h3><p class='hint'>Anteil gewonnener Einzel pro Partie (Balken), "
-               f"gestrichelt 50 %, Linie: Schnitt über alle bisherigen Spieltage. Ohne Doppel und Sudden Death.</p>{c3}" if c3 else "")
+            f"<h3>Tabellenplatz</h3>{c1}<h3>Punkte</h3>{legend([('me', 'Wir'), ('ref', 'Tabellenführer')])}{c2}"
+            + (f"<h3>Einzelquote pro Spieltag</h3>{legend([('bar', 'Gewonnene Einzel pro Partie in %'), ('avg', 'Saisonschnitt')])}{c3}" if c3 else "")
             + table + "</section>")
