@@ -7,8 +7,8 @@ from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import OUT, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
 from awards import MONTHS, monthly_titles
 from textutil import dkey
-from stats import order
-from sections import section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
+from stats import bracket, order
+from sections import player_table, section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
 
@@ -52,6 +52,8 @@ def render(data, hist):
     id_of.update({nr: f"o{nr}" for nr in data["others"]})
     titles = monthly_titles(players)
     # Spieler der ganzen Liga: eigene Spieler p0, p1, … (Blättern nach Rang), übrige lp<Team>_<n>
+    for pl in players:
+        pl["team"] = TEAM
     me = TEAM.lower()
     pid = {(me, pl["name"]): f"p{i}" for i, pl in enumerate(players)}
     others_pl = []          # (Teamindex, Team, [Spieler], [IDs])
@@ -64,8 +66,13 @@ def render(data, hist):
             rows = order([dict(r, opp_rank=data["ranks"].get(r["opp"])) for r in rows])
             w = sum(r["won"] for r in rows)
             known = [r["opp_rank"] for r in rows if r["opp_rank"]]
-            pls.append({"name": name, "rank": data["ranks"].get(name), "n": len(rows), "w": w, "l": len(rows) - w,
-                        "avg_opp": sum(known) / len(known) if known else None, "rows": rows})
+            br = {"top": [0, 0], "mid": [0, 0], "low": [0, 0]}
+            for r in rows:
+                bk = bracket(r["opp_rank"])
+                if bk:
+                    br[bk][0 if r["won"] else 1] += 1
+            pls.append({"name": name, "team": t["team"], "rank": data["ranks"].get(name), "n": len(rows), "w": w,
+                        "l": len(rows) - w, "avg_opp": sum(known) / len(known) if known else None, "brackets": br, "rows": rows})
         pls.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
         ids = [f"lp{ti}_{k}" for k in range(len(pls))]
         for x, i_ in zip(pls, ids):
@@ -83,19 +90,6 @@ def render(data, hist):
 
     archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
     fixtures_html = section_fixtures(data, id_of)
-    prow = ""
-    for pi, p in enumerate(players):
-        b = p["brackets"]
-        avg = f"{p['avg_opp']:.1f}" if p["avg_opp"] else "–"
-        prow += (f"<tr class='click' data-open='p{pi}'><td data-v='{esc(p['name'])}'><button class='tl' data-open='p{pi}'>{esc(p['name'])}</button></td>"
-                 f"<td class='num' data-v='{p['rank'] or 9999}'>{p['rank'] or '–'}</td>"
-                 f"<td class='num' data-v='{p['n']}'>{p['n']}</td>"
-                 f"<td class='num' data-v='{p['w']}'>{p['w']}:{p['l']}</td>"
-                 f"<td data-v='{p['w'] / p['n']:.3f}'>{bar(p['w'], p['l'])}<span class='q'>{pct(p['w'], p['l'])}</span></td>"
-                 f"<td class='num' data-v='{p['avg_opp'] or 9999}'>{avg}</td>"
-                 + "".join(f"<td class='num' data-v='{b[k][0] - b[k][1]}'>{b[k][0]}:{b[k][1]}</td>" for k in ("top", "mid", "low"))
-                 + "</tr>")
-
     ha_team, ha_players = section_homeaway(matches, players)
     next_html, open_html = section_next(data, matches, pid)
     league_html = section_league(data) + "</section>"
@@ -110,6 +104,20 @@ def render(data, hist):
                       f"<b class='sc {'win' if pt[0] > pt[1] else 'loss'}'>{m['points']}</b></button></li>")
         last_html = (f"<section><h2>Letzte Ergebnisse</h2><ul class='res'>{items}</ul>"
                      "<p class='hint'><a href='#partien'>Alle Partien ansehen</a></p></section>")
+    own_extra = f"{ha_players}{section_form(players)}{section_rank_history(players, hist)}"
+    team_blocks = f"<div class='tp' data-t='own'>{player_table(players, pid)}{own_extra}</div>"
+    team_opts = f"<option value='own'>{esc(TEAM)}</option>"
+    all_pl = list(players)
+    for ti, t, pls, ids in others_pl:
+        if not pls:
+            continue
+        all_pl += pls
+        team_opts += f"<option value='t{ti}'>{esc(t['team'])}</option>"
+        team_blocks += (f"<div class='tp' data-t='t{ti}' hidden>{player_table(pls, pid)}"
+                        f"{section_form(pls)}{section_rank_history(pls, hist)}</div>")
+    all_pl.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
+    team_opts += "<option value='all'>Alle Vereine</option>"
+    team_blocks += f"<div class='tp' data-t='all' hidden>{player_table(all_pl, pid, True)}</div>"
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
                                                           ("liga", "Team &amp; Liga"), ("partien", "Partien")))
 
@@ -137,21 +145,13 @@ def render(data, hist):
 
 <div class="panel" id="p-spieler">
 <section><h2>Spieler</h2>
+<form class="filter" role="search" onsubmit="return false">
+<select id="f-team" aria-label="Verein">{team_opts}</select>
+<input type="search" id="f-pq" placeholder="Spieler suchen" aria-label="Spieler suchen">
+</form>
 <p class="hint">Nur Einzel, ohne Doppel und Sudden Death. Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
-<div class="scroll"><table class="sortable sticky"><thead><tr><th>Spieler</th><th>Rang</th><th>Spiele</th><th>Bilanz</th>
-<th>Quote</th><th>Ø Gegner</th><th>Rang 1–{TOP}</th><th>{TOP + 1}–{MID}</th><th>{MID + 1}+</th></tr></thead>
-<tbody>{prow}</tbody>
-<tfoot><tr><td>Team</td><td></td><td class="num">{W + L}</td><td class="num">{W}:{L}</td><td>{pct(W, L)}</td>
-<td class="num">{(sum(allr) / len(allr)) if allr else 0:.1f}</td>
-<td class="num">{tb['top'][0]}:{tb['top'][1]}</td><td class="num">{tb['mid'][0]}:{tb['mid'][1]}</td><td class="num">{tb['low'][0]}:{tb['low'][1]}</td></tr></tfoot>
-</table></div></section>
-
-{ha_players}
-
-{section_form(players)}
-
-{section_rank_history(players, hist)}
-
+{team_blocks}
+</section>
 </div>
 
 <div class="panel" id="p-liga">

@@ -2,8 +2,8 @@
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-from components import avatar, dots, spark
-from config import FORM_N, TEAM, today
+from components import avatar, bar, dots, spark
+from config import FORM_N, MID, TEAM, TOP, today
 from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
 
@@ -341,3 +341,35 @@ def section_fixtures(data, id_of):
             "Auf eine Zeile klicken für den Report, unsere Spiele sind hervorgehoben.</p>"
             f"{block(played, 'Punkte')}</section>"
             f"<section><h2>Kommende Spiele der Liga</h2>{block(todo, '')}</section>")
+
+
+def player_table(pls, pid, all_view=False):
+    """Spielertabelle (sortierbar). all_view: mit Spalte Verein, ohne Summenzeile."""
+    body = ""
+    for p in pls:
+        b = p["brackets"]
+        d = pid.get((p["team"].lower(), p["name"]))
+        avg = f"{p['avg_opp']:.1f}" if p["avg_opp"] else "–"
+        team_td = f"<td data-v='{esc(p['team'])}'>{esc(p['team'])}</td>" if all_view else ""
+        body += (f"<tr class='click' data-open='{d}' data-q='{esc((p['name'] + ' ' + p['team']).lower())}'>"
+                 f"<td data-v='{esc(p['name'])}'><button class='tl' data-open='{d}'>{esc(p['name'])}</button></td>{team_td}"
+                 f"<td class='num' data-v='{p['rank'] or 9999}'>{p['rank'] or '–'}</td>"
+                 f"<td class='num' data-v='{p['n']}'>{p['n']}</td>"
+                 f"<td class='num' data-v='{p['w']}'>{p['w']}:{p['l']}</td>"
+                 f"<td data-v='{p['w'] / p['n']:.3f}'>{bar(p['w'], p['l'])}<span class='q'>{pct(p['w'], p['l'])}</span></td>"
+                 f"<td class='num' data-v='{p['avg_opp'] or 9999}'>{avg}</td>"
+                 + "".join(f"<td class='num' data-v='{b[k][0] - b[k][1]}'>{b[k][0]}:{b[k][1]}</td>" for k in ("top", "mid", "low"))
+                 + "</tr>")
+    vcol = "<th>Verein</th>" if all_view else ""
+    foot = ""
+    if not all_view and pls:
+        W, L = sum(p["w"] for p in pls), sum(p["l"] for p in pls)
+        allr = [r["opp_rank"] for p in pls for r in p["rows"] if r["opp_rank"]]
+        tb = {k: [sum(p["brackets"][k][i] for p in pls) for i in (0, 1)] for k in ("top", "mid", "low")}
+        foot = (f"<tfoot><tr><td>Team</td><td></td><td class='num'>{W + L}</td><td class='num'>{W}:{L}</td><td>{pct(W, L)}</td>"
+                f"<td class='num'>{(sum(allr) / len(allr)) if allr else 0:.1f}</td>"
+                f"<td class='num'>{tb['top'][0]}:{tb['top'][1]}</td><td class='num'>{tb['mid'][0]}:{tb['mid'][1]}</td>"
+                f"<td class='num'>{tb['low'][0]}:{tb['low'][1]}</td></tr></tfoot>")
+    return (f"<div class='scroll'><table class='sortable sticky'><thead><tr><th>Spieler</th>{vcol}<th>Rang</th><th>Spiele</th><th>Bilanz</th>"
+            f"<th>Quote</th><th>Ø Gegner</th><th>Rang 1–{TOP}</th><th>{TOP + 1}–{MID}</th><th>{MID + 1}+</th></tr></thead>"
+            f"<tbody>{body}</tbody>{foot}</table></div>")

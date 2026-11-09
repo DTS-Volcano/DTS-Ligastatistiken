@@ -38,3 +38,9 @@ document.addEventListener('mouseover',e=>{const b=e.target.closest('.badge');if(
 document.addEventListener('focusin',e=>{const b=e.target.closest('.badge');if(b)show(b);else hide()});
 document.addEventListener('click',e=>{const b=e.target.closest('.badge');if(b){cur===b&&tip&&!tip.hidden&&e.detail===0?hide():show(b)}else hide()});
 document.addEventListener('focusout',hide);document.addEventListener('scroll',hide,true)})();
+
+(()=>{const sel=document.getElementById('f-team'),q=document.getElementById('f-pq');if(!sel)return;
+function run(){const t=sel.value,s=q.value.trim().toLowerCase();
+document.querySelectorAll('.tp').forEach(b=>{b.hidden=b.dataset.t!==t;
+if(!b.hidden)b.querySelectorAll('table.sortable tbody tr').forEach(r=>{r.hidden=!!s&&!r.dataset.q.includes(s)})})}
+sel.addEventListener('change',run);q.addEventListener('input',run)})();
