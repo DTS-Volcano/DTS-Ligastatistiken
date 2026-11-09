@@ -8,7 +8,7 @@ from stats import quote_series
 from textutil import dkey, esc, fmt_date, pct, short
 
 
-def section_next(data, matches):
+def section_next(data, matches, pid=None):
     me = TEAM.lower()
     fx = sorted((f for f in data["schedule"] if not f["played"] and me in (f["home"].lower(), f["guest"].lower())),
                 key=lambda f: (dkey(f["date"]), f["nr"]))
@@ -51,6 +51,11 @@ def section_next(data, matches):
     roster.sort(key=lambda r: (r["rank"] or 999, -r["n"]))
     if roster:
         cards = ""
+
+        def plink(name):
+            d = (pid or {}).get((ol, name))
+            return f"<button class='tl' data-open='{d}'>{esc(name)}</button>" if d else esc(name)
+
         for r in roster:
             enc = vs_us.get(r["name"], [])
             chips = "".join(
@@ -59,7 +64,7 @@ def section_next(data, matches):
             meet = (f"<p class='meet'><small>Gegen euch:</small> {chips}</p>" if chips
                     else "<p class='meet'><small>Noch nicht gegen euch gespielt</small></p>")
             cards += (f"<li class='pc'><span class='rk'>{r['rank'] or '–'}</span>"
-                      f"<div class='pn'><b>{esc(r['name'])}</b><small>{r['w']}:{r['n'] - r['w']} · {pct(r['w'], r['n'] - r['w'])}</small></div>"
+                      f"<div class='pn'><b>{plink(r['name'])}</b><small>{r['w']}:{r['n'] - r['w']} · {pct(r['w'], r['n'] - r['w'])}</small></div>"
                       f"<span class='pf'>{dots(r['rows'])}</span>{meet}</li>")
         table = ("<h3>Kader des Gegners</h3><p class='hint'>Rang in der Einzelrangliste, Bilanz und Form (S/N). "
                  "«Gegen euch» zeigt das Satzergebnis aus eurer Sicht, grün = ihr habt gewonnen.</p>"

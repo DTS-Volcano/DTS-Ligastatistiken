@@ -7,6 +7,7 @@ from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from config import OUT, AUTHOR, GROUP, LOGO, MID, TEAM, TOP
 from awards import MONTHS, monthly_titles
 from textutil import dkey
+from stats import order
 from sections import section_fixtures, section_form, section_homeaway, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
@@ -50,10 +51,35 @@ def render(data, hist):
     id_of = {m["nr"]: f"m{i}" for i, m in enumerate(matches)}
     id_of.update({nr: f"o{nr}" for nr in data["others"]})
     titles = monthly_titles(players)
+    # Spieler der ganzen Liga: eigene Spieler p0, p1, … (Blättern nach Rang), übrige lp<Team>_<n>
+    me = TEAM.lower()
+    pid = {(me, pl["name"]): f"p{i}" for i, pl in enumerate(players)}
+    others_pl = []          # (Teamindex, Team, [Spieler], [IDs])
+    for ti, t in enumerate(data["league"]):
+        tl = t["team"].lower()
+        if tl == me:
+            continue
+        pls = []
+        for name, rows in data["team_games"].get(tl, {}).items():
+            rows = order([dict(r, opp_rank=data["ranks"].get(r["opp"])) for r in rows])
+            w = sum(r["won"] for r in rows)
+            known = [r["opp_rank"] for r in rows if r["opp_rank"]]
+            pls.append({"name": name, "rank": data["ranks"].get(name), "n": len(rows), "w": w, "l": len(rows) - w,
+                        "avg_opp": sum(known) / len(known) if known else None, "rows": rows})
+        pls.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
+        ids = [f"lp{ti}_{k}" for k in range(len(pls))]
+        for x, i_ in zip(pls, ids):
+            pid[(tl, x["name"])] = i_
+        others_pl.append((ti, t, pls, ids))
     dialogs = "".join(match_dialog(f"m{i}", m, data["ranks"], len(matches), i) for i, m in enumerate(matches))
     dialogs += "".join(match_dialog(f"o{nr}", m, data["ranks"]) for nr, m in data["others"].items())
-    dialogs += "".join(player_dialog(i, pl, len(players), hist, titles) for i, pl in enumerate(players))
-    dialogs += "".join(team_dialog(i, t, data, id_of) for i, t in enumerate(data["league"]))
+    dialogs += "".join(player_dialog(i, pl, len(players), hist, titles, pid=pid) for i, pl in enumerate(players))
+    for ti, t, pls, ids in others_pl:
+        for k, x in enumerate(pls):
+            dialogs += player_dialog(0, x, 0, hist, None, dom_id=ids[k], prev_id=ids[k - 1] if k else None,
+                                     next_id=ids[k + 1] if k + 1 < len(ids) else None, team=t["team"],
+                                     back=(f"t{ti}", t["team"]), pid=pid)
+    dialogs += "".join(team_dialog(i, t, data, id_of, pid) for i, t in enumerate(data["league"]))
 
     archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
     fixtures_html = section_fixtures(data, id_of)
@@ -71,7 +97,7 @@ def render(data, hist):
                  + "</tr>")
 
     ha_team, ha_players = section_homeaway(matches, players)
-    next_html, open_html = section_next(data, matches)
+    next_html, open_html = section_next(data, matches, pid)
     league_html = section_league(data) + "</section>"
     open_html = f"<section>{open_html}</section>" if open_html else ""
     last_html = ""

@@ -45,9 +45,14 @@ def avatar(name, size=112):
     return f'<span class="pic ini" aria-hidden="true">{esc(initials)}</span>'
 
 
-def player_dialog(idx, p, total, hist, titles=None):
+def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, next_id=None, team=None, back=None, pid=None):
     """Spielerprofil als Fenster: Bild, Kennzahlen, Form, Rangverlauf, Runden, Lieblings-/Angstgegner, alle Einzel."""
     name = p["name"]
+    team = team or TEAM
+    dom_id = dom_id or f"p{idx}"
+    if dom_id.startswith("p") and dom_id[1:].isdigit():     # eigenes Team: blättern in der Rangliste
+        prev_id = f"p{idx - 1}" if idx > 0 else None
+        next_id = f"p{idx + 1}" if idx < total - 1 else None
     pic = avatar(name)
     rows = p["rows"]
     quote = pct(p["w"], p["l"])
@@ -97,17 +102,21 @@ def player_dialog(idx, p, total, hist, titles=None):
               f"<div><h4>Lieblingsgegner</h4><ul>{li(fav) or '<li>–</li>'}</ul></div>"
               f"<div><h4>Angstgegner</h4><ul>{li(fear) or '<li>–</li>'}</ul></div></div>")
     # alle Einzel
+    def olink(opp, oteam):
+        d = (pid or {}).get((oteam.lower(), opp))
+        return f"<button class='tl' data-open='{d}'>{esc(opp)}</button>" if d else esc(opp)
+
     body = ""
     for opp, rs in sorted(by_opp.items(), key=lambda kv: (kv[1][0]["opp_rank"] or 999, kv[0])):
         w = sum(r["won"] for r in rs)
         sets = ", ".join(f'<span class="{"win" if r["won"] else "loss"}">{r["sets"]}</span>' for r in rs)
-        body += (f"<tr><td class='num'>{rs[0]['opp_rank'] or '–'}</td><td>{esc(opp)}</td><td>{esc(rs[0]['opp_team'])}</td>"
+        body += (f"<tr><td class='num'>{rs[0]['opp_rank'] or '–'}</td><td>{olink(opp, rs[0]['opp_team'])}</td><td>{esc(rs[0]['opp_team'])}</td>"
                  f"<td class='num'>{w}:{len(rs) - w}</td><td>{sets}</td></tr>")
     table = ("<h4>Alle Einzel</h4><div class='scroll'><table><thead><tr><th>Rang</th><th>Gegner</th><th>Team</th><th>Bilanz</th>"
              f"<th>Sätze</th></tr></thead><tbody>{body}</tbody></table></div>")
     aw = player_awards(p, titles or {})
     badges = ("<p class='badges'>" + "".join(f"<button type='button' class='badge{' pm' if n.startswith('Spieler des Monats') else ''}' data-tip='{esc(h)}'>{esc(n)}</button>" for n, h in aw) + "</p>") if aw else ""
-    share = [f"{name} – Rang {p['rank'] or '–'} ({TEAM})",
+    share = [f"{name} – Rang {p['rank'] or '–'} ({team})",
              f"Einzel {p['w']}:{p['l']} ({quote}) · Form " + " ".join("S" if r["won"] else "N" for r in rows[-5:])]
     if aw:
         share.append("Auszeichnungen: " + ", ".join(n for n, _ in aw))
@@ -116,12 +125,14 @@ def player_dialog(idx, p, total, hist, titles=None):
     if fear:
         share.append("Angstgegner: " + ", ".join(f"{o} {w}:{l}" for o, _, w, l in fear[:2]))
     copy = (f'<p><button class="rb" data-copy="{esc(chr(10).join(share)).replace(chr(10), "&#10;")}">Zusammenfassung kopieren</button></p>')
-    nav = (f'<div class="nav"><button class="rb nb-prev" data-go="p{idx - 1}"{"" if idx > 0 else " disabled"}>‹ Vorheriger</button>'
-           f'<button class="rb nb-next" data-go="p{idx + 1}"{"" if idx < total - 1 else " disabled"}>Nächster ›</button></div>')
-    return (f'<dialog id="p{idx}" aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
+    nav = (f'<div class="nav"><button class="rb nb-prev" data-go="{prev_id}"{"" if prev_id else " disabled"}>‹ Vorheriger</button>'
+           f'<button class="rb nb-next" data-go="{next_id}"{"" if next_id else " disabled"}>Nächster ›</button></div>')
+    if back:
+        nav = f'<p><button class="rb" data-open="{back[0]}">‹ Team {esc(back[1])}</button></p>' + nav
+    return (f'<dialog id="{dom_id}" aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<div class="head">{pic}<div><p class="sub">Spielerprofil</p><h3 class="vs">{esc(name)}</h3>'
-            f'<p class="sub">{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
+            f'<p class="sub">{(esc(team) + " · ") if team != TEAM else ""}{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
             f'<dl class="kpi rk">{kp}</dl>{badges}{form}{rv}{rcells}{ff}{table}{copy}{nav}</div></dialog>')
 
 
@@ -186,7 +197,7 @@ def match_dialog(dom_id, m, ranks, total=None, i=0):
                if total else "") + '</div></dialog>')
 
 
-def team_dialog(idx, t, data, id_of):
+def team_dialog(idx, t, data, id_of, pid=None):
     tl = t["team"].lower()
     ms = sorted(data["team_matches"].get(tl, []), key=lambda m: dkey(m["date"]))
     mrows = "".join(
@@ -198,8 +209,12 @@ def team_dialog(idx, t, data, id_of):
         w = sum(r["won"] for r in rows)
         pls.append({"name": name, "rank": data["ranks"].get(name), "n": len(rows), "w": w, "rows": rows})
     pls.sort(key=lambda p: (p["rank"] or 999, -p["n"]))
+    def plink(name):
+        d = (pid or {}).get((tl, name))
+        return f"<button class='tl' data-open='{d}'>{esc(name)}</button>" if d else esc(name)
+
     prow = "".join(
-        f"<tr><td class='num'>{p['rank'] or '–'}</td><td>{esc(p['name'])}</td><td class='num'>{p['n']}</td>"
+        f"<tr><td class='num'>{p['rank'] or '–'}</td><td>{plink(p['name'])}</td><td class='num'>{p['n']}</td>"
         f"<td class='num'>{p['w']}:{p['n'] - p['w']}</td><td class='num'>{pct(p['w'], p['n'] - p['w'])}</td>"
         f"<td>{dots(p['rows'])}</td></tr>" for p in pls)
     return (f'<dialog id="t{idx}" aria-label="Team {esc(t["team"])}"><div class="dlg">'
