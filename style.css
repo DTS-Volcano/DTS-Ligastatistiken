@@ -219,3 +219,6 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .two{display:grid;grid-template-columns:1fr;gap:0 28px}
 @media (min-width:760px){.two{grid-template-columns:1fr 1fr}}
 .res li.mn .ro,.res li.mn .rd{font-weight:700}.res li.mn{border-left:3px solid var(--green);padding-left:6px}
+
+.imgprev{margin:12px 0;text-align:center}.imgprev img{max-width:min(100%,340px);height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 auto 10px}
+.imgprev a.rb{text-decoration:none;display:inline-block}

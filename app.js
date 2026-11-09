@@ -57,9 +57,14 @@ x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(location.host?location.host
 const blob=await new Promise(r=>c.toBlob(r,'image/png'));
 const name='ergebnis-'+(d.home+'-'+d.guest).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.png';
 const f=new File([blob],name,{type:'image/png'});
-if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:d.home+' '+d.pts+' '+d.guest});btn.textContent=old;return}catch(e){if(e&&e.name==='AbortError'){btn.textContent=old;return}}}
-const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);
-btn.textContent='Bild gespeichert'
+const dlg=btn.closest('dialog');let box=dlg.querySelector('.imgprev');if(box){URL.revokeObjectURL(box.dataset.u);box.remove()}
+const u=URL.createObjectURL(blob);box=document.createElement('div');box.className='imgprev';box.dataset.u=u;
+const can=navigator.canShare&&navigator.canShare({files:[f]});
+box.innerHTML='<img alt="Ergebnisbild" src="'+u+'"><p class="acts"><a class="rb" download="'+name+'" href="'+u+'">Bild speichern</a>'+(can?' <button type="button" class="rb" data-sh>Teilen …</button>':'')+' <button type="button" class="rb" data-x>Schliessen</button></p>';
+box.addEventListener('click',async e=>{if(e.target.closest('[data-x]')){URL.revokeObjectURL(u);box.remove()}
+if(e.target.closest('[data-sh]')){try{await navigator.share({files:[f],title:d.home+' '+d.pts+' '+d.guest})}catch(_){}}});
+btn.closest('.acts').after(box);box.scrollIntoView({block:'center',behavior:'smooth'});
+btn.textContent=old;return
 }catch(e){btn.textContent='Bild nicht möglich'}
 setTimeout(()=>{btn.textContent=old},2200)}
 document.addEventListener('click',e=>{
