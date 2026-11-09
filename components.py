@@ -69,8 +69,7 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
     if len(series) >= 2:
         d = series[0] - series[-1]
         ch = f' <span class="{"up" if d > 0 else "down"}">{"▲" if d > 0 else "▼"} {abs(d)}</span>' if d else ""
-        rv = (f"<h4>Rangverlauf</h4><p class='prow'>Rang {series[-1]}{ch} {spark(series, 'Rangverlauf', invert=True)}</p>"
-              f"<p class='hint'>Seit {datetime.strptime(days[0], '%Y-%m-%d').strftime('%d.%m.%Y')}, oben ist Rang 1.</p>")
+        rv = (f"<h4>Rangverlauf</h4><p class='prow'>Rang {series[-1]}{ch} {spark(series, 'Rangverlauf', invert=True)}</p>")
     # Runden
     rd = defaultdict(lambda: [0, 0])
     for r in rows:

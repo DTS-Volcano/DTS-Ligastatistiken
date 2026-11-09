@@ -177,3 +177,9 @@ dialog[open]{animation:sheet .22s ease-out}
 }
 @keyframes sheet{from{transform:translateY(36px);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){dialog[open]{animation:none}*{scroll-behavior:auto!important}}
+
+dialog{touch-action:pan-y;overscroll-behavior:contain}
+.scroll{touch-action:pan-x pan-y}
+@keyframes inR{from{transform:translateX(48px);opacity:0}to{transform:none;opacity:1}}
+@keyframes inL{from{transform:translateX(-48px);opacity:0}to{transform:none;opacity:1}}
+dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s ease-out}

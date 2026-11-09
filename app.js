@@ -40,13 +40,30 @@ const t=e.target.closest('[data-open]');
 if(t){openDlg(document.getElementById(t.dataset.open));return}
 if(e.target.closest('#sbtn')){openSearch();return}
 const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()});
-/* Wischen: links/rechts blättern, nach unten wegziehen (Handy) */
-let ts=null;
-document.addEventListener('touchstart',e=>{const d=e.target.closest('dialog');if(!d||e.touches.length!==1){ts=null;return}
-const t=e.touches[0],r=d.getBoundingClientRect();ts={x:t.clientX,y:t.clientY,d,top:t.clientY-r.top<130,sc:!!e.target.closest('.scroll'),st:d.scrollTop}},{passive:true});
-document.addEventListener('touchend',e=>{if(!ts)return;const t=e.changedTouches[0],dx=t.clientX-ts.x,dy=t.clientY-ts.y,s=ts;ts=null;
-if(!s.sc&&Math.abs(dx)>70&&Math.abs(dy)<50){const b=s.d.querySelector(dx<0?'.nb-next':'.nb-prev');if(b&&!b.disabled)b.click();return}
-if(s.top&&dy>90&&Math.abs(dx)<50&&s.st<=0)s.d.close()},{passive:true});
+/* Wischen: Fenster folgt dem Finger; links/rechts blättert, nach unten wegziehen schliesst */
+let g=null;
+const nbtn=(d,s)=>{const b=d.querySelector(s);return b&&!b.disabled?b:null};
+function rst(d,ms){const f=()=>{d.style.transition=d.style.transform=d.style.opacity=''};ms?setTimeout(f,ms):f()}
+document.addEventListener('touchstart',e=>{const d=e.target.closest('dialog[open]');
+if(!d||e.touches.length!==1||e.target.closest('.scroll,input,select,textarea')){g=null;return}
+const t=e.touches[0];g={d,x:t.clientX,y:t.clientY,ax:null,t:Date.now(),top:d.scrollTop<=0}},{passive:true});
+document.addEventListener('touchmove',e=>{if(!g)return;const t=e.touches[0],dx=t.clientX-g.x,dy=t.clientY-g.y;
+if(g.ax===null){if(Math.abs(dx)<10&&Math.abs(dy)<10)return;
+if(Math.abs(dx)>Math.abs(dy)*1.4)g.ax='x';else if(Math.abs(dy)>Math.abs(dx)&&g.top&&dy>0)g.ax='y';else{g=null;return}
+g.d.style.transition='none'}
+if(g.ax==='x'){const k=nbtn(g.d,dx<0?'.nb-next':'.nb-prev')?1:.25;g.d.style.transform='translateX('+dx*k+'px)';g.d.style.opacity=1-Math.min(.4,Math.abs(dx)/450)}
+else{g.d.style.transform='translateY('+Math.max(0,dy)+'px)'}},{passive:true});
+function endDrag(e){if(!g)return;const s=g;g=null;if(!s.ax)return;const d=s.d,t=(e.changedTouches||[])[0];
+const dx=t?t.clientX-s.x:0,dy=t?t.clientY-s.y:0,v=Math.max(Math.abs(dx),Math.abs(dy))/Math.max(1,Date.now()-s.t);
+d.style.transition='transform .18s ease-out,opacity .18s ease-out';
+if(s.ax==='x'){const b=nbtn(d,dx<0?'.nb-next':'.nb-prev');
+if(b&&(Math.abs(dx)>90||(v>.5&&Math.abs(dx)>40))){d.style.transform='translateX('+(dx<0?-50:50)+'px)';d.style.opacity='0';
+setTimeout(()=>{rst(d);b.click();const n=$('dialog[open]');if(n){n.classList.add(dx<0?'in-r':'in-l');setTimeout(()=>n.classList.remove('in-r','in-l'),260)}},140)}
+else{d.style.transform='none';d.style.opacity='1';rst(d,200)}}
+else if(dy>110||(v>.6&&dy>50)){d.style.transform='translateY(110%)';setTimeout(()=>{rst(d);d.close()},170)}
+else{d.style.transform='none';rst(d,200)}}
+document.addEventListener('touchend',endDrag,{passive:true});
+document.addEventListener('touchcancel',e=>{if(g&&g.ax){rst(g.d)}g=null},{passive:true});
 /* Suche */
 function openSearch(){const d=document.getElementById('search');if(!d)return;closeAll();d.showModal();const i=document.getElementById('s-in');i.value='';render('');i.focus()}
 function render(q){const out=document.getElementById('s-res');q=q.trim().toLowerCase();
