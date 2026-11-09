@@ -35,7 +35,7 @@ def pruefe():
 
     if len(html) < 60_000:
         fehler.append(f"index.html ist mit {len(html) // 1000} KB ungewöhnlich klein")
-    for marker in ('id="p-uebersicht"', 'id="p-spieler"', 'id="p-liga"', 'id="p-partien"', "data-t='own'"):
+    for marker in ('id="p-uebersicht"', 'id="p-spieler"', 'id="p-liga"', 'id="p-analyse"', 'id="p-partien"', "data-t='own'"):
         if marker not in html:
             fehler.append(f"In der Seite fehlt: {marker}")
     if re.search(r">\s*(None|nan|undefined)\s*<", html):

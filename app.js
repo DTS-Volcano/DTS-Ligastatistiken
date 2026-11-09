@@ -2,7 +2,7 @@ document.querySelectorAll('table.sortable th').forEach(th=>{const i=th.cellIndex
 [...b.rows].sort((x,y)=>{const a=x.cells[i].dataset.v??x.cells[i].textContent,c=y.cells[i].dataset.v??y.cells[i].textContent,
 n=parseFloat(a),m=parseFloat(c),r=isNaN(n)||isNaN(m)?a.localeCompare(c):n-m;return d==='a'?r:-r}).forEach(r=>b.append(r))};
 th.addEventListener('click',go);th.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
-const TABS=['uebersicht','spieler','liga','partien'];
+const TABS=['uebersicht','spieler','liga','analyse','partien'];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let lastTab=null,pushed=false;
 function parse(){const h=(location.hash||'').slice(1),i=h.indexOf('~'),t=i<0?h:h.slice(0,i);return{tab:TABS.includes(t)?t:'uebersicht',slug:i<0?'':h.slice(i+1)}}
@@ -99,11 +99,11 @@ document.querySelectorAll('.tp').forEach(b=>{b.hidden=b.dataset.t!==t;
 if(!b.hidden)b.querySelectorAll('table.sortable tbody tr').forEach(r=>{r.hidden=!!s&&!r.dataset.q.includes(s)})})}
 sel.addEventListener('change',run);q.addEventListener('input',run)})();
 
-(()=>{const s=document.getElementById('f-liga');if(!s)return;
-const run=()=>document.querySelectorAll('.lb').forEach(b=>{b.hidden=b.dataset.t!==s.value});
+document.querySelectorAll('select.vf').forEach(s=>{const g=s.dataset.g,k='dts.'+g;
+const run=()=>document.querySelectorAll('.lb[data-g="'+g+'"]').forEach(b=>{b.hidden=b.dataset.t!==s.value});
 s.addEventListener('change',run);
-try{const v=localStorage.getItem('dts.liga');if(v&&[...s.options].some(o=>o.value===v)){s.value=v;run()}}catch(_){}
-s.addEventListener('change',()=>{try{localStorage.setItem('dts.liga',s.value)}catch(_){}})})();
+try{const v=localStorage.getItem(k);if(v&&[...s.options].some(o=>o.value===v)){s.value=v;run()}}catch(_){}
+s.addEventListener('change',()=>{try{localStorage.setItem(k,s.value)}catch(_){}})});
 
 /* Zustand merken */
 (()=>{const get=k=>{try{return localStorage.getItem(k)}catch(_){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};

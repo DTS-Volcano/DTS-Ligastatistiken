@@ -66,9 +66,9 @@ def section_next(data, matches, pid=None):
             cards += (f"<li class='pc'><span class='rk'>{r['rank'] or '–'}</span>"
                       f"<div class='pn'><b>{plink(r['name'])}</b><small>{r['w']}:{r['n'] - r['w']} · {pct(r['w'], r['n'] - r['w'])}</small></div>"
                       f"<span class='pf'>{dots(r['rows'])}</span>{meet}</li>")
-        table = ("<h3>Kader des Gegners</h3><p class='hint'>Rang in der Einzelrangliste, Bilanz und Form (S/N). "
+        table = ("<details class='roster'><summary>Kader des Gegners anzeigen<span></span></summary><p class='hint'>Rang in der Einzelrangliste, Bilanz und Form (S/N). "
                  "«Gegen euch» zeigt das Satzergebnis aus eurer Sicht, grün = ihr habt gewonnen.</p>"
-                 f"<ul class='pcs'>{cards}</ul>")
+                 f"<ul class='pcs'>{cards}</ul></details>")
     else:
         table = "<p class='hint'>Von diesem Team sind noch keine Einzel bekannt.</p>"
 
@@ -222,7 +222,7 @@ def section_rounds(matches):
 from awards import MIN_EINZEL, MONTHS, potm_ranking
 
 
-def section_potm(players, pidx):
+def section_potm(players, pidx, compact=False):
     rk = potm_ranking(players)
     if not rk:
         t = today()
@@ -245,6 +245,9 @@ def section_potm(players, pidx):
         cards += (f"<div class='potm'>{avatar(w['name'], 96)}<div><p class='sub'>{'Zwischenstand ' if live else ''}{label}</p>"
                   f"<h3 class='vs'>{link(w['name'])}</h3>"
                   f"<p class='sub'>{w['w']}:{w['l']} Einzel · {100 * w['q']:.0f} %{avg}</p></div></div>")
+    if compact:
+        return (f"<section><h2>Spieler des Monats</h2>{cards}"
+                "<p class='hint'><a href='#analyse'>Wertung und frühere Monate</a></p></section>")
     hall = ""
     for m in months[1:]:
         t = rk[m][0]

@@ -205,3 +205,9 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .hof-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
 .hf{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--green);border-radius:10px;padding:10px 12px}
 .hf p{margin:2px 0}.hf small{display:block;color:var(--mute);font-size:.85rem}.hf .big{font-family:var(--serif);font-size:1.5rem;display:block;line-height:1.2}
+
+.hf.mine{border-color:var(--green)}.hf .tl+small{margin-top:1px}
+.jump{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 8px}
+.jt{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.jt:hover{border-color:var(--green)}.jt b{display:block;font-family:var(--serif);font-size:1.05rem}.jt span{color:var(--mute);font-size:.85rem}
+@media (min-width:700px){.jump{grid-template-columns:repeat(4,1fr)}}

@@ -93,24 +93,24 @@ def render(data, hist):
 
     archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
     ha_team, ha_players = section_homeaway(matches, players)
-    liga_opts, liga_blocks = "", ""
+    liga_opts, liga_blocks, ana_blocks = "", "", ""
     tf = data.get("team_full", {})
-    order_t = [data["league"][i]["team"] for i in range(len(data["league"]))]
-    order_t = order_t or [TEAM]
+    order_t = [t["team"] for t in data["league"]] or [TEAM]
     order_t.sort(key=lambda n: (n.lower() != TEAM.lower(), n.lower()))
     for ti, name in enumerate(order_t):
         own_t = name.lower() == TEAM.lower()
         tm = matches if own_t else tf.get(name.lower(), [])
         key = "own" if own_t else f"l{ti}"
+        hid = "" if own_t else " hidden"
         liga_opts += f"<option value='{key}'>{esc(name)}</option>"
-        liga_blocks += (f"<div class='lb' data-t='{key}'{'' if own_t else ' hidden'}>{section_league(data, name)}</section>"
-                        f"{section_fixtures(data, id_of, name)}{section_verlauf(data, name, tm)}"
-                        f"{section_homeaway(tm, [], own_t)[0]}{section_rounds(tm)}</div>")
+        liga_blocks += (f"<div class='lb' data-g='liga' data-t='{key}'{hid}>{section_league(data, name)}</section>"
+                        f"{section_fixtures(data, id_of, name)}</div>")
+        ana_blocks += (f"<div class='lb' data-g='ana' data-t='{key}'{hid}>{section_verlauf(data, name, tm)}"
+                       f"{section_homeaway(tm, [], own_t)[0]}{section_rounds(tm)}</div>")
     liga_opts += "<option value='all'>Alle Vereine</option>"
-    liga_blocks += (f"<div class='lb' data-t='all' hidden>{section_league(data)}</section>"
+    liga_blocks += (f"<div class='lb' data-g='liga' data-t='all' hidden>{section_league(data)}</section>"
                     f"{section_fixtures(data, id_of)}</div>")
     next_html, open_html = section_next(data, matches, pid)
-    league_html = section_league(data) + "</section>"
     open_html = f"<section>{open_html}</section>" if open_html else ""
     last_html = ""
     if matches:
@@ -168,8 +168,13 @@ def render(data, hist):
         hero += (f"<div class='hc'><p class='sub'>Teamform</p><span class='dots'>{dots_}</span>"
                  f"<p>{w5} Siege aus {len(last5)} Partien<small>letzte {len(last5)} Partien, ältere links</small></p></div>")
     hero = f"<div class='hero'>{hero}</div>" if hero else ""
+    hof_players = list(players) + [x for _, _, pls, _ in others_pl for x in pls]
+    hof_html = section_hof(hof_players, tf, pid, id_of)
+    jump = "".join(f"<a class='jt' href='#{k}'><b>{t}</b><span>{s}</span></a>" for k, t, s in (
+        ("spieler", "Spieler", "Tabelle, Form, Profile"), ("liga", "Team &amp; Liga", "Tabelle und Spielplan"),
+        ("analyse", "Analyse", "Hall of Fame, Verlauf, Spielblöcke"), ("partien", "Partien", "Alle Reports")))
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
-                                                          ("liga", "Team &amp; Liga"), ("partien", "Partien")))
+                                                          ("liga", "Team &amp; Liga"), ("analyse", "Analyse"), ("partien", "Partien")))
 
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
@@ -191,9 +196,8 @@ def render(data, hist):
 </dl>
 {next_html}
 {last_html}
-{section_potm(players, {pl["name"]: i for i, pl in enumerate(players)})}
-{section_hof(players, matches, pid)}
-{open_html}
+{section_potm(players, {pl["name"]: i for i, pl in enumerate(players)}, True)}
+<nav class="jump" aria-label="Weitere Bereiche">{jump}</nav>
 </div>
 
 <div class="panel" id="p-spieler">
@@ -209,8 +213,16 @@ def render(data, hist):
 
 <div class="panel" id="p-liga">
 <section><h2>Team und Liga</h2>
-<form class="filter" onsubmit="return false"><select id="f-liga" aria-label="Verein">{liga_opts}</select></form></section>
+<form class="filter" onsubmit="return false"><select class="vf" data-g="liga" aria-label="Verein">{liga_opts}</select></form></section>
 {liga_blocks}
+</div>
+
+<div class="panel" id="p-analyse">
+{hof_html}
+{section_potm(players, {pl["name"]: i for i, pl in enumerate(players)})}
+<section><h2>Team-Analyse</h2>
+<form class="filter" onsubmit="return false"><select class="vf" data-g="ana" aria-label="Verein">{liga_opts.replace("<option value='all'>Alle Vereine</option>", "")}</select></form></section>
+{ana_blocks}
 </div>
 
 <div class="panel" id="p-partien">
