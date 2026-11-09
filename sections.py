@@ -222,7 +222,9 @@ def section_rounds(matches):
 from awards import MIN_EINZEL, MONTHS, potm_ranking
 
 
-def section_potm(players, pidx, compact=False):
+def section_potm(players, pid, compact=False, team=None):
+    if team:
+        players = [p for p in players if p["team"].lower() == team.lower()]
     rk = potm_ranking(players)
     if not rk:
         t = today()
@@ -236,14 +238,16 @@ def section_potm(players, pidx, compact=False):
     winners = [r for r in rk[k] if (r["q"], r["w"], round(r["avg"], 1)) == (top["q"], top["w"], round(top["avg"], 1))]
     label = f"{MONTHS[k[1] - 1]} {k[0]}"
 
-    def link(name):
-        return f"<button class='tl' data-open='p{pidx[name]}'>{esc(name)}</button>" if name in pidx else esc(name)
+    def link(r):
+        d = pid.get((r["team"].lower(), r["name"]))
+        nm = f"<button class='tl' data-open='{d}'>{esc(r['name'])}</button>" if d else esc(r["name"])
+        return nm + (f" <small>({esc(r['team'])})</small>" if not team and r["team"] else "")
 
     cards = ""
     for w in winners:
         avg = f" · Ø Gegner-Rang {w['avg']:.0f}" if w["avg"] < 999 else ""
         cards += (f"<div class='potm'>{avatar(w['name'], 96)}<div><p class='sub'>{'Zwischenstand ' if live else ''}{label}</p>"
-                  f"<h3 class='vs'>{link(w['name'])}</h3>"
+                  f"<h3 class='vs'>{link(w)}</h3>"
                   f"<p class='sub'>{w['w']}:{w['l']} Einzel · {100 * w['q']:.0f} %{avg}</p></div></div>")
     if compact:
         return (f"<section><h2>Spieler des Monats</h2>{cards}"
@@ -251,7 +255,7 @@ def section_potm(players, pidx, compact=False):
     hall = ""
     for m in months[1:]:
         t = rk[m][0]
-        hall += (f"<li><span>{MONTHS[m[1] - 1]} {m[0]}</span>{link(t['name'])} <b>{t['w']}:{t['l']}</b></li>")
+        hall += (f"<li><span>{MONTHS[m[1] - 1]} {m[0]}</span>{link(t)} <b>{t['w']}:{t['l']}</b></li>")
     hall = f"<h4>Frühere Monate</h4><ul class='hof'>{hall}</ul>" if hall else ""
     return (f"<section><h2>Spieler des Monats</h2>{cards}"
             f"<p class='hint'>Wertung: beste Siegquote im Einzel (mindestens {MIN_EINZEL} Einzel im Monat), dann mehr Siege, "

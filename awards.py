@@ -10,23 +10,24 @@ MIN_EINZEL = 5     # so viele Einzel braucht es im Monat, um zu zählen
 
 def potm_ranking(players):
     """Monat (Jahr, Monat) -> Spieler nach Quote, Siegen und Stärke der Gegner sortiert."""
-    mon = defaultdict(lambda: defaultdict(lambda: {"w": 0, "l": 0, "opp": []}))
+    mon = defaultdict(lambda: defaultdict(lambda: {"w": 0, "l": 0, "opp": [], "team": ""}))
     for p in players:
         for r in p["rows"]:
             d = dkey(r["date"])
             if d.year < 2000:
                 continue
-            e = mon[(d.year, d.month)][p["name"]]
+            e = mon[(d.year, d.month)][(p.get("team") or "", p["name"])]
+            e["team"] = p.get("team") or ""
             e["w" if r["won"] else "l"] += 1
             if r["opp_rank"]:
                 e["opp"].append(r["opp_rank"])
     out = {}
     for k, pl in mon.items():
         rows = []
-        for name, e in pl.items():
+        for (_, name), e in pl.items():
             n = e["w"] + e["l"]
             if n >= MIN_EINZEL:
-                rows.append({"name": name, "w": e["w"], "l": e["l"], "q": e["w"] / n,
+                rows.append({"name": name, "team": e["team"], "w": e["w"], "l": e["l"], "q": e["w"] / n,
                              "avg": sum(e["opp"]) / len(e["opp"]) if e["opp"] else 999})
         rows.sort(key=lambda x: (-x["q"], -x["w"], x["avg"], x["name"]))
         if rows:

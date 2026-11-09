@@ -97,6 +97,7 @@ def render(data, hist):
     tf = data.get("team_full", {})
     order_t = [t["team"] for t in data["league"]] or [TEAM]
     order_t.sort(key=lambda n: (n.lower() != TEAM.lower(), n.lower()))
+    hof_players = list(players) + [x for _, _, pls, _ in others_pl for x in pls]
     for ti, name in enumerate(order_t):
         own_t = name.lower() == TEAM.lower()
         tm = matches if own_t else tf.get(name.lower(), [])
@@ -105,11 +106,15 @@ def render(data, hist):
         liga_opts += f"<option value='{key}'>{esc(name)}</option>"
         liga_blocks += (f"<div class='lb' data-g='liga' data-t='{key}'{hid}>{section_league(data, name)}</section>"
                         f"{section_fixtures(data, id_of, name)}</div>")
-        ana_blocks += (f"<div class='lb' data-g='ana' data-t='{key}'{hid}>{section_verlauf(data, name, tm)}"
+        ana_blocks += (f"<div class='lb' data-g='ana' data-t='{key}'{hid}>{section_hof(hof_players, tf, pid, id_of, name)}"
+                       f"{section_potm(hof_players, pid, False, name)}{section_verlauf(data, name, tm)}"
                        f"{section_homeaway(tm, [], own_t)[0]}{section_rounds(tm)}</div>")
     liga_opts += "<option value='all'>Alle Vereine</option>"
     liga_blocks += (f"<div class='lb' data-g='liga' data-t='all' hidden>{section_league(data)}</section>"
                     f"{section_fixtures(data, id_of)}</div>")
+    ana_blocks += (f"<div class='lb' data-g='ana' data-t='all' hidden>{section_hof(hof_players, tf, pid, id_of)}"
+                   f"{section_potm(hof_players, pid)}"
+                   "<section><h2>Team-Analyse</h2><p class='hint'>Für Saisonverlauf, Heim und Auswärts und Spielblöcke oben einen Verein wählen.</p></section></div>")
     next_html, open_html = section_next(data, matches, pid)
     open_html = f"<section>{open_html}</section>" if open_html else ""
     last_html = ""
@@ -168,15 +173,6 @@ def render(data, hist):
         hero += (f"<div class='hc'><p class='sub'>Teamform</p><span class='dots'>{dots_}</span>"
                  f"<p>{w5} Siege aus {len(last5)} Partien<small>letzte {len(last5)} Partien, ältere links</small></p></div>")
     hero = f"<div class='hero'>{hero}</div>" if hero else ""
-    hof_players = list(players) + [x for _, _, pls, _ in others_pl for x in pls]
-    hof_opts = "<option value='all'>Alle Vereine</option>"
-    hof_blocks = f"<div class='lb' data-g='hof' data-t='all'>{section_hof(hof_players, tf, pid, id_of)}</div>"
-    for ti, name in enumerate(order_t):
-        key = "own" if name.lower() == TEAM.lower() else f"l{ti}"
-        hof_opts += f"<option value='{key}'>{esc(name)}</option>"
-        hof_blocks += f"<div class='lb' data-g='hof' data-t='{key}' hidden>{section_hof(hof_players, tf, pid, id_of, name)}</div>"
-    hof_html = ("<section><h2>Hall of Fame</h2><form class='filter' onsubmit='return false'>"
-                f"<select class='vf' data-g='hof' aria-label='Verein'>{hof_opts}</select></form>{hof_blocks}</section>")
     jump = "".join(f"<a class='jt' href='#{k}'><b>{t}</b><span>{s}</span></a>" for k, t, s in (
         ("spieler", "Spieler", "Tabelle, Form, Profile"), ("liga", "Team &amp; Liga", "Tabelle und Spielplan"),
         ("analyse", "Analyse", "Hall of Fame, Verlauf, Spielblöcke"), ("partien", "Partien", "Alle Reports")))
@@ -203,7 +199,7 @@ def render(data, hist):
 </dl>
 {next_html}
 {last_html}
-{section_potm(players, {pl["name"]: i for i, pl in enumerate(players)}, True)}
+{section_potm(players, pid, True)}
 <nav class="jump" aria-label="Weitere Bereiche">{jump}</nav>
 </div>
 
@@ -225,10 +221,9 @@ def render(data, hist):
 </div>
 
 <div class="panel" id="p-analyse">
-{hof_html}
-{section_potm(players, {pl["name"]: i for i, pl in enumerate(players)})}
-<section><h2>Team-Analyse</h2>
-<form class="filter" onsubmit="return false"><select class="vf" data-g="ana" aria-label="Verein">{liga_opts.replace("<option value='all'>Alle Vereine</option>", "")}</select></form></section>
+<section><h2>Analyse</h2>
+<form class="filter" onsubmit="return false"><select class="vf" data-g="ana" aria-label="Verein">{liga_opts}</select></form>
+<p class="hint">Hall of Fame, Spieler des Monats, Saisonverlauf und Spielblöcke gelten für den gewählten Verein oder für alle Vereine.</p></section>
 {ana_blocks}
 </div>
 

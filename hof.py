@@ -36,7 +36,7 @@ def section_hof(players, team_full, pid, id_of, team=None):
     if q:
         b = max(q, key=lambda p: (p["w"] / p["n"], p["w"]))
         cards.append(("Beste Siegquote", f"{100 * b['w'] / b['n']:.0f} %", plink(b),
-                      f"{b['w']}:{b['l']}, mindestens {MIN_EINZEL} Einzel", mark(b)))
+                      f"{b['w']}:{b['l']} Einzel", mark(b)))
     gk = None
     for p in players:
         for r in p["rows"]:
@@ -85,8 +85,9 @@ def section_hof(players, team_full, pid, id_of, team=None):
         n = next((p["team"] for p in players if p["team"].lower() == bs[1]), bs[1])
         cards.append(("Längste Teamserie", f"{bs[0]} Partien", esc(n), "in Folge gewonnen", " mine" if bs[1] == me else ""))
     if not cards:
-        return "<p class='hint'>Noch keine Bestwerte vorhanden.</p>" if team else ""
+        return "<section><h2>Hall of Fame</h2><p class='hint'>Noch keine Bestwerte vorhanden.</p></section>" if team else ""
     html = "".join(f"<div class='hf{c}'><p class='sub'>{esc(lab)}</p><b class='big'>{val}</b><p>{who}</p><small>{note}</small></div>"
                    for lab, val, who, note, c in cards)
     hint = (f"Bestwerte von {esc(team)}" if team else f"Bestwerte der ganzen Liga. Rot umrandet: {esc(TEAM)}")
-    return f"<div class='hint'>{hint}, nur Einzel ohne Doppel und Sudden Death.</div><div class='hof-g'>{html}</div>"
+    return (f"<section><h2>Hall of Fame</h2><p class='hint'>{hint}, nur Einzel ohne Doppel und Sudden Death.</p>"
+            f"<div class='hof-g'>{html}</div></section>")
