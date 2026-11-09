@@ -49,11 +49,12 @@ if(b){const h=96,w=h*b.width/b.height;x.drawImage(b,W-60-w,70,w,h)}
 x.textAlign='center';x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText('Liga STSO S 2 · '+d.date,W/2,300);
 x.fillStyle='#fff';
 let y=420;[d.home,d.guest].forEach((t,i)=>{const s=fitText(x,t,900,76,'700 $px '+SERIF,34);x.font='700 '+s+'px '+SERIF;x.fillText(t,W/2,y);y+=i?0:70;if(!i){x.fillStyle='#c9bcbe';x.font='32px '+SANS;x.fillText('gegen',W/2,y+10);x.fillStyle='#fff';y+=90}});
-x.fillStyle='#fff';x.font='700 250px '+SERIF;x.fillText(d.pts,W/2,y+250);y+=300;
-x.fillStyle='#c9bcbe';x.font='36px '+SANS;x.fillText('Spiele '+d.games+(d.sets?'  ·  Sätze '+d.sets:''),W/2,y+30);y+=100;
+y+=100;x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText('Spiele',W/2,y);
+x.fillStyle='#fff';x.font='700 190px '+SERIF;x.fillText(d.games,W/2,y+190);y+=190;
+if(d.sets){x.fillStyle='#c9bcbe';x.font='36px '+SANS;x.fillText('Sätze '+d.sets,W/2,y+70);y+=70}
+y+=90;
 if(d.mvp&&d.mvp.length){x.fillStyle=red;x.fillRect(W/2-300,y,600,4);y+=64;x.fillStyle='#c9bcbe';x.font='30px '+SANS;x.fillText(d.mvp.length>1?'Spieler des Spiels':'Spieler des Spiels',W/2,y);y+=56;
 x.fillStyle='#fff';d.mvp.forEach(p=>{x.font='700 44px '+SERIF;x.fillText(p[0]+'  '+p[1],W/2,y);y+=44;x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(p[2],W/2,y);x.fillStyle='#fff';y+=54})}
-x.fillStyle='#c9bcbe';x.font='28px '+SANS;x.fillText(location.host?location.host+location.pathname.replace(/index\.html$/,''):'Double Trouble Steeldarters',W/2,H-60);
 const blob=await new Promise(r=>c.toBlob(r,'image/png'));
 const name='ergebnis-'+(d.home+'-'+d.guest).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.png';
 const f=new File([blob],name,{type:'image/png'});
