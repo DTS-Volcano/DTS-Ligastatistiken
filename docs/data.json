@@ -1178,7 +1178,7 @@
    "n": 30,
    "w": 23,
    "l": 7,
-   "avg_opp": 27.866666666666667,
+   "avg_opp": 27.9,
    "brackets": {
     "top": [
      5,
@@ -1292,7 +1292,7 @@
      "date": "14.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 15
+     "opp_rank": 16
     },
     {
      "opp": "Mic Andres",
@@ -1362,7 +1362,7 @@
      "date": "28.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 18
+     "opp_rank": 19
     },
     {
      "opp": "Christian Hutter",
@@ -1462,7 +1462,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Chris Malang",
@@ -1482,7 +1482,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 8
+     "opp_rank": 6
     },
     {
      "opp": "Matthias Sutter",
@@ -1503,7 +1503,7 @@
    "n": 12,
    "w": 8,
    "l": 4,
-   "avg_opp": 24.0,
+   "avg_opp": 24.333333333333332,
    "brackets": {
     "top": [
      3,
@@ -1537,7 +1537,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Marco Müller",
@@ -1547,7 +1547,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 8
+     "opp_rank": 6
     },
     {
      "opp": "Naser Toja",
@@ -1557,7 +1557,7 @@
      "date": "02.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 52
+     "opp_rank": 56
     },
     {
      "opp": "Christian Hutter",
@@ -1577,7 +1577,7 @@
      "date": "28.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 18
+     "opp_rank": 19
     },
     {
      "opp": "Heiri Kuratli",
@@ -1648,7 +1648,7 @@
    "n": 23,
    "w": 15,
    "l": 8,
-   "avg_opp": 27.17391304347826,
+   "avg_opp": 27.26086956521739,
    "brackets": {
     "top": [
      2,
@@ -1712,7 +1712,7 @@
      "date": "02.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Oliver Hutter",
@@ -1742,7 +1742,7 @@
      "date": "07.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 54
+     "opp_rank": 53
     },
     {
      "opp": "Patric Fricker",
@@ -1792,7 +1792,7 @@
      "date": "14.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 15
+     "opp_rank": 16
     },
     {
      "opp": "Joel Ghirlanda",
@@ -1852,7 +1852,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Markus Müller",
@@ -1862,7 +1862,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Daniel Strasser",
@@ -1872,7 +1872,7 @@
      "date": "05.10.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Matthias Sutter",
@@ -1892,7 +1892,7 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 8
+     "opp_rank": 6
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -1903,7 +1903,7 @@
    "n": 29,
    "w": 18,
    "l": 11,
-   "avg_opp": 30.82758620689655,
+   "avg_opp": 31.06896551724138,
    "brackets": {
     "top": [
      1,
@@ -1927,7 +1927,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Chris Malang",
@@ -1947,7 +1947,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 52
+     "opp_rank": 56
     },
     {
      "opp": "Demian Senn",
@@ -2057,7 +2057,7 @@
      "date": "28.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 18
+     "opp_rank": 19
     },
     {
      "opp": "Christian Hutter",
@@ -2087,7 +2087,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Alex Grohmann",
@@ -2097,7 +2097,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Lars Gamper",
@@ -2177,7 +2177,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 8
+     "opp_rank": 6
     },
     {
      "opp": "Matthias Sutter",
@@ -2197,7 +2197,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Chris Malang",
@@ -2242,7 +2242,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 8
+     "opp_rank": 6
     },
     {
      "opp": "Matthias Sutter",
@@ -2302,7 +2302,7 @@
      "date": "28.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 18
+     "opp_rank": 19
     },
     {
      "opp": "Lucky Aebischer",
@@ -2362,7 +2362,7 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -2373,7 +2373,7 @@
    "n": 22,
    "w": 9,
    "l": 13,
-   "avg_opp": 21.818181818181817,
+   "avg_opp": 21.863636363636363,
    "brackets": {
     "top": [
      0,
@@ -2407,7 +2407,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 8
+     "opp_rank": 6
     },
     {
      "opp": "Martin Gerber",
@@ -2417,7 +2417,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Chris Malang",
@@ -2437,7 +2437,7 @@
      "date": "14.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 15
+     "opp_rank": 16
     },
     {
      "opp": "Felix Schwager",
@@ -2477,7 +2477,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Jean-Dominique Bollhalder",
@@ -2507,7 +2507,7 @@
      "date": "05.10.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Michael Loser",
@@ -2587,7 +2587,7 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 8
+     "opp_rank": 6
     },
     {
      "opp": "Chris Malang",
@@ -2607,7 +2607,7 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -2618,7 +2618,7 @@
    "n": 17,
    "w": 4,
    "l": 13,
-   "avg_opp": 29.647058823529413,
+   "avg_opp": 29.88235294117647,
    "brackets": {
     "top": [
      0,
@@ -2702,7 +2702,7 @@
      "date": "14.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 15
+     "opp_rank": 16
     },
     {
      "opp": "Silvan Bücheli",
@@ -2752,7 +2752,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Adam Montgomery",
@@ -2772,7 +2772,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Markus Müller",
@@ -2782,7 +2782,7 @@
      "date": "05.10.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Jonathan Palumbo",
@@ -2809,11 +2809,11 @@
   },
   {
    "name": "Tobias Fiedler",
-   "rank": 56,
+   "rank": 55,
    "n": 14,
    "w": 2,
    "l": 12,
-   "avg_opp": 35.285714285714285,
+   "avg_opp": 35.214285714285715,
    "brackets": {
     "top": [
      0,
@@ -2907,7 +2907,7 @@
      "date": "07.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 54
+     "opp_rank": 53
     },
     {
      "opp": "Phillipe Graf",
@@ -2977,13 +2977,13 @@
   {
    "rank": 1,
    "team": "Die Humorlosen",
-   "played": 10,
-   "pp": 30,
+   "played": 11,
+   "pp": 33,
    "pm": 0,
-   "gp": 147,
-   "gm": 33,
-   "sp": 310,
-   "sm": 106
+   "gp": 162,
+   "gm": 36,
+   "sp": 341,
+   "sm": 116
   },
   {
    "rank": 2,
@@ -3032,13 +3032,13 @@
   {
    "rank": 6,
    "team": "Irish Skulls ;) Steel",
-   "played": 9,
+   "played": 10,
    "pp": 12,
-   "pm": 15,
-   "gp": 75,
-   "gm": 87,
-   "sp": 190,
-   "sm": 208
+   "pm": 18,
+   "gp": 78,
+   "gm": 102,
+   "sp": 200,
+   "sm": 239
   },
   {
    "rank": 7,
@@ -3425,7 +3425,7 @@
    "home": "Die Humorlosen",
    "guest": "Irish Skulls ;) Steel",
    "place": "Widnau",
-   "played": false
+   "played": true
   },
   {
    "nr": "2621640",

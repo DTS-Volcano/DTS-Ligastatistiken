@@ -1,0 +1,125 @@
+{
+ "date": "09.11.2026",
+ "home": "Die Humorlosen",
+ "guest": "Irish Skulls ;) Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Valentin Matt",
+   "guest": "Matthias Sutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Michael Loser",
+   "guest": "Martin Gerber",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "David Laritz",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Martin Seidelmann",
+   "guest": "Naser Toja",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "David Laritz",
+   "guest": "Martin Gerber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Valentin Matt",
+   "guest": "Naser Toja",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Michael Loser",
+   "guest": "Marco Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Martin Seidelmann",
+   "guest": "Matthias Sutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Valentin Matt",
+   "guest": "Martin Gerber",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "David Laritz",
+   "guest": "Naser Toja",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Michael Loser",
+   "guest": "Matthias Sutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Seidelmann",
+   "guest": "Marco Müller",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Valentin Matt",
+   "guest": "Marco Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Michael Loser",
+   "guest": "Naser Toja",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "David Laritz",
+   "guest": "Matthias Sutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Seidelmann",
+   "guest": "Martin Gerber",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "15:3",
+  "31:10"
+ ],
+ "extras": []
+}
