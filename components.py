@@ -7,7 +7,7 @@ from datetime import datetime
 from awards import player_awards
 from config import FORM_N, TEAM, find_photo, slug
 from stats import quote_series
-from textutil import dkey, esc, fmt_date, pct, short
+from textutil import dkey, einzel_punkte, esc, fmt_date, pct, ranglistenwert, short
 
 
 def bar(w, l):
@@ -58,7 +58,9 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
     rows = p["rows"]
     quote = pct(p["w"], p["l"])
     avg = f"{p['avg_opp']:.1f}" if p["avg_opp"] else "–"
+    pk = einzel_punkte(rows)
     kp = (f"<div><dt>Rang</dt><dd>{p['rank'] or '–'}</dd></div><div><dt>Bilanz</dt><dd>{p['w']}:{p['l']}</dd></div>"
+          f"<div><dt>Punkte</dt><dd>{pk}</dd></div><div><dt>Ranglistenwert</dt><dd>{ranglistenwert(pk, len(rows)):.1f}</dd></div>"
           f"<div><dt>Quote</dt><dd>{quote}</dd></div><div><dt>Ø Gegner</dt><dd>{avg}</dd></div>")
     # Form und Quotenverlauf
     form = (f"<h4>Form</h4><p class='prow'>{dots(rows, 10)} {spark(quote_series(rows), 'Siegquote nach jedem Einzel', 0, 100)}</p>"

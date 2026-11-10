@@ -63,3 +63,20 @@ def fmt_date(d):
     """'02.12.26' oder '02.12.2026' -> '02.12.2026'."""
     dt = dkey(d)
     return dt.strftime("%d.%m.%Y") if dt != datetime.min else d
+
+
+def einzel_punkte(rows):
+    """Punkte der Einzelwertung: 2:0 = 4, 2:1 = 3, 1:2 = 1, 0:2 = 0."""
+    tot = 0
+    for r in rows:
+        try:
+            a, b = (int(x) for x in r["sets"].split(":"))
+        except (ValueError, KeyError):
+            continue
+        tot += 4 if (a, b) == (2, 0) else 3 if (a, b) == (2, 1) else 1 if (a, b) == (1, 2) else 0
+    return tot
+
+
+def ranglistenwert(punkte, spiele):
+    """Ranglistenwert = Punkte² / (4 · Spiele)."""
+    return punkte * punkte / (4 * spiele) if spiele else 0.0

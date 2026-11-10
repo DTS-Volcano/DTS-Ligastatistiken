@@ -163,7 +163,7 @@ def render(data, hist):
 <select id="f-team" aria-label="Verein">{team_opts}</select>
 <input type="search" id="f-pq" placeholder="Spieler suchen" aria-label="Spieler suchen">
 </form>
-<p class="hint">Es zählen nur Einzel (ohne Doppel und Sudden Death). Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner.</p>
+<p class="hint">Es zählen nur Einzel (ohne Doppel und Sudden Death). Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner. Punkte: 2:0 = 4, 2:1 = 3, 1:2 = 1, 0:2 = 0. Ranglistenwert = Punkte² / (4 · Spiele).</p>
 {team_blocks}
 </section>
 </div>
