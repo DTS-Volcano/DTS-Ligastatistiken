@@ -47,15 +47,26 @@ def render(data, hist):
         x = dkey(d)
         return f"{x.year}-{x.month:02d}"
 
-    months = sorted({mon_key(m["date"]) for m in matches}, reverse=True)
-    mopts = "".join(f"<option value='{k}'>{MONTHS[int(k[5:]) - 1]} {k[:4]}</option>" for k in months)
-    mrows = "".join(
-        f"<tr class='click' data-open='m{i}' data-q='{esc(m['opp'].lower())}' data-mon='{mon_key(m['date'])}' "
-        f"data-home='{int(m['home'])}' data-win='{int(m['points'].split(':')[0] > m['points'].split(':')[1])}'><td>{m['date'][:6]}</td><td>{esc(m['opp'])}</td><td>{'Heim' if m['home'] else 'Auswärts'}</td>"
-        f"<td class='num'>{m['points']}</td><td class='num'>{m['games']}</td>"
-        f"<td><button class='rb' data-open='m{i}'>Report</button></td></tr>" for i, m in enumerate(matches))
     id_of = {m["nr"]: f"m{i}" for i, m in enumerate(matches)}
     id_of.update({nr: f"o{nr}" for nr in data["others"]})
+    allm = []                                     # alle Partien der Liga aus Sicht des Heimteams
+    for m in matches:
+        h, g = (TEAM, m["opp"]) if m["home"] else (m["opp"], TEAM)
+        rv = (lambda s: ":".join(reversed(s.split(":"))))
+        allm.append((m["date"], m["nr"], h, g, m["points"] if m["home"] else rv(m["points"]),
+                     m["games"] if m["home"] else rv(m["games"])))
+    for nr, o in data["others"].items():
+        allm.append((o["date"], nr, o["team"], o["opp"], o["points"], o["games"]))
+    allm.sort(key=lambda t: (dkey(t[0]), t[1]), reverse=True)
+    months = sorted({mon_key(t[0]) for t in allm}, reverse=True)
+    mopts = "".join(f"<option value='{k}'>{MONTHS[int(k[5:]) - 1]} {k[:4]}</option>" for k in months)
+    mrows = "".join(
+        f"<tr class='click{' mn' if TEAM.lower() in (h.lower(), g.lower()) else ''}' data-open='{id_of[nr]}' data-h='{esc(h.lower())}' data-g='{esc(g.lower())}' "
+        f"data-q='{esc((h + ' ' + g).lower())}' data-mon='{mon_key(d)}' data-pts='{pts}'>"
+        f"<td>{d[:6]}</td><td>{esc(h)} – {esc(g)}</td><td class='ort'></td><td class='num'>{pts}</td><td class='num'>{gm}</td>"
+        f"<td><button class='rb' data-open='{id_of[nr]}'>Report</button></td></tr>" for d, nr, h, g, pts, gm in allm)
+    team_names = sorted((t["team"] for t in data["league"]), key=lambda n: (n.lower() != TEAM.lower(), n.lower())) or [TEAM]
+    popts = "".join(f"<option value='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value=''>Alle Vereine</option>"
     titles = monthly_titles(players)
     # Spieler der ganzen Liga: eigene Spieler p0, p1, … (Blättern nach Rang), übrige lp<Team>_<n>
     for pl in players:
@@ -185,13 +196,14 @@ def render(data, hist):
 <section><h2>Partien</h2>
 <p class="hint">Auf eine Partie klicken, um den Spielreport zu öffnen.</p>
 <form class="filter" role="search" onsubmit="return false">
-<input type="search" id="f-q" placeholder="Gegner suchen" aria-label="Gegner suchen">
+<select id="f-pt" aria-label="Verein">{popts}</select>
+<input type="search" id="f-q" placeholder="Team suchen" aria-label="Team suchen">
 <select id="f-mon" aria-label="Monat"><option value="">Alle Monate</option>{mopts}</select>
 <select id="f-home" aria-label="Ort"><option value="">Heim und Auswärts</option><option value="1">Heim</option><option value="0">Auswärts</option></select>
 <select id="f-win" aria-label="Ergebnis"><option value="">Alle Ergebnisse</option><option value="1">Siege</option><option value="0">Niederlagen</option></select>
 </form>
 <p class="hint" id="f-count" aria-live="polite"></p>
-<div class="scroll"><table class="cards" id="mtable"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
+<div class="scroll"><table class="cards" id="mtable"><thead><tr><th>Datum</th><th>Partie</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
 <tbody>{mrows}</tbody></table></div></section>
 
 </div>

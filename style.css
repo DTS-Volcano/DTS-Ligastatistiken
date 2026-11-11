@@ -222,3 +222,6 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 
 .imgprev{margin:12px 0;text-align:center}.imgprev img{max-width:min(100%,340px);height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 auto 10px}
 .imgprev a.rb{text-decoration:none;display:inline-block}
+
+#mtable tr.mn td:nth-child(2){color:var(--green)}
+.filter select[hidden]{display:none}

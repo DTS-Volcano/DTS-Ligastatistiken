@@ -118,11 +118,16 @@ if(s&&b){const t=new Date(s.getAttribute('datetime')),h=(Date.now()-t)/36e5;if(h
 $$('.cd[data-d]').forEach(e=>{const d=new Date(e.dataset.d+'T00:00:00'),n=new Date();n.setHours(0,0,0,0);const k=Math.round((d-n)/864e5);
 e.textContent=k===0?'heute':k===1?'morgen':k>1?'in '+k+' Tagen':k===-1?'gestern':'vor '+(-k)+' Tagen'})})();
 
-(()=>{const t=document.getElementById('mtable');if(!t)return;const ids=['f-q','f-mon','f-home','f-win'],el=ids.map(i=>document.getElementById(i)),cnt=document.getElementById('f-count');
-function run(){const [q,mon,home,win]=el.map(e=>e.value.trim().toLowerCase());let n=0;const rows=[...t.tBodies[0].rows];
-rows.forEach(r=>{const ok=(!q||r.dataset.q.includes(q))&&(!mon||r.dataset.mon===mon)&&(home===''||r.dataset.home===home)&&(win===''||r.dataset.win===win);r.hidden=!ok;if(ok)n++});
-const f=q||mon||home!==''||win!=='';cnt.textContent=f?(n?n+' von '+rows.length+' Partien':'Keine Partie gefunden'):''}
-el.forEach(e=>e.addEventListener('input',run))})();
+(()=>{const t=document.getElementById('mtable');if(!t)return;const ids=['f-pt','f-q','f-mon','f-home','f-win'],el=ids.map(i=>document.getElementById(i)),cnt=document.getElementById('f-count');
+function run(){const [tm,q,mon,home,win]=el.map(e=>e.value.trim().toLowerCase());let n=0;const rows=[...t.tBodies[0].rows];
+el[3].hidden=el[4].hidden=!tm;
+rows.forEach(r=>{let ok=(!tm||r.dataset.h===tm||r.dataset.g===tm)&&(!q||r.dataset.q.includes(q))&&(!mon||r.dataset.mon===mon);
+const ort=r.querySelector('.ort');
+if(tm&&ok){const h=r.dataset.h===tm,[a,b]=r.dataset.pts.split(':').map(Number),w=h?a>b:b>a;
+ort.textContent=h?'Heim':'Auswärts';if(home!==''&&(home==='1')!==h)ok=false;if(win!==''&&(win==='1')!==w)ok=false}else ort.textContent='';
+r.hidden=!ok;if(ok)n++});
+const f=tm||q||mon;cnt.textContent=n?n+' von '+rows.length+' Partien':'Keine Partie gefunden'}
+el.forEach(e=>e.addEventListener('input',run));window.runPartien=run;run()})();
 
 (()=>{let tip=null,cur=null;
 function hide(){if(tip)tip.hidden=true;cur=null}
@@ -149,7 +154,7 @@ s.addEventListener('change',()=>{try{localStorage.setItem(k,s.value)}catch(_){}}
 /* Zustand merken */
 (()=>{const get=k=>{try{return localStorage.getItem(k)}catch(_){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};
 const ft=document.getElementById('f-team');if(ft){const v=get('dts.team');if(v&&[...ft.options].some(o=>o.value===v)){ft.value=v;ft.dispatchEvent(new Event('change'))}ft.addEventListener('change',()=>set('dts.team',ft.value))}
-const ids=['f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts.pf')||'{}')}catch(_){}
+const ids=['f-pt','f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts.pf')||'{}')}catch(_){}
 ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;if(st[i]&&[...e.options].some(o=>o.value===st[i])){e.value=st[i]}
 e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})});
 const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();
