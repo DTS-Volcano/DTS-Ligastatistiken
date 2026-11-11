@@ -1,0 +1,125 @@
+{
+ "date": "09.11.2026",
+ "home": "DARTFABRIK STEEL",
+ "guest": "Braschtli's Darter 2",
+ "games": [
+  {
+   "round": 1,
+   "home": "Lukas Hollenstein",
+   "guest": "Christian Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Alex Grohmann",
+   "guest": "Richard Sieber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Markus Müller",
+   "guest": "Sabrina Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Adam Montgomery",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Markus Müller",
+   "guest": "Richard Sieber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Lukas Hollenstein",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Alex Grohmann",
+   "guest": "Sabrina Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Adam Montgomery",
+   "guest": "Christian Hutter",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Lukas Hollenstein",
+   "guest": "Richard Sieber",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Markus Müller",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Alex Grohmann",
+   "guest": "Christian Hutter",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Adam Montgomery",
+   "guest": "Sabrina Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Lukas Hollenstein",
+   "guest": "Sabrina Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jean-Dominique Bollhalder",
+   "guest": "Andreas Hutter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Markus Müller",
+   "guest": "Christian Hutter",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Adam Montgomery",
+   "guest": "Richard Sieber",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "13:5",
+  "30:12"
+ ],
+ "extras": []
+}

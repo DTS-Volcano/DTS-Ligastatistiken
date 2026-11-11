@@ -1181,11 +1181,11 @@
    "avg_opp": 27.9,
    "brackets": {
     "top": [
-     5,
+     6,
      2
     ],
     "mid": [
-     4,
+     3,
      5
     ],
     "low": [
@@ -1212,7 +1212,7 @@
      "date": "24.08.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 33
+     "opp_rank": 35
     },
     {
      "opp": "Marc Brassel",
@@ -1222,7 +1222,7 @@
      "date": "24.08.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 27
+     "opp_rank": 28
     },
     {
      "opp": "Luis Munoz",
@@ -1232,7 +1232,7 @@
      "date": "24.08.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Fabian Aerne",
@@ -1252,7 +1252,7 @@
      "date": "07.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Oliver Hutter",
@@ -1272,7 +1272,7 @@
      "date": "07.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 43
+     "opp_rank": 44
     },
     {
      "opp": "Felix Schwager",
@@ -1282,7 +1282,7 @@
      "date": "14.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 4
+     "opp_rank": 3
     },
     {
      "opp": "Elia Meyer",
@@ -1292,7 +1292,7 @@
      "date": "14.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 16
+     "opp_rank": 14
     },
     {
      "opp": "Mic Andres",
@@ -1312,7 +1312,7 @@
      "date": "14.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 48
+     "opp_rank": 46
     },
     {
      "opp": "Alessio Demarchi",
@@ -1322,7 +1322,7 @@
      "date": "23.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 23
+     "opp_rank": 24
     },
     {
      "opp": "Joel Ghirlanda",
@@ -1332,7 +1332,7 @@
      "date": "23.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 35
+     "opp_rank": 33
     },
     {
      "opp": "Phillipe Graf",
@@ -1342,7 +1342,7 @@
      "date": "23.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 12
+     "opp_rank": 10
     },
     {
      "opp": "Silvan Bücheli",
@@ -1352,7 +1352,7 @@
      "date": "23.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 9
+     "opp_rank": 6
     },
     {
      "opp": "Richard Sieber",
@@ -1362,7 +1362,7 @@
      "date": "28.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 16
     },
     {
      "opp": "Christian Hutter",
@@ -1372,7 +1372,7 @@
      "date": "28.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 14
+     "opp_rank": 13
     },
     {
      "opp": "Andreas Hutter",
@@ -1392,7 +1392,7 @@
      "date": "28.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 48
     },
     {
      "opp": "Stefan Pfeifer",
@@ -1432,7 +1432,7 @@
      "date": "21.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 3
+     "opp_rank": 4
     },
     {
      "opp": "Luis Munoz",
@@ -1442,7 +1442,7 @@
      "date": "27.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Jonathan Palumbo",
@@ -1452,7 +1452,7 @@
      "date": "27.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 34
+     "opp_rank": 36
     },
     {
      "opp": "Martin Gerber",
@@ -1462,7 +1462,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Chris Malang",
@@ -1472,7 +1472,7 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Marco Müller",
@@ -1482,7 +1482,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Matthias Sutter",
@@ -1492,18 +1492,18 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 26
+     "opp_rank": 27
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Daniel Laszlo Sandor",
-   "rank": 36,
+   "rank": 37,
    "n": 12,
    "w": 8,
    "l": 4,
-   "avg_opp": 24.333333333333332,
+   "avg_opp": 24.416666666666668,
    "brackets": {
     "top": [
      3,
@@ -1527,7 +1527,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Martin Gerber",
@@ -1537,7 +1537,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Marco Müller",
@@ -1547,7 +1547,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Naser Toja",
@@ -1567,7 +1567,7 @@
      "date": "28.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 14
+     "opp_rank": 13
     },
     {
      "opp": "Richard Sieber",
@@ -1577,7 +1577,7 @@
      "date": "28.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 16
     },
     {
      "opp": "Heiri Kuratli",
@@ -1587,7 +1587,7 @@
      "date": "28.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 48
     },
     {
      "opp": "Andreas Hutter",
@@ -1607,7 +1607,7 @@
      "date": "21.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 3
+     "opp_rank": 4
     },
     {
      "opp": "Valentin Matt",
@@ -1648,14 +1648,14 @@
    "n": 23,
    "w": 15,
    "l": 8,
-   "avg_opp": 27.26086956521739,
+   "avg_opp": 26.652173913043477,
    "brackets": {
     "top": [
-     2,
+     3,
      3
     ],
     "mid": [
-     5,
+     4,
      4
     ],
     "low": [
@@ -1672,7 +1672,7 @@
      "date": "24.08.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Marc Brassel",
@@ -1682,7 +1682,7 @@
      "date": "24.08.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 27
+     "opp_rank": 28
     },
     {
      "opp": "Marcel Staubli",
@@ -1702,7 +1702,7 @@
      "date": "24.08.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 39
+     "opp_rank": 40
     },
     {
      "opp": "Martin Gerber",
@@ -1712,7 +1712,7 @@
      "date": "02.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Oliver Hutter",
@@ -1732,7 +1732,7 @@
      "date": "07.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 43
+     "opp_rank": 44
     },
     {
      "opp": "Cedric Hutter",
@@ -1752,7 +1752,7 @@
      "date": "07.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Mic Andres",
@@ -1772,7 +1772,7 @@
      "date": "14.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 48
+     "opp_rank": 46
     },
     {
      "opp": "Felix Schwager",
@@ -1782,7 +1782,7 @@
      "date": "14.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 4
+     "opp_rank": 3
     },
     {
      "opp": "Elia Meyer",
@@ -1792,7 +1792,7 @@
      "date": "14.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 16
+     "opp_rank": 14
     },
     {
      "opp": "Joel Ghirlanda",
@@ -1802,7 +1802,7 @@
      "date": "23.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 35
+     "opp_rank": 33
     },
     {
      "opp": "Alessio Demarchi",
@@ -1812,7 +1812,7 @@
      "date": "23.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 23
+     "opp_rank": 24
     },
     {
      "opp": "Silvan Bücheli",
@@ -1822,7 +1822,7 @@
      "date": "23.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 9
+     "opp_rank": 6
     },
     {
      "opp": "Phillipe Graf",
@@ -1832,7 +1832,7 @@
      "date": "23.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 12
+     "opp_rank": 10
     },
     {
      "opp": "Adam Montgomery",
@@ -1842,7 +1842,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 24
+     "opp_rank": 19
     },
     {
      "opp": "Alex Grohmann",
@@ -1862,7 +1862,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 22
+     "opp_rank": 15
     },
     {
      "opp": "Daniel Strasser",
@@ -1872,7 +1872,7 @@
      "date": "05.10.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 8
+     "opp_rank": 9
     },
     {
      "opp": "Matthias Sutter",
@@ -1882,7 +1882,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 26
+     "opp_rank": 27
     },
     {
      "opp": "Marco Müller",
@@ -1892,18 +1892,18 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Nevio Bachmann",
-   "rank": 13,
+   "rank": 17,
    "n": 29,
    "w": 18,
    "l": 11,
-   "avg_opp": 31.06896551724138,
+   "avg_opp": 31.103448275862068,
    "brackets": {
     "top": [
      1,
@@ -1927,7 +1927,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Chris Malang",
@@ -1937,7 +1937,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Naser Toja",
@@ -1967,7 +1967,7 @@
      "date": "07.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Fabian Aerne",
@@ -1987,7 +1987,7 @@
      "date": "07.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 43
+     "opp_rank": 44
     },
     {
      "opp": "Oliver Hutter",
@@ -2007,7 +2007,7 @@
      "date": "14.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 4
+     "opp_rank": 3
     },
     {
      "opp": "Alessio Demarchi",
@@ -2017,7 +2017,7 @@
      "date": "23.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 23
+     "opp_rank": 24
     },
     {
      "opp": "Daniel Forrer",
@@ -2047,7 +2047,7 @@
      "date": "28.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 48
     },
     {
      "opp": "Richard Sieber",
@@ -2057,7 +2057,7 @@
      "date": "28.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 16
     },
     {
      "opp": "Christian Hutter",
@@ -2067,7 +2067,7 @@
      "date": "28.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 14
+     "opp_rank": 13
     },
     {
      "opp": "Jean-Dominique Bollhalder",
@@ -2077,7 +2077,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 42
+     "opp_rank": 41
     },
     {
      "opp": "Markus Müller",
@@ -2087,7 +2087,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 22
+     "opp_rank": 15
     },
     {
      "opp": "Alex Grohmann",
@@ -2127,7 +2127,7 @@
      "date": "21.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 3
+     "opp_rank": 4
     },
     {
      "opp": "Stefan Pfeifer",
@@ -2157,7 +2157,7 @@
      "date": "27.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 39
+     "opp_rank": 40
     },
     {
      "opp": "Serge Schiess",
@@ -2167,7 +2167,7 @@
      "date": "27.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 33
+     "opp_rank": 35
     },
     {
      "opp": "Marco Müller",
@@ -2177,7 +2177,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Matthias Sutter",
@@ -2187,7 +2187,7 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 26
+     "opp_rank": 27
     },
     {
      "opp": "Martin Gerber",
@@ -2197,7 +2197,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Chris Malang",
@@ -2207,18 +2207,18 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 44
+     "opp_rank": 45
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Elia Tanner",
-   "rank": 41,
+   "rank": 43,
    "n": 13,
    "w": 6,
    "l": 7,
-   "avg_opp": 31.846153846153847,
+   "avg_opp": 32.46153846153846,
    "brackets": {
     "top": [
      1,
@@ -2242,7 +2242,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Matthias Sutter",
@@ -2252,7 +2252,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 26
+     "opp_rank": 27
     },
     {
      "opp": "Chris Malang",
@@ -2262,7 +2262,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Heiri Kuratli",
@@ -2272,7 +2272,7 @@
      "date": "28.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 48
     },
     {
      "opp": "Andreas Hutter",
@@ -2292,7 +2292,7 @@
      "date": "28.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 14
+     "opp_rank": 13
     },
     {
      "opp": "Richard Sieber",
@@ -2302,7 +2302,7 @@
      "date": "28.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 16
     },
     {
      "opp": "Lucky Aebischer",
@@ -2312,7 +2312,7 @@
      "date": "27.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 39
+     "opp_rank": 40
     },
     {
      "opp": "Serge Schiess",
@@ -2322,7 +2322,7 @@
      "date": "27.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 33
+     "opp_rank": 35
     },
     {
      "opp": "Luis Munoz",
@@ -2332,7 +2332,7 @@
      "date": "27.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Jonathan Palumbo",
@@ -2342,7 +2342,7 @@
      "date": "27.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 34
+     "opp_rank": 36
     },
     {
      "opp": "Chris Malang",
@@ -2352,7 +2352,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Martin Gerber",
@@ -2362,18 +2362,18 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 7
+     "opp_rank": 8
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Kevin Notter",
-   "rank": 37,
+   "rank": 38,
    "n": 22,
    "w": 9,
    "l": 13,
-   "avg_opp": 21.863636363636363,
+   "avg_opp": 21.59090909090909,
    "brackets": {
     "top": [
      0,
@@ -2397,7 +2397,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 26
+     "opp_rank": 27
     },
     {
      "opp": "Marco Müller",
@@ -2407,7 +2407,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Martin Gerber",
@@ -2417,7 +2417,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 7
+     "opp_rank": 8
     },
     {
      "opp": "Chris Malang",
@@ -2427,7 +2427,7 @@
      "date": "02.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Elia Meyer",
@@ -2437,7 +2437,7 @@
      "date": "14.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 16
+     "opp_rank": 14
     },
     {
      "opp": "Felix Schwager",
@@ -2447,7 +2447,7 @@
      "date": "14.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 4
+     "opp_rank": 3
     },
     {
      "opp": "Martin Vomend",
@@ -2457,7 +2457,7 @@
      "date": "14.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 48
+     "opp_rank": 46
     },
     {
      "opp": "Mic Andres",
@@ -2477,7 +2477,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 22
+     "opp_rank": 15
     },
     {
      "opp": "Jean-Dominique Bollhalder",
@@ -2487,7 +2487,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 42
+     "opp_rank": 41
     },
     {
      "opp": "Adam Montgomery",
@@ -2497,7 +2497,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 24
+     "opp_rank": 19
     },
     {
      "opp": "Alex Grohmann",
@@ -2537,7 +2537,7 @@
      "date": "21.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 3
+     "opp_rank": 4
     },
     {
      "opp": "Valentin Matt",
@@ -2557,7 +2557,7 @@
      "date": "27.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 33
+     "opp_rank": 35
     },
     {
      "opp": "Lucky Aebischer",
@@ -2567,7 +2567,7 @@
      "date": "27.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 39
+     "opp_rank": 40
     },
     {
      "opp": "Matthias Sutter",
@@ -2577,7 +2577,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 26
+     "opp_rank": 27
     },
     {
      "opp": "Marco Müller",
@@ -2587,7 +2587,7 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 6
+     "opp_rank": 7
     },
     {
      "opp": "Chris Malang",
@@ -2597,7 +2597,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 44
+     "opp_rank": 45
     },
     {
      "opp": "Martin Gerber",
@@ -2607,7 +2607,7 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 7
+     "opp_rank": 8
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -2618,15 +2618,15 @@
    "n": 17,
    "w": 4,
    "l": 13,
-   "avg_opp": 29.88235294117647,
+   "avg_opp": 29.11764705882353,
    "brackets": {
     "top": [
      0,
-     2
+     3
     ],
     "mid": [
      0,
-     7
+     6
     ],
     "low": [
      4,
@@ -2642,7 +2642,7 @@
      "date": "24.08.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 27
+     "opp_rank": 28
     },
     {
      "opp": "Luis Munoz",
@@ -2652,7 +2652,7 @@
      "date": "24.08.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Lucky Aebischer",
@@ -2662,7 +2662,7 @@
      "date": "24.08.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 39
+     "opp_rank": 40
     },
     {
      "opp": "Marcel Staubli",
@@ -2682,7 +2682,7 @@
      "date": "14.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 48
+     "opp_rank": 46
     },
     {
      "opp": "Mic Andres",
@@ -2702,7 +2702,7 @@
      "date": "14.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 16
+     "opp_rank": 14
     },
     {
      "opp": "Silvan Bücheli",
@@ -2712,7 +2712,7 @@
      "date": "23.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 9
+     "opp_rank": 6
     },
     {
      "opp": "Phillipe Graf",
@@ -2722,7 +2722,7 @@
      "date": "23.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 12
+     "opp_rank": 10
     },
     {
      "opp": "Daniel Forrer",
@@ -2742,7 +2742,7 @@
      "date": "23.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 23
+     "opp_rank": 24
     },
     {
      "opp": "Alex Grohmann",
@@ -2762,7 +2762,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 24
+     "opp_rank": 19
     },
     {
      "opp": "Daniel Strasser",
@@ -2772,7 +2772,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 8
+     "opp_rank": 9
     },
     {
      "opp": "Markus Müller",
@@ -2782,7 +2782,7 @@
      "date": "05.10.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 22
+     "opp_rank": 15
     },
     {
      "opp": "Jonathan Palumbo",
@@ -2792,7 +2792,7 @@
      "date": "27.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 34
+     "opp_rank": 36
     },
     {
      "opp": "Luis Munoz",
@@ -2802,26 +2802,26 @@
      "date": "27.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Tobias Fiedler",
-   "rank": 55,
+   "rank": 54,
    "n": 14,
    "w": 2,
    "l": 12,
-   "avg_opp": 35.214285714285715,
+   "avg_opp": 35.714285714285715,
    "brackets": {
     "top": [
      0,
-     1
+     2
     ],
     "mid": [
      1,
-     2
+     1
     ],
     "low": [
      1,
@@ -2837,7 +2837,7 @@
      "date": "24.08.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 33
+     "opp_rank": 35
     },
     {
      "opp": "Tom Lanz",
@@ -2857,7 +2857,7 @@
      "date": "24.08.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Marc Brassel",
@@ -2867,7 +2867,7 @@
      "date": "24.08.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 27
+     "opp_rank": 28
     },
     {
      "opp": "Jonas Herbinger",
@@ -2877,7 +2877,7 @@
      "date": "07.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 43
+     "opp_rank": 44
     },
     {
      "opp": "Oliver Hutter",
@@ -2897,7 +2897,7 @@
      "date": "07.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Cedric Hutter",
@@ -2917,7 +2917,7 @@
      "date": "23.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 12
+     "opp_rank": 10
     },
     {
      "opp": "Silvan Bücheli",
@@ -2927,7 +2927,7 @@
      "date": "23.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 9
+     "opp_rank": 6
     },
     {
      "opp": "Serge Schiess",
@@ -2937,7 +2937,7 @@
      "date": "27.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 33
+     "opp_rank": 35
     },
     {
      "opp": "Lucky Aebischer",
@@ -2947,7 +2947,7 @@
      "date": "27.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 39
+     "opp_rank": 40
     },
     {
      "opp": "Jonathan Palumbo",
@@ -2957,7 +2957,7 @@
      "date": "27.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 34
+     "opp_rank": 36
     },
     {
      "opp": "Luis Munoz",
@@ -2967,7 +2967,7 @@
      "date": "27.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -2988,24 +2988,24 @@
   {
    "rank": 2,
    "team": "Irish Skulls Steel",
-   "played": 10,
-   "pp": 24,
+   "played": 11,
+   "pp": 27,
    "pm": 6,
-   "gp": 102,
-   "gm": 78,
-   "sp": 241,
-   "sm": 192
+   "gp": 114,
+   "gm": 84,
+   "sp": 267,
+   "sm": 210
   },
   {
    "rank": 3,
    "team": "DARTFABRIK STEEL",
-   "played": 10,
-   "pp": 20,
+   "played": 11,
+   "pp": 23,
    "pm": 10,
-   "gp": 98,
-   "gm": 84,
-   "sp": 228,
-   "sm": 208
+   "gp": 111,
+   "gm": 89,
+   "sp": 258,
+   "sm": 220
   },
   {
    "rank": 4,
@@ -3021,13 +3021,13 @@
   {
    "rank": 5,
    "team": "Dart Ost",
-   "played": 9,
+   "played": 10,
    "pp": 13,
-   "pm": 14,
-   "gp": 80,
-   "gm": 84,
-   "sp": 197,
-   "sm": 196
+   "pm": 17,
+   "gp": 86,
+   "gm": 96,
+   "sp": 215,
+   "sm": 222
   },
   {
    "rank": 6,
@@ -3065,13 +3065,13 @@
   {
    "rank": 9,
    "team": "Braschtli's Darter 2",
-   "played": 8,
+   "played": 9,
    "pp": 1,
-   "pm": 23,
-   "gp": 45,
-   "gm": 100,
-   "sp": 128,
-   "sm": 217
+   "pm": 26,
+   "gp": 50,
+   "gm": 113,
+   "sp": 140,
+   "sm": 247
   }
  ],
  "schedule": [
@@ -3433,7 +3433,7 @@
    "home": "Irish Skulls Steel",
    "guest": "Dart Ost",
    "place": "Arbon",
-   "played": false
+   "played": true
   },
   {
    "nr": "2621641",
@@ -3441,7 +3441,7 @@
    "home": "DARTFABRIK STEEL",
    "guest": "Braschtli's Darter 2",
    "place": "Sirnach",
-   "played": false
+   "played": true
   },
   {
    "nr": "2621642",

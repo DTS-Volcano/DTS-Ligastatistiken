@@ -1,0 +1,125 @@
+{
+ "date": "09.11.2026",
+ "home": "Irish Skulls Steel",
+ "guest": "Dart Ost",
+ "games": [
+  {
+   "round": 1,
+   "home": "Roberto Lisitsov",
+   "guest": "Phillipe Graf",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Vomend",
+   "guest": "Joel Ghirlanda",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Felix Schwager",
+   "guest": "Katja Koch",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Elia Meyer",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Felix Schwager",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Roberto Lisitsov",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Martin Vomend",
+   "guest": "Katja Koch",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Elia Meyer",
+   "guest": "Daniel Forrer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Roberto Lisitsov",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Felix Schwager",
+   "guest": "Silvan Bücheli",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Vomend",
+   "guest": "Phillipe Graf",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Elia Meyer",
+   "guest": "Katja Koch",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Roberto Lisitsov",
+   "guest": "Katja Koch",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Vomend",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Felix Schwager",
+   "guest": "Daniel Forrer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Elia Meyer",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:1",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "12:6",
+  "26:18"
+ ],
+ "extras": []
+}
