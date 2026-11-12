@@ -27,6 +27,10 @@ def pruefe():
     if not idx.exists() or not dj.exists():
         return [f"{idx} oder {dj} fehlt"], []
     html = idx.read_text(encoding="utf-8")
+    dlg = OUT / "dialogs.html"
+    if not dlg.exists():
+        fehler.append("dialogs.html fehlt")
+    html_all = html + (dlg.read_text(encoding="utf-8") if dlg.exists() else "")
     try:
         d = json.loads(dj.read_text(encoding="utf-8"))
     except ValueError as e:
@@ -38,7 +42,7 @@ def pruefe():
     for marker in ('id="p-uebersicht"', 'id="p-spieler"', 'id="p-liga"', 'id="p-analyse"', 'id="p-partien"', "data-t='own'"):
         if marker not in html:
             fehler.append(f"In der Seite fehlt: {marker}")
-    if re.search(r">\s*(None|nan|undefined)\s*<", html):
+    if re.search(r">\s*(None|nan|undefined)\s*<", html_all):
         fehler.append("In der Seite steht ein Platzhalter wie «None» oder «undefined»")
 
     m, p, lg, sp = d.get("matches", []), d.get("players", []), d.get("league", []), d.get("schedule", [])
@@ -61,7 +65,7 @@ def pruefe():
             fehler.append(f"Partie {x.get('date')} hat keine lesbaren Punkte")
     if p and sum(1 for s in p if s.get("rank")) < len(p) / 2:
         fehler.append("Für mehr als die Hälfte der Spieler fehlt der Rang (Einzelrangliste nicht gelesen?)")
-    if len(m) + len(p) and html.count("<dialog") < len(m) + len(p):
+    if len(m) + len(p) and html_all.count("<dialog") < len(m) + len(p):
         fehler.append("Weniger Fenster als Partien und Spieler – Seite unvollständig")
 
     if alt:

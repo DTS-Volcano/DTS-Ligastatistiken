@@ -12,11 +12,15 @@ function showTab(h){$$('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+
 $$('.tabs a').forEach(a=>{const on=a.getAttribute('href')==='#'+h;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
 if(lastTab!==null&&lastTab!==h)scrollTo(0,0);lastTab=h}
 function closeAll(){$$('dialog[open]').forEach(x=>{x._int=true;x.close()})}
+let dlgP=null;
+function loadDlgs(){if(!dlgP)dlgP=fetch('dialogs.html').then(r=>{if(!r.ok)throw 0;return r.text()}).then(t=>{const x=document.createElement('template');x.innerHTML=t;document.body.append(x.content)}).catch(()=>{dlgP=null});return dlgP}
+const openId=id=>loadDlgs().then(()=>openDlg(document.getElementById(id)));
+(window.requestIdleCallback||(f=>setTimeout(f,800)))(()=>loadDlgs(),{timeout:3000});
 function openDlg(d){if(!d||!d.showModal)return;const was=$$('dialog[open][data-s]').length>0;closeAll();d.showModal();
 const dlg=d.querySelector('.dlg');if(dlg)dlg.scrollTop=0;d.scrollTop=0;
 if(d.dataset.s)setHash(parse().tab,d.dataset.s,!was)}
 function sync(){const p=parse();showTab(p.tab);
-if(p.slug){const d=$('dialog[data-s="'+p.slug.replace(/"/g,'')+'"]');if(d&&!d.open){closeAll();d.showModal()}}
+if(p.slug){const d=$('dialog[data-s="'+p.slug.replace(/"/g,'')+'"]');if(d&&!d.open){closeAll();d.showModal()}else if(!d&&!window._dt){window._dt=1;loadDlgs().then(sync)}}
 else{pushed=false;closeAll()}}
 addEventListener('hashchange',sync);sync();
 document.addEventListener('close',e=>{const d=e.target;if(d.tagName!=='DIALOG')return;if(d._int){d._int=false;return}
@@ -76,9 +80,9 @@ if(c){copyText(c,c.dataset.copy);return}
 const im=e.target.closest('[data-img]');
 if(im){shareImg(im,JSON.parse(im.dataset.img));return}
 const g=e.target.closest('[data-go]');
-if(g){if(!g.disabled)openDlg(document.getElementById(g.dataset.go));return}
+if(g){if(!g.disabled)openId(g.dataset.go);return}
 const t=e.target.closest('[data-open]');
-if(t){openDlg(document.getElementById(t.dataset.open));return}
+if(t){openId(t.dataset.open);return}
 if(e.target.closest('#sbtn')){openSearch();return}
 const d=e.target.closest('dialog');if(e.target.tagName==='DIALOG'||e.target.closest('[data-close]'))(d||e.target).close()});
 /* Wischen: Fenster folgt dem Finger; links/rechts blättert, nach unten wegziehen schliesst */
@@ -106,12 +110,15 @@ else{d.style.transform='none';rst(d,200)}}
 document.addEventListener('touchend',endDrag,{passive:true});
 document.addEventListener('touchcancel',e=>{if(g&&g.ax){rst(g.d)}g=null},{passive:true});
 /* Suche */
-function openSearch(){const d=document.getElementById('search');if(!d)return;closeAll();d.showModal();const i=document.getElementById('s-in');i.value='';render('');i.focus()}
+function openSearch(){const d=document.getElementById('search');if(!d)return;closeAll();d.showModal();const i=document.getElementById('s-in');i.value='';i.focus();loadDlgs().then(()=>render(i.value))}
 function render(q){const out=document.getElementById('s-res');q=q.trim().toLowerCase();
 const items=$$('dialog[data-k]').filter(d=>!q||(d.dataset.n+' '+d.dataset.sub).toLowerCase().includes(q)).slice(0,40);
 out.innerHTML=items.length?items.map(d=>'<li><button class="tl" data-open="'+d.id+'">'+d.dataset.n.replace(/</g,'&lt;')+'</button><small>'+d.dataset.k+' · '+d.dataset.sub.replace(/</g,'&lt;')+'</small></li>').join(''):'<li><small>Nichts gefunden</small></li>'}
 (()=>{const i=document.getElementById('s-in');if(!i)return;i.addEventListener('input',()=>render(i.value));
 i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=document.querySelector('#s-res button');if(b)b.click()}})})();
+/* Offline-Hinweis */
+(()=>{const b=document.getElementById('stale');if(!b)return;const upd=()=>{if(!navigator.onLine){b.hidden=false;b.textContent='Du bist offline – es wird der zuletzt geladene Stand gezeigt.'}else if(b.textContent.startsWith('Du bist offline')){b.hidden=true}};
+addEventListener('offline',upd);addEventListener('online',upd);if(!navigator.onLine)upd()})();
 /* Hinweis bei veralteten Daten, Countdown */
 (()=>{const s=document.getElementById('stand'),b=document.getElementById('stale');
 if(s&&b){const t=new Date(s.getAttribute('datetime')),h=(Date.now()-t)/36e5;if(h>36){b.hidden=false;b.textContent='Hinweis: Die Daten sind vom '+t.toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit'})+' – vfc.ch war zuletzt nicht erreichbar, der nächste Lauf versucht es erneut.'}}
@@ -158,3 +165,5 @@ const ids=['f-pt','f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts
 ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;if(st[i]&&[...e.options].some(o=>o.value===st[i])){e.value=st[i]}
 e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})});
 const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();
+
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});

@@ -38,7 +38,7 @@ def main():
            f'(eingefroren am {date.today().strftime("%d.%m.%Y")})</div>')
     page = page.replace("<body>", "<body>" + bar, 1)
     (dst / "index.html").write_text(page, encoding="utf-8")
-    for f in ("data.json", "history.json"):
+    for f in ("data.json", "history.json", "dialogs.html"):
         if (OUT / f).exists():
             shutil.copyfile(OUT / f, dst / f)
 

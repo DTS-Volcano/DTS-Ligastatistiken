@@ -19,6 +19,9 @@ CSS = (Path(__file__).with_name("style.css")).read_text(encoding="utf-8")
 JS = (Path(__file__).with_name("app.js")).read_text(encoding="utf-8")
 
 
+DIALOGS = ""          # Fenster (Profile, Berichte, Teams), werden als dialogs.html separat ausgeliefert
+
+
 def render(data, hist):
     matches = data["matches"]
     players = sorted(data["players"], key=lambda p: (p["rank"] or 9999, p["name"]))   # Standard: nach Rang
@@ -151,6 +154,8 @@ def render(data, hist):
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
                                                           ("liga", "Team &amp; Liga"), ("analyse", "Analyse"), ("partien", "Partien")))
 
+    global DIALOGS
+    DIALOGS = dialogs
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -208,4 +213,4 @@ def render(data, hist):
 
 </div>
 <footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR}{archiv_link}</footer>
-</main>{dialogs}{search_dlg}<script>{JS}</script></body></html>"""
+</main>{search_dlg}<script>{JS}</script></body></html>"""

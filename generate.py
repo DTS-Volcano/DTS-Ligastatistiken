@@ -16,14 +16,19 @@ import json
 import shutil
 
 from config import LOGO, VFC_LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
+import page
 from page import render
 from scraper import BlockedError
 from stats import build_stats, update_history
 
 
-SW = """// Netz zuerst, bei fehlendem Netz die zuletzt geladene Version
-const C = 'dts-v1';
-self.addEventListener('install', () => self.skipWaiting());
+SW = """// Netz zuerst; bei fehlendem Netz die zuletzt geladene Version (die App funktioniert auch offline)
+const C = 'dts-v2';
+const PRE = __PRE__;
+self.addEventListener('install', e => {
+  self.skipWaiting();
+  e.waitUntil(caches.open(C).then(c => Promise.all(PRE.map(u => c.add(u).catch(() => {})))));
+});
 self.addEventListener('activate', e => e.waitUntil(
   caches.keys().then(ks => Promise.all(ks.filter(k => k !== C).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', e => {
@@ -31,7 +36,7 @@ self.addEventListener('fetch', e => {
   e.respondWith(fetch(e.request).then(r => {
     if (r.ok) { const c = r.clone(); caches.open(C).then(x => x.put(e.request, c)); }
     return r;
-  }).catch(() => caches.match(e.request)));
+  }).catch(() => caches.match(e.request, { ignoreSearch: true }).then(r => r || (e.request.mode === 'navigate' ? caches.match('./') : undefined))));
 });
 """
 
@@ -44,7 +49,12 @@ def write_pwa():
                           {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}
     OUT.mkdir(exist_ok=True)
     (OUT / "manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
-    (OUT / "sw.js").write_text(SW, encoding="utf-8")
+    pre = ["./", "dialogs.html", "manifest.webmanifest", "icon-192.png", "history.json"]
+    for stem in ("logo", "vfc-logo"):
+        pre += [f.name for f in OUT.glob(stem + ".*")]
+    if (OUT / "spieler").is_dir():
+        pre += ["spieler/" + f.name for f in sorted((OUT / "spieler").iterdir()) if f.is_file()]
+    (OUT / "sw.js").write_text(SW.replace("__PRE__", json.dumps(pre)), encoding="utf-8")
 
 
 def copy_photos(players):
@@ -88,11 +98,12 @@ def main():
         shutil.copyfile(LOGO, OUT / ("logo" + LOGO.suffix.lower()))
     if VFC_LOGO:
         shutil.copyfile(VFC_LOGO, OUT / ("vfc-logo" + VFC_LOGO.suffix.lower()))
-    write_pwa()
     copy_photos(data["players"])
+    write_pwa()
     hist = update_history(data["ranks"])
     (OUT / "history.json").write_text(json.dumps(hist, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
     (OUT / "index.html").write_text(render(data, hist), encoding="utf-8")
+    (OUT / "dialogs.html").write_text(page.DIALOGS, encoding="utf-8")
     (OUT / "data.json").write_text(json.dumps({"matches": data["matches"], "players": data["players"],
                                                "league": data["league"], "schedule": data["schedule"]},
                                               ensure_ascii=False, indent=1), encoding="utf-8")
