@@ -215,5 +215,5 @@ def render(data, hist):
 <tbody>{mrows}</tbody></table></div></section>
 
 </div>
-<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR} · <a href="info.html#ueber">Über uns</a> · <a href="info.html#impressum">Impressum</a> · <a href="info.html#datenschutz">Datenschutz</a>{archiv_link}</footer>
+<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR} · <a href="info.html">Über uns</a>{archiv_link}</footer>
 </main>{search_dlg}<script>{JS}</script></body></html>"""

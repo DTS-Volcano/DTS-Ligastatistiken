@@ -28,6 +28,6 @@ Sie erscheinen im Spielerprofil. Ohne Bild werden die Initialen angezeigt.
 
 Eine Bilddatei, deren Name mit `vfc` beginnt (z. B. `vfc-logo.png`, auch .svg/.jpg/.webp), in den Hauptordner legen. Sie erscheint oben rechts im Seitenkopf und verlinkt auf vfc.ch.
 
-## Info-Seite (Über uns, Impressum, Datenschutz)
+## Info-Seite (Über uns)
 
-Die Seite `info.html` wird aus `info.json` erzeugt. Dort Text, Spiellokal, Training, Kontakt und die Angaben für das Impressum eintragen (Name, Adresse, E-Mail). Leere Felder werden weggelassen. Der Heimort wird sonst aus dem Spielplan übernommen.
+Die Seite `info.html` wird aus `info.json` erzeugt. Dort Text, Spiellokal, Training und Kontakt eintragen. Leere Felder werden weggelassen. Der Heimort wird sonst aus dem Spielplan übernommen.
