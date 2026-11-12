@@ -10,6 +10,7 @@ from hof import section_hof
 from uebersicht import home_block, team_head
 from verlauf import section_verlauf
 from awards import MONTHS, monthly_titles
+from info import load_info
 from textutil import einzel_punkte, ranglistenwert, dkey
 from stats import bracket, order
 from sections import player_table, section_fixtures, section_form, section_homeaway, section_homeaway_players, section_league, section_rounds, section_next, section_potm, section_rank_history
@@ -155,6 +156,12 @@ def render(data, hist):
     tabs = "".join(f'<a href="#{k}">{n}</a>' for k, n in (("uebersicht", "Übersicht"), ("spieler", "Spieler"),
                                                           ("liga", "Team &amp; Liga"), ("analyse", "Analyse"), ("partien", "Partien")))
 
+    zu = (load_info().get("zaehler_url") or "").strip()
+    zaehler = ("<script>(function(){try{var u=" + json.dumps(zu) + ",h=location.hostname;"
+               "if(location.search.indexOf('ich')>=0)localStorage.setItem('dts.me','1');"
+               "if(!u||localStorage.getItem('dts.me')||!/^https?:$/.test(location.protocol)||h==='localhost'||h==='127.0.0.1')return;"
+               "var d=new Date().toISOString().slice(0,10);if(localStorage.getItem('dts.ping')===d)return;localStorage.setItem('dts.ping',d);"
+               "fetch(u,{mode:'no-cors',keepalive:true,credentials:'omit',referrerPolicy:'no-referrer'}).catch(function(){})}catch(e){}})()</script>") if zu else ""
     global DIALOGS
     rwl = json.dumps([[f"{x['team'].lower()}|{x['name']}", round(ranglistenwert(einzel_punkte(x['rows']), x['n']), 4)] for x in hof_players],
                      ensure_ascii=False).replace("</", "<\\/")
@@ -166,7 +173,7 @@ def render(data, hist):
 {icon}
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="dts-logos" content="{('logo' + LOGO.suffix.lower()) if LOGO else ''},{('vfc-logo' + VFC_LOGO.suffix.lower()) if VFC_LOGO else ''}"><meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DTS Statistik">
-<style>{CSS}</style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
+<style>{CSS}</style><script>document.documentElement.className='js'</script>{zaehler}</head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
 <p class="sub">Liga {esc(GROUP)} · Stand <time id="stand" datetime="{now_iso}">{now}</time> · Rangliste jeweils aktuell</p></div>{vfc}<button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main>

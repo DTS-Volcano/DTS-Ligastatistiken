@@ -31,3 +31,11 @@ Eine Bilddatei, deren Name mit `vfc` beginnt (z. B. `vfc-logo.png`, auch .svg/.j
 ## Info-Seite (Über uns)
 
 Die Seite `info.html` wird aus `info.json` erzeugt. Dort Text, Spiellokal, Training und Kontakt eintragen. Leere Felder werden weggelassen. Der Heimort wird sonst aus dem Spielplan übernommen.
+
+## Besucherzähler (optional)
+
+Zählt nur, wie oft die Seite pro Tag geöffnet wird (eine Zahl pro Tag, keine Daten über Besucher).
+1. Neue Google-Tabelle anlegen, dort **Erweiterungen → Apps Script** öffnen und den Inhalt von `zaehler/apps-script.gs` einfügen.
+2. **Bereitstellen → Neue Bereitstellung → Typ: Web-App**. Ausführen als: *Ich*, Zugriff: *Jeder*. Die angezeigte Web-App-URL kopieren.
+3. Die URL in `info.json` bei `zaehler_url` eintragen. Fertig, die Zahlen erscheinen im Tabellenblatt «Besuche».
+4. Eigene Besuche nicht mitzählen: einmal die Seite mit `?ich` am Ende der Adresse öffnen (pro Gerät und Browser).

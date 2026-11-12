@@ -48,6 +48,8 @@ def build_info(data):
     rows.append(("Liga", f"{esc(GROUP)} · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a>"))
     ueber = ("<section id='ueber'><h2>Über uns</h2>" + "".join(blocks)
              + "<dl class='info'>" + "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in rows) + "</dl></section>")
+    zaehl = ("<p class='hint'>Diese Seite zählt anonym, wie oft sie geöffnet wird (höchstens eine Zählung pro Gerät und Tag, ohne Cookies und ohne Daten über Besucher).</p>" if (i.get('zaehler_url') or '').strip() else '')
+    ueber = ueber.replace('</section>', zaehl + '</section>', 1)
     logo = f"<img class='logo' src='logo{LOGO.suffix.lower()}' alt='' width='56' height='56'>" if LOGO else ""
     return f"""<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#17100f"><title>Info – {esc(TEAM)}</title><link rel="manifest" href="manifest.webmanifest">
