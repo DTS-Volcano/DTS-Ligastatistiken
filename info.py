@@ -24,21 +24,25 @@ def heimort(data):
 
 def build_info(data):
     i = load_info()
+    ti = (data.get('teaminfo') or {}).get(TEAM.lower()) or {}
     g = lambda k: (i.get(k) or "").strip()
-    ort = g("spiellokal") or heimort(data)
-    adr = g("spiellokal_adresse") or ort
+    adr_v = ", ".join(x for x in (ti.get("strasse"), ti.get("ort")) if x)
+    ort = g("spiellokal") or ti.get("lokal") or heimort(data)
+    adr = g("spiellokal_adresse") or adr_v or ort
     blocks = []
     if g("ueber_uns"):
         blocks.append("".join(f"<p>{esc(x)}</p>" for x in g("ueber_uns").split("\n") if x.strip()))
     rows = []
     if ort:
-        link = f" · <a href='https://www.google.com/maps/search/?api=1&query={quote(adr + ' Dart')}' target='_blank' rel='noopener'>Karte</a>"
-        rows.append(("Spiellokal / Heimort", f"{esc(ort)}{link}"))
+        link = f" · <a href='{esc(ti.get('karte') or 'https://www.google.com/maps/search/?api=1&query=' + quote(adr))}' target='_blank' rel='noopener'>Karte</a>"
+        rows.append(("Spiellokal", f"{esc(ort)}" + (f"<br>{esc(adr_v)}" if adr_v and not g("spiellokal_adresse") else "") + link))
     if g("training"):
         rows.append(("Training", esc(g("training"))))
     kon = " · ".join(x for x in (esc(g("kontakt_name")),
                                  f"<a href='mailto:{esc(g('kontakt_email'))}'>{esc(g('kontakt_email'))}</a>" if g("kontakt_email") else "",
                                  esc(g("kontakt_telefon"))) if x)
+    if ti.get("captain") and not g("kontakt_name"):
+        rows.append(("Captain", esc(ti["captain"])))
     if kon:
         rows.append(("Kontakt", kon))
     rows.append(("Liga", f"{esc(GROUP)} · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a>"))

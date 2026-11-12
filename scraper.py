@@ -109,8 +109,13 @@ def parse_schedule_text(text, league, nrs):
     return fixtures
 
 
+TEAM_CODES = {}          # Teamname (klein) -> Team-Kürzel (z. B. ST24), wird von load_league gefüllt
+
+
 def load_league():
     soup = get(f"{BASE}ligarang.php?gruppe={quote(GROUP)}")
+    for a in soup.find_all("a", href=re.compile(r"team=ST\d+", re.I)):
+        TEAM_CODES[clean(a.get_text(" ")).lower()] = re.search(r"team=(ST\d+)", a["href"], re.I).group(1).upper()
     text = clean(soup.get_text(" "))
     i = text.find("Einzelrangliste")
     ranking = text[i:] if i >= 0 else text
@@ -170,3 +175,30 @@ def parse_report(soup):
 def fetch_report(url):
     """Lädt und liest einen einzelnen Spielreport."""
     return parse_report(get(url))
+
+
+_LABELS = ("Dartlokal:", "Strasse:", "Ort:", "Telefon:", "Anfahrtsplan:", "Captain:")
+
+
+def parse_teaminfo(soup):
+    """Liest Lokal, Adresse und Captain aus der Team-Seite (find_team.php). Fehlende Felder bleiben leer."""
+    lines = [clean(x) for x in soup.get_text("\n").split("\n")]
+    lines = [x for x in lines if x]
+
+    def after(label):
+        for i, x in enumerate(lines):
+            if x == label and i + 1 < len(lines) and lines[i + 1] not in _LABELS:
+                return lines[i + 1]
+        return ""
+
+    cap = re.sub(r"\s+Steeldarts?$", "", after("Captain:"))
+    karte = ""
+    for a in soup.find_all("a", href=True):
+        if "map.search.ch" in a["href"] or "maps.google" in a["href"]:
+            karte = a["href"]
+            break
+    return {"lokal": after("Dartlokal:"), "strasse": after("Strasse:"), "ort": after("Ort:"), "captain": cap, "karte": karte}
+
+
+def fetch_teaminfo(code):
+    return parse_teaminfo(get(urljoin(BASE, f"find_team.php?team={code}")))

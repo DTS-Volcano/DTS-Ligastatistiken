@@ -3,6 +3,7 @@ import json
 from collections import defaultdict
 
 from config import CACHE, MID, OUT, TEAM, TOP, today
+import scraper
 from scraper import BlockedError, fetch_report, load_league, rank_of
 from textutil import dkey, swap
 
@@ -142,8 +143,35 @@ def build_stats():
                 ranks[name] = rk
     return {"matches": matches, "players": players, "league": league, "schedule": schedule,
             "team_games": team_games, "ranks": ranks, "ranking": ranking,
-            "team_matches": team_matches, "others": others,
+            "team_matches": team_matches, "others": others, "teaminfo": load_teaminfo(league),
             "team_full": {k: sorted(v, key=lambda m: dkey(m["date"])) for k, v in team_full.items()}}
+
+
+def load_teaminfo(league):
+    """Lokal, Adresse und Captain aller Teams (find_team.php). Bei Fehlern bleibt der gespeicherte Stand erhalten."""
+    from config import CACHE
+    path = CACHE.parent / f"teaminfo-{CACHE.name}.json"
+    try:
+        info = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        info = {}
+    old = json.dumps(info, sort_keys=True)
+    for t in league:
+        tl = t["team"].lower()
+        code = scraper.TEAM_CODES.get(tl)
+        if not code:
+            continue
+        try:
+            got = scraper.fetch_teaminfo(code)
+        except Exception as e:              # Netz, Bot-Schutz, geänderte Seite: alten Stand behalten
+            print(f"Teaminfo {t['team']}: {type(e).__name__}")
+            continue
+        if any(got.values()):
+            info[tl] = {**got, "code": code}
+    if json.dumps(info, sort_keys=True) != old:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(info, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+    return info
 
 
 def update_history(ranks):

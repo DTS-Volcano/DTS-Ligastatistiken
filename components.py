@@ -249,11 +249,22 @@ def team_dialog(idx, t, data, id_of, pid=None):
         f"<tr><td class='num'>{p['rank'] or '–'}</td><td>{plink(p['name'])}</td><td class='num'>{p['n']}</td>"
         f"<td class='num'>{p['w']}:{p['n'] - p['w']}</td><td class='num'>{pct(p['w'], p['n'] - p['w'])}</td>"
         f"<td>{dots(p['rows'])}</td></tr>" for p in pls)
+    ti = (data.get("teaminfo") or {}).get(tl) or {}
+    rows_i = []
+    if ti.get("lokal"):
+        rows_i.append(("Lokal", esc(ti["lokal"])))
+    adr = ", ".join(x for x in (ti.get("strasse"), ti.get("ort")) if x)
+    if adr:
+        kl = f" · <a href='{esc(ti['karte'])}' target='_blank' rel='noopener'>Karte</a>" if ti.get("karte") else ""
+        rows_i.append(("Adresse", esc(adr) + kl))
+    if ti.get("captain"):
+        rows_i.append(("Captain", esc(ti["captain"])))
+    info_html = ("<dl class='info'>" + "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in rows_i) + "</dl>") if rows_i else ""
     return (f'<dialog id="t{idx}" data-s="v-{slug(t["team"])}" data-k="Verein" data-n="{esc(t["team"])}" data-sub="Platz {t["rank"]}" '
             f'aria-label="Team {esc(t["team"])}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<p class="sub">Platz {t["rank"]} in der Tabelle</p><h3 class="vs">{esc(t["team"])}</h3>'
-            f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p>'
+            f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p>{info_html}'
             f'<h4>Partien</h4><div class="scroll"><table class="cards"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th>'
             f'<th>Spiele</th><th></th></tr></thead><tbody>{mrows}</tbody></table></div>'
             f'<p class="acts"><button class="rb" data-link>Link kopieren</button></p>'
