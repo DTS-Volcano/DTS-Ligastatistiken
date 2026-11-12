@@ -167,3 +167,12 @@ e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})
 const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();
 
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+/* Ranglistenwert-Rechner */
+document.addEventListener('input',e=>{const c=e.target.closest('.calc');if(!c)return;
+let n=+c.dataset.n,p=+c.dataset.p,add=0;c.querySelectorAll('input').forEach(i=>{const k=Math.max(0,Math.min(40,parseInt(i.value)||0));add+=k;n+=k;p+=k*+i.dataset.pt});
+const rw=(a,b)=>b?a*a/(4*b):0,old=rw(+c.dataset.p,+c.dataset.n),nw=rw(p,n),out=c.querySelector('.cr');
+if(!add){out.textContent='';return}
+let list=[];try{list=JSON.parse(document.getElementById('rwlist').textContent)}catch(_){}
+const others=list.filter(x=>x[0]!==c.dataset.key),r0=1+others.filter(x=>x[1]>old+1e-9).length,r1=1+others.filter(x=>x[1]>nw+1e-9).length;
+const d=nw-old;out.innerHTML='Einzel '+(n-add)+' → <b>'+n+'</b> · Punkte '+c.dataset.p+' → <b>'+p+'</b><br>Ranglistenwert '+old.toFixed(1)+' → <b>'+nw.toFixed(1)+'</b> ('+(d>=0?'+':'')+d.toFixed(1)+')'+(others.length?'<br>Rang '+r0+' → <b>'+r1+'</b>':'')});

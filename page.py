@@ -1,3 +1,4 @@
+import json
 """Setzt die ganze Seite zusammen (Reiter, Kennzahlen, Bereiche, Fenster)."""
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -9,7 +10,7 @@ from hof import section_hof
 from uebersicht import home_block, team_head
 from verlauf import section_verlauf
 from awards import MONTHS, monthly_titles
-from textutil import dkey
+from textutil import einzel_punkte, ranglistenwert, dkey
 from stats import bracket, order
 from sections import player_table, section_fixtures, section_form, section_homeaway, section_homeaway_players, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
@@ -155,7 +156,9 @@ def render(data, hist):
                                                           ("liga", "Team &amp; Liga"), ("analyse", "Analyse"), ("partien", "Partien")))
 
     global DIALOGS
-    DIALOGS = dialogs
+    rwl = json.dumps([[f"{x['team'].lower()}|{x['name']}", round(ranglistenwert(einzel_punkte(x['rows']), x['n']), 4)] for x in hof_players],
+                     ensure_ascii=False).replace("</", "<\\/")
+    DIALOGS = dialogs + f'<script type="application/json" id="rwlist">{rwl}</script>'
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

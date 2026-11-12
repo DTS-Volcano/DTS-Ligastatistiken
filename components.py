@@ -63,6 +63,13 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
           f"<div><dt>Punkte</dt><dd>{pk}</dd></div><div><dt>Ranglistenwert</dt><dd>{ranglistenwert(pk, len(rows)):.1f}</dd></div>"
           f"<div><dt>Quote</dt><dd>{quote}</dd></div><div><dt>Ø Gegner</dt><dd>{avg}</dd></div>")
     # Form und Quotenverlauf
+    key = f"{(p.get('team') or '').lower()}|{name}"
+    calc = (f"<details class='calc' data-n='{len(rows)}' data-p='{pk}' data-key='{esc(key)}'><summary>Ranglistenwert-Rechner</summary>"
+            "<p class='hint'>Was passiert, wenn noch weitere Einzel dazukommen? Die anderen Spieler bleiben dabei unverändert.</p><div class='cg'>"
+            + "".join(f"<label><span>{lab}</span><input type='number' inputmode='numeric' min='0' max='40' value='0' data-pt='{v}'></label>"
+                      for lab, v in (("2:0 gewonnen (4 Punkte)", 4), ("2:1 gewonnen (3 Punkte)", 3),
+                                     ("1:2 verloren (1 Punkt)", 1), ("0:2 verloren (0 Punkte)", 0)))
+            + "</div><p class='cr' aria-live='polite'></p></details>")
     form = (f"<h4>Form</h4><p class='prow'>{dots(rows, 10)} {spark(quote_series(rows), 'Siegquote nach jedem Einzel', 0, 100)}</p>"
             if rows else "")
     # Rangverlauf
@@ -146,7 +153,7 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
             f'<div class="head">{pic}<div><p class="sub">Spielerprofil</p><h3 class="vs">{esc(name)}</h3>'
             f'<p class="sub">{(esc(team) + " · ") if team != TEAM else ""}{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
-            f'<dl class="kpi rk">{kp}</dl>{badges}{form}{rv}{rcells}{ff}{table}{copy}{nav}</div></dialog>')
+            f'<dl class="kpi rk">{kp}</dl>{badges}{calc}{form}{rv}{rcells}{ff}{table}{copy}{nav}</div></dialog>')
 
 
 RESULT = {(3, 0): "Sieg", (2, 1): "Sieg im Sudden Death", (1, 2): "Niederlage im Sudden Death", (0, 3): "Niederlage"}

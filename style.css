@@ -225,3 +225,10 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 
 #mtable tr.mn td:nth-child(2){color:var(--green)}
 .filter select[hidden]{display:none}
+
+details.calc{margin:14px 0;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--card)}
+details.calc summary{cursor:pointer;font-weight:600}
+.calc .cg{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
+.calc label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.calc input{width:4.5rem;padding:6px 8px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-align:right}
+.calc .cr{margin:6px 0 0;line-height:1.55}
