@@ -33,6 +33,7 @@ def main():
                  ('src="spieler/', 'src="../../spieler/'), ('href="icon-180.png"', 'href="../../icon-180.png"')):
         page = page.replace(a, b)
     page = page.replace('<link rel="manifest" href="manifest.webmanifest">', "")
+    page = page.replace('href="info.html', 'href="../../info.html')
     page = page.replace(SW_OFF, "Promise.resolve()")
     bar = (f'<div class="archivbar" style="background:#17100f;color:#f4eeee;padding:8px 16px;font:.9rem system-ui,sans-serif;text-align:center"><a href="../../" style="color:#f4a3a1">← zur aktuellen Saison</a> · Archiv: <b>{html.escape(name)}</b> '
            f'(eingefroren am {date.today().strftime("%d.%m.%Y")})</div>')

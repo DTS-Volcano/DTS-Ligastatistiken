@@ -232,3 +232,6 @@ details.calc summary{cursor:pointer;font-weight:600}
 .calc label{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .calc input{width:4.5rem;padding:6px 8px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-align:right}
 .calc .cr{margin:6px 0 0;line-height:1.55}
+
+dl.info{display:grid;gap:8px;margin:12px 0}dl.info div{display:grid;grid-template-columns:9rem 1fr;gap:10px}dl.info dt{color:var(--mute)}dl.info dd{margin:0}
+@media (max-width:520px){dl.info div{grid-template-columns:1fr;gap:0}}
