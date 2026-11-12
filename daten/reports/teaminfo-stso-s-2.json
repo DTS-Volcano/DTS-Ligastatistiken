@@ -1,4 +1,44 @@
 {
+ "2010er steel": {
+  "captain": "Luis Munoz",
+  "code": "ST23",
+  "karte": "http://map.search.ch/9200-Gossau SG/Mooswiesstrasse 62",
+  "lokal": "Vereinslokal",
+  "ort": "9200 Gossau SG",
+  "strasse": "Mooswiesstrasse 62"
+ },
+ "braschtli's darter 2": {
+  "captain": "Andreas Hutter",
+  "code": "ST19",
+  "karte": "http://map.search.ch/9443-Widnau/NÃ¶llenstrasse 15a",
+  "lokal": "Dartclub Widnau",
+  "ort": "9443 Widnau",
+  "strasse": "Nöllenstrasse 15a"
+ },
+ "dart ost": {
+  "captain": "Silvan Bücheli",
+  "code": "ST26",
+  "karte": "http://map.search.ch/9300-Wittenbach/Romanshornerstrasse 51",
+  "lokal": "Dartverein Dart Ost",
+  "ort": "9300 Wittenbach",
+  "strasse": "Romanshornerstrasse 51"
+ },
+ "dartfabrik steel": {
+  "captain": "Jean-Dominique Bollhalder",
+  "code": "ST29",
+  "karte": "http://map.search.ch/8370-Sirnach/Fischingerstrasse 66",
+  "lokal": "Vereinslokal Dartfabrik",
+  "ort": "8370 Sirnach",
+  "strasse": "Fischingerstrasse 66"
+ },
+ "die humorlosen": {
+  "captain": "Martin Seidelmann",
+  "code": "ST20",
+  "karte": "http://map.search.ch/9443-Widnau/NÃ¶llenstrasse 15a",
+  "lokal": "Dartclub Widnau",
+  "ort": "9443 Widnau",
+  "strasse": "Nöllenstrasse 15a"
+ },
  "double trouble steeldarters": {
   "captain": "Christoph Wildermuth",
   "code": "ST24",
@@ -6,5 +46,29 @@
   "lokal": "Café Bar Treppenhaus",
   "ort": "9400 Rorschach",
   "strasse": "Kirchstrasse 3"
+ },
+ "dynamo tresen": {
+  "captain": "Angelo Michielin",
+  "code": "ST25",
+  "karte": "http://map.search.ch/9200-Gossau/St. Gallerstrasse 65",
+  "lokal": "Circle Pub Gossau",
+  "ort": "9200 Gossau",
+  "strasse": "St. Gallerstrasse 65"
+ },
+ "irish skulls ;) steel": {
+  "captain": "Naser Toja",
+  "code": "ST30",
+  "karte": "http://map.search.ch/9320-Arbon/Romanshornerstrasse 98",
+  "lokal": "Craic 9320",
+  "ort": "9320 Arbon",
+  "strasse": "Romanshornerstrasse 98"
+ },
+ "irish skulls steel": {
+  "captain": "Elia Meyer",
+  "code": "ST31",
+  "karte": "http://map.search.ch/9320-Arbon/Romanshornerstrasse 98",
+  "lokal": "Craic 9320",
+  "ort": "9320 Arbon",
+  "strasse": "Romanshornerstrasse 98"
  }
 }
