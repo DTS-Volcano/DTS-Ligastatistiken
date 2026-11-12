@@ -232,6 +232,13 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 
 #mtable tr.mn td:nth-child(2){color:var(--green)}
 .filter select[hidden]{display:none}
+
+details.calc{margin:14px 0;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--card)}
+details.calc summary{cursor:pointer;font-weight:600}
+.calc .cg{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
+.calc label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.calc input{width:4.5rem;padding:6px 8px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-align:right}
+.calc .cr{margin:6px 0 0;line-height:1.55}
 </style><script>document.documentElement.className='js'</script></head><body><header class="top"><div class="brand wrap"><img class="logo" src="logo.png" alt="Vereinslogo" width="96" height="96"><div><h1>Double Trouble Steeldarters</h1>
 <p class="sub">Liga STSO S 2 · Stand <time id="stand" datetime="2026-11-12T15:33+01:00">12.11.2026 15:33</time> · Rangliste jeweils aktuell</p></div><a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo.png" alt="VFC Dartverband" height="40"></a><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
@@ -451,4 +458,13 @@ e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})
 const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();
 
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+/* Ranglistenwert-Rechner */
+document.addEventListener('input',e=>{const c=e.target.closest('.calc');if(!c)return;
+let n=+c.dataset.n,p=+c.dataset.p,add=0;c.querySelectorAll('input').forEach(i=>{const k=Math.max(0,Math.min(40,parseInt(i.value)||0));add+=k;n+=k;p+=k*+i.dataset.pt});
+const rw=(a,b)=>b?a*a/(4*b):0,old=rw(+c.dataset.p,+c.dataset.n),nw=rw(p,n),out=c.querySelector('.cr');
+if(!add){out.textContent='';return}
+let list=[];try{list=JSON.parse(document.getElementById('rwlist').textContent)}catch(_){}
+const others=list.filter(x=>x[0]!==c.dataset.key),r0=1+others.filter(x=>x[1]>old+1e-9).length,r1=1+others.filter(x=>x[1]>nw+1e-9).length;
+const d=nw-old;out.innerHTML='Einzel '+(n-add)+' → <b>'+n+'</b> · Punkte '+c.dataset.p+' → <b>'+p+'</b><br>Ranglistenwert '+old.toFixed(1)+' → <b>'+nw.toFixed(1)+'</b> ('+(d>=0?'+':'')+d.toFixed(1)+')'+(others.length?'<br>Rang '+r0+' → <b>'+r1+'</b>':'')});
 </script></body></html>
