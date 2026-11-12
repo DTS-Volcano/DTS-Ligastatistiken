@@ -1,0 +1,125 @@
+{
+ "date": "11.11.2026",
+ "home": "Double Trouble Steeldarters",
+ "guest": "Dynamo Tresen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Jonas Herbinger",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Pascal Maulaz",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Kevin Notter",
+   "guest": "Patric Fricker",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Nevio Bachmann",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Kevin Notter",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christoph Wildermuth",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Juliano Goncalves da Costa",
+   "guest": "Patric Fricker",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Nevio Bachmann",
+   "guest": "Jonas Herbinger",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Fabian Ziegler",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Kevin Notter",
+   "guest": "Angelo Michielin",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Pascal Maulaz",
+   "guest": "Jonas Herbinger",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Nevio Bachmann",
+   "guest": "Patric Fricker",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Christoph Wildermuth",
+   "guest": "Patric Fricker",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Juliano Goncalves da Costa",
+   "guest": "Angelo Michielin",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Kevin Notter",
+   "guest": "Jonas Herbinger",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Nevio Bachmann",
+   "guest": "Fabian Ziegler",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "1:2",
+  "9:10",
+  "22:23"
+ ],
+ "extras": []
+}
