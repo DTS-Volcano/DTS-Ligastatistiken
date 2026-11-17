@@ -1,0 +1,125 @@
+{
+ "date": "16.11.2026",
+ "home": "Braschtli's Darter 2",
+ "guest": "Dart Ost",
+ "games": [
+  {
+   "round": 1,
+   "home": "Heiri Kuratli",
+   "guest": "Joel Ghirlanda",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Andreas Hutter",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Richard Sieber",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Christian Hutter",
+   "guest": "Daniel Forrer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Richard Sieber",
+   "guest": "Phillipe Graf",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Heiri Kuratli",
+   "guest": "Katja Koch",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Andreas Hutter",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christian Hutter",
+   "guest": "Joel Ghirlanda",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Heiri Kuratli",
+   "guest": "Phillipe Graf",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Richard Sieber",
+   "guest": "Daniel Forrer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Andreas Hutter",
+   "guest": "Joel Ghirlanda",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Christian Hutter",
+   "guest": "Silvan Bücheli",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Heiri Kuratli",
+   "guest": "Silvan Bücheli",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Andreas Hutter",
+   "guest": "Katja Koch",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Richard Sieber",
+   "guest": "Joel Ghirlanda",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Christian Hutter",
+   "guest": "Phillipe Graf",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "0:3",
+  "6:12",
+  "16:26"
+ ],
+ "extras": []
+}
