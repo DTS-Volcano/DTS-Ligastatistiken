@@ -154,14 +154,16 @@ sel.addEventListener('change',run);q.addEventListener('input',run)})();
 
 document.querySelectorAll('select.vf').forEach(s=>{const g=s.dataset.g,k='dts.'+g;
 const run=()=>document.querySelectorAll('.lb[data-g="'+g+'"]').forEach(b=>{b.hidden=b.dataset.t!==s.value});
-s.addEventListener('change',run);
-try{const v=localStorage.getItem(k);if(v&&[...s.options].some(o=>o.value===v)){s.value=v;run()}}catch(_){}
-s.addEventListener('change',()=>{try{localStorage.setItem(k,s.value)}catch(_){}})});
+s.addEventListener('change',run)});
 
 /* Zustand merken */
 (()=>{const get=k=>{try{return localStorage.getItem(k)}catch(_){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};
-const ft=document.getElementById('f-team');if(ft){const v=get('dts.team');if(v&&[...ft.options].some(o=>o.value===v)){ft.value=v;ft.dispatchEvent(new Event('change'))}ft.addEventListener('change',()=>set('dts.team',ft.value))}
-const ids=['f-pt','f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts.pf')||'{}')}catch(_){}
+/* Vereinsfilter in allen Reitern synchron (Spieler, Team & Liga, Analyse, Partien) */
+const cs=[...document.querySelectorAll('select.vf,#f-team,#f-pt')],nm=s=>(s.selectedOptions[0]||{}).dataset?.n,
+apply=(n,from)=>cs.forEach(s=>{if(s===from)return;const o=[...s.options].find(o=>o.dataset.n===n);if(o&&s.value!==o.value){s.value=o.value;s.dispatchEvent(new Event('change',{bubbles:true}));s.dispatchEvent(new Event('input',{bubbles:true}))}});
+let busy=0;cs.forEach(s=>s.addEventListener('change',()=>{if(busy)return;const n=nm(s);if(n===undefined)return;set('dts.club',n);busy=1;apply(n,s);busy=0}));
+const sv=get('dts.club');if(sv!==null){busy=1;apply(sv,null);busy=0}
+const ids=['f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts.pf')||'{}')}catch(_){}
 ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;if(st[i]&&[...e.options].some(o=>o.value===st[i])){e.value=st[i]}
 e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})});
 const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();

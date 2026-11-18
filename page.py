@@ -71,7 +71,7 @@ def render(data, hist):
         f"<td>{d[:6]}</td><td>{esc(h)} – {esc(g)}</td><td class='ort'></td><td class='num'>{pts}</td><td class='num'>{gm}</td>"
         f"<td><button class='rb' data-open='{id_of[nr]}'>Report</button></td></tr>" for d, nr, h, g, pts, gm in allm)
     team_names = sorted((t["team"] for t in data["league"]), key=lambda n: (n.lower() != TEAM.lower(), n.lower())) or [TEAM]
-    popts = "".join(f"<option value='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value=''>Alle Vereine</option>"
+    popts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value='' data-n=''>Alle Vereine</option>"
     titles = monthly_titles(players)
     # Spieler der ganzen Liga: eigene Spieler p0, p1, … (Blättern nach Rang), übrige lp<Team>_<n>
     for pl in players:
@@ -122,14 +122,14 @@ def render(data, hist):
         tm = matches if own_t else tf.get(name.lower(), [])
         key = "own" if own_t else f"l{ti}"
         hid = "" if own_t else " hidden"
-        liga_opts += f"<option value='{key}'>{esc(name)}</option>"
+        liga_opts += f"<option value='{key}' data-n='{esc(name.lower())}'>{esc(name)}</option>"
         liga_blocks += (f"<div class='lb' data-g='liga' data-t='{key}'{hid}>{team_head(data, name, tm, [x for x in hof_players if x['team'].lower() == name.lower()], pid, id_of)}"
                         f"{section_league(data, name)}</section>"
                         f"{section_fixtures(data, id_of, name)}</div>")
         ana_blocks += (f"<div class='lb' data-g='ana' data-t='{key}'{hid}>{section_hof(hof_players, tf, pid, id_of, name)}"
                        f"{section_potm(hof_players, pid, False, name)}{section_verlauf(data, name, tm)}"
                        f"{section_homeaway(tm, [], own_t)[0]}{section_rounds(tm)}</div>")
-    liga_opts += "<option value='all'>Alle Vereine</option>"
+    liga_opts += "<option value='all' data-n=''>Alle Vereine</option>"
     liga_blocks += (f"<div class='lb' data-g='liga' data-t='all' hidden>{section_league(data)}</section>"
                     f"{section_fixtures(data, id_of)}</div>")
     ana_blocks += (f"<div class='lb' data-g='ana' data-t='all' hidden>{section_hof(hof_players, tf, pid, id_of)}"
@@ -137,17 +137,17 @@ def render(data, hist):
                    "<section><h2>Team-Analyse</h2><p class='hint'>Für Saisonverlauf, Heim und Auswärts und Spielblöcke oben einen Verein wählen.</p></section></div>")
     own_extra = f"{section_homeaway_players(players)}{section_form(players)}{section_rank_history(players, hist)}"
     team_blocks = f"<div class='tp' data-t='own'>{player_table(players, pid)}{own_extra}</div>"
-    team_opts = f"<option value='own'>{esc(TEAM)}</option>"
+    team_opts = f"<option value='own' data-n='{esc(TEAM.lower())}'>{esc(TEAM)}</option>"
     all_pl = list(players)
     for ti, t, pls, ids in others_pl:
         if not pls:
             continue
         all_pl += pls
-        team_opts += f"<option value='t{ti}'>{esc(t['team'])}</option>"
+        team_opts += f"<option value='t{ti}' data-n='{esc(t['team'].lower())}'>{esc(t['team'])}</option>"
         team_blocks += (f"<div class='tp' data-t='t{ti}' hidden>{player_table(pls, pid)}"
                         f"{section_homeaway_players(pls)}{section_form(pls)}{section_rank_history(pls, hist)}</div>")
     all_pl.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
-    team_opts += "<option value='all'>Alle Vereine</option>"
+    team_opts += "<option value='all' data-n=''>Alle Vereine</option>"
     team_blocks += f"<div class='tp' data-t='all' hidden>{player_table(all_pl, pid, True)}</div>"
     search_dlg = ('<dialog id="search" aria-label="Suche"><div class="dlg"><button class="x" data-close aria-label="Schliessen">✕</button>'
                   '<h3 class="vs">Suche</h3><input type="search" id="s-in" placeholder="Spieler oder Verein" aria-label="Suche" autocomplete="off">'
