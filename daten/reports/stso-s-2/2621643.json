@@ -1,0 +1,125 @@
+{
+ "date": "16.11.2026",
+ "home": "Dynamo Tresen",
+ "guest": "Die Humorlosen",
+ "games": [
+  {
+   "round": 1,
+   "home": "Jonas Herbinger",
+   "guest": "Luigino Gasperina",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Fabian Aerne",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Oliver Hutter",
+   "guest": "Valentin Matt",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Angelo Michielin",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Oliver Hutter",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Jonas Herbinger",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Fabian Aerne",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Angelo Michielin",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Jonas Herbinger",
+   "guest": "Martin Seidelmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Oliver Hutter",
+   "guest": "Michael Loser",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Fabian Aerne",
+   "guest": "Luigino Gasperina",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Angelo Michielin",
+   "guest": "Valentin Matt",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Jonas Herbinger",
+   "guest": "Valentin Matt",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Fabian Aerne",
+   "guest": "Michael Loser",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Oliver Hutter",
+   "guest": "Luigino Gasperina",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Angelo Michielin",
+   "guest": "Martin Seidelmann",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "2:16",
+  "8:34"
+ ],
+ "extras": []
+}
