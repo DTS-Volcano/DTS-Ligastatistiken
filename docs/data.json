@@ -1286,27 +1286,144 @@
     ]
    },
    "extras": []
+  },
+  {
+   "date": "18.11.2026",
+   "opp": "Irish Skulls Steel",
+   "home": true,
+   "points": "0:3",
+   "games": "8:10",
+   "sets": "21:21",
+   "url": "https://vfc.ch/sp_rapport.php?sp_nr=2621646&gruppe=STSO S 2",
+   "nr": "2621646",
+   "rounds": {
+    "1": [
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Felix Schwager",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Elia Meyer",
+      "sets": "2:1",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Roberto Lisitsov",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Martin Vomend",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "3": [
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Elia Meyer",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Martin Vomend",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Roberto Lisitsov",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Felix Schwager",
+      "sets": "1:2",
+      "won": false
+     }
+    ],
+    "2": [
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Elia Meyer",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Martin Vomend",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Felix Schwager",
+      "sets": "0:2",
+      "won": false
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Roberto Lisitsov",
+      "sets": "0:2",
+      "won": false
+     }
+    ],
+    "4": [
+     {
+      "mine": "Daniel Laszlo Sandor",
+      "opp": "Roberto Lisitsov",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Elia Tanner",
+      "opp": "Martin Vomend",
+      "sets": "1:2",
+      "won": false
+     },
+     {
+      "mine": "Christoph Wildermuth",
+      "opp": "Felix Schwager",
+      "sets": "2:0",
+      "won": true
+     },
+     {
+      "mine": "Kevin Notter",
+      "opp": "Elia Meyer",
+      "sets": "0:2",
+      "won": false
+     }
+    ]
+   },
+   "extras": []
   }
  ],
  "players": [
   {
    "name": "Christoph Wildermuth",
-   "rank": 6,
-   "n": 32,
-   "w": 25,
-   "l": 7,
-   "avg_opp": 29.71875,
+   "rank": 5,
+   "n": 36,
+   "w": 28,
+   "l": 8,
+   "avg_opp": 28.86111111111111,
    "brackets": {
     "top": [
-     5,
+     6,
      2
     ],
     "mid": [
-     4,
-     5
+     5,
+     6
     ],
     "low": [
-     16,
+     17,
      0
     ]
    },
@@ -1329,7 +1446,7 @@
      "date": "24.08.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 35
+     "opp_rank": 36
     },
     {
      "opp": "Marc Brassel",
@@ -1389,7 +1506,7 @@
      "date": "07.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Felix Schwager",
@@ -1429,7 +1546,7 @@
      "date": "14.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 45
     },
     {
      "opp": "Alessio Demarchi",
@@ -1439,7 +1556,7 @@
      "date": "23.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 25
+     "opp_rank": 26
     },
     {
      "opp": "Joel Ghirlanda",
@@ -1469,7 +1586,7 @@
      "date": "23.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 5
+     "opp_rank": 6
     },
     {
      "opp": "Richard Sieber",
@@ -1509,7 +1626,7 @@
      "date": "28.09.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 45
+     "opp_rank": 46
     },
     {
      "opp": "Stefan Pfeifer",
@@ -1569,7 +1686,7 @@
      "date": "27.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 36
+     "opp_rank": 37
     },
     {
      "opp": "Martin Gerber",
@@ -1589,7 +1706,7 @@
      "date": "04.11.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Marco Müller",
@@ -1630,17 +1747,57 @@
      "round": 4,
      "home": true,
      "opp_rank": 48
+    },
+    {
+     "opp": "Roberto Lisitsov",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "18.11.2026",
+     "round": 1,
+     "home": true,
+     "opp_rank": 18
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "18.11.2026",
+     "round": 2,
+     "home": true,
+     "opp_rank": 45
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "18.11.2026",
+     "round": 3,
+     "home": true,
+     "opp_rank": 16
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "18.11.2026",
+     "round": 4,
+     "home": true,
+     "opp_rank": 4
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Juliano Goncalves da Costa",
-   "rank": 20,
+   "rank": 21,
    "n": 25,
    "w": 17,
    "l": 8,
-   "avg_opp": 29.44,
+   "avg_opp": 29.56,
    "brackets": {
     "top": [
      2,
@@ -1724,7 +1881,7 @@
      "date": "07.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Cedric Hutter",
@@ -1764,7 +1921,7 @@
      "date": "14.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 45
     },
     {
      "opp": "Felix Schwager",
@@ -1804,7 +1961,7 @@
      "date": "23.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 25
+     "opp_rank": 26
     },
     {
      "opp": "Silvan Bücheli",
@@ -1814,7 +1971,7 @@
      "date": "23.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 5
+     "opp_rank": 6
     },
     {
      "opp": "Phillipe Graf",
@@ -1834,7 +1991,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Alex Grohmann",
@@ -1844,7 +2001,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Markus Müller",
@@ -1915,7 +2072,7 @@
    "n": 33,
    "w": 21,
    "l": 12,
-   "avg_opp": 32.36363636363637,
+   "avg_opp": 32.63636363636363,
    "brackets": {
     "top": [
      1,
@@ -1949,7 +2106,7 @@
      "date": "02.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Naser Toja",
@@ -1999,7 +2156,7 @@
      "date": "07.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Oliver Hutter",
@@ -2029,7 +2186,7 @@
      "date": "23.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 25
+     "opp_rank": 26
     },
     {
      "opp": "Daniel Forrer",
@@ -2059,7 +2216,7 @@
      "date": "28.09.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 45
+     "opp_rank": 46
     },
     {
      "opp": "Richard Sieber",
@@ -2089,7 +2246,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 42
+     "opp_rank": 43
     },
     {
      "opp": "Markus Müller",
@@ -2109,7 +2266,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Lars Gamper",
@@ -2179,7 +2336,7 @@
      "date": "27.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 35
+     "opp_rank": 36
     },
     {
      "opp": "Marco Müller",
@@ -2219,7 +2376,7 @@
      "date": "04.11.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Angelo Michielin",
@@ -2249,7 +2406,7 @@
      "date": "11.11.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Fabian Ziegler",
@@ -2266,22 +2423,22 @@
   },
   {
    "name": "Daniel Laszlo Sandor",
-   "rank": 39,
-   "n": 14,
-   "w": 8,
-   "l": 6,
-   "avg_opp": 24.571428571428573,
+   "rank": 34,
+   "n": 18,
+   "w": 10,
+   "l": 8,
+   "avg_opp": 23.88888888888889,
    "brackets": {
     "top": [
      2,
-     3
+     4
     ],
     "mid": [
-     2,
-     2
+     3,
+     3
     ],
     "low": [
-     4,
+     5,
      1
     ]
    },
@@ -2294,7 +2451,7 @@
      "date": "02.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Martin Gerber",
@@ -2354,7 +2511,7 @@
      "date": "28.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 45
+     "opp_rank": 46
     },
     {
      "opp": "Andreas Hutter",
@@ -2414,7 +2571,7 @@
      "date": "11.11.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Fabian Ziegler",
@@ -2425,29 +2582,69 @@
      "round": 2,
      "home": true,
      "opp_rank": 7
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "18.11.2026",
+     "round": 1,
+     "home": true,
+     "opp_rank": 4
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "18.11.2026",
+     "round": 2,
+     "home": true,
+     "opp_rank": 16
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:0",
+     "date": "18.11.2026",
+     "round": 3,
+     "home": true,
+     "opp_rank": 45
+    },
+    {
+     "opp": "Roberto Lisitsov",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "18.11.2026",
+     "round": 4,
+     "home": true,
+     "opp_rank": 18
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Elia Tanner",
-   "rank": 44,
-   "n": 13,
-   "w": 6,
-   "l": 7,
-   "avg_opp": 33.15384615384615,
+   "rank": 42,
+   "n": 17,
+   "w": 7,
+   "l": 10,
+   "avg_opp": 30.529411764705884,
    "brackets": {
     "top": [
      1,
-     0
+     1
     ],
     "mid": [
-     1,
-     3
+     2,
+     4
     ],
     "low": [
      4,
-     4
+     5
     ]
    },
    "rows": [
@@ -2479,7 +2676,7 @@
      "date": "02.09.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Heiri Kuratli",
@@ -2489,7 +2686,7 @@
      "date": "28.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 45
+     "opp_rank": 46
     },
     {
      "opp": "Andreas Hutter",
@@ -2539,7 +2736,7 @@
      "date": "27.10.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 35
+     "opp_rank": 36
     },
     {
      "opp": "Luis Munoz",
@@ -2559,7 +2756,7 @@
      "date": "27.10.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 36
+     "opp_rank": 37
     },
     {
      "opp": "Chris Malang",
@@ -2569,7 +2766,7 @@
      "date": "04.11.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Martin Gerber",
@@ -2580,29 +2777,69 @@
      "round": 2,
      "home": false,
      "opp_rank": 12
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": true,
+     "sets": "2:1",
+     "date": "18.11.2026",
+     "round": 1,
+     "home": true,
+     "opp_rank": 16
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "18.11.2026",
+     "round": 2,
+     "home": true,
+     "opp_rank": 4
+    },
+    {
+     "opp": "Roberto Lisitsov",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "18.11.2026",
+     "round": 3,
+     "home": true,
+     "opp_rank": 18
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "18.11.2026",
+     "round": 4,
+     "home": true,
+     "opp_rank": 45
     }
    ],
    "team": "Double Trouble Steeldarters"
   },
   {
    "name": "Kevin Notter",
-   "rank": 37,
-   "n": 26,
+   "rank": 38,
+   "n": 30,
    "w": 11,
-   "l": 15,
-   "avg_opp": 25.153846153846153,
+   "l": 19,
+   "avg_opp": 24.733333333333334,
    "brackets": {
     "top": [
      0,
-     7
+     8
     ],
     "mid": [
      5,
-     4
+     6
     ],
     "low": [
      6,
-     4
+     5
     ]
    },
    "rows": [
@@ -2644,7 +2881,7 @@
      "date": "02.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Elia Meyer",
@@ -2674,7 +2911,7 @@
      "date": "14.09.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 45
     },
     {
      "opp": "Mic Andres",
@@ -2704,7 +2941,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 42
+     "opp_rank": 43
     },
     {
      "opp": "Adam Montgomery",
@@ -2714,7 +2951,7 @@
      "date": "05.10.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Alex Grohmann",
@@ -2724,7 +2961,7 @@
      "date": "05.10.2026",
      "round": 4,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Michael Loser",
@@ -2774,7 +3011,7 @@
      "date": "27.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 35
+     "opp_rank": 36
     },
     {
      "opp": "Lucky Aebischer",
@@ -2814,7 +3051,7 @@
      "date": "04.11.2026",
      "round": 3,
      "home": false,
-     "opp_rank": 46
+     "opp_rank": 47
     },
     {
      "opp": "Martin Gerber",
@@ -2864,7 +3101,47 @@
      "date": "11.11.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
+    },
+    {
+     "opp": "Martin Vomend",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "18.11.2026",
+     "round": 1,
+     "home": true,
+     "opp_rank": 45
+    },
+    {
+     "opp": "Roberto Lisitsov",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "18.11.2026",
+     "round": 2,
+     "home": true,
+     "opp_rank": 18
+    },
+    {
+     "opp": "Felix Schwager",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "1:2",
+     "date": "18.11.2026",
+     "round": 3,
+     "home": true,
+     "opp_rank": 4
+    },
+    {
+     "opp": "Elia Meyer",
+     "opp_team": "Irish Skulls Steel",
+     "won": false,
+     "sets": "0:2",
+     "date": "18.11.2026",
+     "round": 4,
+     "home": true,
+     "opp_rank": 16
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -2875,7 +3152,7 @@
    "n": 19,
    "w": 4,
    "l": 15,
-   "avg_opp": 29.0,
+   "avg_opp": 29.210526315789473,
    "brackets": {
     "top": [
      0,
@@ -2939,7 +3216,7 @@
      "date": "14.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 47
+     "opp_rank": 45
     },
     {
      "opp": "Mic Andres",
@@ -2969,7 +3246,7 @@
      "date": "23.09.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 5
+     "opp_rank": 6
     },
     {
      "opp": "Phillipe Graf",
@@ -2999,7 +3276,7 @@
      "date": "23.09.2026",
      "round": 4,
      "home": true,
-     "opp_rank": 25
+     "opp_rank": 26
     },
     {
      "opp": "Alex Grohmann",
@@ -3009,7 +3286,7 @@
      "date": "05.10.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 21
+     "opp_rank": 22
     },
     {
      "opp": "Adam Montgomery",
@@ -3019,7 +3296,7 @@
      "date": "05.10.2026",
      "round": 2,
      "home": false,
-     "opp_rank": 19
+     "opp_rank": 20
     },
     {
      "opp": "Daniel Strasser",
@@ -3049,7 +3326,7 @@
      "date": "27.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 36
+     "opp_rank": 37
     },
     {
      "opp": "Luis Munoz",
@@ -3079,7 +3356,7 @@
      "date": "11.11.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 38
+     "opp_rank": 39
     }
    ],
    "team": "Double Trouble Steeldarters"
@@ -3090,7 +3367,7 @@
    "n": 14,
    "w": 2,
    "l": 12,
-   "avg_opp": 35.42857142857143,
+   "avg_opp": 35.785714285714285,
    "brackets": {
     "top": [
      0,
@@ -3114,7 +3391,7 @@
      "date": "24.08.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 35
+     "opp_rank": 36
     },
     {
      "opp": "Tom Lanz",
@@ -3154,7 +3431,7 @@
      "date": "07.09.2026",
      "round": 1,
      "home": false,
-     "opp_rank": 38
+     "opp_rank": 39
     },
     {
      "opp": "Oliver Hutter",
@@ -3204,7 +3481,7 @@
      "date": "23.09.2026",
      "round": 2,
      "home": true,
-     "opp_rank": 5
+     "opp_rank": 6
     },
     {
      "opp": "Serge Schiess",
@@ -3214,7 +3491,7 @@
      "date": "27.10.2026",
      "round": 1,
      "home": true,
-     "opp_rank": 35
+     "opp_rank": 36
     },
     {
      "opp": "Lucky Aebischer",
@@ -3234,7 +3511,7 @@
      "date": "27.10.2026",
      "round": 3,
      "home": true,
-     "opp_rank": 36
+     "opp_rank": 37
     },
     {
      "opp": "Luis Munoz",
@@ -3265,13 +3542,13 @@
   {
    "rank": 2,
    "team": "Irish Skulls Steel",
-   "played": 11,
-   "pp": 27,
+   "played": 12,
+   "pp": 30,
    "pm": 6,
-   "gp": 114,
-   "gm": 84,
-   "sp": 267,
-   "sm": 210
+   "gp": 124,
+   "gm": 92,
+   "sp": 288,
+   "sm": 231
   },
   {
    "rank": 3,
@@ -3287,13 +3564,13 @@
   {
    "rank": 4,
    "team": "Double Trouble Steeldarters",
-   "played": 11,
+   "played": 12,
    "pp": 18,
-   "pm": 15,
-   "gp": 108,
-   "gm": 92,
-   "sp": 247,
-   "sm": 240
+   "pm": 18,
+   "gp": 116,
+   "gm": 102,
+   "sp": 268,
+   "sm": 261
   },
   {
    "rank": 5,
@@ -3758,7 +4035,7 @@
    "home": "Double Trouble Steeldarters",
    "guest": "Irish Skulls Steel",
    "place": "Rorschach",
-   "played": false
+   "played": true
   },
   {
    "nr": "2621647",

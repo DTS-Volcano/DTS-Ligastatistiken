@@ -1,0 +1,125 @@
+{
+ "date": "18.11.2026",
+ "home": "Double Trouble Steeldarters",
+ "guest": "Irish Skulls Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Elia Tanner",
+   "guest": "Elia Meyer",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Christoph Wildermuth",
+   "guest": "Roberto Lisitsov",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Kevin Notter",
+   "guest": "Martin Vomend",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Christoph Wildermuth",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Martin Vomend",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Elia Tanner",
+   "guest": "Roberto Lisitsov",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Kevin Notter",
+   "guest": "Felix Schwager",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Elia Meyer",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Christoph Wildermuth",
+   "guest": "Martin Vomend",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Elia Tanner",
+   "guest": "Felix Schwager",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Kevin Notter",
+   "guest": "Roberto Lisitsov",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Daniel Laszlo Sandor",
+   "guest": "Roberto Lisitsov",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Elia Tanner",
+   "guest": "Martin Vomend",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Christoph Wildermuth",
+   "guest": "Felix Schwager",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Kevin Notter",
+   "guest": "Elia Meyer",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "8:10",
+  "21:21"
+ ],
+ "extras": []
+}
