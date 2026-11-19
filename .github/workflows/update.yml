@@ -23,7 +23,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python generate.py
+      - name: Seite erzeugen (bis zu 3 Versuche)
+        run: |
+          for i in 1 2 3; do python generate.py && exit 0; echo "Versuch $i fehlgeschlagen"; sleep 120; done; exit 1
         env:
           GROUP: "STSO S 2"
           TEAM: "Double Trouble Steeldarters"

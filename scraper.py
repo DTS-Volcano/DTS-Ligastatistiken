@@ -19,7 +19,8 @@ class BlockedError(RuntimeError):
 
 
 def get(url):
-    for attempt in range(3):
+    pausen = (5, 15, 30, 60, 90)  # Wartezeiten bei Netzwerkproblemen (z. B. kurzzeitig nicht erreichbar)
+    for attempt in range(len(pausen) + 1):
         try:
             r = session.get(url, timeout=30)
             r.raise_for_status()
@@ -32,9 +33,9 @@ def get(url):
                 raise BlockedError(f"vfc.ch zeigt eine Prüfseite statt der Daten ({url})")
             return BeautifulSoup(txt, "html.parser")
         except requests.RequestException:
-            if attempt == 2:
+            if attempt == len(pausen):
                 raise
-            time.sleep(3)
+            time.sleep(pausen[attempt])
 
 
 def row_cells(tr):
