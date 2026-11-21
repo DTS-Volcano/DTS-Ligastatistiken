@@ -1,0 +1,125 @@
+{
+ "date": "18.11.2026",
+ "home": "Irish Skulls ;) Steel",
+ "guest": "2010er Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Chris Malang",
+   "guest": "Serge Schiess",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Naser Toja",
+   "guest": "Marc Brassel",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Marco Müller",
+   "guest": "Luis Munoz",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Gerber",
+   "guest": "Marcel Staubli",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Marco Müller",
+   "guest": "Marc Brassel",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Chris Malang",
+   "guest": "Marcel Staubli",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Naser Toja",
+   "guest": "Luis Munoz",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Martin Gerber",
+   "guest": "Serge Schiess",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Chris Malang",
+   "guest": "Marc Brassel",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Marco Müller",
+   "guest": "Marcel Staubli",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Naser Toja",
+   "guest": "Serge Schiess",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Martin Gerber",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Chris Malang",
+   "guest": "Luis Munoz",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Naser Toja",
+   "guest": "Marcel Staubli",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Marco Müller",
+   "guest": "Serge Schiess",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Martin Gerber",
+   "guest": "Marc Brassel",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "1:2",
+  "9:10",
+  "24:25"
+ ],
+ "extras": []
+}
