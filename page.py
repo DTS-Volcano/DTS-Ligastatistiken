@@ -230,7 +230,7 @@ def render(data, hist):
 
 </div>
 <footer>
-<div class="pow">{logo_s}<div><span class="pw">Powered by</span><b class="pn">{esc(TEAM)}</b><span class="mb">Made with ♥ by <b>{AUTHOR}</b></span></div></div>
+<div class="pow">{logo_s}<div><span class="pw">Powered by</span><b class="pn">{esc(TEAM)}</b><span class="mb">Made by <b>{AUTHOR}</b></span></div></div>
 <p class="src">Quelle: vfc.ch · täglich automatisch aktualisiert · <a href="info.html">Über uns</a>{archiv_link}</p>
 </footer>
 </main>{search_dlg}<script>{JS}</script></body></html>"""
