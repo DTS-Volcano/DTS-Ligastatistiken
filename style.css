@@ -294,3 +294,4 @@ main{padding-bottom:90px}
 .sbtn:focus-visible,.fav:focus-visible,.club select:focus-visible{outline:2px solid #fff;outline-offset:2px}
 #main:focus{outline:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.jt:hover{transform:none}}
+.tlg:not(.ph){background:#fff;box-shadow:inset 0 0 0 1px #0000001a}.tlg:not(.ph) img{padding:2px}
