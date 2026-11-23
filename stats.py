@@ -48,8 +48,24 @@ def load_report(nr, url, state):
     return rep
 
 
+def load_league_offline():
+    """Notfall: vfc.ch ist nicht erreichbar. Tabelle, Spielplan und Rangliste kommen aus dem zuletzt veröffentlichten
+    Stand (docs/data.json, history.json); die Spielreports liegen ohnehin im Speicher (daten/reports)."""
+    d = json.loads((OUT / "data.json").read_text(encoding="utf-8"))
+    h = json.loads((OUT / "history.json").read_text(encoding="utf-8"))
+    day = sorted(h)[-1]
+    ranking = "Einzelrangliste " + " ".join(f"{r}. {n} x" for n, r in sorted(h[day].items(), key=lambda kv: kv[1]))
+    links = {f["nr"]: "offline" for f in d["schedule"] if f["played"] and f["nr"]}
+    return ranking, links, d["league"], d["schedule"], day
+
+
 def build_stats():
-    ranking, links, league, schedule = load_league()
+    offline = None
+    try:
+        ranking, links, league, schedule = load_league()
+    except Exception as e:    # Netz, Bot-Schutz: mit dem letzten bekannten Stand weiterbauen
+        print(f"Warnung: vfc.ch nicht erreichbar ({type(e).__name__}); Seite wird aus dem letzten Stand gebaut.")
+        ranking, links, league, schedule, offline = load_league_offline()
     print(f"{len(links)} Rapporte gefunden, {len(league)} Teams in der Tabelle, {len(schedule)} Spiele im Spielplan")
     me = TEAM.lower()
     matches, singles = [], defaultdict(list)
@@ -143,7 +159,7 @@ def build_stats():
                 ranks[name] = rk
     return {"matches": matches, "players": players, "league": league, "schedule": schedule,
             "team_games": team_games, "ranks": ranks, "ranking": ranking,
-            "team_matches": team_matches, "others": others, "teaminfo": load_teaminfo(league),
+            "team_matches": team_matches, "others": others, "teaminfo": load_teaminfo(league), "offline_since": offline,
             "team_full": {k: sorted(v, key=lambda m: dkey(m["date"])) for k, v in team_full.items()}}
 
 

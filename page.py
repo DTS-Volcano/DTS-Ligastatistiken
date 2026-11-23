@@ -30,6 +30,9 @@ def render(data, hist):
     players = sorted(data["players"], key=lambda p: (p["rank"] or 9999, p["name"]))   # Standard: nach Rang
     _n = datetime.now(ZoneInfo("Europe/Zurich"))
     now, now_iso = _n.strftime("%d.%m.%Y %H:%M"), _n.isoformat(timespec="minutes")
+    if data.get("offline_since"):      # vfc.ch war nicht erreichbar: ehrlich den Stand der letzten echten Daten zeigen
+        _d = datetime.strptime(data["offline_since"], "%Y-%m-%d")
+        now, now_iso = _d.strftime("%d.%m.%Y"), _d.strftime("%Y-%m-%d")
     mp = [tuple(int(x) for x in m["points"].split(":")) for m in matches]   # (eigene, gegnerische) Punkte
     wins = sum(p == (3, 0) for p in mp)
     sd_wins = sum(p == (2, 1) for p in mp)      # 9:9 nach regulären Spielen, Sudden Death gewonnen

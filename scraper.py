@@ -18,8 +18,12 @@ class BlockedError(RuntimeError):
     """vfc.ch hat statt der Seite eine Prüfseite ausgeliefert (Bot-Schutz)."""
 
 
+_offline = False   # wird True, wenn vfc.ch nach allen Wiederholungen nicht erreichbar war: dann nicht jede weitere Seite einzeln abwarten
+
+
 def get(url):
-    pausen = (5, 15, 30, 60, 90)  # Wartezeiten bei Netzwerkproblemen (z. B. kurzzeitig nicht erreichbar)
+    global _offline
+    pausen = () if _offline else (5, 15, 30)  # Wartezeiten bei Netzwerkproblemen (z. B. kurzzeitig nicht erreichbar)
     for attempt in range(len(pausen) + 1):
         try:
             r = session.get(url, timeout=30)
@@ -34,6 +38,7 @@ def get(url):
             return BeautifulSoup(txt, "html.parser")
         except requests.RequestException:
             if attempt == len(pausen):
+                _offline = True
                 raise
             time.sleep(pausen[attempt])
 

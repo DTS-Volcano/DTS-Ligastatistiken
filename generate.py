@@ -137,7 +137,7 @@ def main():
     copy_team_logos([t["team"] for t in data["league"]] or [TEAM])
     copy_photos(data["players"])
     write_pwa()
-    hist = update_history(data["ranks"])
+    hist = update_history(None if data.get("offline_since") else data["ranks"])
     (OUT / "history.json").write_text(json.dumps(hist, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
     (OUT / "index.html").write_text(render(data, hist), encoding="utf-8")
     (OUT / "dialogs.html").write_text(page.DIALOGS, encoding="utf-8")

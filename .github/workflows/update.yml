@@ -17,6 +17,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,7 +26,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Seite erzeugen (bis zu 3 Versuche)
         run: |
-          for i in 1 2 3; do python generate.py && exit 0; echo "Versuch $i fehlgeschlagen"; sleep 120; done; exit 1
+          for i in 1 2 3; do python generate.py && exit 0; echo "Versuch $i fehlgeschlagen"; sleep 60; done; exit 1
         env:
           GROUP: "STSO S 2"
           TEAM: "Double Trouble Steeldarters"
