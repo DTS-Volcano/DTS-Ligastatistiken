@@ -82,23 +82,23 @@ async function draw(){
  c.fillStyle='#4a2a2a';c.fillRect(549,470,2,86);
  icon('clock',610,512,76,'#b0171b');txt('START',668,500,44,'#c01e22');txt(time+' UHR',668,552,52,'#c9c9c9');
  // Teams
- txt('HEIMTEAM',270,650,52,'#8e1214',{a:'center',ls:2});txt('GASTTEAM',810,650,52,'#8e1214',{a:'center',ls:2});
- await logo(f.home,270,865,185,hm,f.home);await logo(f.guest,810,865,185,gm,f.guest);
- c.save();c.strokeStyle='rgba(220,40,40,.8)';c.lineWidth=3;c.shadowColor='#e02020';c.shadowBlur=18;c.beginPath();c.moveTo(585,700);c.lineTo(495,1040);c.stroke();c.restore();
- txt('VS',540,905,190,metal(790,150,'#777','#e8e8e8'),{a:'center',skew:1,shadow:'#000',sb:12});
- for(const [t,x,m] of [[f.home,270,hm],[f.guest,810,gm]]){
-  txt(t.toUpperCase(),x,1100,50,'#dcdcdc',{a:'center',max:480});
-  if(showT&&m.rank){txt(`PLATZ ${m.rank}  ·  ${m.pp}:${m.pm} PUNKTE`,x,1136,32,'#9a8f90',{a:'center',ls:1});if(m.form&&m.form.length)dots(m.form,x,1166)}}
+ txt('HEIMTEAM',250,650,52,'#8e1214',{a:'center',ls:2});txt('GASTTEAM',830,650,52,'#8e1214',{a:'center',ls:2});
+ await logo(f.home,250,850,168,hm,f.home);await logo(f.guest,830,850,168,gm,f.guest);
+ c.save();c.strokeStyle='rgba(220,40,40,.8)';c.lineWidth=3;c.shadowColor='#e02020';c.shadowBlur=18;c.beginPath();c.moveTo(565,700);c.lineTo(515,1010);c.stroke();c.restore();
+ txt('VS',540,895,140,metal(790,110,'#777','#e8e8e8'),{a:'center',skew:1,shadow:'#000',sb:12});
+ for(const [t,x,m] of [[f.home,250,hm],[f.guest,830,gm]]){
+  txt(t.toUpperCase(),x,1068,50,'#dcdcdc',{a:'center',max:470});
+  if(showT&&m.rank){txt(`PLATZ ${m.rank}  ·  ${m.pp}:${m.pm} PUNKTE`,x,1104,32,'#9a8f90',{a:'center',ls:1});if(m.form&&m.form.length)dots(m.form,x,1136)}}
  // Fuss
- const y0=1190,h0=146;rr(55,y0,970,h0,20);c.fillStyle='rgba(0,0,0,.6)';c.fill();c.strokeStyle='#8a1a1a';c.lineWidth=3;c.stroke();
+ const y0=1168,h0=164;rr(55,y0,970,h0,20);c.fillStyle='rgba(0,0,0,.6)';c.fill();c.strokeStyle='#8a1a1a';c.lineWidth=3;c.stroke();
  c.fillStyle='#4a2a2a';c.fillRect(540,y0+18,2,h0-36);
  const ho=hm.lokal||f.place||'';
- icon('pin',108,y0+40,52,'#b0171b');txt('SPIELORT',138,y0+55,46,'#c01e22');
+ icon('pin',108,y0+40,52,'#b0171b');txt('SPIELORT',138,y0+56,46,'#c01e22');
  const lines=[hm.lokal,hm.strasse,hm.ort].filter(Boolean);if(!lines.length&&f.place)lines.push(f.place);
- lines.slice(0,3).forEach((l,i)=>txt(l.toUpperCase(),138,y0+86+i*25,24,'#c4c4c4',{max:380}));
+ lines.slice(0,3).forEach((l,i)=>txt(l.toUpperCase(),138,y0+92+i*30,29,'#c4c4c4',{max:380}));
  icon('ppl',585,y0+42,58,'#b0171b');txt('SUPPORT',630,y0+56,46,'#c01e22');
  const w=sup.split(' ');let l1='',l2='';for(const x of w){if((l1+' '+x).trim().length<=26&&!l2)l1=(l1+' '+x).trim();else l2=(l2+' '+x).trim()}
- txt(l1,585,y0+96,28,'#c4c4c4',{max:420});if(l2)txt(l2,585,y0+126,28,'#c4c4c4',{max:420});
+ txt(l1,585,y0+104,32,'#c4c4c4',{max:430});if(l2)txt(l2,585,y0+142,32,'#c4c4c4',{max:430});
 }
 // Auswahl
 const sel=$('sel');
@@ -110,7 +110,9 @@ if(mine.length)sel.value=mine[0][1];
 for(const id of['sel','time','sup','tab'])$(id).addEventListener('input',draw);
 function blob(){return new Promise(r=>cv.toBlob(r,'image/png'))}
 function nm(){const f=D.fixtures[+sel.value];return 'flyer-'+f.date.split('.').reverse().join('-')+'-'+f.home.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png'}
-$('dl').onclick=async()=>{const b=await blob(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=nm();a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)};
+$('dl').onclick=async()=>{const b=await blob();let d=null;try{d=window.claude&&await window.claude.use('downloads')}catch(_){}
+ if(d){try{await d.save({filename:nm(),data:b})}catch(_){}return}
+ const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=nm();a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)};
 $('sh').onclick=async()=>{const b=await blob(),file=new File([b],nm(),{type:'image/png'});try{await navigator.share({files:[file]})}catch(_){}};
 try{if(navigator.canShare&&navigator.canShare({files:[new File([''],'a.png',{type:'image/png'})]}))$('sh').hidden=false}catch(_){}
 draw();

@@ -58,12 +58,30 @@ def flyer_data(data):
     return {"teams": teams, "fixtures": fx, "own": TEAM, "season": season_label(data), "sport": "STEELDARTS", "vfc": "vfc-logo.png"}
 
 
-def build_flyer(data):
-    shutil.copyfile(HERE / "fonts" / "BebasNeue-Regular.ttf", OUT / "BebasNeue-Regular.ttf")
+def _uri(p):
+    import base64
+    p = Path(p)
+    mime = {"png": "image/png", "ttf": "font/ttf", "jpg": "image/jpeg", "svg": "image/svg+xml"}.get(p.suffix[1:].lower(), "application/octet-stream")
+    return f"data:{mime};base64," + base64.b64encode(p.read_bytes()).decode()
+
+
+def build_flyer(data, inline=False):
+    """inline=True: alles (Schrift, Logos) steckt in der einen HTML-Datei, für eine private Seite ausserhalb der Statistik-Seite."""
+    if not inline:
+        shutil.copyfile(HERE / "fonts" / "BebasNeue-Regular.ttf", OUT / "BebasNeue-Regular.ttf")
     css = (HERE / "style.css").read_text(encoding="utf-8")
     js = (HERE / "flyer.js").read_text(encoding="utf-8")
-    fd = json.dumps(flyer_data(data), ensure_ascii=False).replace("</", "<\\/")
-    logo = f"<img class='logo' src='logo{LOGO.suffix.lower()}' alt='' width='56' height='56'>" if LOGO else ""
+    fdict = flyer_data(data)
+    fontsrc = "BebasNeue-Regular.ttf"
+    if inline:
+        fontsrc = _uri(HERE / "fonts" / "BebasNeue-Regular.ttf")
+        for t in fdict["teams"].values():
+            if t["logo"]:
+                t["logo"] = _uri(OUT / t["logo"])
+        fdict["vfc"] = _uri(next(OUT.glob("vfc-logo.*")))
+    fd = json.dumps(fdict, ensure_ascii=False).replace("</", "<\\/")
+    lsrc = _uri(OUT / f"logo{LOGO.suffix.lower()}") if (inline and LOGO) else (f"logo{LOGO.suffix.lower()}" if LOGO else "")
+    logo = f"<img class='logo' src='{lsrc}' alt='' width='56' height='56'>" if LOGO else ""
     if not flyer_data(data)["fixtures"]:
         body = "<p class='hint'>Es stehen keine kommenden Spiele im Spielplan.</p>"
     else:
@@ -75,12 +93,12 @@ def build_flyer(data):
 <canvas id="cv" class="fl-cv"></canvas>
 <p class="fl-b"><button class="rb" id="sh" hidden>Teilen</button> <button class="rb" id="dl">Als Bild speichern</button></p>"""
     return f"""<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#17100f"><title>Flyer – {esc(TEAM)}</title><link rel="manifest" href="manifest.webmanifest">
-<style>@font-face{{font-family:Bebas;src:url(BebasNeue-Regular.ttf) format("truetype");font-display:block}}{css}
+<meta name="theme-color" content="#17100f"><title>Flyer – {esc(TEAM)}</title><meta name="robots" content="noindex">
+<style>@font-face{{font-family:Bebas;src:url({fontsrc}) format("truetype");font-display:block}}{css}
 .fl-f{{display:grid;gap:10px;margin:14px 0}}.fl-f label{{display:grid;gap:4px;font-size:.85rem;color:var(--mute)}}
 .fl-f input,.fl-f select{{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-width:0}}
 .fl-f .fl-c{{display:flex;align-items:center;gap:8px;color:var(--ink)}}.fl-f .fl-c input{{width:auto}}
 .fl-cv{{width:100%;max-width:540px;height:auto;display:block;border-radius:10px;border:1px solid var(--line)}}.fl-b{{margin:12px 0}}.fl-b .rb{{font-size:.95rem;padding:8px 16px}}</style></head>
 <body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1><p class="sub">Flyer-Generator</p></div></div></header>
-<main><p><a href="./">← Zur Statistik</a></p><section><h2>Flyer</h2>{body}</section></main>
+<main><section><h2>Flyer</h2>{body}</section></main>
 <script type="application/json" id="fd">{fd}</script><script>{js}</script></body></html>"""
