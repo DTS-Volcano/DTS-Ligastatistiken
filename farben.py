@@ -5,7 +5,17 @@ from functools import lru_cache
 from config import team_logo_source
 
 
-VON_HAND = {"dynamo tresen": ("#1d6b4a", "#4fb98f")}   # wo die automatische Wahl danebenliegt
+VON_HAND = {   # festgelegte Farben je Verein: (für hellen Hintergrund, für dunklen Hintergrund)
+    "double trouble steeldarters": ("#8b1a1a", "#e0605a"),   # dunkelrot
+    "irish skulls steel": ("#1f7a3a", "#5fcf7e"),            # grün
+    "irish skulls ;) steel": ("#1f7a3a", "#5fcf7e"),
+    "dynamo tresen": ("#9a7000", "#f2c230"),                 # gelb (hell etwas dunkler, damit Text lesbar bleibt)
+    "2010er steel": ("#5d646b", "#dfe3e8"),                  # grau-weisslich (schwarz-weisses Logo)
+    "dart ost": ("#0e7c7b", "#4fd1c5"),                      # petrol
+    "die humorlosen": ("#1d4f91", "#6aa6ee"),                # blau
+    "dartfabrik steel": ("#b3541a", "#f29a4a"),              # orange
+    "braschtli's darter 2": ("#5b3590", "#b794e8"),          # violett
+}
 
 
 @lru_cache(maxsize=None)
