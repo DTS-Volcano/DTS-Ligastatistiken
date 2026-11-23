@@ -262,6 +262,41 @@ dl.info{display:grid;gap:8px;margin:12px 0}dl.info div{display:grid;grid-templat
 .filter #f-team,.filter #f-pt{display:none}
 @media (max-width:420px){.club .cl-l{display:none}}
 .filter[hidden]{display:none!important}
+
+/* einheitlicher Kartenstil */
+:root{--r:12px;--sh:0 1px 2px #0000000d,0 2px 8px #0000000a}
+.hc,.hf,.jt,.potm,.pow{border-radius:var(--r);box-shadow:var(--sh)}
+.hc,.hf{border-top:3px solid var(--green);padding:14px 16px}
+.jt{padding:14px 16px;transition:border-color .15s,transform .15s}.jt:hover{transform:translateY(-1px)}
+.hof-g{gap:12px}
+/* Hinweise hinter «i» */
+.tip{margin:12px 0 14px;font-size:.9rem;color:var(--mute)}
+.tip summary{list-style:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid var(--line);border-radius:50%;cursor:pointer;font:italic 700 .8rem var(--serif);color:var(--mute);background:var(--card)}
+.tip summary::-webkit-details-marker{display:none}.tip summary:hover,.tip[open] summary{border-color:var(--green);color:var(--ink)}
+.tip p{margin:8px 0 0;max-width:62ch}
+/* schlanke Startseite: Rekorde als Zeilen */
+.hof-g.slim{display:block;border-top:1px solid var(--line)}
+.hof-g.slim .hf{display:grid;grid-template-columns:1fr auto;gap:0 12px;align-items:baseline;border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;background:transparent;padding:10px 4px}
+.hof-g.slim .hf .sub{grid-column:1;margin:0}.hof-g.slim .hf .big{grid-column:2;grid-row:1/3;font-size:1.25rem;text-align:right}
+.hof-g.slim .hf p:not(.sub){grid-column:1;margin:0}.hof-g.slim .hf small{display:none}
+
+.tf{display:inline-flex;gap:3px;vertical-align:middle;margin-left:10px}
+.fd{display:inline-block;width:9px;height:9px;border-radius:50%}.fd.w{background:var(--win)}.fd.l{background:var(--red)}
+td .tf.under{display:flex;margin:5px 0 0 30px}
+td:not(:first-child) .tf{margin-left:0}
+/* Handy: Suche als schwebender Knopf in Daumenreichweite */
+@media (max-width:699px){
+.sbtn{position:fixed;right:14px;bottom:calc(64px + env(safe-area-inset-bottom));z-index:6;margin:0;padding:11px 18px;border-radius:999px;background:var(--top);color:var(--topink);border:1px solid #ffffff44;box-shadow:0 4px 14px #0000004d;font-weight:600}
+.sbtn::before{content:"⌕ ";font-size:1.1em}
+.clubbar{padding-bottom:12px}
+main{padding-bottom:90px}
+}
+
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:20}.skip:focus{left:8px}
+.sbtn:focus-visible,.fav:focus-visible,.club select:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#main:focus{outline:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.jt:hover{transform:none}}
+.tlg:not(.ph){background:#fff;box-shadow:inset 0 0 0 1px #0000001a}.tlg:not(.ph) img{padding:2px}
 </style></head><body><header class="top"><div class="brand wrap"><img class='logo' src='logo.png' alt='' width='56' height='56'><div><h1>Double Trouble Steeldarters</h1><p class="sub">Info</p></div></div></header>
 <main><p><a href="./">← Zur Statistik</a></p><section id='ueber'><h2>Über uns</h2><dl class='info'><div><dt>Spiellokal</dt><dd>Café Bar Treppenhaus<br>Kirchstrasse 3, 9400 Rorschach · <a href='http://map.search.ch/9400-Rorschach/Kirchstrasse 3' target='_blank' rel='noopener'>Karte</a></dd></div><div><dt>Captain</dt><dd>Christoph Wildermuth</dd></div><div><dt>Liga</dt><dd>STSO S 2 · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a></dd></div></dl><p class='hint'>Diese Seite zählt anonym, wie oft sie geöffnet wird (höchstens eine Zählung pro Gerät und Tag, ohne Cookies und ohne Daten über Besucher).</p></section>
 <footer>Made by Kevin Notter · <a href="./">Zur Statistik</a></footer></main></body></html>
