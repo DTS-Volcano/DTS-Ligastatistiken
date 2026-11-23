@@ -224,7 +224,7 @@ async function draw(){
  c.save();if(sp.length){const k=1210/(H-18);c.translate((1-k)*W/2,-18*k);c.scale(k,k)}
  await t.content(S);
  c.restore();
- if(sp.length){const light=+$('tpl').value===1;await sponsorBar(sp,light?'#9a1b1c':(hm.color||'#dd4a47'),light)}}
+ if(sp.length){const light=+$('tpl').value===1;const tp=+$('tpl').value;await sponsorBar(sp,light?'#9a1b1c':(tp===0?'#c01e22':(hm.color||'#dd4a47')),light)}}
 
 const sel=$('sel');
 const mine=D.fixtures.map((f,i)=>[f,i]).filter(([f])=>D.own&&(f.home===D.own||f.guest===D.own));
