@@ -94,18 +94,40 @@ def section_next(data, matches, pid=None, team=None):
     return nxt_html, open_html
 
 
+def team_forms(data, n=5):
+    """Letzte n Resultate pro Verein (älteste zuerst) als Liste von True (Sieg) / False, nach Teamnamen (klein)."""
+    score = {nr: m["points"] for nr, m in data["others"].items()}
+    for m in data["matches"]:
+        score[m["nr"]] = m["points"] if m["home"] else ":".join(reversed(m["points"].split(":")))
+    out = {}
+    for f in sorted((f for f in data["schedule"] if f["played"] and score.get(f["nr"])), key=lambda f: (dkey(f["date"]), f["nr"])):
+        a, b = (int(x) for x in score[f["nr"]].split(":"))
+        out.setdefault(f["home"].lower(), []).append((a > b, f"{f['home']} {a}:{b} {f['guest']} ({f['date'][:6]})"))
+        out.setdefault(f["guest"].lower(), []).append((b > a, f"{f['home']} {a}:{b} {f['guest']} ({f['date'][:6]})"))
+    return {k: v[-n:] for k, v in out.items()}
+
+
+def form_dots(items, under=False):
+    """kleine Punkte: grün = Sieg, rot = Niederlage (Mannschaftsresultat)."""
+    if not items:
+        return ""
+    return f"<span class='tf{' under' if under else ''}' aria-label='Form, letzte Partien'>" + "".join(
+        f"<i class='fd {'w' if w else 'l'}' title='{esc(tt)}'></i>" for w, tt in items) + "</span>"
+
+
 def section_league(data, hl=None):
     if not data["league"]:
         return ("<section><h2>Tabelle</h2><p class='hint'>Die Tabelle konnte von vfc.ch gerade nicht gelesen werden. "
                 "Der nächste automatische Lauf versucht es erneut.</p>")
-    me = (hl or TEAM).lower()
+    me = (hl or "").lower()
+    tfm = team_forms(data)
     rows = "".join(
         f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
         f"<td><button class='tl' data-open='t{i}'>{tlogo(t['team'])}{esc(t['team'])}</button></td>"
         f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
-        f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td></tr>" for i, t in enumerate(data["league"]))
-    return ("<section><h2>Tabelle</h2><p class='hint'>Auf ein Team klicken, um dessen Partien und Spieler zu sehen.</p><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
-            f"<th>Punkte</th><th>Spiele</th><th>Sätze</th></tr></thead><tbody>{rows}</tbody></table></div>")
+        f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td><td>{form_dots(tfm.get(t['team'].lower()))}</td></tr>" for i, t in enumerate(data["league"]))
+    return ("<section><h2>Tabelle</h2><details class='tip'><summary aria-label='Erklärung'>i</summary><p>Auf ein Team klicken, um dessen Partien und Spieler zu sehen.</p></details><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
+            f"<th>Punkte</th><th>Spiele</th><th>Sätze</th><th>Form</th></tr></thead><tbody>{rows}</tbody></table></div>")
 
 
 def section_form(players):
@@ -326,7 +348,7 @@ def section_fixtures(data, id_of, team=None):
     def rows(items):
         out = ""
         for f in items:
-            mine = not team and me in (f["home"].lower(), f["guest"].lower())
+            mine = False
             sc = score.get(f["nr"], "")
             dom = id_of.get(f["nr"])
             attr = f" data-open='{dom}'" if dom and sc else ""
@@ -355,7 +377,7 @@ def section_fixtures(data, id_of, team=None):
         return (f"<section><h2>Ergebnisse</h2><p class='hint'>Alle Partien von {esc(team)}, neueste zuerst. Auf eine Zeile klicken für den Report.</p>"
                 f"{block(played, 'Punkte')}</section><section><h2>Kommende Spiele</h2>{block(todo, '')}</section>")
     return ("<section><h2>Ergebnisse der Liga</h2><p class='hint'>Alle Partien der Gruppe, neueste zuerst. "
-            "Auf eine Zeile klicken für den Report, unsere Spiele sind hervorgehoben.</p>"
+            "Auf eine Zeile klicken für den Report.</p>"
             f"{block(played, 'Punkte')}</section>"
             f"<section><h2>Kommende Spiele der Liga</h2>{block(todo, '')}</section>")
 

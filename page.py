@@ -177,13 +177,13 @@ def render(data, hist):
 {icon}
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="dts-logos" content="{('logo' + LOGO.suffix.lower()) if LOGO else ''},{('vfc-logo' + VFC_LOGO.suffix.lower()) if VFC_LOGO else ''}"><meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Liga-Statistik">
-<style>{CSS}</style><script>document.documentElement.className='js'</script>{zaehler}</head><body><header class="top"><div class="brand wrap">{vfc}<div><h1>Liga-Statistiken</h1>
+<style>{CSS}</style><script>document.documentElement.className='js'</script>{zaehler}</head><body><a class="skip" href="#main">Zum Inhalt</a><header class="top"><div class="brand wrap">{vfc}<div><h1>Liga-Statistiken</h1>
 <p class="sub">{esc(GROUP)} · VFC Dartverband · Stand <time id="stand" datetime="{now_iso}">{now}</time></p></div><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div>
 <div class="clubbar wrap"><label class="club"><span class="clg" id="clg" aria-hidden="true"></span><span class="cl-l">Verein</span>
 <select id="club" aria-label="Verein für alle Reiter wählen">{club_opts}</select></label>
 <button type="button" id="fav" class="fav" aria-pressed="false" title="Als meinen Verein merken" aria-label="Als meinen Verein merken">☆</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
-<main>
+<main id="main" tabindex="-1">
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
@@ -196,7 +196,7 @@ def render(data, hist):
 <select id="f-team" aria-label="Verein">{team_opts}</select>
 <input type="search" id="f-pq" placeholder="Spieler suchen" aria-label="Spieler suchen">
 </form>
-<p class="hint">Es zählen nur Einzel (ohne Doppel und Sudden Death). Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner. Punkte: 2:0 = 4, 2:1 = 3, 1:2 = 1, 0:2 = 0. Ranglistenwert = Punkte² / (4 · Spiele).</p>
+<details class="tip"><summary aria-label="Erklärung zur Tabelle">i</summary><p>Es zählen nur Einzel (ohne Doppel und Sudden Death). Spaltenköpfe anklicken zum Sortieren, auf einen Spieler klicken für das Profil. Ø Gegner-Rang: kleiner = stärkere Gegner. Punkte: 2:0 = 4, 2:1 = 3, 1:2 = 1, 0:2 = 0. Ranglistenwert = Punkte² / (4 · Spiele).</p></details>
 {team_blocks}
 </section>
 </div>
@@ -210,13 +210,13 @@ def render(data, hist):
 <div class="panel" id="p-analyse">
 <section><h2>Analyse</h2>
 <form class="filter" onsubmit="return false" hidden><select class="vf" data-g="ana" aria-label="Verein">{liga_opts}</select></form>
-<p class="hint">Alles auf dieser Seite gilt für den gewählten Verein.</p></section>
+<details class="tip"><summary aria-label="Erklärung">i</summary><p>Alles auf dieser Seite gilt für den im Kopf gewählten Verein.</p></details></section>
 {ana_blocks}
 </div>
 
 <div class="panel" id="p-partien">
 <section><h2>Partien</h2>
-<p class="hint">Auf eine Partie klicken, um den Spielreport zu öffnen.</p>
+<details class="tip"><summary aria-label="Erklärung">i</summary><p>Auf eine Partie klicken, um den Spielreport zu öffnen.</p></details>
 <form class="filter" role="search" onsubmit="return false">
 <select id="f-pt" aria-label="Verein">{popts}</select>
 <input type="search" id="f-q" placeholder="Team suchen" aria-label="Team suchen">

@@ -2,7 +2,7 @@
 from components import RESULT
 from vlogo import tlogo
 from config import TEAM, today
-from sections import section_next, section_potm
+from sections import form_dots, section_next, section_potm, team_forms
 from textutil import dkey, esc, fmt_date
 
 JUMP = (("spieler", "Spieler", "Tabelle, Form, Profile"), ("liga", "Team &amp; Liga", "Tabelle und Spielplan"),
@@ -94,10 +94,10 @@ def home_block(data, id_of, pid, hof_players, tf, hof_fn):
             id_of.get(f["nr"]), mine(f)) for f in played]
     todo = sorted((f for f in data["schedule"] if not f["played"]), key=lambda f: dkey(f["date"]))[:5]
     nxt = [(f["date"][:6], f"{esc(f['home'])}<br>{esc(f['guest'])}", "", "", None, None, mine(f)) for f in todo]
-    rows = ""
+    rows, tfm = "", team_forms(data)
     for i, x in enumerate(data["league"]):
         rows += (f"<tr class='click{' hl' if x['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{x['rank']}</td>"
-                 f"<td>{tlogo(x['team'])}{esc(x['team'])}</td><td class='num'>{x['pp']}:{x['pm']}</td></tr>")
+                 f"<td>{tlogo(x['team'])}{esc(x['team'])}{form_dots(tfm.get(x['team'].lower()), True)}</td><td class='num'>{x['pp']}:{x['pm']}</td></tr>")
     table = ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th class='num'>Platz</th><th>Team</th>"
              f"<th class='num'>Punkte</th></tr></thead><tbody>{rows}</tbody></table></div>"
              "<p class='hint'><a href='#liga'>Team &amp; Liga: Details und Spielplan</a></p></section>") if rows else ""

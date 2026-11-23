@@ -59,6 +59,20 @@ def write_pwa():
     (OUT / "sw.js").write_text(SW.replace("__PRE__", json.dumps(pre)), encoding="utf-8")
 
 
+def small_copy(src, dst, px):
+    """Kopiert ein Bild und verkleinert es auf höchstens px Pixel (SVG und Fehler: unverändert kopieren)."""
+    try:
+        from PIL import Image
+        if src.suffix.lower() == ".svg":
+            raise ImportError
+        im = Image.open(src)
+        if max(im.size) > px:
+            im.thumbnail((px, px))
+        im.save(dst, optimize=True)
+    except Exception:
+        shutil.copyfile(src, dst)
+
+
 def copy_team_logos(names):
     """Kopiert die Vereinslogos nach docs/vereine/ (höchstens 256 Pixel, damit die Seite schnell lädt)."""
     from config import team_logo_name, team_logo_source
@@ -116,10 +130,9 @@ def main():
     OUT.mkdir(exist_ok=True)
     for old in OUT.glob("logo.*"):
         old.unlink()
-    if LOGO:
-        shutil.copyfile(LOGO, OUT / ("logo" + LOGO.suffix.lower()))
-    if VFC_LOGO:
-        shutil.copyfile(VFC_LOGO, OUT / ("vfc-logo" + VFC_LOGO.suffix.lower()))
+    for src, stem in ((LOGO, "logo"), (VFC_LOGO, "vfc-logo")):
+        if src:
+            small_copy(src, OUT / (stem + src.suffix.lower()), 320)
     shutil.rmtree(OUT / "vereine", ignore_errors=True)
     copy_team_logos([t["team"] for t in data["league"]] or [TEAM])
     copy_photos(data["players"])

@@ -92,5 +92,5 @@ def section_hof(players, team_full, pid, id_of, team=None, limit=None):
                    for lab, val, who, note, c in cards)
     hint = (f"Bestwerte von {esc(team)}" if team else "Bestwerte der ganzen Liga")
     return (f"<section><h2>Hall of Fame</h2><p class='hint'>{hint}.</p>"
-            f"<div class='hof-g'>{html}</div>"
+            f"<div class='hof-g{' slim' if limit else ''}'>{html}</div>"
             + ("<p class='hint'><a href='#analyse'>Alle Rekorde ansehen</a></p>" if limit else "") + "</section>")
