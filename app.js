@@ -167,7 +167,7 @@ const paint=()=>{if(!club)return;const o=club.selectedOptions[0]||{dataset:{}},n
 if(clg)clg.innerHTML=o.dataset.lg||'';
 if(fav){fav.hidden=!n;fav.textContent=n&&f===n?'★':'☆';fav.setAttribute('aria-pressed',n&&f===n?'true':'false');
 fav.title=fav.ariaLabel=(n&&f===n)?'Mein Verein (zum Entfernen tippen)':'Als meinen Verein merken'}};
-let sv=get('dts.club');if(sv===null)sv=get('dts.fav');
+let sv=get('dts.fav');if(sv===null)sv=get('dts.club');   /* Favorit hat beim Start Vorrang */
 if(sv!==null){busy=1;apply(sv,null);busy=0}
 paint();if(club)club.addEventListener('change',paint);
 if(fav)fav.addEventListener('click',()=>{const n=nm(club);if(!n)return;if(get('dts.fav')===n){try{localStorage.removeItem('dts.fav')}catch(_){}}else set('dts.fav',n);paint()});
