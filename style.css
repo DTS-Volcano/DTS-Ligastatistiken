@@ -295,3 +295,8 @@ main{padding-bottom:90px}
 #main:focus{outline:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.jt:hover{transform:none}}
 .tlg:not(.ph){background:#fff;box-shadow:inset 0 0 0 1px #0000001a}.tlg:not(.ph) img{padding:2px}
+
+.dlg .th{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding-right:44px}
+.dlg .th>div{min-width:0}
+.tlg.xl{width:92px;height:92px;margin:0;flex:none;font-size:1.6rem}
+@media (max-width:420px){.tlg.xl{width:68px;height:68px;font-size:1.2rem}}
