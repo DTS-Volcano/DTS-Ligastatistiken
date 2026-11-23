@@ -208,10 +208,10 @@ def render(data, hist):
 <button type="button" id="fav" class="fav" aria-pressed="false" title="Als meinen Verein merken" aria-label="Als meinen Verein merken">☆</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main id="main" tabindex="-1">
-<div id="today" class="today" role="status" hidden></div>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
+<div id="today" class="today" role="status" hidden></div>
 <section id="mine" hidden><h2>Meine Spieler</h2><ul class="res" id="mine-l"></ul></section>
 {home_html}
 </div>
