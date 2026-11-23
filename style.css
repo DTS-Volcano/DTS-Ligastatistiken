@@ -339,3 +339,5 @@ td{line-height:1.35}
 
 .tdy>b.wait{font:600 .8rem var(--sans,inherit);color:var(--mute)}
 #mine .dot{width:18px;height:18px;line-height:18px;font-size:.62rem}#mine .dots{gap:2px;flex:none}
+
+.tlg.nb:not(.ph){background:none;box-shadow:none;overflow:visible}.tlg.nb:not(.ph) img{padding:0}
