@@ -214,8 +214,8 @@ dialog.in-r[open]{animation:inR .2s ease-out}dialog.in-l[open]{animation:inL .2s
 .jt:hover{border-color:var(--green)}.jt b{display:block;font-family:var(--serif);font-size:1.05rem}.jt span{color:var(--mute);font-size:.85rem}
 @media (min-width:700px){.jump{grid-template-columns:repeat(4,1fr)}}
 
-.vfc{margin-left:auto;align-self:flex-start;display:flex}
-.vfc img{height:46px;width:auto;display:block}.vfc+.sbtn{margin-left:10px}
+.vfc{display:flex;flex:none}
+.vfc img{height:clamp(44px,12vw,64px);width:auto;display:block}
 .ovf{margin:14px 0 4px}
 
 .two{display:grid;grid-template-columns:1fr;gap:0 28px}
@@ -237,6 +237,9 @@ details.calc summary{cursor:pointer;font-weight:600}
 
 dl.info{display:grid;gap:8px;margin:12px 0}dl.info div{display:grid;grid-template-columns:9rem 1fr;gap:10px}dl.info dt{color:var(--mute)}dl.info dd{margin:0}
 @media (max-width:520px){dl.info div{grid-template-columns:1fr;gap:0}}
+
+.sbtn{margin-left:auto}
+.pow{margin:14px 0 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pow img{width:auto;height:28px}
 </style></head><body><header class="top"><div class="brand wrap"><img class='logo' src='logo.png' alt='' width='56' height='56'><div><h1>Double Trouble Steeldarters</h1><p class="sub">Info</p></div></div></header>
 <main><p><a href="./">← Zur Statistik</a></p><section id='ueber'><h2>Über uns</h2><dl class='info'><div><dt>Spiellokal</dt><dd>Café Bar Treppenhaus<br>Kirchstrasse 3, 9400 Rorschach · <a href='http://map.search.ch/9400-Rorschach/Kirchstrasse 3' target='_blank' rel='noopener'>Karte</a></dd></div><div><dt>Captain</dt><dd>Christoph Wildermuth</dd></div><div><dt>Liga</dt><dd>STSO S 2 · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a></dd></div></dl><p class='hint'>Diese Seite zählt anonym, wie oft sie geöffnet wird (höchstens eine Zählung pro Gerät und Tag, ohne Cookies und ohne Daten über Besucher).</p></section>
 <footer>Made by Kevin Notter · <a href="./">Zur Statistik</a></footer></main></body></html>
