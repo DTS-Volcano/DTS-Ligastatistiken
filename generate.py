@@ -53,6 +53,8 @@ def write_pwa():
     pre = ["./", "dialogs.html", "info.html", "manifest.webmanifest", "icon-192.png", "history.json"]
     for stem in ("logo", "vfc-logo"):
         pre += [f.name for f in OUT.glob(stem + ".*")]
+    if (OUT / "leave26-icon.png").exists():
+        pre.append("leave26-icon.png")
     for d in ("vereine", "spieler"):
         if (OUT / d).is_dir():
             pre += [d + "/" + f.name for f in sorted((OUT / d).iterdir()) if f.is_file()]

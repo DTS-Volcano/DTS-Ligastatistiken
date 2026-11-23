@@ -341,3 +341,16 @@ td{line-height:1.35}
 #mine .dot{width:18px;height:18px;line-height:18px;font-size:.62rem}#mine .dots{gap:2px;flex:none}
 
 .tlg.nb:not(.ph){background:none;box-shadow:none;overflow:visible}.tlg.nb:not(.ph) img{padding:0}
+
+/* Leave26: dezenter Hinweis auf meine eigene App */
+.l26{display:flex;gap:16px;align-items:flex-start;margin:14px 0 0;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:var(--sh);color:var(--ink)}
+.l26 img{width:64px;height:64px;border-radius:15px;flex:none;box-shadow:0 1px 4px #0003}
+.l26>div{min-width:0}.l26 p{margin:0}.l26 h3{margin:2px 0 4px;font-family:var(--serif);font-size:1.15rem}
+.l26-k{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.l26-t{font-size:.9rem;color:var(--mute);line-height:1.45;max-width:58ch}
+.l26-btn{display:inline-flex;align-items:center;gap:10px;margin-top:12px;padding:8px 16px 8px 12px;border-radius:10px;background:#111;color:#fff;text-decoration:none;border:1px solid #444;line-height:1.1}
+.l26-btn:hover{background:#000;border-color:#888}.l26-btn:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.l26-btn span{display:flex;flex-direction:column;text-align:left}.l26-btn small{font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;opacity:.8}.l26-btn b{font-size:.95rem;font-weight:600}
+.l26.small{align-items:center;gap:12px;padding:10px 12px;margin-top:16px;box-shadow:none}.l26.small img{width:40px;height:40px;border-radius:10px}
+.l26.small>div{flex:1}.l26.small .l26-t{font-size:.85rem;color:var(--ink)}.l26.small .l26-btn{margin:0;padding:6px 12px 6px 9px}.l26.small .l26-btn svg{width:18px;height:18px}
+@media (max-width:420px){.l26.small{flex-wrap:wrap}.l26.small .l26-btn{width:100%;justify-content:center}}

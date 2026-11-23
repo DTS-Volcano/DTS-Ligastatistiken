@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from vlogo import tlogo
+from leave26 import leave26_card
 from farben import team_color
 from config import OUT, team_logo_name, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
@@ -257,6 +258,7 @@ def render(data, hist):
 </div>
 <footer>
 <div class="pow">{logo_s}<div><span class="pw">Powered by</span><b class="pn">{esc(TEAM)}</b><span class="mb">Made by <b>{AUTHOR}</b></span></div></div>
+{leave26_card()}
 <p class="src">Quelle: vfc.ch · täglich automatisch aktualisiert · <a href="info.html">Über uns</a>{archiv_link}</p>
 </footer>
 </main>{search_dlg}{jdata}<script>{JS}</script></body></html>"""

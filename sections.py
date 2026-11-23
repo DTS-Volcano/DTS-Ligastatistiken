@@ -131,7 +131,7 @@ def section_league(data, hl=None):
     rows = "".join(
         f"<tr class='click{' hl' if t['team'].lower() == me else ''}{' lead' if i == 0 else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
         f"<td><button class='tl' data-open='t{i}'>{tlogo(t['team'])}{esc(t['team'])}</button></td>"
-        f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}{gap_html(t, lead)}</td>"
+        f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
         f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td><td>{form_dots(tfm.get(t['team'].lower()))}</td></tr>" for i, t in enumerate(data["league"]))
     return ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
             f"<th>Punkte</th><th>Spiele</th><th>Sätze</th><th>Form</th></tr></thead><tbody>{rows}</tbody></table></div>")

@@ -4,6 +4,7 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import quote
 
+from leave26 import leave26_card
 from config import AUTHOR, GROUP, LOGO, TEAM, VFC_LOGO
 from textutil import esc
 
@@ -55,4 +56,4 @@ def build_info(data):
 <meta name="theme-color" content="#17100f"><title>Info – {esc(TEAM)}</title><link rel="manifest" href="manifest.webmanifest">
 <style>{CSS}</style></head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1><p class="sub">Info</p></div></div></header>
 <main><p><a href="./">← Zur Statistik</a></p>{ueber}
-<footer>Made by {esc(AUTHOR)} · <a href="./">Zur Statistik</a></footer></main></body></html>"""
+<footer>Made by {esc(AUTHOR)} · <a href="./">Zur Statistik</a>{leave26_card(True)}</footer></main></body></html>"""
