@@ -126,7 +126,7 @@ def section_league(data, hl=None):
         f"<td><button class='tl' data-open='t{i}'>{tlogo(t['team'])}{esc(t['team'])}</button></td>"
         f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
         f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td><td>{form_dots(tfm.get(t['team'].lower()))}</td></tr>" for i, t in enumerate(data["league"]))
-    return ("<section><h2>Tabelle</h2><details class='tip'><summary aria-label='Erklärung'>i</summary><p>Auf ein Team klicken, um dessen Partien und Spieler zu sehen.</p></details><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
+    return ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
             f"<th>Punkte</th><th>Spiele</th><th>Sätze</th><th>Form</th></tr></thead><tbody>{rows}</tbody></table></div>")
 
 
