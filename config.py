@@ -86,5 +86,25 @@ def find_photo(name):
     return f"{slug(name)}{f.suffix.lower()}" if f else None
 
 
+TEAMLOGO_DIR = Path("vereinslogos")   # ein Logo pro Verein, z. B. die-humorlosen.png
+
+
+def team_logo_source(name):
+    """Logo-Datei eines Vereins im Ordner vereinslogos/ (Name wie slug(Verein)); für den eigenen Verein dts-logo.png."""
+    if TEAMLOGO_DIR.is_dir():
+        for f in sorted(TEAMLOGO_DIR.iterdir()):
+            if f.is_file() and f.suffix.lower().lstrip(".") in _EXT and slug(f.stem.replace("_", " ")) == slug(name):
+                return f
+    if name.lower() == TEAM.lower() and LOGO:
+        return LOGO
+    return None
+
+
+def team_logo_name(name):
+    """Dateiname im Ausgabeordner docs/vereine/ oder None."""
+    f = team_logo_source(name)
+    return f"{slug(name)}{f.suffix.lower()}" if f else None
+
+
 # gespeicherte Spielreports, pro Gruppe getrennt (neue Saison = neue Gruppe = frischer Speicher)
 CACHE = Path(os.getenv("CACHE") or Path("daten/reports") / slug(GROUP))

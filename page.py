@@ -5,6 +5,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
+from vlogo import tlogo
 from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
 from uebersicht import home_block, team_head
@@ -43,7 +44,7 @@ def render(data, hist):
     logo = f'<img class="logo" src="logo{LOGO.suffix.lower()}" alt="Vereinslogo" width="96" height="96">' if LOGO else ""
     vfc = (f'<a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo{VFC_LOGO.suffix.lower()}" '
            'alt="VFC Dartverband" height="40"></a>') if VFC_LOGO else ""
-    logo_s = f'<img src="logo{LOGO.suffix.lower()}" alt="" height="28">' if LOGO else ""
+    logo_s = f'<img src="logo{LOGO.suffix.lower()}" alt="" height="64">' if LOGO else ""
     icon = f'<link rel="icon" href="logo{LOGO.suffix.lower()}">' if LOGO else ""
     W, L = sum(p["w"] for p in players), sum(p["l"] for p in players)
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
@@ -72,6 +73,8 @@ def render(data, hist):
         f"<td>{d[:6]}</td><td>{esc(h)} – {esc(g)}</td><td class='ort'></td><td class='num'>{pts}</td><td class='num'>{gm}</td>"
         f"<td><button class='rb' data-open='{id_of[nr]}'>Report</button></td></tr>" for d, nr, h, g, pts, gm in allm)
     team_names = sorted((t["team"] for t in data["league"]), key=lambda n: (n.lower() != TEAM.lower(), n.lower())) or [TEAM]
+    club_opts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}' data-lg=\"{esc(tlogo(n))}\">{esc(n)}</option>" for n in team_names) \
+        + "<option value='' data-n='' selected>Alle Vereine</option>"
     popts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value='' data-n='' selected>Alle Vereine</option>"
     titles = monthly_titles(players)
     # Spieler der ganzen Liga: eigene Spieler p0, p1, … (Blättern nach Rang), übrige lp<Team>_<n>
@@ -175,7 +178,10 @@ def render(data, hist):
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="dts-logos" content="{('logo' + LOGO.suffix.lower()) if LOGO else ''},{('vfc-logo' + VFC_LOGO.suffix.lower()) if VFC_LOGO else ''}"><meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Liga-Statistik">
 <style>{CSS}</style><script>document.documentElement.className='js'</script>{zaehler}</head><body><header class="top"><div class="brand wrap">{vfc}<div><h1>Liga-Statistiken</h1>
-<p class="sub">{esc(GROUP)} · VFC Dartverband · Stand <time id="stand" datetime="{now_iso}">{now}</time></p></div><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
+<p class="sub">{esc(GROUP)} · VFC Dartverband · Stand <time id="stand" datetime="{now_iso}">{now}</time></p></div><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div>
+<div class="clubbar wrap"><label class="club"><span class="clg" id="clg" aria-hidden="true"></span><span class="cl-l">Verein</span>
+<select id="club" aria-label="Verein für alle Reiter wählen">{club_opts}</select></label>
+<button type="button" id="fav" class="fav" aria-pressed="false" title="Als meinen Verein merken" aria-label="Als meinen Verein merken">☆</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
@@ -197,13 +203,13 @@ def render(data, hist):
 
 <div class="panel" id="p-liga">
 <section><h2>Team und Liga</h2>
-<form class="filter" onsubmit="return false"><select class="vf" data-g="liga" aria-label="Verein">{liga_opts}</select></form></section>
+<form class="filter" onsubmit="return false" hidden><select class="vf" data-g="liga" aria-label="Verein">{liga_opts}</select></form></section>
 {liga_blocks}
 </div>
 
 <div class="panel" id="p-analyse">
 <section><h2>Analyse</h2>
-<form class="filter" onsubmit="return false"><select class="vf" data-g="ana" aria-label="Verein">{liga_opts}</select></form>
+<form class="filter" onsubmit="return false" hidden><select class="vf" data-g="ana" aria-label="Verein">{liga_opts}</select></form>
 <p class="hint">Alles auf dieser Seite gilt für den gewählten Verein.</p></section>
 {ana_blocks}
 </div>
@@ -223,7 +229,8 @@ def render(data, hist):
 <tbody>{mrows}</tbody></table></div></section>
 
 </div>
-<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · <a href="info.html">Über uns</a>{archiv_link}
-<p class="pow">Powered by {logo_s}<b>{esc(TEAM)}</b></p>
-<p class="hint">Made by {AUTHOR}</p></footer>
+<footer>
+<div class="pow">{logo_s}<div><span class="pw">Powered by</span><b class="pn">{esc(TEAM)}</b><span class="mb">Made with ♥ by <b>{AUTHOR}</b></span></div></div>
+<p class="src">Quelle: vfc.ch · täglich automatisch aktualisiert · <a href="info.html">Über uns</a>{archiv_link}</p>
+</footer>
 </main>{search_dlg}<script>{JS}</script></body></html>"""

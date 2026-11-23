@@ -3,6 +3,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 
 from components import avatar, bar, dots, spark
+from vlogo import tlogo
 from config import FORM_N, MID, TEAM, TOP, today
 from stats import quote_series
 from textutil import dkey, einzel_punkte, esc, fmt_date, pct, ranglistenwert, short
@@ -100,7 +101,7 @@ def section_league(data, hl=None):
     me = (hl or TEAM).lower()
     rows = "".join(
         f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
-        f"<td><button class='tl' data-open='t{i}'>{esc(t['team'])}</button></td>"
+        f"<td><button class='tl' data-open='t{i}'>{tlogo(t['team'])}{esc(t['team'])}</button></td>"
         f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
         f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td></tr>" for i, t in enumerate(data["league"]))
     return ("<section><h2>Tabelle</h2><p class='hint'>Auf ein Team klicken, um dessen Partien und Spieler zu sehen.</p><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"

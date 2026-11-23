@@ -1,5 +1,6 @@
 """Übersicht: Kopfkarten, Kennzahlen, nächstes Spiel, letzte Ergebnisse – für jeden Verein und für die ganze Liga."""
 from components import RESULT
+from vlogo import tlogo
 from config import TEAM, today
 from sections import section_next, section_potm
 from textutil import dkey, esc, fmt_date
@@ -96,7 +97,7 @@ def home_block(data, id_of, pid, hof_players, tf, hof_fn):
     rows = ""
     for i, x in enumerate(data["league"]):
         rows += (f"<tr class='click{' hl' if x['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{x['rank']}</td>"
-                 f"<td>{esc(x['team'])}</td><td class='num'>{x['pp']}:{x['pm']}</td></tr>")
+                 f"<td>{tlogo(x['team'])}{esc(x['team'])}</td><td class='num'>{x['pp']}:{x['pm']}</td></tr>")
     table = ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th class='num'>Platz</th><th>Team</th>"
              f"<th class='num'>Punkte</th></tr></thead><tbody>{rows}</tbody></table></div>"
              "<p class='hint'><a href='#liga'>Team &amp; Liga: Details und Spielplan</a></p></section>") if rows else ""

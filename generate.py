@@ -53,9 +53,30 @@ def write_pwa():
     pre = ["./", "dialogs.html", "info.html", "manifest.webmanifest", "icon-192.png", "history.json"]
     for stem in ("logo", "vfc-logo"):
         pre += [f.name for f in OUT.glob(stem + ".*")]
-    if (OUT / "spieler").is_dir():
-        pre += ["spieler/" + f.name for f in sorted((OUT / "spieler").iterdir()) if f.is_file()]
+    for d in ("vereine", "spieler"):
+        if (OUT / d).is_dir():
+            pre += [d + "/" + f.name for f in sorted((OUT / d).iterdir()) if f.is_file()]
     (OUT / "sw.js").write_text(SW.replace("__PRE__", json.dumps(pre)), encoding="utf-8")
+
+
+def copy_team_logos(names):
+    """Kopiert die Vereinslogos nach docs/vereine/ (höchstens 256 Pixel, damit die Seite schnell lädt)."""
+    from config import team_logo_name, team_logo_source
+    for n in names:
+        src, name = team_logo_source(n), team_logo_name(n)
+        if not (src and name):
+            continue
+        (OUT / "vereine").mkdir(exist_ok=True)
+        dst = OUT / "vereine" / name
+        try:
+            from PIL import Image
+            if src.suffix.lower() == ".svg":
+                raise ImportError
+            im = Image.open(src)
+            im.thumbnail((256, 256))
+            im.save(dst, optimize=True)
+        except Exception:
+            shutil.copyfile(src, dst)
 
 
 def copy_photos(players):
@@ -99,6 +120,8 @@ def main():
         shutil.copyfile(LOGO, OUT / ("logo" + LOGO.suffix.lower()))
     if VFC_LOGO:
         shutil.copyfile(VFC_LOGO, OUT / ("vfc-logo" + VFC_LOGO.suffix.lower()))
+    shutil.rmtree(OUT / "vereine", ignore_errors=True)
+    copy_team_logos([t["team"] for t in data["league"]] or [TEAM])
     copy_photos(data["players"])
     write_pwa()
     hist = update_history(data["ranks"])
