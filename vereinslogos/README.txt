@@ -7,3 +7,4 @@ Der Dateiname ist der Vereinsname, klein und mit Bindestrichen, zum Beispiel:
   Sonderzeichen fallen weg: «Irish Skulls ;) Steel» und «Irish Skulls Steel» teilen sich irish-skulls-steel.png
 Fehlt ein Logo, zeigt die Seite einen farbigen Kreis mit den Initialen.
 Das Logo von Double Trouble Steeldarters wird aus dts-logo.png im Hauptordner genommen.
+Die Logos von Die Humorlosen, DARTFABRIK STEEL und Braschtli's Darter 2 sind einheitlich gestaltete Platzhalter (keine offiziellen Logos).
