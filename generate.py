@@ -15,7 +15,7 @@ Aufbau:
 import json
 import shutil
 
-from config import LOGO, VFC_LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
+from config import GROUP, LOGO, VFC_LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
 import page
 import info
 from page import render
@@ -44,7 +44,7 @@ self.addEventListener('fetch', e => {
 
 def write_pwa():
     """Macht die Seite auf dem Handy als App installierbar (Startbildschirm, Vollbild, Offline)."""
-    manifest = {"name": f"{TEAM} – Statistik", "short_name": "DTS Statistik", "start_url": "./", "scope": "./",
+    manifest = {"name": f"Liga-Statistiken {GROUP}", "short_name": "Liga-Statistik", "start_url": "./", "scope": "./",
                 "display": "standalone", "background_color": "#17100f", "theme_color": "#17100f",
                 "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
                           {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}

@@ -43,6 +43,7 @@ def render(data, hist):
     logo = f'<img class="logo" src="logo{LOGO.suffix.lower()}" alt="Vereinslogo" width="96" height="96">' if LOGO else ""
     vfc = (f'<a class="vfc" href="https://vfc.ch" target="_blank" rel="noopener"><img src="vfc-logo{VFC_LOGO.suffix.lower()}" '
            'alt="VFC Dartverband" height="40"></a>') if VFC_LOGO else ""
+    logo_s = f'<img src="logo{LOGO.suffix.lower()}" alt="" height="28">' if LOGO else ""
     icon = f'<link rel="icon" href="logo{LOGO.suffix.lower()}">' if LOGO else ""
     W, L = sum(p["w"] for p in players), sum(p["l"] for p in players)
     allr = [r["opp_rank"] for p in players for r in p["rows"] if r["opp_rank"]]
@@ -66,12 +67,12 @@ def render(data, hist):
     months = sorted({mon_key(t[0]) for t in allm}, reverse=True)
     mopts = "".join(f"<option value='{k}'>{MONTHS[int(k[5:]) - 1]} {k[:4]}</option>" for k in months)
     mrows = "".join(
-        f"<tr class='click{' mn' if TEAM.lower() in (h.lower(), g.lower()) else ''}' data-open='{id_of[nr]}' data-h='{esc(h.lower())}' data-g='{esc(g.lower())}' "
+        f"<tr class='click' data-open='{id_of[nr]}' data-h='{esc(h.lower())}' data-g='{esc(g.lower())}' "
         f"data-q='{esc((h + ' ' + g).lower())}' data-mon='{mon_key(d)}' data-pts='{pts}'>"
         f"<td>{d[:6]}</td><td>{esc(h)} – {esc(g)}</td><td class='ort'></td><td class='num'>{pts}</td><td class='num'>{gm}</td>"
         f"<td><button class='rb' data-open='{id_of[nr]}'>Report</button></td></tr>" for d, nr, h, g, pts, gm in allm)
     team_names = sorted((t["team"] for t in data["league"]), key=lambda n: (n.lower() != TEAM.lower(), n.lower())) or [TEAM]
-    popts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value='' data-n=''>Alle Vereine</option>"
+    popts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value='' data-n='' selected>Alle Vereine</option>"
     titles = monthly_titles(players)
     # Spieler der ganzen Liga: eigene Spieler p0, p1, … (Blättern nach Rang), übrige lp<Team>_<n>
     for pl in players:
@@ -121,7 +122,7 @@ def render(data, hist):
         own_t = name.lower() == TEAM.lower()
         tm = matches if own_t else tf.get(name.lower(), [])
         key = "own" if own_t else f"l{ti}"
-        hid = "" if own_t else " hidden"
+        hid = " hidden"
         liga_opts += f"<option value='{key}' data-n='{esc(name.lower())}'>{esc(name)}</option>"
         liga_blocks += (f"<div class='lb' data-g='liga' data-t='{key}'{hid}>{team_head(data, name, tm, [x for x in hof_players if x['team'].lower() == name.lower()], pid, id_of)}"
                         f"{section_league(data, name)}</section>"
@@ -129,14 +130,14 @@ def render(data, hist):
         ana_blocks += (f"<div class='lb' data-g='ana' data-t='{key}'{hid}>{section_hof(hof_players, tf, pid, id_of, name)}"
                        f"{section_potm(hof_players, pid, False, name)}{section_verlauf(data, name, tm)}"
                        f"{section_homeaway(tm, [], own_t)[0]}{section_rounds(tm)}</div>")
-    liga_opts += "<option value='all' data-n=''>Alle Vereine</option>"
-    liga_blocks += (f"<div class='lb' data-g='liga' data-t='all' hidden>{section_league(data)}</section>"
+    liga_opts += "<option value='all' data-n='' selected>Alle Vereine</option>"
+    liga_blocks += (f"<div class='lb' data-g='liga' data-t='all'>{section_league(data)}</section>"
                     f"{section_fixtures(data, id_of)}</div>")
-    ana_blocks += (f"<div class='lb' data-g='ana' data-t='all' hidden>{section_hof(hof_players, tf, pid, id_of)}"
+    ana_blocks += (f"<div class='lb' data-g='ana' data-t='all'>{section_hof(hof_players, tf, pid, id_of)}"
                    f"{section_potm(hof_players, pid)}"
                    "<section><h2>Team-Analyse</h2><p class='hint'>Für Saisonverlauf, Heim und Auswärts und Spielblöcke oben einen Verein wählen.</p></section></div>")
     own_extra = f"{section_homeaway_players(players)}{section_form(players)}{section_rank_history(players, hist)}"
-    team_blocks = f"<div class='tp' data-t='own'>{player_table(players, pid)}{own_extra}</div>"
+    team_blocks = f"<div class='tp' data-t='own' hidden>{player_table(players, pid)}{own_extra}</div>"
     team_opts = f"<option value='own' data-n='{esc(TEAM.lower())}'>{esc(TEAM)}</option>"
     all_pl = list(players)
     for ti, t, pls, ids in others_pl:
@@ -147,8 +148,8 @@ def render(data, hist):
         team_blocks += (f"<div class='tp' data-t='t{ti}' hidden>{player_table(pls, pid)}"
                         f"{section_homeaway_players(pls)}{section_form(pls)}{section_rank_history(pls, hist)}</div>")
     all_pl.sort(key=lambda x: (x["rank"] or 9999, x["name"]))
-    team_opts += "<option value='all' data-n=''>Alle Vereine</option>"
-    team_blocks += f"<div class='tp' data-t='all' hidden>{player_table(all_pl, pid, True)}</div>"
+    team_opts += "<option value='all' data-n='' selected>Alle Vereine</option>"
+    team_blocks += f"<div class='tp' data-t='all'>{player_table(all_pl, pid, True)}</div>"
     search_dlg = ('<dialog id="search" aria-label="Suche"><div class="dlg"><button class="x" data-close aria-label="Schliessen">✕</button>'
                   '<h3 class="vs">Suche</h3><input type="search" id="s-in" placeholder="Spieler oder Verein" aria-label="Suche" autocomplete="off">'
                   '<ul id="s-res" class="sres"></ul></div></dialog>')
@@ -169,12 +170,12 @@ def render(data, hist):
     return f"""<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(TEAM)} – Statistik {esc(GROUP)}</title>
+<title>Liga-Statistiken {esc(GROUP)}</title>
 {icon}
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
-<meta name="dts-logos" content="{('logo' + LOGO.suffix.lower()) if LOGO else ''},{('vfc-logo' + VFC_LOGO.suffix.lower()) if VFC_LOGO else ''}"><meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DTS Statistik">
-<style>{CSS}</style><script>document.documentElement.className='js'</script>{zaehler}</head><body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1>
-<p class="sub">Liga {esc(GROUP)} · Stand <time id="stand" datetime="{now_iso}">{now}</time> · Rangliste jeweils aktuell</p></div>{vfc}<button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
+<meta name="dts-logos" content="{('logo' + LOGO.suffix.lower()) if LOGO else ''},{('vfc-logo' + VFC_LOGO.suffix.lower()) if VFC_LOGO else ''}"><meta name="theme-color" content="#17100f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Liga-Statistik">
+<style>{CSS}</style><script>document.documentElement.className='js'</script>{zaehler}</head><body><header class="top"><div class="brand wrap">{vfc}<div><h1>Liga-Statistiken</h1>
+<p class="sub">{esc(GROUP)} · VFC Dartverband · Stand <time id="stand" datetime="{now_iso}">{now}</time></p></div><button type="button" id="sbtn" class="sbtn" aria-label="Suche öffnen (Taste /)">Suche</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
@@ -222,5 +223,7 @@ def render(data, hist):
 <tbody>{mrows}</tbody></table></div></section>
 
 </div>
-<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · Made by {AUTHOR} · <a href="info.html">Über uns</a>{archiv_link}</footer>
+<footer>Quelle: vfc.ch · täglich automatisch aktualisiert · <a href="info.html">Über uns</a>{archiv_link}
+<p class="pow">Powered by {logo_s}<b>{esc(TEAM)}</b></p>
+<p class="hint">Made by {AUTHOR}</p></footer>
 </main>{search_dlg}<script>{JS}</script></body></html>"""

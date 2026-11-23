@@ -7,7 +7,7 @@ from textutil import dkey, esc
 def section_hof(players, team_full, pid, id_of, team=None, limit=None):
     """players: Spieler aller Vereine (Feld 'team'), team_full: Team (klein) -> Partien aus Sicht des Teams."""
     cards = []
-    me = TEAM.lower()
+    me = ""          # keine Hervorhebung eines einzelnen Vereins
     if team:
         players = [p for p in players if p["team"].lower() == team.lower()]
         team_full = {team.lower(): team_full.get(team.lower(), [])}
@@ -90,7 +90,7 @@ def section_hof(players, team_full, pid, id_of, team=None, limit=None):
         cards = cards[:limit]
     html = "".join(f"<div class='hf{c}'><p class='sub'>{esc(lab)}</p><b class='big'>{val}</b><p>{who}</p><small>{note}</small></div>"
                    for lab, val, who, note, c in cards)
-    hint = (f"Bestwerte von {esc(team)}" if team else f"Bestwerte der ganzen Liga, rot umrandet: {esc(TEAM)}")
+    hint = (f"Bestwerte von {esc(team)}" if team else "Bestwerte der ganzen Liga")
     return (f"<section><h2>Hall of Fame</h2><p class='hint'>{hint}.</p>"
             f"<div class='hof-g'>{html}</div>"
             + ("<p class='hint'><a href='#analyse'>Alle Rekorde ansehen</a></p>" if limit else "") + "</section>")

@@ -80,7 +80,7 @@ def team_head(data, name, tm, players, pid, id_of):
 
 
 def home_block(data, id_of, pid, hof_players, tf, hof_fn):
-    me = TEAM.lower()
+    me = ""          # Startseite ist für alle Vereine gleich, keine Hervorhebung
     score = {nr: m["points"] for nr, m in data["others"].items()}
     for m in data["matches"]:
         score[m["nr"]] = m["points"] if m["home"] else ":".join(reversed(m["points"].split(":")))
