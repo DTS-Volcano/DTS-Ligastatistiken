@@ -163,13 +163,16 @@ const cs=[...document.querySelectorAll('#club,select.vf,#f-team,#f-pt')],nm=s=>(
 apply=(n,from)=>cs.forEach(s=>{if(s===from)return;const o=[...s.options].find(o=>o.dataset.n===n);if(o&&s.value!==o.value){s.value=o.value;s.dispatchEvent(new Event('change',{bubbles:true}));s.dispatchEvent(new Event('input',{bubbles:true}))}});
 let busy=0;cs.forEach(s=>s.addEventListener('change',()=>{if(busy)return;const n=nm(s);if(n===undefined)return;set('dts.club',n);busy=1;apply(n,s);busy=0}));
 const club=document.getElementById('club'),fav=document.getElementById('fav'),clg=document.getElementById('clg');
+const dq=matchMedia('(prefers-color-scheme: dark)');
 const paint=()=>{if(!club)return;const o=club.selectedOptions[0]||{dataset:{}},n=o.dataset.n||'',f=get('dts.fav');
+const col=dq.matches?o.dataset.cd:o.dataset.c,st=document.documentElement.style;
+if(col){st.setProperty('--green',col);st.setProperty('--accent',col)}else{st.removeProperty('--green');st.removeProperty('--accent')}
 if(clg)clg.innerHTML=o.dataset.lg||'';
 if(fav){fav.hidden=!n;fav.textContent=n&&f===n?'★':'☆';fav.setAttribute('aria-pressed',n&&f===n?'true':'false');
 fav.title=fav.ariaLabel=(n&&f===n)?'Mein Verein (zum Entfernen tippen)':'Als meinen Verein merken'}};
 let sv=get('dts.fav');if(sv===null)sv=get('dts.club');   /* Favorit hat beim Start Vorrang */
 if(sv!==null){busy=1;apply(sv,null);busy=0}
-paint();if(club)club.addEventListener('change',paint);
+paint();if(club)club.addEventListener('change',paint);dq.addEventListener&&dq.addEventListener('change',paint);
 if(fav)fav.addEventListener('click',()=>{const n=nm(club);if(!n)return;if(get('dts.fav')===n){try{localStorage.removeItem('dts.fav')}catch(_){}}else set('dts.fav',n);paint()});
 const ids=['f-mon','f-home','f-win'];let st={};try{st=JSON.parse(get('dts.pf')||'{}')}catch(_){}
 ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;if(st[i]&&[...e.options].some(o=>o.value===st[i])){e.value=st[i]}

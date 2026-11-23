@@ -6,6 +6,7 @@ from datetime import datetime
 
 from awards import player_awards
 from vlogo import tlogo
+from farben import team_color
 from config import FORM_N, TEAM, find_photo, slug
 from stats import quote_series
 from textutil import dkey, einzel_punkte, esc, fmt_date, pct, ranglistenwert, short
@@ -230,7 +231,12 @@ def match_dialog(dom_id, m, ranks, total=None, i=0):
                if total else "") + '</div></dialog>')
 
 
-def team_dialog(idx, t, data, id_of, pid=None):
+def _tc(name):
+    col = team_color(name)
+    return f' style="--tc:{col[0]};--tcd:{col[1]}"' if col else ""
+
+
+def team_dialog(idx, t, data, id_of, pid=None, form_html=""):
     tl = t["team"].lower()
     ms = sorted(data["team_matches"].get(tl, []), key=lambda m: dkey(m["date"]))
     mrows = "".join(
@@ -264,8 +270,8 @@ def team_dialog(idx, t, data, id_of, pid=None):
     return (f'<dialog id="t{idx}" data-s="v-{slug(t["team"])}" data-k="Verein" data-n="{esc(t["team"])}" data-sub="Platz {t["rank"]}" '
             f'aria-label="Team {esc(t["team"])}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
-            f'<div class="th"><div><p class="sub">Platz {t["rank"]} in der Tabelle</p><h3 class="vs">{esc(t["team"])}</h3>'
-            f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p></div>{tlogo(t["team"], "xl")}</div>{info_html}'
+            f'<div class="th banner"{_tc(t["team"])}><div><p class="sub">Platz {t["rank"]} in der Tabelle</p><h3 class="vs">{esc(t["team"])}</h3>'
+            f'<p class="sub">{t["pp"]}:{t["pm"]} Punkte · Spiele {t["gp"]}:{t["gm"]} · Sätze {t["sp"]}:{t["sm"]} · {t["played"]} Partien</p>{form_html}</div>{tlogo(t["team"], "xl")}</div>{info_html}'
             f'<h4>Partien</h4><div class="scroll"><table class="cards"><thead><tr><th>Datum</th><th>Gegner</th><th>Ort</th><th>Punkte</th>'
             f'<th>Spiele</th><th></th></tr></thead><tbody>{mrows}</tbody></table></div>'
             f'<p class="acts"><button class="rb" data-link>Link kopieren</button></p>'

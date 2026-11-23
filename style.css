@@ -301,3 +301,8 @@ main{padding-bottom:90px}
 .tlg.xl{width:92px;height:92px;margin:0;flex:none;font-size:1.6rem}
 @media (max-width:420px){.tlg.xl{width:68px;height:68px;font-size:1.2rem}}
 .club .clg:empty{display:none}
+
+/* Vereinsbanner im Team-Fenster */
+.dlg .th.banner{--tcc:var(--tc,var(--green));margin:-6px -6px 4px;padding:16px 50px 16px 16px;border-radius:12px;background:linear-gradient(135deg,color-mix(in srgb,var(--tcc) 20%,var(--card)),var(--card) 80%);border:1px solid color-mix(in srgb,var(--tcc) 35%,var(--line));border-left:5px solid var(--tcc);align-items:center}
+@media (prefers-color-scheme:dark){.dlg .th.banner{--tcc:var(--tcd,var(--green))}}
+.dlg .th.banner .tf{margin:8px 0 0;display:flex}

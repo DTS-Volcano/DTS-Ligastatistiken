@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from vlogo import tlogo
+from farben import team_color
 from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
 from uebersicht import home_block, team_head
@@ -14,7 +15,7 @@ from awards import MONTHS, monthly_titles
 from info import load_info
 from textutil import einzel_punkte, ranglistenwert, dkey
 from stats import bracket, order
-from sections import player_table, section_fixtures, section_form, section_homeaway, section_homeaway_players, section_league, section_rounds, section_next, section_potm, section_rank_history
+from sections import form_dots, team_forms, player_table, section_fixtures, section_form, section_homeaway, section_homeaway_players, section_league, section_rounds, section_next, section_potm, section_rank_history
 from textutil import esc, pct
 
 
@@ -76,7 +77,10 @@ def render(data, hist):
         f"<td>{d[:6]}</td><td>{esc(h)} – {esc(g)}</td><td class='ort'></td><td class='num'>{pts}</td><td class='num'>{gm}</td>"
         f"<td><button class='rb' data-open='{id_of[nr]}'>Report</button></td></tr>" for d, nr, h, g, pts, gm in allm)
     team_names = sorted((t["team"] for t in data["league"]), key=lambda n: (n.lower() != TEAM.lower(), n.lower())) or [TEAM]
-    club_opts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}' data-lg=\"{esc(tlogo(n))}\">{esc(n)}</option>" for n in team_names) \
+    def _cattr(n):
+        c = team_color(n)
+        return f" data-c='{c[0]}' data-cd='{c[1]}'" if c else ""
+    club_opts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}' data-lg=\"{esc(tlogo(n))}\"{_cattr(n)}>{esc(n)}</option>" for n in team_names) \
         + "<option value='' data-n='' selected>Alle Vereine</option>"
     popts = "".join(f"<option value='{esc(n.lower())}' data-n='{esc(n.lower())}'>{esc(n)}</option>" for n in team_names) + "<option value='' data-n='' selected>Alle Vereine</option>"
     titles = monthly_titles(players)
@@ -115,7 +119,8 @@ def render(data, hist):
             dialogs += player_dialog(0, x, 0, hist, None, dom_id=ids[k], prev_id=ids[k - 1] if k else None,
                                      next_id=ids[k + 1] if k + 1 < len(ids) else None, team=t["team"],
                                      back=(f"t{ti}", t["team"]), pid=pid)
-    dialogs += "".join(team_dialog(i, t, data, id_of, pid) for i, t in enumerate(data["league"]))
+    _tfm = team_forms(data)
+    dialogs += "".join(team_dialog(i, t, data, id_of, pid, form_dots(_tfm.get(t["team"].lower()))) for i, t in enumerate(data["league"]))
 
     archiv_link = ' · <a href="archiv/">Archiv früherer Saisons</a>' if (OUT / "archiv" / "index.html").exists() else ""
     ha_team, ha_players = section_homeaway(matches, players)
