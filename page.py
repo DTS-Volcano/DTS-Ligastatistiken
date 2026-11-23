@@ -206,6 +206,7 @@ def render(data, hist):
 </form>
 <p class="hint">Nur Einzel. Spaltenköpfe zum Sortieren anklicken. Punkte: 2:0 = 4, 2:1 = 3, 1:2 = 1, 0:2 = 0. Ranglistenwert = Punkte² / (4 · Spiele).</p>
 {team_blocks}
+<div class="empty" id="pl-empty" hidden><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="5" fill="currentColor"/><path d="M50 14l-14 14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><p>Kein Spieler gefunden. Anderen Namen oder Verein probieren.</p></div>
 </section>
 </div>
 
@@ -233,7 +234,7 @@ def render(data, hist):
 </form>
 <p class="hint" id="f-count" aria-live="polite"></p>
 <div class="scroll"><table class="cards" id="mtable"><thead><tr><th>Datum</th><th>Partie</th><th>Ort</th><th>Punkte</th><th>Spiele</th><th></th></tr></thead>
-<tbody>{mrows}</tbody></table></div></section>
+<tbody>{mrows}</tbody></table></div><div class="empty" id="f-empty" hidden><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="5" fill="currentColor"/><path d="M50 14l-14 14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><p>Keine Partie gefunden. Filter lockern oder einen anderen Verein wählen.</p></div></section>
 
 </div>
 <footer>

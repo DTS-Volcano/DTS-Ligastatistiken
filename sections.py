@@ -107,6 +107,12 @@ def team_forms(data, n=5):
     return {k: v[-n:] for k, v in out.items()}
 
 
+def gap_html(t, lead):
+    """Punkteabstand zum Tabellenführer, z. B. «−6»; beim Führer nichts."""
+    d = lead - t["pp"]
+    return f"<small class='gap' title='Rückstand auf den Tabellenführer'>−{d}</small>" if d > 0 else ""
+
+
 def form_dots(items, under=False):
     """kleine Punkte: grün = Sieg, rot = Niederlage (Mannschaftsresultat)."""
     if not items:
@@ -121,10 +127,11 @@ def section_league(data, hl=None):
                 "Der nächste automatische Lauf versucht es erneut.</p>")
     me = (hl or "").lower()
     tfm = team_forms(data)
+    lead = max(x['pp'] for x in data['league'])
     rows = "".join(
-        f"<tr class='click{' hl' if t['team'].lower() == me else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
+        f"<tr class='click{' hl' if t['team'].lower() == me else ''}{' lead' if i == 0 else ''}' data-open='t{i}'><td class='num'>{t['rank']}</td>"
         f"<td><button class='tl' data-open='t{i}'>{tlogo(t['team'])}{esc(t['team'])}</button></td>"
-        f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}</td>"
+        f"<td class='num'>{t['played']}</td><td class='num'>{t['pp']}:{t['pm']}{gap_html(t, lead)}</td>"
         f"<td class='num'>{t['gp']}:{t['gm']}</td><td class='num'>{t['sp']}:{t['sm']}</td><td>{form_dots(tfm.get(t['team'].lower()))}</td></tr>" for i, t in enumerate(data["league"]))
     return ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th>Platz</th><th>Team</th><th>Partien</th>"
             f"<th>Punkte</th><th>Spiele</th><th>Sätze</th><th>Form</th></tr></thead><tbody>{rows}</tbody></table></div>")

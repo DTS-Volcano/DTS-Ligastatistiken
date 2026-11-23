@@ -306,3 +306,19 @@ main{padding-bottom:90px}
 .dlg .th.banner{--tcc:var(--tc,var(--green));margin:-6px -6px 4px;padding:16px 50px 16px 16px;border-radius:12px;background:linear-gradient(135deg,color-mix(in srgb,var(--tcc) 20%,var(--card)),var(--card) 80%);border:1px solid color-mix(in srgb,var(--tcc) 35%,var(--line));border-left:5px solid var(--tcc);align-items:center}
 @media (prefers-color-scheme:dark){.dlg .th.banner{--tcc:var(--tcd,var(--green))}}
 .dlg .th.banner .tf{margin:8px 0 0;display:flex}
+
+/* Tabelle: Rückstand, Führer-Linie */
+.gap{display:block;color:var(--mute);font-size:.72rem;font-weight:400;line-height:1.1;margin-top:2px;font-variant-numeric:tabular-nums}
+tr.lead td{border-bottom:2px solid var(--green)!important}
+/* Typografie */
+table td,table th,.kpi dd,.sc,.big,.num{font-variant-numeric:tabular-nums}
+th{font-weight:600;letter-spacing:.01em}
+td{line-height:1.35}
+/* Übergänge */
+.js .panel.on{animation:fadein .28s ease-out}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.club,.fav,.jt,.hc,.hf,.resrow,tr.click{transition:background-color .15s,border-color .15s,color .15s}
+:root{transition:none}
+/* Leere Zustände */
+.empty{display:flex;flex-direction:column;align-items:center;gap:6px;padding:34px 16px;color:var(--mute);text-align:center}
+.empty[hidden]{display:none}.empty p{margin:0;max-width:34ch}
