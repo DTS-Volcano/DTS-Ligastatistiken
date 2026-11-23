@@ -9,7 +9,7 @@ from vlogo import tlogo
 from farben import team_color
 from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
-from uebersicht import home_block, team_head
+from uebersicht import fixtures_json, home_block, team_head
 from verlauf import section_race, section_verlauf
 from awards import MONTHS, monthly_titles
 from info import load_info
@@ -174,6 +174,11 @@ def render(data, hist):
                "if(!u||localStorage.getItem('dts.me')||!/^https?:$/.test(location.protocol)||h==='localhost'||h==='127.0.0.1')return;"
                "var d=new Date().toISOString().slice(0,10);if(localStorage.getItem('dts.ping')===d)return;localStorage.setItem('dts.ping',d);"
                "fetch(u,{mode:'no-cors',keepalive:true,credentials:'omit',referrerPolicy:'no-referrer'}).catch(function(){})}catch(e){}})()</script>") if zu else ""
+    pdata = {f"{x['team'].lower()}|{x['name']}": {"id": pid.get((x["team"].lower(), x["name"])), "n": x["name"], "t": x["team"], "r": x["rank"],
+                                                 "w": x["w"], "l": x["l"], "f": "".join("S" if r["won"] else "N" for r in x["rows"][-5:])}
+             for x in hof_players if pid.get((x["team"].lower(), x["name"]))}
+    jdata = ('<script type="application/json" id="pdata">' + json.dumps(pdata, ensure_ascii=False).replace("</", "<\\/") + '</script>'
+             '<script type="application/json" id="fixtures">' + json.dumps(fixtures_json(data, id_of), ensure_ascii=False).replace("</", "<\\/") + '</script>')
     global DIALOGS
     rwl = json.dumps([[f"{x['team'].lower()}|{x['name']}", round(ranglistenwert(einzel_punkte(x['rows']), x['n']), 4)] for x in hof_players],
                      ensure_ascii=False).replace("</", "<\\/")
@@ -192,9 +197,11 @@ def render(data, hist):
 <button type="button" id="fav" class="fav" aria-pressed="false" title="Als meinen Verein merken" aria-label="Als meinen Verein merken">☆</button></div></header>
 <div id="stale" class="stale" role="status" hidden></div>
 <main id="main" tabindex="-1">
+<div id="today" class="today" role="status" hidden></div>
 <nav class="tabs" aria-label="Bereiche">{tabs}</nav>
 
 <div class="panel" id="p-uebersicht">
+<section id="mine" hidden><h2>Meine Spieler</h2><ul class="res" id="mine-l"></ul></section>
 {home_html}
 </div>
 
@@ -241,4 +248,4 @@ def render(data, hist):
 <div class="pow">{logo_s}<div><span class="pw">Powered by</span><b class="pn">{esc(TEAM)}</b><span class="mb">Made by <b>{AUTHOR}</b></span></div></div>
 <p class="src">Quelle: vfc.ch · täglich automatisch aktualisiert · <a href="info.html">Über uns</a>{archiv_link}</p>
 </footer>
-</main>{search_dlg}<script>{JS}</script></body></html>"""
+</main>{search_dlg}{jdata}<script>{JS}</script></body></html>"""

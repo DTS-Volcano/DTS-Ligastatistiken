@@ -182,6 +182,22 @@ ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;if(st[i]&&[...e.
 e.addEventListener('input',()=>{st[i]=e.value;set('dts.pf',JSON.stringify(st))})});
 const f=document.getElementById('f-mon');if(f)f.dispatchEvent(new Event('input'))})();
 
+
+/* «Heute»-Leiste: Partien des heutigen Tages, mit Resultat sobald vorhanden */
+(()=>{const b=document.getElementById('today');if(!b)return;let fx=[];try{fx=JSON.parse(document.getElementById('fixtures').textContent)}catch(_){return}
+const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),n=new Date(),p2=x=>String(x).padStart(2,'0'),
+d=p2(n.getDate())+'.'+p2(n.getMonth()+1)+'.'+String(n.getFullYear()).slice(2),t=fx.filter(f=>f[0]===d);if(!t.length)return;
+b.innerHTML='<b class="td-h">Heute spielen</b>'+t.map(f=>'<button type="button" class="tdy"'+(f[4]?' data-open="'+f[4]+'"':' disabled')+'><span>'+E(f[1])+' – '+E(f[2])+(f[5]?'<small>'+E(f[5])+'</small>':'')+'</span><b>'+(f[3]?E(f[3]):'Report folgt')+'</b></button>').join('');b.hidden=false})();
+
+/* Meine Spieler: Stern im Profil, Karte auf der Startseite */
+(()=>{const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),K='dts.favp';let pd={};try{pd=JSON.parse(document.getElementById('pdata').textContent)}catch(_){}
+const fl=()=>{try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(_){return[]}},sv=a=>{try{localStorage.setItem(K,JSON.stringify(a))}catch(_){}};
+function paint(){const L=fl();document.querySelectorAll('[data-favp]').forEach(b=>{const on=L.includes(b.dataset.favp);b.textContent=on?'★':'☆';b.setAttribute('aria-pressed',on?'true':'false');b.title=on?'Mein Spieler (zum Entfernen tippen)':'Als meinen Spieler merken'});
+const sec=document.getElementById('mine'),ul=document.getElementById('mine-l');if(!sec)return;const rows=L.map(k=>pd[k]).filter(Boolean);sec.hidden=!rows.length;
+ul.innerHTML=rows.map(p=>{const n=p.w+p.l,q=n?Math.round(100*p.w/n):0;return '<li><button type="button" class="resrow" data-open="'+p.id+'"><span class="rd">'+(p.r?'#'+p.r:'–')+'</span><span class="ro">'+E(p.n)+'<small>'+E(p.t)+' · '+p.w+':'+p.l+' · '+q+' %</small></span><span class="dots">'+[...p.f].map(c=>'<span class="dot '+(c==='S'?'w':'l')+'">'+c+'</span>').join('')+'</span></button></li>'}).join('')}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-favp]');if(!b)return;const L=fl(),k=b.dataset.favp,i=L.indexOf(k);if(i<0)L.push(k);else L.splice(i,1);sv(L);paint()});
+paint();loadDlgs().then(paint)})();
+
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
 
 /* Ranglistenwert-Rechner */

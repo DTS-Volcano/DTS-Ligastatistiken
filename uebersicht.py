@@ -104,3 +104,12 @@ def home_block(data, id_of, pid, hof_players, tf, hof_fn):
              "<p class='hint'><a href='#liga'>Team &amp; Liga: Details und Spielplan</a></p></section>") if rows else ""
     both = (f"<div class='two'>{_results(res, id_of, 'Letzte Ergebnisse')}{_results(nxt, id_of, 'Nächste Spiele')}</div>")
     return (f"{table}{both}{section_potm(hof_players, pid, True)}{hof_fn()}{jump_nav()}")
+
+
+def fixtures_json(data, id_of):
+    """Alle Spiele des Spielplans für die «Heute»-Leiste: [Datum, Heim, Gast, Resultat|None, Dialog-ID|None, Ort]."""
+    score = {nr: m["points"] for nr, m in data["others"].items()}
+    for m in data["matches"]:
+        score[m["nr"]] = m["points"] if m["home"] else ":".join(reversed(m["points"].split(":")))
+    return [[f["date"], f["home"], f["guest"], score.get(f["nr"]) if f["played"] else None, id_of.get(f["nr"]), f.get("place") or ""]
+            for f in data["schedule"]]

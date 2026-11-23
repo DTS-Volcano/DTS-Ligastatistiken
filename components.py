@@ -153,6 +153,7 @@ def player_dialog(idx, p, total, hist, titles=None, dom_id=None, prev_id=None, n
     return (f'<dialog id="{dom_id}" data-s="{sid}" data-k="Spieler" data-n="{esc(name)}" data-sub="{esc(team)}" '
             f'aria-label="Spielerprofil {esc(name)}"><div class="dlg">'
             f'<button class="x" data-close aria-label="Schliessen">✕</button>'
+            f'<button class="favp" data-favp="{esc((p.get("team") or TEAM).lower() + "|" + name)}" aria-pressed="false" aria-label="Als meinen Spieler merken" title="Als meinen Spieler merken">☆</button>'
             f'<div class="head">{pic}<div><p class="sub">Spielerprofil</p><h3 class="vs">{esc(name)}</h3>'
             f'<p class="sub">{(esc(team) + " · ") if team != TEAM else ""}{p["n"]} Einzel · Rang {p["rank"] or "–"}</p></div></div>'
             f'<dl class="kpi rk">{kp}</dl>{badges}{calc}{form}{rv}{rcells}{ff}{table}{copy}{nav}</div></dialog>')
