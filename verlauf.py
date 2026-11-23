@@ -168,3 +168,76 @@ def section_verlauf(data, team=None, matches=None):
             f"<h3>Tabellenplatz</h3>{c1}<h3>Punkte</h3>{legend([('me', team), ('ref', 'Tabellenführer')])}{c2}"
             + (f"<h3>Siegquote pro Spieltag</h3>{legend([('bar', 'Gewonnene Einzel in %'), ('avg', 'Saisonschnitt')])}{c3}" if c3 else "")
             + table + "</section>")
+
+
+RACE_COLORS = ["#1f77b4", "#e07b00", "#2a9d3f", "#d62728", "#8e5bd0", "#8c564b", "#d6479d", "#119fb5", "#9a9a1d"]
+
+
+def league_race(data):
+    """Tabellenplatz jedes Vereins nach jedem Spieltag-Datum der Liga: ({Team: [Plätze]}, [Datum])."""
+    res = []
+    mine = {m["nr"]: m for m in data["matches"]}
+    for f in data["schedule"]:
+        if not f["played"]:
+            continue
+        nr = f["nr"]
+        if nr in mine:
+            m = mine[nr]
+            pts, games, sets = m["points"], m["games"], m.get("sets", "0:0")
+            if not m["home"]:
+                pts, games, sets = (":".join(reversed(x.split(":"))) for x in (pts, games, sets))
+        elif nr in data["others"]:
+            o = data["others"][nr]
+            pts, games, sets = o["points"], o["games"], o.get("sets", "0:0")
+        else:
+            continue
+        a = [int(x) for x in pts.split(":")]
+        g = [int(x) for x in games.split(":")]
+        s = [int(x) for x in sets.split(":")] if ":" in sets else [0, 0]
+        res.append((dkey(f["date"]), f["home"], f["guest"], a[0], a[1], g[0] - g[1], s[0] - s[1]))
+    res.sort(key=lambda r: r[0])
+    names = [t["team"] for t in data["league"]]
+    days = sorted({r[0].date() for r in res})
+    series = {n: [] for n in names}
+    for day in days:
+        tab = {n: [0, 0, 0] for n in names}
+        for d, h, g, ph, pg, gd, sd in res:
+            if d.date() > day:
+                break
+            for t, p, gg, ss in ((h, ph, gd, sd), (g, pg, -gd, -sd)):
+                if t in tab:
+                    tab[t][0] += p
+                    tab[t][1] += gg
+                    tab[t][2] += ss
+        order = sorted(names, key=lambda t: (-tab[t][0], -tab[t][1], -tab[t][2], t.lower()))
+        for n in names:
+            series[n].append(order.index(n) + 1)
+    return series, days
+
+
+def section_race(data):
+    series, days = league_race(data)
+    if len(days) < 2 or not series:
+        return ""
+    n_t, n = len(series), len(days)
+    W, H, PL, PR, PT, PB = 640, 330, 30, 16, 14, 30
+    x = lambda i: PL + (W - PL - PR) * (i / (n - 1))
+    y = lambda r: PT + (H - PT - PB) * ((r - 1) / (n_t - 1 if n_t > 1 else 1))
+    s = ""
+    for r in range(1, n_t + 1):
+        s += (f"<line class='ch-grid' x1='{PL}' x2='{W - PR}' y1='{y(r):.1f}' y2='{y(r):.1f}'/>"
+              f"<text class='ch-t' x='{PL - 8}' y='{y(r) + 4:.1f}' text-anchor='end'>{r}</text>")
+    step = max(1, (n + 7) // 8)
+    for i, d in enumerate(days):
+        if i % step == 0 or i == n - 1:
+            s += f"<text class='ch-t' x='{x(i):.1f}' y='{H - 8}' text-anchor='middle'>{d.strftime('%d.%m.')}</text>"
+    leg = ""
+    for k, (name, ranks) in enumerate(sorted(series.items(), key=lambda kv: kv[1][-1])):
+        col = RACE_COLORS[k % len(RACE_COLORS)]
+        pts = " ".join(f"{x(i):.1f},{y(r):.1f}" for i, r in enumerate(ranks))
+        s += (f"<polyline points='{pts}' fill='none' stroke='{col}' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'><title>{esc(name)}</title></polyline>"
+              f"<circle cx='{x(n - 1):.1f}' cy='{y(ranks[-1]):.1f}' r='4.5' fill='{col}'><title>{esc(name)}: Platz {ranks[-1]}</title></circle>")
+        leg += f"<span><i class='k' style='background:{col}'></i>{ranks[-1]}. {esc(name)}</span>"
+    svg = f"<svg class='chart race' viewBox='0 0 {W} {H}' role='img' aria-label='Tabellenplatz aller Vereine nach jedem Spieltag'>{s}</svg>"
+    return (f"<section><h2>Tabellen-Entwicklung</h2><p class='hint'>Tabellenplatz aller Vereine nach jedem Spieltag. Oben ist Platz 1.</p>"
+            f"{svg}<p class='lg race-lg'>{leg}</p></section>")

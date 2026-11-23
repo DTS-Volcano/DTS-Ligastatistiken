@@ -10,7 +10,7 @@ from farben import team_color
 from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
 from uebersicht import home_block, team_head
-from verlauf import section_verlauf
+from verlauf import section_race, section_verlauf
 from awards import MONTHS, monthly_titles
 from info import load_info
 from textutil import einzel_punkte, ranglistenwert, dkey
@@ -145,7 +145,7 @@ def render(data, hist):
     liga_blocks += (f"<div class='lb' data-g='liga' data-t='all'>{section_league(data)}</section>"
                     f"{section_fixtures(data, id_of)}</div>")
     ana_blocks += (f"<div class='lb' data-g='ana' data-t='all'>{section_hof(hof_players, tf, pid, id_of)}"
-                   f"{section_potm(hof_players, pid)}"
+                   f"{section_potm(hof_players, pid)}{section_race(data)}"
                    "<section><h2>Team-Analyse</h2><p class='hint'>Für Saisonverlauf, Heim und Auswärts und Spielblöcke oben einen Verein wählen.</p></section></div>")
     own_extra = f"{section_homeaway_players(players)}{section_form(players)}{section_rank_history(players, hist)}"
     team_blocks = f"<div class='tp' data-t='own' hidden>{player_table(players, pid)}{own_extra}</div>"
