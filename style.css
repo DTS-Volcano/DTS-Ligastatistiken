@@ -309,7 +309,6 @@ main{padding-bottom:90px}
 
 /* Tabelle: Rückstand, Führer-Linie */
 .gap{display:block;color:var(--mute);font-size:.72rem;font-weight:400;line-height:1.1;margin-top:2px;font-variant-numeric:tabular-nums}
-tr.lead td{border-bottom:2px solid var(--green)!important}
 /* Typografie */
 table td,table th,.kpi dd,.sc,.big,.num{font-variant-numeric:tabular-nums}
 th{font-weight:600;letter-spacing:.01em}

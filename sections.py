@@ -247,7 +247,7 @@ def section_rounds(matches):
             else:
                 tds += "<td class='num'>–</td>"
         rows += f"<tr><td>{m['date'][:6]} {esc(m['opp'])}</td>{tds}</tr>"
-    return ("<section><h2>Spielblöcke</h2><p class='hint'>Siege:Niederlagen pro Runde (je 4 Spiele).</p><dl class='kpi rk'>{cards}</dl>{verdict}"
+    return (f"<section><h2>Spielblöcke</h2><p class='hint'>Siege:Niederlagen pro Runde (je 4 Spiele).</p><dl class='kpi rk'>{cards}</dl>{verdict}"
             f"<div class='scroll'><table><thead><tr><th>Partie</th>{head}</tr></thead><tbody>{rows}</tbody></table></div></section>")
 
 
