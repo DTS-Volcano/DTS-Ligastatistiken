@@ -189,14 +189,16 @@ const T3={
 const TPL=[T0,T1,T2,T3];
 
 /* ---------- Sponsorenleiste ---------- */
-async function sponsorBar(list,light){
- const y=1270,h=66;rr(55,y,970,h,20);c.fillStyle='rgba(255,255,255,.96)';c.fill();if(light){c.strokeStyle='#ddd8d9';c.lineWidth=2;c.stroke()}
- const n=list.length,cell=970/n;
- for(let i=0;i<n;i++){const s=list[i],cx=55+cell*(i+.5),im=await load(s.img);
-  if(im){let bh=46,bw=bh*im.width/im.height;const mw=cell-34;if(bw>mw){bw=mw;bh=bw*im.height/im.width}
-   if(s.icon){const k=46;c.save();rr(cx-k-4,y+10,k,k,10);c.clip();c.drawImage(im,cx-k-4,y+10,k,k);c.restore();txt('LEAVE26',cx+2,y+46,40,'#17100f',{ls:1})}
-   else c.drawImage(im,cx-bw/2,y+(h-bh)/2,bw,bh)}
-  else txt(s.name.toUpperCase(),cx,y+46,40,'#17100f',{a:'center',ls:1,max:cell-24})}}
+async function sponsorBar(list,accent){
+ const y=1250,h=H-y;
+ c.fillStyle='#fff';c.fillRect(0,y,W,h);c.fillStyle=accent;c.fillRect(0,y,W,5);
+ txt('PARTNER & SPONSOREN',W/2,y+25,20,'#8a8083',{a:'center',ls:7});
+ const n=list.length,x0=50,cell=(W-2*x0)/n,cy=y+66;
+ for(let i=0;i<n;i++){const s=list[i],cx=x0+cell*(i+.5),im=await load(s.img);
+  if(i>0){c.fillStyle='#e4dfe0';c.fillRect(x0+cell*i-1,cy-20,2,40)}
+  if(im&&s.icon){const k=48;c.save();rr(cx-k-6,cy-k/2,k,k,10);c.clip();c.drawImage(im,cx-k-6,cy-k/2,k,k);c.restore();txt('LEAVE26',cx+2,cy+14,42,'#17100f',{ls:1})}
+  else if(im){const ar=im.width/im.height;let bh=Math.min(58,Math.sqrt(8800/ar)),bw=bh*ar;const mw=cell-44;if(bw>mw){bw=mw;bh=bw/ar}c.drawImage(im,cx-bw/2,cy-bh/2,bw,bh)}
+  else txt(s.name.toUpperCase(),cx,cy+13,38,'#17100f',{a:'center',ls:1,max:cell-40})}}
 
 async function draw(){
  const f=D.fixtures[+$('sel').value];if(!f)return;
@@ -209,10 +211,10 @@ async function draw(){
  const t=TPL[+$('tpl').value]||T0;
  c.clearRect(0,0,W,H);
  t.bg(S);
- c.save();if(sp.length){const k=.935;c.translate((1-k)*W/2,0);c.scale(k,k)}
+ c.save();if(sp.length){const k=1250/H;c.translate((1-k)*W/2,0);c.scale(k,k)}
  await t.content(S);
  c.restore();
- if(sp.length)await sponsorBar(sp,+$('tpl').value===1)}
+ if(sp.length)await sponsorBar(sp,+$('tpl').value===1?'#9a1b1c':(hm.color||'#dd4a47'))}
 
 const sel=$('sel');
 const mine=D.fixtures.map((f,i)=>[f,i]).filter(([f])=>D.own&&(f.home===D.own||f.guest===D.own));
