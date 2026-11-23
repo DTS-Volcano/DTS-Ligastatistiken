@@ -1,7 +1,7 @@
 """Dezenter Hinweis auf die eigene App Leave26 (Icon lokal, kein Google-Badge von fremden Servern)."""
 
 URL = "https://play.google.com/store/apps/details?id=com.leave26.app&utm_source=dts-website&utm_medium=footer"
-TEXT = "Darts-Zähler zum Mitspielen mit Freunden. Sammle Meilensteine auf deiner Dart-Reise und hake deine Checkouts ab. Dazu Caller, Bots und Statistiken. Kostenlos für Android."
+TEXT = "Mehr als ein Darts-Zähler: Leave26 begleitet dich auf deiner Dart-Reise mit Meilensteinen und abhakbaren Checkouts. Du misst dich mit Freunden, trainierst mit Caller und Bots und siehst in deinen Statistiken, wie du besser wirst. Kostenlos für Android."
 PLAY = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><defs><linearGradient id="lp" x1="0" y1="0" x2="1" y2="1">'
         '<stop offset="0" stop-color="#00d4ff"/><stop offset=".45" stop-color="#34d27b"/><stop offset=".75" stop-color="#ffd54a"/>'
         '<stop offset="1" stop-color="#ff5a5f"/></linearGradient></defs><path d="M5 2.5v19a1 1 0 0 0 1.5.9l15-9.5a1 1 0 0 0 0-1.8L6.5 1.6A1 1 0 0 0 5 2.5z" fill="url(#lp)"/></svg>')
