@@ -101,31 +101,31 @@ const T0={
 const T1={
  bg(){c.fillStyle='#f5f4f3';c.fillRect(0,0,W,H)},
  async content(S){
-  const{f,hm,gm}=S,INK='#1b1416',MUTE='#675d60',RED='#9a1b1c';
-  c.fillStyle='#17100f';c.fillRect(0,0,W,236);c.fillStyle=RED;c.fillRect(0,236,W,8);
-  if(S.vf){const h=150,w=h*S.vf.width/S.vf.height;c.drawImage(S.vf,56,44,w,h)}
-  txt('LIGABEGEGNUNG',1024,112,72,'#f4eeee',{a:'right',f:SERIF,w:'bold',max:700});
-  txt(`${D.season}  ·  ${D.sport}`,1024,178,46,'#e0605a',{a:'right',ls:4,max:700});
-  const card=(x,y,w,h,r=26)=>{c.save();c.shadowColor='rgba(40,20,20,.14)';c.shadowBlur=26;c.shadowOffsetY=8;rr(x,y,w,h,r);c.fillStyle='#fff';c.fill();c.restore();rr(x,y,w,h,r);c.strokeStyle='#ddd8d9';c.lineWidth=2;c.stroke()};
-  card(55,290,970,150);
-  icon('cal',130,365,70,RED,'#fff');txt(S.wd,185,350,40,RED,{ls:2});txt(f.date,185,410,64,INK,{f:SERIF,w:'bold'});
-  c.fillStyle='#ddd8d9';c.fillRect(560,312,2,106);
-  icon('clock',630,365,70,RED);txt('START',685,350,40,RED,{ls:2});txt(S.time+' UHR',685,410,64,INK,{f:SERIF,w:'bold'});
-  for(const[t,x,m,lab]of[[f.home,55,hm,'HEIMTEAM'],[f.guest,555,gm,'GASTTEAM']]){
-   card(x,480,470,540);
-   c.save();rr(x,480,470,540,26);c.clip();c.fillStyle=m.colorL||RED;c.fillRect(x,480,470,12);c.restore();
-   txt(lab,x+235,552,42,MUTE,{a:'center',ls:4});
-   await logo(t,x+235,720,140,m,{glow:false,ring:6,col:m.colorL||RED});
-   txt(t,x+235,925,44,INK,{a:'center',f:SERIF,w:'bold',max:420});
-   if(S.showT&&m.rank){txt(platz(m),x+235,968,30,MUTE,{a:'center',f:SANS,ls:.5,max:420});if(m.form&&m.form.length)dots(m.form,x+235,1000,34,9,'c','#1d6a3e',RED)}}
-  c.save();c.shadowColor='rgba(0,0,0,.3)';c.shadowBlur=16;c.fillStyle='#17100f';c.beginPath();c.arc(540,720,44,0,7);c.fill();c.restore();
-  txt('VS',540,737,50,'#f4eeee',{a:'center',ls:1});
-  card(55,1048,970,192);
-  icon('pin',112,1100,50,RED,'#fff');txt('SPIELORT',146,1114,48,RED,{ls:2});
-  venue(S).forEach((l,i)=>txt(l,100,1160+i*32,28,INK,{f:SERIF,max:390}));
-  c.fillStyle='#ddd8d9';c.fillRect(540,1072,2,144);
-  icon('ppl',596,1100,56,RED);txt('SUPPORT',640,1114,48,RED,{ls:2});
-  wrap(S.sup,28).forEach((l,i)=>txt(l,586,1164+i*34,28,INK,{f:SERIF,max:420}))}};
+  const{f,hm,gm}=S,INK='#1b1416',MUTE='#675d60',RED='#9a1b1c',LINE='#ddd8d9',M=64;
+  c.fillStyle='#17100f';c.fillRect(-120,0,W+240,206);c.fillStyle=RED;c.fillRect(-120,206,W+240,8);
+  if(S.vf){const h=130,w=h*S.vf.width/S.vf.height;c.drawImage(S.vf,M,38,w,h)}
+  txt('Ligabegegnung',W-M,100,60,'#f4eeee',{a:'right',f:SERIF,w:'bold',max:640});
+  txt(`${D.season}  ·  ${D.sport}`,W-M,152,40,'#e0605a',{a:'right',ls:4,max:640});
+  // Datum und Zeit
+  c.fillStyle=INK;c.fillRect(M,262,W-2*M,3);
+  txt(S.wd,M,322,38,MUTE,{ls:4});txt(f.date,M,396,76,INK,{f:SERIF,w:'bold',max:440});
+  c.fillStyle=LINE;c.fillRect(540,290,2,112);
+  txt('START',580,322,38,MUTE,{ls:4});txt(S.time+' Uhr',580,396,76,INK,{f:SERIF,w:'bold',max:420});
+  c.fillStyle=LINE;c.fillRect(M,432,W-2*M,2);
+  // Teams
+  rr(M,478,W-2*M,540,22);c.fillStyle='#fff';c.fill();c.strokeStyle=LINE;c.lineWidth=2;c.stroke();
+  c.fillStyle=LINE;c.fillRect(540,510,2,476);
+  for(const[t,x,m,lab]of[[f.home,302,hm,'HEIMTEAM'],[f.guest,778,gm,'GASTTEAM']]){
+   txt(lab,x,548,34,MUTE,{a:'center',ls:6});
+   await logo(t,x,708,124,m,{glow:false,ring:5,col:m.colorL||RED});
+   txt(t,x,896,42,INK,{a:'center',f:SERIF,w:'bold',max:420});
+   if(S.showT&&m.rank){txt(platz(m),x,940,27,MUTE,{a:'center',f:SANS,ls:.5,max:420});if(m.form&&m.form.length)dots(m.form,x,978,32,9,'c','#1d6a3e',RED)}}
+  c.beginPath();c.arc(540,708,34,0,7);c.fillStyle='#fff';c.fill();c.strokeStyle=LINE;c.lineWidth=2;c.stroke();
+  txt('VS',540,722,38,MUTE,{a:'center',ls:1});
+  // Infos
+  for(const[x,head,lines]of[[M,'Spielort',venue(S)],[570,'Support',wrap(S.supRaw,30)]]){
+   txt(head,x,1100,40,INK,{f:SERIF,w:'bold'});c.fillStyle=INK;c.fillRect(x,1118,446,3);
+   lines.forEach((l,i)=>txt(l,x,1170+i*38,30,MUTE,{f:SERIF,max:440}))}}};
 
 /* ---------- Design 2: Split in Vereinsfarben ---------- */
 const T2={
@@ -189,23 +189,30 @@ const T3={
 const TPL=[T0,T1,T2,T3];
 
 /* ---------- Sponsorenleiste ---------- */
-async function sponsorBar(list,accent){
- const y=1250,h=H-y;
- c.fillStyle='#fff';c.fillRect(0,y,W,h);c.fillStyle=accent;c.fillRect(0,y,W,5);
- txt('PARTNER & SPONSOREN',W/2,y+25,20,'#8a8083',{a:'center',ls:7});
- const n=list.length,x0=50,cell=(W-2*x0)/n,cy=y+66;
- for(let i=0;i<n;i++){const s=list[i],cx=x0+cell*(i+.5),im=await load(s.img);
-  if(i>0){c.fillStyle='#e4dfe0';c.fillRect(x0+cell*i-1,cy-20,2,40)}
-  if(im&&s.icon){const k=48;c.save();rr(cx-k-6,cy-k/2,k,k,10);c.clip();c.drawImage(im,cx-k-6,cy-k/2,k,k);c.restore();txt('LEAVE26',cx+2,cy+14,42,'#17100f',{ls:1})}
-  else if(im){const ar=im.width/im.height;let bh=Math.min(58,Math.sqrt(8800/ar)),bw=bh*ar;const mw=cell-44;if(bw>mw){bw=mw;bh=bw/ar}c.drawImage(im,cx-bw/2,cy-bh/2,bw,bh)}
-  else txt(s.name.toUpperCase(),cx,cy+13,38,'#17100f',{a:'center',ls:1,max:cell-40})}}
+async function sponsorBar(list,accent,light){
+ const y=1250,cy=y+66,n=list.length,x0=50,cell=(W-2*x0)/n,hmax=light?58:46;
+ c.fillStyle=light?'#fff':'rgba(10,10,10,.94)';c.fillRect(0,y,W,H-y);c.fillStyle=accent;c.fillRect(0,y,W,5);
+ txt('PARTNER & SPONSOREN',W/2,y+25,20,light?'#8a8083':'#9a9092',{a:'center',ls:7});
+ const items=[];
+ for(const s of list){const im=await load(s.img);let w,h;
+  if(im&&s.icon){w=48+10+150;h=48}
+  else if(im){const ar=im.width/im.height;h=Math.min(hmax,Math.sqrt(8800/ar));w=h*ar;const mw=cell-44-(light?0:40);if(w>mw){w=mw;h=w/ar}}
+  else{w=Math.min(cell-40,200);h=40}
+  items.push({s,im,w,h})}
+ const draw1=(it,cx)=>{const{s,im,w,h}=it;
+  if(im&&s.icon){const k=48;c.save();rr(cx-w/2,cy-k/2,k,k,10);c.clip();c.drawImage(im,cx-w/2,cy-k/2,k,k);c.restore();txt('LEAVE26',cx-w/2+k+10,cy+14,42,'#17100f',{ls:1})}
+  else if(im)c.drawImage(im,cx-w/2,cy-h/2,w,h);
+  else txt(s.name.toUpperCase(),cx,cy+13,38,'#17100f',{a:'center',ls:1,max:w})};
+ if(light){items.forEach((it,i)=>{const cx=x0+cell*(i+.5);if(i>0){c.fillStyle='#e4dfe0';c.fillRect(x0+cell*i-1,cy-20,2,40)}draw1(it,cx)});return}
+ const pad=18,tot=items.reduce((a,b)=>a+b.w+2*pad,0),gap=(W-2*x0-tot)/(n+1);let x=x0+gap;
+ for(const it of items){const tw=it.w+2*pad;rr(x,cy-32,tw,64,14);c.fillStyle='#fff';c.fill();draw1(it,x+tw/2);x+=tw+gap}}
 
 async function draw(){
  const f=D.fixtures[+$('sel').value];if(!f)return;
  const hm=D.teams[f.home.toLowerCase()]||{},gm=D.teams[f.guest.toLowerCase()]||{};
  await document.fonts.load('100px Bebas');
  const d=dp(f.date);
- const S={f,hm,gm,time:($('time').value||'20:00').trim(),sup:($('sup').value||'').toUpperCase(),showT:$('tab').checked,
+ const S={f,hm,gm,time:($('time').value||'20:00').trim(),sup:($('sup').value||'').toUpperCase(),supRaw:($('sup').value||'').trim(),showT:$('tab').checked,
   wd:d?d.toLocaleDateString('de-CH',{weekday:'long'}).toUpperCase():'',vf:await load(D.vfc)};
  const sp=D.sponsors.filter(s=>$('sp-'+s.key)&&$('sp-'+s.key).checked);
  const t=TPL[+$('tpl').value]||T0;
@@ -214,7 +221,7 @@ async function draw(){
  c.save();if(sp.length){const k=1250/H;c.translate((1-k)*W/2,0);c.scale(k,k)}
  await t.content(S);
  c.restore();
- if(sp.length)await sponsorBar(sp,+$('tpl').value===1?'#9a1b1c':(hm.color||'#dd4a47'))}
+ if(sp.length){const light=+$('tpl').value===1;await sponsorBar(sp,light?'#9a1b1c':(hm.color||'#dd4a47'),light)}}
 
 const sel=$('sel');
 const mine=D.fixtures.map((f,i)=>[f,i]).filter(([f])=>D.own&&(f.home===D.own||f.guest===D.own));
