@@ -101,7 +101,8 @@ def home_block(data, id_of, pid, hof_players, tf, hof_fn):
                  f"<td>{tlogo(x['team'])}{esc(x['team'])}{form_dots(tfm.get(x['team'].lower()), True)}</td><td class='num'>{x['pp']}:{x['pm']}{gap_html(x, lead)}</td></tr>")
     table = ("<section><h2>Tabelle</h2><div class='scroll'><table><thead><tr><th class='num'>Platz</th><th>Team</th>"
              f"<th class='num'>Punkte</th></tr></thead><tbody>{rows}</tbody></table></div>"
-             "<p class='hint'><a href='#liga'>Team &amp; Liga: Details und Spielplan</a></p></section>") if rows else ""
+             "<p class='hint'><a href='#liga'>Team &amp; Liga: Details und Spielplan</a></p>"
+             "<p class='acts'><button type='button' class='rb' data-card='table'>Tabelle als Bild</button></p></section>") if rows else ""
     both = (f"<div class='two'>{_results(res, id_of, 'Letzte Ergebnisse')}{_results(nxt, id_of, 'Nächste Spiele')}</div>")
     return (f"{table}{both}{section_potm(hof_players, pid, True)}{hof_fn()}{jump_nav()}")
 

@@ -283,7 +283,8 @@ def section_potm(players, pid, compact=False, team=None):
                   f"<p class='sub'>{w['w']}:{w['l']} · {100 * w['q']:.0f} %{avg}</p></div></div>")
     if compact:
         return (f"<section><h2>Spieler des Monats</h2>{cards}"
-                "<p class='hint'><a href='#analyse'>Wertung und frühere Monate</a></p></section>")
+                "<p class='hint'><a href='#analyse'>Wertung und frühere Monate</a></p>"
+                "<p class='acts'><button type='button' class='rb' data-card='potm'>Spieler des Monats als Bild</button></p></section>")
     hall = ""
     for m in months[1:]:
         t = rk[m][0]

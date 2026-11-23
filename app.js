@@ -198,6 +198,58 @@ ul.innerHTML=rows.map(p=>{const n=p.w+p.l,q=n?Math.round(100*p.w/n):0;return '<l
 document.addEventListener('click',e=>{const b=e.target.closest('[data-favp]');if(!b)return;const L=fl(),k=b.dataset.favp,i=L.indexOf(k);if(i<0)L.push(k);else L.splice(i,1);sv(L);paint()});
 paint();loadDlgs().then(paint)})();
 
+
+/* Teilen-Bilder für Tabelle und Spieler des Monats */
+async function shareCard(btn,kind){
+const old=btn.textContent;btn.textContent='Bild wird erstellt …';
+try{
+let cd;try{cd=JSON.parse(document.getElementById('carddata').textContent)}catch(_){throw 0}
+const m=document.querySelector('meta[name="dts-logos"]'),[l1,l2]=(m?m.content:',').split(',');
+const SERIF='Georgia,"Times New Roman",serif',SANS='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif',W=1080,H=1350;
+const cs=getComputedStyle(document.documentElement),red=(cs.getPropertyValue('--green')||'#9a1b1c').trim()||'#9a1b1c';
+const rows=kind==='table'?cd.table:[];const tl=await Promise.all(rows.map(r=>loadImg(r[4]?'vereine/'+r[4]:null)));
+const pw=kind==='potm'&&cd.potm?await Promise.all(cd.potm.w.map(w=>loadImg(w[5]?'vereine/'+w[5]:null))):[];
+const [dts,vfc]=await Promise.all([loadImg(l1),loadImg(l2)]);
+if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+x.fillStyle='#17100f';x.fillRect(0,0,W,H);x.fillStyle=red;x.fillRect(0,0,W,14);x.fillRect(0,H-14,W,14);
+const g=x.createRadialGradient(W/2,H*.4,40,W/2,H*.4,760);g.addColorStop(0,'#2e1a1b');g.addColorStop(1,'#17100f');x.fillStyle=g;x.fillRect(0,14,W,H-28);
+const disc=(img,cx,cy,r)=>{x.save();x.fillStyle='#fff';x.beginPath();x.arc(cx,cy,r,0,7);x.fill();if(img){const s=(r*2-8)/Math.max(img.width,img.height);x.drawImage(img,cx-img.width*s/2,cy-img.height*s/2,img.width*s,img.height*s)}x.restore()};
+x.textAlign='left';x.fillStyle='#fff';x.font='700 70px '+SERIF;x.fillText(kind==='table'?'Tabelle':'Spieler des Monats',60,150);
+x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText(cd.group+(kind==='table'?' · Stand '+cd.stand.slice(0,10):(cd.potm?' · '+cd.potm.label+(cd.potm.live?' (Zwischenstand)':''):'')),60,205);
+if(vfc){const h=90,w=h*vfc.width/vfc.height;x.drawImage(vfc,W-60-w,70,w,h)}
+if(kind==='table'){
+const top=270,rh=Math.min(104,(H-top-150)/Math.max(1,rows.length));
+rows.forEach((r,i)=>{const y=top+i*rh,cy=y+rh/2;
+if(i%2===0){x.fillStyle='#ffffff0d';x.fillRect(40,y,W-80,rh)}
+x.fillStyle=i===0?red:'#c9bcbe';x.font='700 44px '+SERIF;x.textAlign='center';x.fillText(String(r[0]),100,cy+15);
+disc(tl[i],185,cy,32);
+x.textAlign='left';x.fillStyle='#fff';const s=fitText(x,r[1],560,44,'600 $px '+SANS,24);x.font='600 '+s+'px '+SANS;x.fillText(r[1],245,cy+14);
+x.textAlign='right';x.fillStyle='#fff';x.font='700 46px '+SERIF;x.fillText(r[2],W-70,cy+16)})
+}else if(cd.potm){
+const ws=cd.potm.w;
+if(ws.length===1){const w=ws[0];let y=300;disc(pw[0],W/2,y+140,140);
+x.textAlign='center';x.fillStyle='#fff';const s=fitText(x,w[0],900,96,'700 $px '+SERIF,40);x.font='700 '+s+'px '+SERIF;x.fillText(w[0],W/2,y+420);
+x.fillStyle='#c9bcbe';x.font='40px '+SANS;x.fillText(w[1],W/2,y+480);
+x.fillStyle='#fff';x.font='700 170px '+SERIF;x.fillText(w[4]+' %',W/2,y+690);
+x.fillStyle='#c9bcbe';x.font='38px '+SANS;x.fillText('Siegquote · '+w[2]+':'+w[3]+' Einzel',W/2,y+750)}
+else{ws.forEach((w,i)=>{const y=290+i*300;disc(pw[i],170,y+90,80);x.textAlign='left';x.fillStyle='#fff';const s=fitText(x,w[0],600,60,'700 $px '+SERIF,30);x.font='700 '+s+'px '+SERIF;x.fillText(w[0],290,y+75);
+x.fillStyle='#c9bcbe';x.font='34px '+SANS;x.fillText(w[1],290,y+125);x.textAlign='right';x.fillStyle='#fff';x.font='700 80px '+SERIF;x.fillText(w[4]+' %',W-70,y+95);
+x.font='30px '+SANS;x.fillStyle='#c9bcbe';x.fillText(w[2]+':'+w[3],W-70,y+140)})}
+}else{x.textAlign='center';x.fillStyle='#c9bcbe';x.font='40px '+SANS;x.fillText('Noch kein Spieler mit genug Einzeln',W/2,640)}
+x.textAlign='center';x.fillStyle='#c9bcbe';x.font='30px '+SANS;x.fillText('Powered by '+cd.by,W/2,H-60);
+const blob=await new Promise(r=>c.toBlob(r,'image/png'));
+const name=(kind==='table'?'tabelle-':'spieler-des-monats-')+new Date().toISOString().slice(0,10)+'.png',f=new File([blob],name,{type:'image/png'});
+let dlg=document.getElementById('cardprev');if(!dlg){dlg=document.createElement('dialog');dlg.id='cardprev';dlg.setAttribute('aria-label','Bildvorschau');document.body.append(dlg)}
+const u=URL.createObjectURL(blob),can=navigator.canShare&&navigator.canShare({files:[f]});
+dlg.innerHTML='<div class="dlg"><button class="x" data-close aria-label="Schliessen">✕</button><h3 class="vs">Bild-Vorschau</h3><div class="imgprev"><img alt="Vorschau" src="'+u+'"><p class="acts"><a class="rb" download="'+name+'" href="'+u+'">Bild speichern</a>'+(can?' <button type="button" class="rb" data-sh>Teilen …</button>':'')+'</p></div></div>';
+dlg.onclick=async e=>{if(e.target.closest('[data-sh]')){try{await navigator.share({files:[f],title:kind==='table'?'Tabelle':'Spieler des Monats'})}catch(_){}}};
+dlg.onclose=()=>URL.revokeObjectURL(u);
+if(!dlg.open)dlg.showModal();btn.textContent=old;return
+}catch(e){btn.textContent='Bild nicht möglich'}
+setTimeout(()=>{btn.textContent=old},2200)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-card]');if(b)shareCard(b,b.dataset.card)});
+
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
 
 /* Ranglistenwert-Rechner */

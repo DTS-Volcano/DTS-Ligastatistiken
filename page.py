@@ -7,11 +7,11 @@ from zoneinfo import ZoneInfo
 from components import RESULT, bar, match_dialog, player_dialog, team_dialog
 from vlogo import tlogo
 from farben import team_color
-from config import OUT, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
+from config import OUT, team_logo_name, today, AUTHOR, GROUP, LOGO, MID, TEAM, TOP, VFC_LOGO
 from hof import section_hof
 from uebersicht import fixtures_json, home_block, team_head
 from verlauf import section_race, section_verlauf
-from awards import MONTHS, monthly_titles
+from awards import MONTHS, monthly_titles, potm_ranking
 from info import load_info
 from textutil import einzel_punkte, ranglistenwert, dkey
 from stats import bracket, order
@@ -179,6 +179,17 @@ def render(data, hist):
              for x in hof_players if pid.get((x["team"].lower(), x["name"]))}
     jdata = ('<script type="application/json" id="pdata">' + json.dumps(pdata, ensure_ascii=False).replace("</", "<\\/") + '</script>'
              '<script type="application/json" id="fixtures">' + json.dumps(fixtures_json(data, id_of), ensure_ascii=False).replace("</", "<\\/") + '</script>')
+    rk = potm_ranking(hof_players)
+    potm = None
+    if rk:
+        k = max(rk)
+        top = rk[k][0]
+        ws = [r for r in rk[k] if (r["q"], r["w"], round(r["avg"], 1)) == (top["q"], top["w"], round(top["avg"], 1))]
+        potm = {"label": f"{MONTHS[k[1] - 1]} {k[0]}", "live": k == (today().year, today().month),
+                "w": [[r["name"], r["team"], r["w"], r["l"], round(100 * r["q"]), team_logo_name(r["team"])] for r in ws]}
+    carddata = {"table": [[t["rank"], t["team"], f"{t['pp']}:{t['pm']}", t["played"], team_logo_name(t["team"])] for t in data["league"]],
+                "potm": potm, "group": GROUP, "by": TEAM, "stand": now}
+    jdata += '<script type="application/json" id="carddata">' + json.dumps(carddata, ensure_ascii=False).replace("</", "<\\/") + '</script>'
     global DIALOGS
     rwl = json.dumps([[f"{x['team'].lower()}|{x['name']}", round(ranglistenwert(einzel_punkte(x['rows']), x['n']), 4)] for x in hof_players],
                      ensure_ascii=False).replace("</", "<\\/")
