@@ -41,6 +41,19 @@ def logo_mode(name):
         return "disc"
 
 
+SPONSOREN = [("mydarts", "MyDarts.ch"), ("siris", "Siris"), ("treppenhaus", "Café Bar Treppenhaus"), ("leave26", "Leave26")]
+
+
+def sponsors():
+    out = []
+    for key, name in SPONSOREN:
+        p = HERE / "sponsoren" / f"{key}.png"
+        if not p.exists() and key == "leave26":
+            p = HERE / "docs" / "leave26-icon.png"
+        out.append({"key": key, "name": name, "img": str(p) if p.exists() else None, "icon": key == "leave26" and "sponsoren" not in str(p)})
+    return out
+
+
 def flyer_data(data):
     forms = team_forms(data)
     info = data.get("teaminfo") or {}
@@ -50,12 +63,12 @@ def flyer_data(data):
         col = team_color(t["team"])
         logo = team_logo_name(t["team"])
         ti = info.get(k) or {}
-        teams[k] = {"rank": t["rank"], "pp": t["pp"], "pm": t["pm"], "color": (col[1] if col else "#dd4a47"),
+        teams[k] = {"rank": t["rank"], "pp": t["pp"], "pm": t["pm"], "color": (col[1] if col else "#dd4a47"), "colorL": (col[0] if col else "#9a1b1c"),
                     "logo": f"vereine/{logo}" if logo else None, "mode": logo_mode(t["team"]) if logo else "", "lokal": ti.get("lokal", ""), "strasse": ti.get("strasse", ""),
                     "ort": ti.get("ort", ""), "form": [w for w, _ in forms.get(k, [])]}
     fx = [{"date": f["date"], "home": f["home"], "guest": f["guest"], "place": f.get("place") or ""}
           for f in sorted((f for f in data["schedule"] if not f["played"]), key=lambda f: (dkey(f["date"]), f["nr"]))]
-    return {"teams": teams, "fixtures": fx, "own": TEAM, "season": season_label(data), "sport": "STEELDARTS", "vfc": "vfc-logo.png"}
+    return {"teams": teams, "fixtures": fx, "own": TEAM, "season": season_label(data), "sport": "STEELDARTS", "vfc": "vfc-logo.png", "sponsors": sponsors()}
 
 
 def _uri(p):
@@ -79,6 +92,9 @@ def build_flyer(data, inline=False):
             if t["logo"]:
                 t["logo"] = _uri(OUT / t["logo"])
         fdict["vfc"] = _uri(next(OUT.glob("vfc-logo.*")))
+        for s in fdict["sponsors"]:
+            if s["img"]:
+                s["img"] = _uri(s["img"])
     fd = json.dumps(fdict, ensure_ascii=False).replace("</", "<\\/")
     lsrc = _uri(OUT / f"logo{LOGO.suffix.lower()}") if (inline and LOGO) else (f"logo{LOGO.suffix.lower()}" if LOGO else "")
     logo = f"<img class='logo' src='{lsrc}' alt='' width='56' height='56'>" if LOGO else ""
@@ -89,7 +105,9 @@ def build_flyer(data, inline=False):
 <div class="fl-f"><label>Spiel<select id="sel"></select></label>
 <label>Startzeit<input id="time" value="20:00" maxlength="5" inputmode="numeric"></label>
 <label>Support-Text<input id="sup" value="Wir freuen uns auf eure Unterstützung!" maxlength="60"></label>
-<label class="fl-c"><input type="checkbox" id="tab" checked> Tabellenplatz und Form anzeigen</label></div>
+<label>Design<select id="tpl"><option value="0">Klassisch dunkel</option><option value="1">Clean (wie die Webseite)</option><option value="2">Split in Vereinsfarben</option><option value="3">Editorial</option></select></label>
+<label class="fl-c"><input type="checkbox" id="tab" checked> Tabellenplatz und Form anzeigen</label>
+<div class="fl-s"><span>Sponsoren unten einblenden</span><div id="spons"></div></div></div>
 <canvas id="cv" class="fl-cv"></canvas>
 <p class="fl-b"><button class="rb" id="sh" hidden>Teilen</button> <button class="rb" id="dl">Als Bild speichern</button></p>"""
     return f"""<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -97,6 +115,7 @@ def build_flyer(data, inline=False):
 <style>@font-face{{font-family:Bebas;src:url({fontsrc}) format("truetype");font-display:block}}{css}
 .fl-f{{display:grid;gap:10px;margin:14px 0}}.fl-f label{{display:grid;gap:4px;font-size:.85rem;color:var(--mute)}}
 .fl-f input,.fl-f select{{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-width:0}}
+.fl-s{{display:grid;gap:6px;font-size:.85rem;color:var(--mute)}}.fl-s div{{display:flex;flex-wrap:wrap;gap:6px 16px}}.fl-s label{{display:flex;align-items:center;gap:6px;color:var(--ink)}}.fl-s input{{width:auto}}
 .fl-f .fl-c{{display:flex;align-items:center;gap:8px;color:var(--ink)}}.fl-f .fl-c input{{width:auto}}
 .fl-cv{{width:100%;max-width:540px;height:auto;display:block;border-radius:10px;border:1px solid var(--line)}}.fl-b{{margin:12px 0}}.fl-b .rb{{font-size:.95rem;padding:8px 16px}}</style></head>
 <body><header class="top"><div class="brand wrap">{logo}<div><h1>{esc(TEAM)}</h1><p class="sub">Flyer-Generator</p></div></div></header>
