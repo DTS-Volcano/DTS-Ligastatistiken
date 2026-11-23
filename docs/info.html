@@ -239,7 +239,29 @@ dl.info{display:grid;gap:8px;margin:12px 0}dl.info div{display:grid;grid-templat
 @media (max-width:520px){dl.info div{grid-template-columns:1fr;gap:0}}
 
 .sbtn{margin-left:auto}
-.pow{margin:14px 0 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pow img{width:auto;height:28px}
+.pow{margin:24px 0 0;padding:16px 18px;display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;color:var(--ink)}
+.pow img{width:auto;height:64px;flex:none}.pow>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pow .pw{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}.pow .pn{font-size:1.2rem;line-height:1.25}.pow .mb{font-size:.95rem;color:var(--ink)}.pow .mb b{font-weight:700}
+
+.tlg{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:none;vertical-align:middle;margin-right:8px;border-radius:50%;overflow:hidden}
+.tlg img{width:100%;height:100%;object-fit:contain;display:block}
+.tlg.ph{background:hsl(var(--h) 45% 88%);color:hsl(var(--h) 55% 28%);font-size:.62rem;font-weight:700;letter-spacing:.02em}
+.tlg.l{width:56px;height:56px;margin-right:14px;font-size:1.1rem}
+@media (prefers-color-scheme:dark){.tlg.ph{background:hsl(var(--h) 30% 24%);color:hsl(var(--h) 60% 85%)}}
+.src{margin:14px 0 0;font-size:.85rem}
+
+.clubbar{display:flex;align-items:center;gap:8px;padding-top:2px;padding-bottom:14px}
+.club{display:flex;align-items:center;gap:8px;flex:1;min-width:0;background:#ffffff14;border:1px solid #ffffff44;border-radius:999px;padding:5px 14px 5px 8px;color:var(--topink);cursor:pointer}
+.club:focus-within{border-color:#fff;outline:2px solid #ffffff66}
+.club .clg{display:flex;width:28px;height:28px}.club .clg .tlg{margin:0;width:28px;height:28px;background:#ffffff22}.club .clg .tlg.ph{color:#fff;background:#ffffff2e}
+.club .cl-l{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#c9bcbe}
+.club select{flex:1;min-width:0;background:transparent;border:0;color:var(--topink);font:inherit;font-weight:600;cursor:pointer;appearance:none;-webkit-appearance:none;text-overflow:ellipsis}
+.club select option{color:#111;background:#fff}
+.fav{flex:none;width:40px;height:40px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff44;color:var(--topink);font-size:1.25rem;cursor:pointer;line-height:1}
+.fav[aria-pressed=true]{color:#ffd45a;border-color:#ffd45a}.fav:hover{border-color:#fff}
+.filter #f-team,.filter #f-pt{display:none}
+@media (max-width:420px){.club .cl-l{display:none}}
+.filter[hidden]{display:none!important}
 </style></head><body><header class="top"><div class="brand wrap"><img class='logo' src='logo.png' alt='' width='56' height='56'><div><h1>Double Trouble Steeldarters</h1><p class="sub">Info</p></div></div></header>
 <main><p><a href="./">← Zur Statistik</a></p><section id='ueber'><h2>Über uns</h2><dl class='info'><div><dt>Spiellokal</dt><dd>Café Bar Treppenhaus<br>Kirchstrasse 3, 9400 Rorschach · <a href='http://map.search.ch/9400-Rorschach/Kirchstrasse 3' target='_blank' rel='noopener'>Karte</a></dd></div><div><dt>Captain</dt><dd>Christoph Wildermuth</dd></div><div><dt>Liga</dt><dd>STSO S 2 · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a></dd></div></dl><p class='hint'>Diese Seite zählt anonym, wie oft sie geöffnet wird (höchstens eine Zählung pro Gerät und Tag, ohne Cookies und ohne Daten über Besucher).</p></section>
 <footer>Made by Kevin Notter · <a href="./">Zur Statistik</a></footer></main></body></html>
