@@ -41,7 +41,8 @@ span.up,td.up{color:var(--win);font-weight:600}.down{color:var(--red);font-weigh
 tr.click{cursor:pointer}tr.click:hover td{background:var(--hl)}
 .rb{font:inherit;font-size:.82rem;color:var(--green);background:none;border:1px solid var(--green);border-radius:6px;padding:2px 10px;cursor:pointer}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px}
-.tl{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;text-decoration:underline dotted;text-underline-offset:3px}
+.tl{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-weight:500;text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 22%,transparent);text-decoration-thickness:1px;text-underline-offset:4px;transition:color .15s,text-decoration-color .15s}
+.tl:hover,.tl:focus-visible{color:var(--green);text-decoration-color:var(--green);text-decoration-thickness:2px}
 .dlg h4{margin:16px 0 6px;font-size:.95rem}
 .rb[disabled]{opacity:.35;cursor:default}.rb[disabled]:hover{background:none;color:var(--green)}
 .rb:hover{background:var(--green);color:var(--bg)}
