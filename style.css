@@ -251,7 +251,7 @@ dl.info{display:grid;gap:8px;margin:12px 0}dl.info div{display:grid;grid-templat
 .clubbar{display:flex;align-items:center;gap:8px;padding-top:2px;padding-bottom:14px}
 .club{display:flex;align-items:center;gap:8px;flex:1;min-width:0;background:#ffffff14;border:1px solid #ffffff44;border-radius:999px;padding:5px 14px 5px 8px;color:var(--topink);cursor:pointer}
 .club:focus-within{border-color:#fff;outline:2px solid #ffffff66}
-.club .clg{display:flex;width:28px;height:28px}.club .clg .tlg{margin:0;width:28px;height:28px;background:#ffffff22}.club .clg .tlg.ph{color:#fff;background:#ffffff2e}
+.club .clg{display:flex;width:28px;height:28px}.club .clg .tlg{margin:0;width:30px;height:30px}.club .clg .tlg.ph{color:#fff;background:#ffffff2e}
 .club .cl-l{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#c9bcbe}
 .club select{flex:1;min-width:0;background:transparent;border:0;color:var(--topink);font:inherit;font-weight:600;cursor:pointer;appearance:none;-webkit-appearance:none;text-overflow:ellipsis}
 .club select option{color:#111;background:#fff}
@@ -300,3 +300,4 @@ main{padding-bottom:90px}
 .dlg .th>div{min-width:0}
 .tlg.xl{width:92px;height:92px;margin:0;flex:none;font-size:1.6rem}
 @media (max-width:420px){.tlg.xl{width:68px;height:68px;font-size:1.2rem}}
+.club .clg:empty{display:none}
