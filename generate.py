@@ -18,7 +18,6 @@ import shutil
 from config import GROUP, LOGO, VFC_LOGO, OUT, PHOTO_DIR, TEAM, find_photo, photo_source
 import page
 import info
-import flyer
 from page import render
 from scraper import BlockedError
 from stats import build_stats, update_history
@@ -51,7 +50,7 @@ def write_pwa():
                           {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}
     OUT.mkdir(exist_ok=True)
     (OUT / "manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
-    pre = ["./", "dialogs.html", "info.html", "flyer.html", "BebasNeue-Regular.ttf", "manifest.webmanifest", "icon-192.png", "history.json"]
+    pre = ["./", "dialogs.html", "info.html", "manifest.webmanifest", "icon-192.png", "history.json"]
     for stem in ("logo", "vfc-logo"):
         pre += [f.name for f in OUT.glob(stem + ".*")]
     if (OUT / "leave26-icon.png").exists():
@@ -145,7 +144,6 @@ def main():
     (OUT / "index.html").write_text(render(data, hist), encoding="utf-8")
     (OUT / "dialogs.html").write_text(page.DIALOGS, encoding="utf-8")
     (OUT / "info.html").write_text(info.build_info(data), encoding="utf-8")
-    (OUT / "flyer.html").write_text(flyer.build_flyer(data), encoding="utf-8")
     (OUT / "data.json").write_text(json.dumps({"matches": data["matches"], "players": data["players"],
                                                "league": data["league"], "schedule": data["schedule"]},
                                               ensure_ascii=False, indent=1), encoding="utf-8")

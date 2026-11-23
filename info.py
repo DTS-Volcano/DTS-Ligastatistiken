@@ -46,7 +46,6 @@ def build_info(data):
         rows.append(("Captain", esc(ti["captain"])))
     if kon:
         rows.append(("Kontakt", kon))
-    rows.append(("Flyer", "<a href='flyer.html'>Flyer-Generator für Ligaspiele</a>"))
     rows.append(("Liga", f"{esc(GROUP)} · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a>"))
     ueber = ("<section id='ueber'><h2>Über uns</h2>" + "".join(blocks)
              + "<dl class='info'>" + "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in rows) + "</dl></section>")
