@@ -189,23 +189,23 @@ const T3={
 const TPL=[T0,T1,T2,T3];
 
 /* ---------- Sponsorenleiste ---------- */
+const dk={};
+function darkVariant(im,key){
+ if(dk[key])return dk[key];
+ const k=document.createElement('canvas');k.width=im.width;k.height=im.height;const x=k.getContext('2d');x.drawImage(im,0,0);
+ try{const d=x.getImageData(0,0,k.width,k.height),p=d.data;
+  for(let i=0;i<p.length;i+=4){if(p[i+3]&&Math.max(p[i],p[i+1],p[i+2])<95){p[i]=p[i+1]=p[i+2]=255}}
+  x.putImageData(d,0,0)}catch(_){return im}
+ return dk[key]=k}
 async function sponsorBar(list,accent,light){
- const y=1250,cy=y+66,n=list.length,x0=50,cell=(W-2*x0)/n,hmax=light?58:46;
+ const y=1250,cy=y+66,n=list.length,x0=50,cell=(W-2*x0)/n,ink=light?'#17100f':'#f4eeee';
  c.fillStyle=light?'#fff':'rgba(10,10,10,.94)';c.fillRect(0,y,W,H-y);c.fillStyle=accent;c.fillRect(0,y,W,5);
  txt('PARTNER & SPONSOREN',W/2,y+25,20,light?'#8a8083':'#9a9092',{a:'center',ls:7});
- const items=[];
- for(const s of list){const im=await load(s.img);let w,h;
-  if(im&&s.icon){w=48+10+150;h=48}
-  else if(im){const ar=im.width/im.height;h=Math.min(hmax,Math.sqrt(8800/ar));w=h*ar;const mw=cell-44-(light?0:40);if(w>mw){w=mw;h=w/ar}}
-  else{w=Math.min(cell-40,200);h=40}
-  items.push({s,im,w,h})}
- const draw1=(it,cx)=>{const{s,im,w,h}=it;
-  if(im&&s.icon){const k=48;c.save();rr(cx-w/2,cy-k/2,k,k,10);c.clip();c.drawImage(im,cx-w/2,cy-k/2,k,k);c.restore();txt('LEAVE26',cx-w/2+k+10,cy+14,42,'#17100f',{ls:1})}
-  else if(im)c.drawImage(im,cx-w/2,cy-h/2,w,h);
-  else txt(s.name.toUpperCase(),cx,cy+13,38,'#17100f',{a:'center',ls:1,max:w})};
- if(light){items.forEach((it,i)=>{const cx=x0+cell*(i+.5);if(i>0){c.fillStyle='#e4dfe0';c.fillRect(x0+cell*i-1,cy-20,2,40)}draw1(it,cx)});return}
- const pad=18,tot=items.reduce((a,b)=>a+b.w+2*pad,0),gap=(W-2*x0-tot)/(n+1);let x=x0+gap;
- for(const it of items){const tw=it.w+2*pad;rr(x,cy-32,tw,64,14);c.fillStyle='#fff';c.fill();draw1(it,x+tw/2);x+=tw+gap}}
+ for(let i=0;i<n;i++){const s=list[i],cx=x0+cell*(i+.5);let im=await load(s.img);
+  if(i>0){c.fillStyle=light?'#e4dfe0':'rgba(255,255,255,.16)';c.fillRect(x0+cell*i-1,cy-20,2,40)}
+  if(im&&s.icon){const k=48,tw=150,w=k+10+tw;c.save();rr(cx-w/2,cy-k/2,k,k,10);c.clip();c.drawImage(im,cx-w/2,cy-k/2,k,k);c.restore();if(!light){rr(cx-w/2,cy-k/2,k,k,10);c.strokeStyle='rgba(255,255,255,.35)';c.lineWidth=2;c.stroke()}txt('LEAVE26',cx-w/2+k+10,cy+14,42,ink,{ls:1})}
+  else if(im){if(!light)im=darkVariant(im,s.key);const ar=im.width/im.height;let h=Math.min(58,Math.sqrt(8800/ar)),w=h*ar;const mw=cell-44;if(w>mw){w=mw;h=w/ar}c.drawImage(im,cx-w/2,cy-h/2,w,h)}
+  else txt(s.name.toUpperCase(),cx,cy+13,38,ink,{a:'center',ls:1,max:cell-40})}}
 
 async function draw(){
  const f=D.fixtures[+$('sel').value];if(!f)return;
