@@ -1,6 +1,6 @@
 // Netz zuerst; bei fehlendem Netz die zuletzt geladene Version (die App funktioniert auch offline)
 const C = 'dts-v2';
-const PRE = ["./", "dialogs.html", "info.html", "manifest.webmanifest", "icon-192.png", "history.json", "logo.png", "vfc-logo.png", "leave26-icon.png", "vereine/2010er-steel.png", "vereine/braschtli-s-darter-2.png", "vereine/dart-ost.png", "vereine/dartfabrik-steel.png", "vereine/die-humorlosen.png", "vereine/double-trouble-steeldarters.png", "vereine/dynamo-tresen.png", "vereine/irish-skulls-steel.png", "spieler/juliano-goncalves-da-costa.png", "spieler/kevin-notter.png", "spieler/nevio-bachmann.png", "spieler/tobias-fiedler.png"];
+const PRE = ["./", "dialogs.html", "info.html", "flyer.html", "BebasNeue-Regular.ttf", "manifest.webmanifest", "icon-192.png", "history.json", "logo.png", "vfc-logo.png", "leave26-icon.png", "vereine/2010er-steel.png", "vereine/braschtli-s-darter-2.png", "vereine/dart-ost.png", "vereine/dartfabrik-steel.png", "vereine/die-humorlosen.png", "vereine/double-trouble-steeldarters.png", "vereine/dynamo-tresen.png", "vereine/irish-skulls-steel.png", "spieler/juliano-goncalves-da-costa.png", "spieler/kevin-notter.png", "spieler/nevio-bachmann.png", "spieler/tobias-fiedler.png"];
 self.addEventListener('install', e => {
   self.skipWaiting();
   e.waitUntil(caches.open(C).then(c => Promise.all(PRE.map(u => c.add(u).catch(() => {})))));
