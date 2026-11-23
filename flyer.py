@@ -54,6 +54,43 @@ def sponsors():
     return out
 
 
+def dark_ready(name):
+    """Logo für dunklen Grund: transparente Innenflächen (z. B. ausgestanzte Buchstaben) werden weiss, der Rand bleibt transparent. Als Data-URI."""
+    import base64
+    import io
+    from PIL import Image, ImageDraw
+    src = team_logo_source(name)
+    try:
+        im = Image.open(src).convert("RGBA")
+        a = im.getchannel("A")
+        pts = sorted({(x, y) for y in range(0, im.height, 2) for x in range(0, im.width, 2) if a.getpixel((x, y)) > 128})
+
+        def cross(o, p, q):
+            return (p[0] - o[0]) * (q[1] - o[1]) - (p[1] - o[1]) * (q[0] - o[0])
+        lo, up = [], []
+        for p in pts:
+            while len(lo) >= 2 and cross(lo[-2], lo[-1], p) <= 0:
+                lo.pop()
+            lo.append(p)
+        for p in reversed(pts):
+            while len(up) >= 2 and cross(up[-2], up[-1], p) <= 0:
+                up.pop()
+            up.append(p)
+        hull = lo[:-1] + up[:-1]
+        inside = Image.new("L", im.size, 0)
+        ImageDraw.Draw(inside).polygon(hull, fill=255)
+        holes = Image.eval(a, lambda v: 255 if v < 128 else 0)
+        from PIL import ImageChops
+        holes = ImageChops.multiply(holes, inside)
+        white = Image.new("RGBA", im.size, (255, 255, 255, 255))
+        im.paste(white, (0, 0), holes)
+        buf = io.BytesIO()
+        im.save(buf, "PNG", optimize=True)
+        return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
+    except Exception:
+        return None
+
+
 def flyer_data(data):
     forms = team_forms(data)
     info = data.get("teaminfo") or {}
@@ -64,7 +101,7 @@ def flyer_data(data):
         logo = team_logo_name(t["team"])
         ti = info.get(k) or {}
         teams[k] = {"rank": t["rank"], "pp": t["pp"], "pm": t["pm"], "color": (col[1] if col else "#dd4a47"), "colorL": (col[0] if col else "#9a1b1c"),
-                    "logo": f"vereine/{logo}" if logo else None, "mode": logo_mode(t["team"]) if logo else "", "lokal": ti.get("lokal", ""), "strasse": ti.get("strasse", ""),
+                    "logo": f"vereine/{logo}" if logo else None, "mode": logo_mode(t["team"]) if logo else "", "name": t["team"], "lokal": ti.get("lokal", ""), "strasse": ti.get("strasse", ""),
                     "ort": ti.get("ort", ""), "form": [w for w, _ in forms.get(k, [])]}
     fx = [{"date": f["date"], "home": f["home"], "guest": f["guest"], "place": f.get("place") or ""}
           for f in sorted((f for f in data["schedule"] if not f["played"]), key=lambda f: (dkey(f["date"]), f["nr"]))]
@@ -90,6 +127,8 @@ def build_flyer(data, inline=False):
         fontsrc = _uri(HERE / "fonts" / "BebasNeue-Regular.ttf")
         for t in fdict["teams"].values():
             if t["logo"]:
+                if t.get("mode") == "disc":
+                    t["logoDark"] = dark_ready(t["name"])
                 t["logo"] = _uri(OUT / t["logo"])
         fdict["vfc"] = _uri(next(OUT.glob("vfc-logo.*")))
         for s in fdict["sponsors"]:

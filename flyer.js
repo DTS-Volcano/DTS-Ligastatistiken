@@ -51,6 +51,7 @@ async function logo(t,cx,cy,R,tm,o={}){
  c.save();
  if(im){
   if(!own&&tm.mode==='round'){c.beginPath();c.arc(cx,cy,R,0,7);c.clip();const s=R*2.02;c.drawImage(im,cx-s/2,cy-s/2,s,s)}
+  else if(!own&&o.dark&&tm.logoDark){const li=await load(tm.logoDark);c.fillStyle='#151515';c.beginPath();c.arc(cx,cy,R,0,7);c.fill();c.beginPath();c.arc(cx,cy,R,0,7);c.clip();const s=R*1.7;c.drawImage(li||im,cx-s/2,cy-s/2,s,s)}
   else if(!own){c.fillStyle='#fff';c.beginPath();c.arc(cx,cy,R,0,7);c.fill();c.beginPath();c.arc(cx,cy,R,0,7);c.clip();const s=R*1.7;c.drawImage(im,cx-s/2,cy-s/2,s,s)}
   else{const s=R*2.04;c.drawImage(im,cx-s/2,cy-s/2,s,s)}
  }else{
@@ -148,7 +149,7 @@ const T2={
   c.fillStyle='rgba(255,255,255,.3)';c.fillRect(540,288,2,86);
   txt('START',720,312,34,'rgba(255,255,255,.7)',{a:'center',ls:5});txt(S.time+' UHR',720,372,68,'#fff',{a:'center',max:340});
   txt('HEIMTEAM',250,520,46,'rgba(255,255,255,.75)',{a:'center',ls:6});txt('GASTTEAM',830,520,46,'rgba(255,255,255,.75)',{a:'center',ls:6});
-  await logo(f.home,250,728,190,hm,{col:'#fff',ring:6});await logo(f.guest,830,728,190,gm,{col:'#fff',ring:6});
+  await logo(f.home,250,728,190,hm,{col:'rgba(255,255,255,.45)',ring:3,glow:false,dark:true});await logo(f.guest,830,728,190,gm,{col:'rgba(255,255,255,.45)',ring:3,glow:false,dark:true});
   txt('VS',540,785,150,'#fff',{a:'center',skew:1,shadow:'#000',sb:26});
   for(const[t,x,m]of[[f.home,250,hm],[f.guest,830,gm]]){
    txt(t.toUpperCase(),x,1000,58,'#fff',{a:'center',max:470,shadow:'#000',sb:14});
@@ -176,7 +177,7 @@ const T3={
   txt('START',560,262,64,'#8a8a8a',{ls:8});txt(`${S.time} UHR`,556,448,150,'#fff',{max:452});
   c.fillStyle='#2a2a2a';c.fillRect(72,486,936,3);
   const row=async(t,m,y,lab)=>{
-   await logo(t,178,y,102,m,{col:m.color,ring:5,sb:24});
+   await logo(t,178,y,102,m,{col:m.color,ring:5,sb:24,dark:true});
    txt(lab,316,y-62,38,ac,{ls:6});
    txt(t.toUpperCase(),316,y+22,88,'#fff',{max:692});
    if(S.showT&&m.rank){txt(platz(m),316,y+70,36,'#9a9a9a',{ls:1});if(m.form&&m.form.length)dots(m.form,1008-(m.form.length-1)*34,y+60,34,10,'l','#4fb27c','#dd4a47')}};
@@ -200,11 +201,11 @@ function darkVariant(im,key){
   x.putImageData(d,0,0)}catch(_){return im}
  return dk[key]=k}
 async function sponsorBar(list,accent,light){
- const y=1250,cy=y+66,n=list.length,x0=50,cell=(W-2*x0)/n,ink=light?'#17100f':'#f4eeee';
+ const y=1210,cy=y+92,n=list.length,x0=50,cell=(W-2*x0)/n,ink=light?'#17100f':'#f4eeee';
  c.fillStyle=light?'#fff':'rgba(10,10,10,.94)';c.fillRect(0,y,W,H-y);c.fillStyle=accent;c.fillRect(0,y,W,5);
- txt('PARTNER & SPONSOREN',W/2,y+25,20,light?'#8a8083':'#9a9092',{a:'center',ls:7});
+ txt('PARTNER & SPONSOREN',W/2,y+44,28,light?'#7a7073':'#b0a6a8',{a:'center',ls:8});
  for(let i=0;i<n;i++){const s=list[i],cx=x0+cell*(i+.5);let im=await load(s.img);
-  if(i>0){c.fillStyle=light?'#e4dfe0':'rgba(255,255,255,.16)';c.fillRect(x0+cell*i-1,cy-20,2,40)}
+  if(i>0){c.fillStyle=light?'#e4dfe0':'rgba(255,255,255,.16)';c.fillRect(x0+cell*i-1,cy-24,2,48)}
   if(im&&s.icon){const k=48,tw=150,w=k+10+tw;c.save();rr(cx-w/2,cy-k/2,k,k,10);c.clip();c.drawImage(im,cx-w/2,cy-k/2,k,k);c.restore();if(!light){rr(cx-w/2,cy-k/2,k,k,10);c.strokeStyle='rgba(255,255,255,.35)';c.lineWidth=2;c.stroke()}txt('LEAVE26',cx-w/2+k+10,cy+14,42,ink,{ls:1})}
   else if(im){if(!light)im=darkVariant(im,s.key);const ar=im.width/im.height;let h=Math.min(58,Math.sqrt(8800/ar)),w=h*ar;const mw=cell-44;if(w>mw){w=mw;h=w/ar}c.drawImage(im,cx-w/2,cy-h/2,w,h)}
   else txt(s.name.toUpperCase(),cx,cy+13,38,ink,{a:'center',ls:1,max:cell-40})}}
@@ -220,7 +221,7 @@ async function draw(){
  const t=TPL[+$('tpl').value]||T0;
  c.clearRect(0,0,W,H);
  t.bg(S);
- c.save();if(sp.length){const k=1250/H;c.translate((1-k)*W/2,0);c.scale(k,k)}
+ c.save();if(sp.length){const k=1210/(H-18);c.translate((1-k)*W/2,-18*k);c.scale(k,k)}
  await t.content(S);
  c.restore();
  if(sp.length){const light=+$('tpl').value===1;await sponsorBar(sp,light?'#9a1b1c':(hm.color||'#dd4a47'),light)}}
