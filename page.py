@@ -213,7 +213,7 @@ def render(data, hist):
 <div class="panel" id="p-analyse">
 <section><h2>Analyse</h2>
 <form class="filter" onsubmit="return false" hidden><select class="vf" data-g="ana" aria-label="Verein">{liga_opts}</select></form>
-<details class="tip"><summary aria-label="Erklärung">i</summary><p>Alles auf dieser Seite gilt für den im Kopf gewählten Verein.</p></details></section>
+<p class="hint">Alles auf dieser Seite gilt für den im Kopf gewählten Verein.</p></section>
 {ana_blocks}
 </div>
 
