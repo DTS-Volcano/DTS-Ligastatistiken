@@ -328,6 +328,20 @@ td{line-height:1.35}
 .chart.race{width:100%;height:auto;display:block;max-height:420px}
 .race-lg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px}.race-lg span{display:inline-flex;align-items:center;gap:6px;font-size:.88rem}
 .race-lg .k{width:12px;height:12px;border:0;border-radius:50%;display:inline-block}
+
+/* Heute-Leiste */
+.today{margin:12px 0 0;padding:12px 14px;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:var(--r);background:var(--card);box-shadow:var(--sh)}
+.today[hidden]{display:none}.td-h{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.tdy{display:flex;width:100%;justify-content:space-between;align-items:center;gap:12px;background:none;border:0;border-top:1px solid var(--line);padding:9px 0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.tdy:first-of-type{border-top:0}.tdy:disabled{cursor:default}.tdy small{display:block;color:var(--mute);font-size:.8rem}.tdy>b{font-family:var(--serif);font-size:1.15rem;white-space:nowrap}
+/* Mein Spieler */
+.favp{position:absolute;top:10px;right:52px;width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--mute);font-size:1.1rem;cursor:pointer;line-height:1}
+.favp[aria-pressed=true]{color:#c98a00;border-color:#c98a00}
+#mine .res .dots{margin-left:auto}#mine .resrow{display:flex;align-items:center;gap:12px;width:100%}
+#mine .ro{flex:1;min-width:0}
+
+.tdy>b.wait{font:600 .8rem var(--sans,inherit);color:var(--mute)}
+#mine .dot{width:18px;height:18px;line-height:18px;font-size:.62rem}#mine .dots{gap:2px;flex:none}
 </style></head><body><header class="top"><div class="brand wrap"><img class='logo' src='logo.png' alt='' width='56' height='56'><div><h1>Double Trouble Steeldarters</h1><p class="sub">Info</p></div></div></header>
 <main><p><a href="./">← Zur Statistik</a></p><section id='ueber'><h2>Über uns</h2><dl class='info'><div><dt>Spiellokal</dt><dd>Café Bar Treppenhaus<br>Kirchstrasse 3, 9400 Rorschach · <a href='http://map.search.ch/9400-Rorschach/Kirchstrasse 3' target='_blank' rel='noopener'>Karte</a></dd></div><div><dt>Captain</dt><dd>Christoph Wildermuth</dd></div><div><dt>Liga</dt><dd>STSO S 2 · VFC Dartverband · <a href='https://vfc.ch' target='_blank' rel='noopener'>vfc.ch</a></dd></div></dl><p class='hint'>Diese Seite zählt anonym, wie oft sie geöffnet wird (höchstens eine Zählung pro Gerät und Tag, ohne Cookies und ohne Daten über Besucher).</p></section>
 <footer>Made by Kevin Notter · <a href="./">Zur Statistik</a></footer></main></body></html>
