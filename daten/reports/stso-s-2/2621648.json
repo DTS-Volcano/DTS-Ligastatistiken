@@ -1,0 +1,125 @@
+{
+ "date": "23.11.2026",
+ "home": "Irish Skulls Steel",
+ "guest": "DARTFABRIK STEEL",
+ "games": [
+  {
+   "round": 1,
+   "home": "Roberto Lisitsov",
+   "guest": "Markus Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Felix Schwager",
+   "guest": "Adam Montgomery",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Elia Meyer",
+   "guest": "Lukas Hollenstein",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Martin Vomend",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Elia Meyer",
+   "guest": "Adam Montgomery",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Roberto Lisitsov",
+   "guest": "Alex Grohmann",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Felix Schwager",
+   "guest": "Lukas Hollenstein",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Stephan Badschauer",
+   "guest": "Markus Müller",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Roberto Lisitsov",
+   "guest": "Adam Montgomery",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Elia Meyer",
+   "guest": "Jean-Dominique Bollhalder",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Felix Schwager",
+   "guest": "Markus Müller",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Martin Vomend",
+   "guest": "Lukas Hollenstein",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Roberto Lisitsov",
+   "guest": "Lukas Hollenstein",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Felix Schwager",
+   "guest": "Alex Grohmann",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Elia Meyer",
+   "guest": "Markus Müller",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Stephan Badschauer",
+   "guest": "Adam Montgomery",
+   "sets": "1:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "7:11",
+  "21:24"
+ ],
+ "extras": []
+}
