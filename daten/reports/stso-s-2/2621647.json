@@ -1,0 +1,125 @@
+{
+ "date": "23.11.2026",
+ "home": "Dynamo Tresen",
+ "guest": "Irish Skulls ;) Steel",
+ "games": [
+  {
+   "round": 1,
+   "home": "Patric Fricker",
+   "guest": "Martin Gerber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Fabian Ziegler",
+   "guest": "Naser Toja",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Oliver Hutter",
+   "guest": "Demian Senn",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Jonas Herbinger",
+   "guest": "Chris Malang",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Angelo Michielin",
+   "guest": "Naser Toja",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Patric Fricker",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Fabian Ziegler",
+   "guest": "Demian Senn",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jonas Herbinger",
+   "guest": "Martin Gerber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Patric Fricker",
+   "guest": "Naser Toja",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Oliver Hutter",
+   "guest": "Chris Malang",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Fabian Ziegler",
+   "guest": "Martin Gerber",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Jonas Herbinger",
+   "guest": "Demian Senn",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Patric Fricker",
+   "guest": "Demian Senn",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Fabian Ziegler",
+   "guest": "Chris Malang",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Angelo Michielin",
+   "guest": "Martin Gerber",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Jonas Herbinger",
+   "guest": "Naser Toja",
+   "sets": "0:2",
+   "home_win": false
+  }
+ ],
+ "summary": [
+  "0:3",
+  "8:10",
+  "20:22"
+ ],
+ "extras": []
+}

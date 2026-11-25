@@ -1,0 +1,125 @@
+{
+ "date": "25.11.2026",
+ "home": "Dart Ost",
+ "guest": "Double Trouble Steeldarters",
+ "games": [
+  {
+   "round": 1,
+   "home": "Jan Müller",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 1,
+   "home": "Silvan Bücheli",
+   "guest": "Elia Tanner",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Phillipe Graf",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 1,
+   "home": "Joel Ghirlanda",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 3,
+   "home": "Phillipe Graf",
+   "guest": "Elia Tanner",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Jan Müller",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Silvan Bücheli",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 3,
+   "home": "Joel Ghirlanda",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Jan Müller",
+   "guest": "Elia Tanner",
+   "sets": "1:2",
+   "home_win": false
+  },
+  {
+   "round": 2,
+   "home": "Phillipe Graf",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Silvan Bücheli",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 2,
+   "home": "Joel Ghirlanda",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Jan Müller",
+   "guest": "Kevin Notter",
+   "sets": "2:0",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Silvan Bücheli",
+   "guest": "Juliano Goncalves da Costa",
+   "sets": "2:1",
+   "home_win": true
+  },
+  {
+   "round": 4,
+   "home": "Phillipe Graf",
+   "guest": "Daniel Laszlo Sandor",
+   "sets": "0:2",
+   "home_win": false
+  },
+  {
+   "round": 4,
+   "home": "Joel Ghirlanda",
+   "guest": "Elia Tanner",
+   "sets": "2:0",
+   "home_win": true
+  }
+ ],
+ "summary": [
+  "3:0",
+  "13:5",
+  "27:15"
+ ],
+ "extras": []
+}
